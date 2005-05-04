@@ -41,6 +41,8 @@
 \definecolor{White}{rgb}{1,1,1}
 \definecolor{Black}{rgb}{0,0,0}
 
+\definecolor{CambridgePastelRed}{rgb}{1.0,0.5,0.5}
+
 \def\title@colour{Black}
 \def\subtitle@colour{Black}
 \def\thanks@colour{Black}
@@ -81,7 +83,7 @@
 \def\cpb@font{\sf\small}
 
 %% Set the geometry.
-\geometry{inner=10em,outer=7em}
+\geometry{inner=10em,outer=8em}
 \geometry{top=0.05\paperheight,bottom=0.12\paperheight}
 \geometry{nohead,foot=0.07\paperheight}
 
@@ -99,14 +101,6 @@
 % Set page header, footer
 \pagestyle{fancy}\fancyhead{}\fancyfoot{}%
 \fancyfoot[RO,LE]{\pagenumber@font\textcolor{\pagenumber@colour}{\thepage}}%
-\renewcommand{\chaptermark}[1]{%
-  \fancyfoot[RE]{\pagefooter@font\textcolor{\pagefooter@colour}{%
-  \parbox[t]{0.6\paperwidth}{\raggedleft #1}%
-  }}%
-  \fancyfoot[LO]{\pagefooter@font\textcolor{\pagefooter@colour}{%
-  \parbox[t]{0.6\paperwidth}{\raggedright #1}%
-  }}%
-}
 
 %% Section headings etc.
 
@@ -137,22 +131,22 @@
 \def\@seccntformat#1{\protect\makebox[0pt][r]{\csname the#1\endcsname\quad}}
 
 %% Background picture
+\newlength{\flashheight}
+\setlength{\flashheight}{0.67\paperheight}
 \setlength\unitlength{1mm}%
 \def\pagedec@skip{}
 \AddToShipoutPicture{%
+  \def\pagedec@skip{\hskip \paperwidth \hskip -\pagedecorationwidth}
+  \def\flash@width{\pagedecorationwidth}
   \if@twoside
     \ifodd\c@page
-      \def\pagedec@skip{\hskip \paperwidth \hskip -\pagedecorationwidth}
+      % nothing
     \else
       \def\pagedec@skip{}
+      \def\flash@width{-\pagedecorationwidth}
     \fi
-  \else
-    \def\pagedec@skip{\hskip \paperwidth \hskip -\pagedecorationwidth}
   \fi        
-  \AtPageLowerLeft{\pagedec@skip%
-    \color{CambridgeRed}\rule{\pagedecorationwidth}{0.67\paperheight}}
-  \AtPageLowerLeft{\pagedec@skip%
-    \color{CambridgeDeepBlue}\rule{\pagedecorationwidth}{0.5\paperheight}}
+  \AtPageLowerLeft{\pagedec@skip\includegraphics[width=\flash@width,height=\flashheight]{page_flash}}
 }
 
 %% Chapter headings
@@ -164,6 +158,12 @@
 \addtolength{\chapheadwidth}{-3\pagedecorationwidth}
 \newlength{\chapnumheight}
 \renewcommand{\@makechapterhead}[1]{%
+  \fancyfoot[RE]{\pagefooter@font\textcolor{\pagefooter@colour}{%
+  \parbox[t]{0.6\paperwidth}{\raggedleft #1}%
+  }}%
+  \fancyfoot[LO]{\pagefooter@font\textcolor{\pagefooter@colour}{%
+  \parbox[t]{0.6\paperwidth}{\raggedright #1}%
+  }}%
   \relax\rule{0pt}{0pt}\par%
   \vskip -\topmargin \vskip -\headsep \vskip -\headheight %
   \vskip -1in %

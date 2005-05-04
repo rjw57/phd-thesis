@@ -15,6 +15,9 @@ SVGFILES:=$(wildcard *.svg)
 # FIG figures
 FIGFILES:=$(wildcard *.fig)
 
+# PNG figures
+PNGFILES:=$(wildcard *.png)
+
 #### Variables generated from above ####
 
 MAINPDF=$(MAINFILE:.tex=.pdf)
@@ -45,9 +48,9 @@ clean: clean-figures
 	
 .PHONY: figures clean-figures 
 
-figures: svg-figures fig-figures
+figures: svg-figures fig-figures png-figures
 
-clean-figures: clean-svg-figures clean-fig-figures
+clean-figures: clean-svg-figures clean-fig-figures clean-png-figures
 
 #### EOF Figure handling ####
 
@@ -94,3 +97,19 @@ clean-fig-figures:
 	rm -f $(FIGPDFS) $(FIGEPSS)
 
 #### EOF FIG figures ####
+		
+#### PNG pngures ####
+
+.PHONY: png-pngures clean-png-pngures
+
+PNGEPSS := $(PNGFILES:.png=.eps)
+
+png-figures: $(PNGEPS) 
+
+$(PNGEPSS) : %.eps : %.png
+	convert $< $@
+	       
+clean-png-figures:
+	rm -f $(PNGEPSS)
+
+#### EOF PNG pngures ####
