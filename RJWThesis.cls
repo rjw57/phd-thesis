@@ -259,8 +259,8 @@
  \setbox\@tempboxa\hbox{{\cph@font\textcolor{\cph@colour}{#1: }}%
    {\cpb@font\textcolor{\cpb@colour}{#2}}}%
  \ifdim \wd\@tempboxa >\hsize
-    \@hangfrom{\cph@font\textcolor{\cph@colour}{#1: }}%
-    {\cpb@font\textcolor{\cpb@colour}{#2}\par}%
+    \@hangfrom{{\cph@font\textcolor{\cph@colour}{#1: }}}%
+    {{\cpb@font\textcolor{\cpb@colour}{#2}}\par}%
  \else
     \hbox to\hsize{\hfil\box\@tempboxa\hfil}%
  \fi
