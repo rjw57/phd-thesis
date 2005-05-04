@@ -1,0 +1,33 @@
+This is METAFONT, Version 2.7182 (Web2C 7.4.5) (base=mf 2005.5.3)  3 MAY 2005 12:58
+**\mode:=ljfour; mag:=1+0/600; nonstopmode; input msam9
+(/usr/share/texmf/fonts/source/ams/symbols/msam9.mf
+(/usr/share/texmf/fonts/source/public/cm/cmbase.mf)
+(/usr/share/texmf/fonts/source/ams/symbols/amsya.mf
+(/usr/share/texmf/fonts/source/ams/symbols/asymbols.mf [0] [1] [2] [3] [4]
+[5] [6] [7] [9] [8] [11] [10] [12] [13] [14] [15] [16] [17] [18] [19] [20]
+[21] [22] [23] [24] [25] [26] [27] [28] [29] [30] [31] [32] [33] [34] [35]
+[36] [37] [38] [39] [40] [41] [42] [43] [44] [45] [46] [47] [48] [49] [54]
+[62] [55] [63] [50] [51] [52] [60] [53] [61] [56] [57] [58] [59] [64] [65]
+[66] [67] [68] [69] [70] [71] [73] [74] [75] [76] [72] [79] [77] [78] [80]
+[81] [82] [83] [84] [85] [86] [87] [88] [89] [90] [91] [92] [93] [94] [95]
+[96] [97] [98] [99] [100] [101] [106] [107] [102] [103] [104] [105] [108]
+[109] [110]
+! Interruption.
+<to be read again> 
+                   displaying
+endchar->...ule);fi.chardx:=w;shipit;if.displaying
+                                                  >0:makebox(screenrule);sho...
+l.1695 penlabels(1,2,3,4,5,6,7,8,9); endchar
+                                            ;
+? 
+! Emergency stop.
+<to be read again> 
+                   displaying
+endchar->...ule);fi.chardx:=w;shipit;if.displaying
+                                                  >0:makebox(screenrule);sho...
+l.1695 penlabels(1,2,3,4,5,6,7,8,9); endchar
+                                            ;
+End of file on the terminal!
+
+Font metrics written on msam9.tfm.
+Output written on msam9.600gf (111 characters, 18188 bytes).
