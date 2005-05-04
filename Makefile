@@ -23,7 +23,7 @@ MAINSTEM=$(MAINFILE:.tex=)
 
 #### Main targets ####
 	
-.PHONY: all clean 
+.PHONY: all clean maintainer-clean
 
 all: $(MAINPDF) $(MAINPS)
 
@@ -33,11 +33,13 @@ $(MAINPDF): figures $(TEXFILES)
 
 $(MAINPS): figures $(MAINPDF)
 	pdftops $(MAINPDF)
+
+maintainer-clean: clean
+	rm -f $(MAINPDF) $(MAINPS)
 	
 clean: clean-figures 
 	rm -f $(TEXFILES:.tex=.aux) $(TEXFILES:.tex=.toc)
 	rm -f $(TEXFILES:.tex=.bak) $(TEXFILES:.tex=.log)
-	rm -f $(MAINPDF) $(MAINPS)
 
 #### Figure handling ####
 	
