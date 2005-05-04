@@ -43,10 +43,9 @@ int main(int argc, char** argv)
 
   printf("Width: %i, Height: %i\n", w,h);
   cairo = cairo_create();
-  cairo_set_target_pdf(cairo, pdfFile, w/X_PPI + 0.1, h/Y_PPI + 0.1, X_PPI, Y_PPI);
+  cairo_set_target_pdf(cairo, pdfFile, w/X_PPI, h/Y_PPI, X_PPI, Y_PPI);
   cairo_save(cairo);
   
-  cairo_translate(cairo, 0.05*X_PPI, 0.05*Y_PPI);
   svg_cairo_render(svgcr, cairo);
   
   cairo_show_page(cairo);

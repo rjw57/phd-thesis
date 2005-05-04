@@ -48,8 +48,9 @@
 \def\thanks@colour{Black}
 \def\date@colour{Black}
 \def\author@colour{Black}
+\def\quote@colour{CambridgeDeepBlue}
 \def\dedication@colour{CambridgeDeepBlue}
-\def\chaphead@colour{CambridgeDeepBlue}
+\def\chaphead@colour{Black}
 \def\chaprule@colour{CambridgeDeepBlue}
 \def\chapbackground@colour{White}
 \def\chapnum@colour{CambridgeDeepBlue}
@@ -72,6 +73,7 @@
 \def\thanks@font{\large\em}
 \def\date@font{\large}
 \def\author@font{\Large}
+\def\quote@font{\small\sf\em}
 \def\dedication@font{\Large\em}
 \def\chaphead@font{\sf\bfseries\LARGE}
 \def\pagenumber@font{\sf\bfseries\itshape\small}
@@ -149,6 +151,34 @@
   \AtPageLowerLeft{\pagedec@skip\includegraphics[width=\flash@width,height=\flashheight]{page_flash}}
 }
 
+%% Quotes for fancy chapter headings.
+\newsavebox{\@quotebox}
+\newcommand{\i@printquote}{%
+  \usebox{\@quotebox}
+%  \vbox to\z@{\copy\@quotebox\vss}
+  \global\let\@printquote\relax
+}
+\global\let\@printquote\relax
+\newenvironment{savequote}[1][0.33\paperwidth]{%
+  \begin{lrbox}{\@quotebox}%
+    \def\baselinestretch {1.1}%
+    \begin{minipage}[t]{#1}%
+      \raggedright\color{\quote@colour}\quote@font
+}{%
+      \unskip%
+      \end{minipage}%
+    \end{lrbox}%
+    \global\setbox\@quotebox\copy\@quotebox
+    \global\let\@printquote\i@printquote
+}%
+\newcommand{\qauthor}[1]{%
+  \par\smallskip
+  {\raggedleft\upshape #1\qquad\hbox{}\par}\bigskip}
+
+\newcommand{\quoteperson}[2]{%
+  {\@hangfrom{``}{#1''}\par\nobreak}{\raggedleft --- \emph{#2}\par\nobreak}%
+}
+
 %% Chapter headings
 \newsavebox{\chap@savetitle}
 \newlength{\chapheadwidth}
@@ -177,6 +207,15 @@
         \color{\chapbackground@colour}%
         \rule{\paperwidth}{0.33\paperheight}%
       }%
+      % Flash
+      \put(0,-0.33){%
+        \includegraphics[width=\paperwidth,height=0.33\paperheight]{chapter_flash}
+      }%
+      % Quote
+      \put(0,-0.05){%
+        \hspace{1in}\hspace{\oddsidemargin}%
+        \@printquote%
+      }%
       % Title
       \put(0,-0.3){%
         \hspace{1in}\hspace{\oddsidemargin}%
@@ -198,20 +237,20 @@
       \AddToShipoutPicture*{%
         \setlength\unitlength{\paperheight}%
         \AtPageUpperLeft{
-          \put(0,-0.1){%
+          \put(0,-0.05){%
             \parbox{\paperwidth}{%
               \settoheight{\chapnumheight}{%
                 \chapnum@font\thechapter%
               }\vskip \chapnumheight%
               \raggedleft\chapnum@font\textcolor{\chapnum@colour}\thechapter%
-              \hspace*{2\pagedecorationwidth}%
+              \hspace*{\pagedecorationwidth}%
             }
           }
         }
       }
     \fi%
   \fi%
-  \thispagestyle{empty}
+  \thispagestyle{empty}%
 }
 
 \renewcommand{\@makeschapterhead}[1]{%

@@ -9,17 +9,17 @@
    width="35.433071"
    height="496.06299"
    id="svg1"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    sodipodi:version="0.32"
    inkscape:version="0.40"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:cc="http://web.resource.org/cc/"
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
    sodipodi:docname="page_flash.svg"
-   sodipodi:docbase="/home/rjw57/Documents/tech_report_pretty">
+   sodipodi:docbase="/home/rjw57/Documents/tech_report_pretty"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:cc="http://web.resource.org/cc/"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:xlink="http://www.w3.org/1999/xlink">
   <metadata
      id="metadata18">
     <rdf:RDF
@@ -77,11 +77,11 @@
     <linearGradient
        id="linearGradient1683">
       <stop
-         style="stop-color:#99ccff;stop-opacity:1.0000000;"
+         style="stop-color:#6699cc;stop-opacity:1.0000000;"
          offset="0.0000000"
          id="stop1684" />
       <stop
-         style="stop-color:#ccffff;stop-opacity:1.0000000;"
+         style="stop-color:#99ccff;stop-opacity:1.0000000;"
          offset="1.0000000"
          id="stop1685" />
     </linearGradient>
