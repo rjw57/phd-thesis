@@ -41,8 +41,12 @@
 \definecolor{White}{rgb}{1,1,1}
 \definecolor{Black}{rgb}{0,0,0}
 
-\def\title@colour{CambridgeDeepBlue}
+\def\title@colour{Black}
+\def\subtitle@colour{Black}
+\def\thanks@colour{Black}
+\def\date@colour{Black}
 \def\author@colour{Black}
+\def\dedication@colour{CambridgeDeepBlue}
 \def\chaphead@colour{CambridgeDeepBlue}
 \def\chaprule@colour{CambridgeDeepBlue}
 \def\chapbackground@colour{White}
@@ -54,12 +58,19 @@
 \def\cph@colour{CambridgeDeepBlue}
 \def\cpb@colour{CambridgeDeepBlue}
 
+%% Custom title page fields
+\def\sub@title{} \def\subtitle#1{\def\sub@title{#1}}
+
 %% Line spacing
 \def\baselinestretch{1.5}
 
 %% Fonts
 \def\title@font{\LARGE\sc\bfseries}
-\def\author@font{\Large\bfseries}
+\def\subtitle@font{\normalsize}
+\def\thanks@font{\large\em}
+\def\date@font{\large}
+\def\author@font{\Large}
+\def\dedication@font{\Large\em}
 \def\chaphead@font{\sf\bfseries\LARGE}
 \def\pagenumber@font{\sf\bfseries\itshape\small}
 \def\pagefooter@font{\sf\bfseries\itshape\small}
@@ -73,6 +84,17 @@
 \geometry{inner=10em,outer=7em}
 \geometry{top=0.05\paperheight,bottom=0.12\paperheight}
 \geometry{nohead,foot=0.07\paperheight}
+
+\def\dedication#1{%
+  {\centering%
+    \vspace*{0.2\textheight}\par%
+    \hskip -1in \hskip -\oddsidemargin%
+    \parbox{\paperwidth}{%
+      \centering%
+      \dedication@font\textcolor{\dedication@colour}{#1}%
+    }%
+  }%
+}
 
 % Set page header, footer
 \pagestyle{fancy}\fancyhead{}\fancyfoot{}%
@@ -160,6 +182,7 @@
         \hspace{1in}\hspace{\oddsidemargin}%
         \def\baselinestretch{1.0}%
         \parbox[b]{\chapheadwidth}{%
+          \raggedright%
           \chaphead@font\textcolor{\chaphead@colour}{#1}%
         }%
       }%
@@ -195,6 +218,13 @@
   {\let\c@secnumdepth\m@ne\@makechapterhead{#1}}}
 
 %% Title page
+
+\def\thanks#1{\\{\thanks@font\textcolor{\thanks@colour}{#1}}}
+\def\today{\ifcase\month\or
+  January\or February\or March\or April\or May\or June\or
+  July\or August\or September\or October\or November\or December\fi\space%
+  \number\year}
+
 \newlength{\title@height}
 \newlength{\title@offset}
 \def\maketitle{%
@@ -205,12 +235,20 @@
         \color{White}\rule{\paperwidth}{\paperheight}%
       }%
       \AtPageLowerLeft{%
-        \color{CambridgeLightBlue}\rule{\paperwidth}{0.67\paperheight}%
+        \color{CambridgeLightBlue}\rule{\paperwidth}{0.77\paperheight}%
       }%
       \AtPageLowerLeft{%
-        \color{White}\rule{\paperwidth}{0.5\paperheight}%
+        \color{White}\rule{\paperwidth}{0.6\paperheight}%
       }%
       \AtPageLowerLeft{
+        \put(0,0.05){%
+          \hspace*{\pagedecorationwidth}%
+          \parbox{0.5\paperwidth}{%
+            \def\baselinestretch{1.0}
+            {\sc\large\bfseries Signal Processing Group\newline
+            Department of Engineering}
+          }
+        }%
         \put(0,0.05){%
           \parbox{\paperwidth}{%
             \raggedleft%
@@ -218,7 +256,10 @@
             \hspace*{\pagedecorationwidth}%
           }%
         }%
-        \put(0,0.5){%
+        \put(0,0.10){%
+          \textcolor{CambridgeDeepBlue}{\rule{\paperwidth}{\rulewidth}}%
+        }%
+        \put(0,0.6){%
           \hspace*{0.15\paperwidth}%
           \def\baselinestretch{1.3}%
           \settoheight{\title@height}{%
@@ -231,19 +272,27 @@
             \vspace*{\title@offset}%
           }%
         }%
-        \put(0,0.465){%
-          \hspace*{0.1\paperwidth}%
-          \parbox[t]{0.8\paperwidth}{%
-            \centering\author@font\textcolor{\author@colour}{%
+        \put(0,0.565){%
+          \parbox[t]{\paperwidth}{%
+            \def\baselinestretch{1.0}%
+            \centering%
+            {\author@font\textcolor{\author@colour}{%
             \begin{tabular}[t]{c}%
             \@author\end{tabular}
-            }
+            }}
+            \par\vspace*{1.0\baselineskip}%
+            {\date@font\textcolor{\date@colour}{\@date}}%
+            \par%
+            \textcolor{CambridgeDeepBlue}{\rule{\paperwidth}{\rulewidth}}
+            \par\vspace*{0.5\baselineskip}%
+            \def\baselinestretch{1.3}%
+            {\subtitle@font\textcolor{\subtitle@colour}{\sub@title}\par}%
           }%
         }%
-        \put(0,0.5){%
+        \put(0,0.6){%
           \textcolor{CambridgeDeepBlue}{\rule{\paperwidth}{\rulewidth}}%
         }%
-        \put(0,0.67){%
+        \put(0,0.77){%
           \textcolor{CambridgeDeepBlue}{\rule{\paperwidth}{\rulewidth}}%
         }%
       }%
