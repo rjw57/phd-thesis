@@ -1,0 +1,5 @@
+all: figures
+
+clean: clean-figures
+
+include ../Makefile.common

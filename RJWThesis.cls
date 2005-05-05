@@ -70,6 +70,8 @@
 
 %% Custom title page fields
 \def\sub@title{} \def\subtitle#1{\def\sub@title{#1}}
+\def\@group{\ } \def\group#1{\def\@group{#1}}
+\def\@department{\ } \def\department#1{\def\@department{#1}}
 
 %% Line spacing
 \def\baselinestretch{1.5}
@@ -306,8 +308,7 @@
           \hspace*{\pagedecorationwidth}%
           \parbox{0.5\paperwidth}{%
             \def\baselinestretch{1.0}
-            {\sc\large\bfseries Signal Processing Group\newline
-            Department of Engineering}
+            {\sc\large\bfseries \@group\newline\@department}
           }
         }%
         \put(0,0.05){%

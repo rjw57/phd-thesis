@@ -1,0 +1,72 @@
+SVGFILES:=$(wildcard *.svg)
+FIGFILES:=$(wildcard *.fig)
+PNGFILES:=$(wildcard *.png)
+	
+#### Figure handling ####
+	
+.PHONY: figures clean-figures 
+
+figures: svg-figures fig-figures png-figures
+
+clean-figures: clean-svg-figures clean-fig-figures clean-png-figures
+
+#### EOF Figure handling ####
+
+#### SVG figures ####
+
+.PHONY: svg-figures clean-svg-figures
+
+SVGPDFS := $(SVGFILES:.svg=.pdf)
+SVGEPSS := $(SVGFILES:.svg=.eps)
+
+svg-figures: $(SVGPDFS) $(SVGEPSS)
+
+$(SVGEPSS) : %.eps : %.pdf
+	pdftops $< $@
+	       
+$(SVGPDFS) : %.pdf : %.svg $(PROJECTROOT)/svg2pdf
+	$(PROJECTROOT)/svg2pdf $< $@
+		
+clean-svg-figures:
+	if [ "x$(SVGEPSS)" != "x" ]; then rm -f $(SVGEPSS); fi
+	if [ "x$(SVGPDFS)" != "x" ]; then rm -f $(SVGPDFS); fi
+
+#### EOF SVG figures ####
+	
+#### FIG figures ####
+
+.PHONY: fig-figures clean-fig-figures
+
+FIGPDFS := $(FIGFILES:.fig=.pdf)
+FIGEPSS := $(FIGFILES:.fig=.eps)
+
+fig-figures: $(FIGPDFS) $(FIGEPSS)
+
+$(FIGEPSS) : %.eps : %.fig
+	fig2ps --nogv --eps --bbox=dvips --add=epsfig $<
+	       
+$(FIGPDFS) : %.pdf : %.fig 
+	fig2ps --nogv --pdf --bbox=dvips --add=epsfig $<
+
+clean-fig-figures:
+	if [ "x$(FIGEPSS)" != "x" ]; then rm -f $(FIGEPSS); fi
+	if [ "x$(FIGPDFS)" != "x" ]; then rm -f $(FIGPDFS); fi
+
+#### EOF FIG figures ####
+		
+#### PNG pngures ####
+
+.PHONY: png-pngures clean-png-pngures
+
+PNGEPSS := $(PNGFILES:.png=.eps)
+
+png-figures: $(PNGEPS) 
+
+$(PNGEPSS) : %.eps : %.png
+	convert $< $@
+	       
+clean-png-figures:
+	if [ "x$(PNGEPSS)" != "x" ]; then rm -f $(PNGEPSS); fi
+	if [ "x$(PNGPDFS)" != "x" ]; then rm -f $(PNGPDFS); fi
+
+#### EOF PNG pngures ####

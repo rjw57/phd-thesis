@@ -4,112 +4,65 @@
 # Variables we can alter
 
 # Main tex file
-MAINFILE=thesis.tex
-
-# Dependent tex files
 TEXFILES:=$(wildcard *.tex)
-
-# SVG figures
-SVGFILES:=$(wildcard *.svg)
-
-# FIG figures
-FIGFILES:=$(wildcard *.fig)
-
-# PNG figures
-PNGFILES:=$(wildcard *.png)
-
+SUBDIRS:=$(wildcard ch[0-9]*) global
+	
 #### Variables generated from above ####
 
-MAINPDF=$(MAINFILE:.tex=.pdf)
-MAINPS=$(MAINFILE:.tex=.ps)
-MAINSTEM=$(MAINFILE:.tex=)
+PDFS=$(TEXFILES:.tex=.pdf)
+PSS=$(TEXFILES:.tex=.ps)
+STEMS=$(TEXFILES:.tex=)
+
+#### Variables required by build system ####
+export PROJECTROOT=$(shell pwd)
+
+#### Default target ####
+all: $(MAINPDF) $(MAINPS)
+	
+#### Common operations ####
+include Makefile.common
 
 #### Main targets ####
 	
 .PHONY: all clean maintainer-clean
+.PHONY: environment clean-environment
+.PHONY: subdirs $(SUBDIRS)
 
-all: $(MAINPDF) $(MAINPS)
+$(PDFS): %.pdf : %.tex environment subdirs
+	pdflatex $(<:.tex=)
 
-$(MAINPDF): figures $(TEXFILES)
-	pdflatex $(MAINSTEM)
-	pdflatex $(MAINSTEM)
-
-$(MAINPS): figures $(MAINPDF)
-	pdftops $(MAINPDF)
+$(PSS): %.ps : %.pdf 
+	pdftops $<
 
 maintainer-clean: clean
-	rm -f $(MAINPDF) $(MAINPS)
+	rm -f $(PDFS) $(PSS)
 	
-clean: clean-figures 
+clean: clean-environment 
 	rm -f $(TEXFILES:.tex=.aux) $(TEXFILES:.tex=.toc)
 	rm -f $(TEXFILES:.tex=.bak) $(TEXFILES:.tex=.log)
+	rm -f $(TEXFILES:.tex=.out)
 
-#### Figure handling ####
-	
-.PHONY: figures clean-figures 
+#### General environment
 
-figures: svg-figures fig-figures png-figures
+environment: svg2pdf 
 
-clean-figures: clean-svg-figures clean-fig-figures clean-png-figures
-
-#### EOF Figure handling ####
-
-#### SVG figures ####
-
-.PHONY: svg-figures clean-svg-figures
-
-SVGPDFS := $(SVGFILES:.svg=.pdf)
-SVGEPSS := $(SVGFILES:.svg=.eps)
-
-svg-figures: $(SVGPDFS) $(SVGEPSS)
-
-$(SVGEPSS) : %.eps : %.pdf
-	pdftops $< $@
-	       
-$(SVGPDFS) : %.pdf : %.svg svg2pdf
-	./svg2pdf $< $@
-
-svg2pdf: svg2pdf.c
-	$(CC) -o svg2pdf svg2pdf.c `pkg-config cairo --libs --cflags` -lsvg-cairo
-		
-clean-svg-figures:
-	rm -f $(SVGPDFS) $(SVGEPSS)
+clean-environment: clean-subdirs
 	rm -f svg2pdf
 
-#### EOF SVG figures ####
+#### svg2pdf
+svg2pdf: svg2pdf.c
+	$(CC) -o svg2pdf svg2pdf.c `pkg-config cairo --libs --cflags` -lsvg-cairo
+
+#### subdirectories
+CLEANSUBDIRS:=$(foreach dir,$(SUBDIRS),clean-$(dir))
 	
-#### FIG figures ####
+subdirs: $(SUBDIRS)
 
-.PHONY: fig-figures clean-fig-figures
+$(SUBDIRS):
+	$(MAKE) -C $@
 
-FIGPDFS := $(FIGFILES:.fig=.pdf)
-FIGEPSS := $(FIGFILES:.fig=.eps)
+clean-subdirs: $(CLEANSUBDIRS)
 
-fig-figures: $(FIGPDFS) $(FIGEPSS)
+$(CLEANSUBDIRS): 
+	$(MAKE) -C $(subst clean-,,$@) clean
 
-$(FIGEPSS) : %.eps : %.fig
-	fig2ps --nogv --eps --bbox=dvips --add=epsfig $<
-	       
-$(FIGPDFS) : %.pdf : %.fig 
-	fig2ps --nogv --pdf --bbox=dvips --add=epsfig $<
-
-clean-fig-figures:
-	rm -f $(FIGPDFS) $(FIGEPSS)
-
-#### EOF FIG figures ####
-		
-#### PNG pngures ####
-
-.PHONY: png-pngures clean-png-pngures
-
-PNGEPSS := $(PNGFILES:.png=.eps)
-
-png-figures: $(PNGEPS) 
-
-$(PNGEPSS) : %.eps : %.png
-	convert $< $@
-	       
-clean-png-figures:
-	rm -f $(PNGEPSS)
-
-#### EOF PNG pngures ####
