@@ -22,8 +22,8 @@
 \newcommand{\chapnum@fontname}{ptm}
 \DeclareOption{sabonnumbers}{\renewcommand{\chapnum@fontname}{psb}}
 \DeclareOption{bookpaper}{%
-  \setlength{\paperwidth}{5.25in}
-  \setlength{\paperheight}{8.25in}
+  \setlength{\paperwidth}{6in}
+  \setlength{\paperheight}{9in}
 }
 
 \ProcessOptions
@@ -237,7 +237,7 @@
       }%
       % Quote
       \put(0,-0.05){%
-        \hspace{0.05\paperwidth}%
+        \hspace{0.05\paperwidth}\hspace{\oddsidemargin}%
         \@printquote%
       }%
       % Title
