@@ -21,6 +21,10 @@
 
 \newcommand{\chapnum@fontname}{ptm}
 \DeclareOption{sabonnumbers}{\renewcommand{\chapnum@fontname}{psb}}
+\DeclareOption{bookpaper}{%
+  \setlength{\paperwidth}{5.25in}
+  \setlength{\paperheight}{8.25in}
+}
 
 \ProcessOptions
 
