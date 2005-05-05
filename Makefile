@@ -47,8 +47,8 @@ $(PSS): %.ps : %.pdf
 DATE=$(shell date +%Y%m%d)
 DISTNAME=thesis-$(USER)-$(DATE)
 
-publish: $(PDFS)
-	scp $(PDFS) sirius:~/public_html/drafts/
+publish: $(PDFS) $(PSS)
+	scp $(PDFS) $(PSS) sirius:~/public_html/drafts/
 
 backup: dist
 	scp $(DISTNAME).tar.gz sirius:~
