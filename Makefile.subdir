@@ -6,4 +6,4 @@ all: figures
 include $(PROJECTROOT)/Makefile.common
 
 clean: clean-figures
-	rm -f $(TEXFILES:.tex=.aux)
+	rm -f $(TEXFILES:.tex=.aux) missfont.log

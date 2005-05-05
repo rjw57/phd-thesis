@@ -2,7 +2,7 @@
 # Rich Wareham (rjw57)
 
 # Variables we can alter
-SUBDIRS:=global $(wildcard ch[0-9]*)
+SUBDIRS:=global $(wildcard ch[0-9][0-9]*)
 
 #### Default target ####
 .PHONY: all documents
@@ -31,6 +31,10 @@ export PROJECTROOT SVG2PDF
 .PHONY: environment clean-environment
 .PHONY: subdirs $(SUBDIRS)
 
+# Make sure TeX searches all our subdirs	
+TEXINPUTS=$(shell echo ' $(strip $(SUBDIRS))' | sed -e 's/ /:/g')
+export TEXINPUTS
+	
 # Run twice to ensure labels etc.
 $(PDFS): %.pdf : %.tex environment subdirs
 	pdflatex $(<:.tex=)
@@ -46,7 +50,7 @@ dist-clean: clean
 clean: clean-environment 
 	rm -f $(TEXFILES:.tex=.aux) $(TEXFILES:.tex=.toc)
 	rm -f $(TEXFILES:.tex=.bak) $(TEXFILES:.tex=.log)
-	rm -f $(TEXFILES:.tex=.out)
+	rm -f $(TEXFILES:.tex=.out) 
 
 #### General environment
 
