@@ -64,7 +64,7 @@ SVGEPSS := $(SVGFILES:.svg=.eps)
 svg-figures: $(SVGPDFS) $(SVGEPSS)
 
 $(SVGEPSS) : %.eps : %.pdf
-	pdf2ps $< $@
+	pdftops $< $@
 	       
 $(SVGPDFS) : %.pdf : %.svg svg2pdf
 	./svg2pdf $< $@
@@ -88,10 +88,10 @@ FIGEPSS := $(FIGFILES:.fig=.eps)
 fig-figures: $(FIGPDFS) $(FIGEPSS)
 
 $(FIGEPSS) : %.eps : %.fig
-	fig2eps --nogv $<
+	fig2ps --nogv --eps --bbox=dvips --add=epsfig $<
 	       
 $(FIGPDFS) : %.pdf : %.fig 
-	fig2pdf --nogv $<
+	fig2ps --nogv --pdf --bbox=dvips --add=epsfig $<
 
 clean-fig-figures:
 	rm -f $(FIGPDFS) $(FIGEPSS)

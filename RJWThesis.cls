@@ -19,6 +19,9 @@
 \RequirePackage{sectsty}
 \RequirePackage{eso-pic}
 
+\newcommand{\chapnum@fontname}{ptm}
+\DeclareOption{sabonnumbers}{\renewcommand{\chapnum@fontname}{psb}}
+
 \ProcessOptions
 
 %% Lengths
@@ -27,6 +30,10 @@
 \newlength{\pagedecorationwidth}
 \setlength{\pagedecorationwidth}{0.05\paperwidth}
 \def\rulewidth{1pt}
+
+% Margin to offset decoration by
+\newlength{\decorationoffset}
+\setlength{\decorationoffset}{0pt}
 
 % Standard lengths
 \renewcommand{\headrulewidth}{0pt}
@@ -80,7 +87,7 @@
 \def\pagefooter@font{\sf\bfseries\itshape\small}
 \def\section@font{\sf\bfseries\Large}
 \def\subsection@font{\sf\bfseries}
-\def\chapnum@font{\usefont{T1}{psb}{b}{n}\fontsize{100}{130}\selectfont}
+\def\chapnum@font{\usefont{T1}{\chapnum@fontname}{b}{n}\fontsize{100}{130}\selectfont}
 \def\cph@font{\sf\bfseries\small}
 \def\cpb@font{\sf\small}
 
@@ -133,18 +140,20 @@
 \def\@seccntformat#1{\protect\makebox[0pt][r]{\csname the#1\endcsname\quad}}
 
 %% Background picture
+\AtBeginDocument{
 \newlength{\flashheight}
 \setlength{\flashheight}{0.67\paperheight}
 \setlength\unitlength{1mm}%
+}
 \def\pagedec@skip{}
 \AddToShipoutPicture{%
-  \def\pagedec@skip{\hskip \paperwidth \hskip -\pagedecorationwidth}
+  \def\pagedec@skip{\hskip \paperwidth \hskip -\pagedecorationwidth \hskip -\decorationoffset}
   \def\flash@width{\pagedecorationwidth}
   \if@twoside
     \ifodd\c@page
       % nothing
     \else
-      \def\pagedec@skip{}
+      \def\pagedec@skip{\hskip \decorationoffset}
       \def\flash@width{-\pagedecorationwidth}
     \fi
   \fi        
@@ -182,11 +191,19 @@
 %% Chapter headings
 \newsavebox{\chap@savetitle}
 \newlength{\chapheadwidth}
+\newlength{\chapnumheight}
+\newlength{\chapflash@width}
+
+\AtBeginDocument{
 \setlength{\chapheadwidth}{\paperwidth}
 \addtolength{\chapheadwidth}{-1in}
 \addtolength{\chapheadwidth}{-\oddsidemargin}
 \addtolength{\chapheadwidth}{-3\pagedecorationwidth}
-\newlength{\chapnumheight}
+
+\setlength{\chapflash@width}{\paperwidth}
+\addtolength{\chapflash@width}{-2\decorationoffset}
+}
+
 \renewcommand{\@makechapterhead}[1]{%
   \fancyfoot[RE]{\pagefooter@font\textcolor{\pagefooter@colour}{%
   \parbox[t]{0.6\paperwidth}{\raggedleft #1}%
@@ -209,11 +226,12 @@
       }%
       % Flash
       \put(0,-0.33){%
-        \includegraphics[width=\paperwidth,height=0.33\paperheight]{chapter_flash}
+        \hskip \decorationoffset %
+        \includegraphics[width=\chapflash@width,height=0.33\paperheight]{chapter_flash}
       }%
       % Quote
       \put(0,-0.05){%
-        \hspace{1in}\hspace{\oddsidemargin}%
+        \hspace{0.05\paperwidth}%
         \@printquote%
       }%
       % Title
@@ -244,6 +262,7 @@
               }\vskip \chapnumheight%
               \raggedleft\chapnum@font\textcolor{\chapnum@colour}\thechapter%
               \hspace*{\pagedecorationwidth}%
+              \hspace*{\decorationoffset}%
             }
           }
         }
@@ -273,11 +292,14 @@
       \AtPageLowerLeft{%
         \color{White}\rule{\paperwidth}{\paperheight}%
       }%
+      %\AtPageLowerLeft{%
+      %  \put(0,0.6){%
+      %    \hskip \decorationoffset%
+      %    \includegraphics[width=\chapflash@width,height=0.17\paperheight]{chapter_flash}%
+      %  }%
+      %}%
       \AtPageLowerLeft{%
-        \color{CambridgeLightBlue}\rule{\paperwidth}{0.77\paperheight}%
-      }%
-      \AtPageLowerLeft{%
-        \color{White}\rule{\paperwidth}{0.6\paperheight}%
+        \put(0,0.6){\color{CambridgeLightBlue}\rule{\paperwidth}{0.17\paperheight}}%
       }%
       \AtPageLowerLeft{
         \put(0,0.05){%
@@ -302,7 +324,7 @@
           \hspace*{0.15\paperwidth}%
           \def\baselinestretch{1.3}%
           \settoheight{\title@height}{%
-            \parbox[b]{0.66\paperwidth}{\centering\title@font\@title}%
+            \parbox[b]{0.7\paperwidth}{\centering\title@font\@title}%
           }%
           \setlength{\title@offset}{0.085\paperheight}%
           \addtolength{\title@offset}{-0.5\title@height}%
