@@ -1,5 +1,9 @@
+# This is probably a sensible guess if we don't know better
+PROJECTROOT?=..
+
 all: figures
 
-clean: clean-figures
+include $(PROJECTROOT)/Makefile.common
 
-include ../Makefile.common
+clean: clean-figures
+	rm -f $(TEXFILES:.tex=.aux)

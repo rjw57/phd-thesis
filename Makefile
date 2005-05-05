@@ -2,10 +2,14 @@
 # Rich Wareham (rjw57)
 
 # Variables we can alter
+SUBDIRS:=global $(wildcard ch[0-9]*)
 
-# Main tex file
-TEXFILES:=$(wildcard *.tex)
-SUBDIRS:=$(wildcard ch[0-9]*) global
+#### Default target ####
+.PHONY: all documents
+all: documents
+	
+#### Common operations and variables ####
+include Makefile.common
 	
 #### Variables generated from above ####
 
@@ -13,29 +17,31 @@ PDFS=$(TEXFILES:.tex=.pdf)
 PSS=$(TEXFILES:.tex=.ps)
 STEMS=$(TEXFILES:.tex=)
 
-#### Variables required by build system ####
-export PROJECTROOT=$(shell pwd)
-
-#### Default target ####
-all: $(MAINPDF) $(MAINPS)
+documents: $(PDFS) $(PSS)
 	
-#### Common operations ####
-include Makefile.common
+#### Variables required by build system in subdirs ####
+PROJECTROOT:=$(shell pwd)
+SVG2PDF:=$(PROJECTROOT)/svg2pdf
+
+export PROJECTROOT SVG2PDF
 
 #### Main targets ####
 	
-.PHONY: all clean maintainer-clean
+.PHONY: clean maintainer-clean
 .PHONY: environment clean-environment
 .PHONY: subdirs $(SUBDIRS)
 
+# Run twice to ensure labels etc.
 $(PDFS): %.pdf : %.tex environment subdirs
+	pdflatex $(<:.tex=)
 	pdflatex $(<:.tex=)
 
 $(PSS): %.ps : %.pdf 
 	pdftops $<
 
-maintainer-clean: clean
+dist-clean: clean
 	rm -f $(PDFS) $(PSS)
+	rm -f svg2pdf
 	
 clean: clean-environment 
 	rm -f $(TEXFILES:.tex=.aux) $(TEXFILES:.tex=.toc)
@@ -47,7 +53,6 @@ clean: clean-environment
 environment: svg2pdf 
 
 clean-environment: clean-subdirs
-	rm -f svg2pdf
 
 #### svg2pdf
 svg2pdf: svg2pdf.c

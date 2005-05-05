@@ -1,3 +1,5 @@
+# Generated
+TEXFILES:=$(wildcard *.tex)
 SVGFILES:=$(wildcard *.svg)
 FIGFILES:=$(wildcard *.fig)
 PNGFILES:=$(wildcard *.png)
@@ -24,8 +26,9 @@ svg-figures: $(SVGPDFS) $(SVGEPSS)
 $(SVGEPSS) : %.eps : %.pdf
 	pdftops $< $@
 	       
-$(SVGPDFS) : %.pdf : %.svg $(PROJECTROOT)/svg2pdf
-	$(PROJECTROOT)/svg2pdf $< $@
+SVG2PDF?=$(PROJECTROOT)/svg2pdf
+$(SVGPDFS) : %.pdf : %.svg 
+	$(SVG2PDF) $< $@
 		
 clean-svg-figures:
 	if [ "x$(SVGEPSS)" != "x" ]; then rm -f $(SVGEPSS); fi
