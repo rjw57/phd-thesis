@@ -3,6 +3,7 @@
 
 # Variables we can alter
 SUBDIRS:=global $(wildcard ch[0-9][0-9]*)
+EVERYTHING=$(wildcard *)
 
 #### Default target ####
 .PHONY: all documents
@@ -42,6 +43,19 @@ $(PDFS): %.pdf : %.tex environment subdirs
 
 $(PSS): %.ps : %.pdf 
 	pdftops $<
+
+DATE=$(shell date +%Y%m%d)
+DISTNAME=thesis-$(USER)-$(DATE)
+
+backup: dist
+	scp $(DISTNAME).tar.gz sirius:~
+	rm $(DISTNAME).tar.gz
+
+dist: dist-clean
+	mkdir $(DISTNAME)
+	cp -rap $(EVERYTHING) $(DISTNAME)/
+	tar czf $(DISTNAME).tar.gz $(DISTNAME)
+	rm -rf $(DISTNAME)
 
 dist-clean: clean
 	rm -f $(PDFS) $(PSS)
