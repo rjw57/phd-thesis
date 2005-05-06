@@ -28,7 +28,7 @@ export PROJECTROOT SVG2PDF
 
 #### Main targets ####
 	
-.PHONY: clean maintainer-clean
+.PHONY: clean 
 .PHONY: environment clean-environment
 .PHONY: subdirs $(SUBDIRS)
 
@@ -44,10 +44,17 @@ $(PDFS): %.pdf : %.tex environment subdirs
 $(PSS): %.ps : %.pdf 
 	pdftops $<
 
+#### Convenience targets
+	
 DATE=$(shell date +%Y%m%d)
 DISTNAME=thesis-$(USER)-$(DATE)
 
-publish: $(PDFS) $(PSS)
+.PHONY: publish backup dist dist-clean view
+
+view: all
+	gv $(PSS)
+
+publish: all
 	scp $(PDFS) $(PSS) sirius:~/public_html/drafts/
 
 backup: dist
