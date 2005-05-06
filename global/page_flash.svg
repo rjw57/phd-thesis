@@ -12,7 +12,7 @@
    sodipodi:version="0.32"
    inkscape:version="0.40"
    sodipodi:docname="page_flash.svg"
-   sodipodi:docbase="/home/rjw57/Documents/tech_report_pretty"
+   sodipodi:docbase="/home/rjw57/Academic_Files/Documents/phd3/thesis/global"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:cc="http://web.resource.org/cc/"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
@@ -44,7 +44,7 @@
      inkscape:pageshadow="2"
      inkscape:zoom="1.7366334"
      inkscape:cx="107.16157"
-     inkscape:cy="233.58488"
+     inkscape:cy="256.61795"
      inkscape:window-width="908"
      inkscape:window-height="783"
      inkscape:window-x="5"
@@ -77,11 +77,11 @@
     <linearGradient
        id="linearGradient1683">
       <stop
-         style="stop-color:#6699cc;stop-opacity:1.0000000;"
+         style="stop-color:#b4c0cc;stop-opacity:1.0000000;"
          offset="0.0000000"
          id="stop1684" />
       <stop
-         style="stop-color:#99ccff;stop-opacity:1.0000000;"
+         style="stop-color:#ffffff;stop-opacity:1.0000000;"
          offset="1.0000000"
          id="stop1685" />
     </linearGradient>
@@ -126,36 +126,18 @@
        xlink:href="#linearGradient1683"
        id="linearGradient1090"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(0.101247,0.000000,0.000000,2.531181,-111.0237,-470.3668)"
+       gradientTransform="matrix(0.126559,0.000000,0.000000,3.543661,-138.7796,-658.5138)"
        x1="1096.5594"
        y1="115.83582"
        x2="1236.5458"
        y2="115.83582" />
-    <linearGradient
-       inkscape:collect="always"
-       xlink:href="#linearGradient1715"
-       id="linearGradient1718"
-       gradientTransform="matrix(0.300000,0.000000,0.000000,2.000000,-113.1500,-461.5785)"
-       x1="377.16650"
-       y1="18.190807"
-       x2="448.03265"
-       y2="18.190807"
-       gradientUnits="userSpaceOnUse" />
   </defs>
   <rect
-     width="14.173228"
-     height="354.33072"
+     width="17.716536"
+     height="496.06299"
      x="-6.1035156e-05"
-     y="-354.33075"
+     y="-496.06299"
      style="fill:url(#linearGradient1090);fill-opacity:1.0000000;fill-rule:evenodd;stroke:none;stroke-opacity:1.0000000"
      id="rect1061"
-     transform="scale(1.000000,-1.000000)" />
-  <rect
-     width="21.259842"
-     height="141.73228"
-     x="-6.1035156e-05"
-     y="-496.06302"
-     style="fill:url(#linearGradient1718);fill-opacity:1.0000000;fill-rule:evenodd;stroke:none;stroke-opacity:1.0000000"
-     id="rect1687"
      transform="scale(1.000000,-1.000000)" />
 </svg>
