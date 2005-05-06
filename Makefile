@@ -49,7 +49,10 @@ $(PSS): %.ps : %.pdf
 DATE=$(shell date +%Y%m%d)
 DISTNAME=thesis-$(USER)-$(DATE)
 
-.PHONY: publish backup dist dist-clean view
+.PHONY: publish backup dist dist-clean view wordcount
+
+wordcount: $(PSS)
+	echo Wordcount: `ps2ascii $(PSS) | wc -w`
 
 view: all
 	gv $(PSS)
