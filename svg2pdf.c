@@ -19,6 +19,7 @@ int main(int argc, char** argv)
   FILE *pdfFile;
   char *svgFileName;
   cairo_t *cairo;
+  cairo_surface_t *surface;
   svg_cairo_t* svgcr;
   unsigned int w,h;
   
@@ -42,6 +43,7 @@ int main(int argc, char** argv)
   }
 
   printf("Width: %i, Height: %i\n", w,h);
+  
   cairo = cairo_create();
   cairo_set_target_pdf(cairo, pdfFile, w/X_PPI, h/Y_PPI, X_PPI, Y_PPI);
   cairo_save(cairo);
