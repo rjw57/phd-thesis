@@ -55,6 +55,9 @@ DISTNAME=thesis-$(USER)-$(DATE)
 wordcount: $(PSS)
 	echo Wordcount: `ps2ascii $(PSS) | wc -w`
 
+acroview: all
+	acroread $(PDFS)
+
 view: all
 	gv $(PSS)
 
