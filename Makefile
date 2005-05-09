@@ -2,7 +2,8 @@
 # Rich Wareham (rjw57)
 
 # Variables we can alter
-SUBDIRS:=global introduction libcga visualisation noneuclid
+SUBDIRS:=global introduction libcga visualisation noneuclid \
+	 exponential
 EVERYTHING=$(wildcard *)
 
 #### Default target ####
