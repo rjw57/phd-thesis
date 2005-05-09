@@ -69,6 +69,7 @@
 \def\pagefooter@colour{CambridgeDeepBlue}
 \def\section@colour{CambridgeRed}
 \def\subsection@colour{CambridgeDeepBlue}
+\def\subsubsection@colour{CambridgeDeepBlue}
 \def\cph@colour{CambridgeDeepBlue}
 \def\cpb@colour{CambridgeDeepBlue}
 
@@ -93,6 +94,7 @@
 \def\pagefooter@font{\sf\bfseries\itshape\small}
 \def\section@font{\sf\bfseries\Large}
 \def\subsection@font{\sf\bfseries}
+\def\subsubsection@font{\bfseries\em}
 \def\chapnum@font{\usefont{T1}{\chapnum@fontname}{b}{n}\fontsize{100}{130}\selectfont}
 \def\cph@font{\sf\bfseries\small}
 \def\cpb@font{\sf\small}
@@ -141,6 +143,16 @@
   }%
 }%
 \subsectionfont{\subsect@format}
+\newcommand{\subsubsect@format}[1]{%
+  \noindent\protect{%
+    \@tempdima=\hsize
+    \parbox{\@tempdima}{%
+      \smallskip\subsubsection@font%
+      \textcolor{\subsubsection@colour}{#1}\smallskip
+    }%
+  }%
+}%
+\subsubsectionfont{\subsubsect@format}
 
 % Make section numbers appear in margin
 \def\@seccntformat#1{\protect\makebox[0pt][r]{\csname the#1\endcsname\quad}}
