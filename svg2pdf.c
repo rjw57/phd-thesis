@@ -43,6 +43,9 @@ int main(int argc, char** argv)
   }
 
   printf("Width: %i, Height: %i\n", w,h);
+  /* For some reason this is necessary for libsvg-cairo from 
+   * cairographic.org's debian archive. */
+  w*=3; h*=3;
   
   cairo = cairo_create();
   cairo_set_target_pdf(cairo, pdfFile, w/X_PPI, h/Y_PPI, X_PPI, Y_PPI);
