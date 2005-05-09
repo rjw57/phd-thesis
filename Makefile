@@ -2,7 +2,7 @@
 # Rich Wareham (rjw57)
 
 # Variables we can alter
-SUBDIRS:=global introduction
+SUBDIRS:=global introduction libcga visualisation
 EVERYTHING=$(wildcard *)
 
 #### Default target ####
