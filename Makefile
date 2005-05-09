@@ -2,7 +2,7 @@
 # Rich Wareham (rjw57)
 
 # Variables we can alter
-SUBDIRS:=global $(wildcard ch[0-9][0-9]*)
+SUBDIRS:=global introduction
 EVERYTHING=$(wildcard *)
 
 #### Default target ####
