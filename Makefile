@@ -38,7 +38,7 @@ TEXINPUTS=$(shell echo ' $(strip $(SUBDIRS))' | sed -e 's/ /:/g')
 export TEXINPUTS
 	
 # Run twice to ensure labels etc.
-$(PDFS): %.pdf : %.tex environment subdirs
+$(PDFS): %.pdf : %.tex environment subdirs wordcount.txt
 	pdflatex $(<:.tex=)
 	pdflatex $(<:.tex=)
 
@@ -50,10 +50,10 @@ $(PSS): %.ps : %.pdf
 DATE=$(shell date +%Y%m%d)
 DISTNAME=thesis-$(USER)-$(DATE)
 
-.PHONY: publish backup dist dist-clean view wordcount
+.PHONY: publish backup dist dist-clean view wordcount.txt
 
-wordcount: $(PSS)
-	echo Wordcount: `ps2ascii $(PSS) | wc -w`
+wordcount.txt:
+	echo `find . -name '*.tex' -print0 | xargs -0 untex -o -e -m  | wc -w`\% >wordcount.txt
 
 acroview: all
 	acroread $(PDFS)
@@ -82,6 +82,7 @@ clean: clean-environment
 	rm -f $(TEXFILES:.tex=.aux) $(TEXFILES:.tex=.toc)
 	rm -f $(TEXFILES:.tex=.bak) $(TEXFILES:.tex=.log)
 	rm -f $(TEXFILES:.tex=.out) 
+	rm -f wordcount.txt
 
 #### General environment
 
