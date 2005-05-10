@@ -1,26 +1,1497 @@
 \chapter{Introduction}
 
+It has long been known that going to a 4d, projective, description
+of 3d Euclidean space can have various advantages -- particularly
+when intersections of planes and lines are required. Such
+projective descriptions are used extensively in computer vision
+where rotations and translations can be described by a single
+$4\times 4$ matrix and non-linear projective transformations
+become linear. This 4d description of projective geometry fits
+very nicely into the Geometric Algebra framework and applications
+are given in \cite{HZ91,IJPR00}. 
+Since its inception in the mid-1970s, Computer Graphics (CG) has almost
+universally used linear vector algebra as its mathematical framework.
+This is due primarily to two factors; most early practitioners of
+computer graphics were mathematicians familiar with it and 
+linear algebra provided a compact, efficient way of representing points, 
+transformations, lines, etc.
+
+In the early-1980s CG moved out of the realm of Computer
+Science research and started to be used in the broader scientific 
+community as an important research tool, both for simulation and visualisation.
+Computer Graphics was still tied to classical vector algebra which
+had started to show a number of problems when applied to the problems
+being investigated. Amongst these were poor generalisation to
+spaces other than $\mathbb{R}^3$ and great conceptual difficulty 
+in extending problems to non-Euclidean spaces and
+manipulating geometric objects other than simple lines, planes and points.
+
+As computing power becomes cheaper, the opportunity
+arises to investigate new
+frameworks for CG which, although not providing the time/space
+efficiency of vector algebra, may provide a conceptually simpler
+system or one of greater analytical power.
+
 \section{A Brief Overview of Geometric Algebra}
+
+As stated above, classical vector algebra has a number of problems
+once one moves away from three-dimensional Euclidean space. Perhaps the
+clearest example is the cross-product of two vectors.  The product, $\mathbf{a}
+\times \mathbf{b}$, is conventionally defined as a vector normal to the plane
+that $\mathbf{a}$ and $\mathbf{b}$ both lie in and has magnitude $ab\sin\theta$
+where $\theta$ is the angle between $\mathbf{a}$ and $\mathbf{b}$. However, the
+normal to the plane is only uniquely defined in 3-dimensions and has no meaning
+in 2- or 1-dimensional space; the cross-product does not generalise to
+higher-dimension spaces. The product is an important element of vector
+algebra and one can see that performing geometric operations in higher-spaces
+without it quickly becomes complex.
 
 \subsection{The products}
 
+It was in an attempt \cite{grassmann} to create an algebra of vectors which 
+did generalise
+to higher spaces that a German schoolteacher named Hermann 
+Gra{\ss}mann (1809--1877) created an \emph{exterior} 
+or \emph{outer} product of two
+vectors denoted as $a \wedge b$. 
+%Note that we have dropped the normal
+%typographic convention of denoting vectors in boldface for
+%reasons which will become clear later.
+
+Gra{\ss}mann's outer product can be visualised geometrically as moving
+one vector along the other to form a `directed area'. This is a new object,
+neither a vector or a scalar. We shall refer to it as a \emph{bivector}.
+Similarly one may form the outer product of this bivector with another
+vector to form a directed volume or \emph{trivector}. We say a 
+bivector has grade 2, a trivector has grade 3 and, generally, a
+$n$-vector has grade $n$.
+
+\begin{figure}
+\centering
+\includegraphics{geometric}
+\caption{Illustration of bi- and trivectors\label{fig:geometric}}
+\end{figure}
+
+The geometric objects are illustrated in Figure \ref{fig:geometric}. A 
+key feature is that the outer-product is anti-commutative and 
+associative so that
+\begin{displaymath}
+a \wedge b = - ( b \wedge a)\quad\mbox{and}\quad 
+a \wedge (b \wedge c) = (a \wedge b) \wedge c = a \wedge b \wedge c
+\end{displaymath}
+
+Most of Gra{\ss}mann's work was largely ignored by the mathematical community.
+It was not until William Clifford (1845--1879) investigated Gra{\ss}mann's
+algebra in 1878 \cite{clifford} that the crucial step was made.
+
+Clifford unified Gra{\ss}mann's outer product and the familiar dot
+or inner-product into one geometric product such that
+\begin{displaymath}
+ab = a\cdot b + a \wedge b
+\end{displaymath}
+
+A second glance at this shows an interesting feature which should be noted.
+In the expression above we are adding a scalar ($a \cdot b$) to a 
+bivector ($a \wedge b$). This combination of different objects is
+analogous to complex numbers where we linearly combine
+a real and imaginary number to form a complex number. In this case we
+refer to a linear combination of objects of varying grade as a
+\emph{multivector}. Since the algebra may be extended to deal with
+multivectors we no longer need different notation for scalars, vectors,
+bivectors, etc. This project will use the convention of using lower-case
+letters to refer to single-grade objects and upper-case letters to refer
+to multivectors. The geometric product also gives us a convenient new
+definition of the outer and inner products for vectors
+\[
+A \wedge B = \frac{1}{2}(AB - BA)
+\]
+\[
+A \cdot B = \frac{1}{2}(AB + BA)
+\]
+
+The power of this approach may be illustrated through its application
+to rotation. In 2-D this is easily performed using complex numbers. Representing
+the vector $[x\ y]$ as the complex number $z = x + iy$, rotation by
+$\theta$ radians can be performed by multiplication with $e^{i\theta}$.
+William Hamilton (1805--1865) worked for many years to extend this approach
+to 3-D. He eventually created \emph{quaternions} \cite{hamilton2,hamilton1},
+an algebra with 4 
+elements $\left\{1, \mathbf{i}, \mathbf{j}, \mathbf{k}\right\}$ which, although
+functional, lacked an obvious geometrical interpretation and again didn't
+generalise easily to higher-dimensions.
+
 \subsection{Rotation via Rotors}
+
+To demonstrate Clifford's approach, consider three orthonormal basis
+vectors of $\mathbb{R}^3$, $\left\{e_1, e_2, e_3\right\}$. We can form
+3 different bivectors from these vectors:
+\begin{displaymath}
+B_1 = e_2e_3,\quad B_2 = e_3e_1,\quad B_3 = e_1e_2
+\end{displaymath}
+
+Note that these are indeed bivectors since
+\[
+e_ie_j = e_i \cdot e_j + e_i \wedge e_j = e_i \wedge e_j \quad \mbox{iff} \quad i \ne j
+\]
+
+Now consider the effect of $B_3$ on the vectors $e_1$ and $e_1 + e_2$:
+\begin{displaymath}
+e_1B_3 = e_1e_1e_2 = e_1^2e_2=e_2 
+\end{displaymath}
+\begin{displaymath}
+(e_1 + e_2)B_3 = e_1B_3 + e_2B_3 = e_2 + e_2e_1e_2 = e_2 - e_1e_2^2 = e_2 - e_1
+\end{displaymath}
+
+\begin{figure}
+\centering
+\includegraphics{rotation}
+\caption{The rotation effect of bivector $B_3 = e_1e_2$\label{fig:rotation}}
+\end{figure}
+
+By looking at Figure \ref{fig:rotation} it is clear that $B_3$ has the
+effect of rotating the vectors counter-clockwise by 90 degrees. It is, in
+fact, a general property that the bivector $e_ie_j$ will rotate a
+vector 90 degrees in the plane defined by $e_i$ and $e_j$. At first 
+glance this seems to offer little more than quaternions but at no point 
+have we assumed that we are working in 3-dimensional space; this method
+also works in higher-dimension spaces.
+
+Now we extend to general rotations. Firstly it is trivial to
+show that $B_3$ squares to $-1$:
+\begin{displaymath}
+B_3^2 = e_1e_2e_1e_2 = -e_1e_2e_2e_1 = -1
+\end{displaymath}
+
+We can represent any vector $Z$ in the plane defined by $e_1$ and
+$e_2$ using
+\begin{eqnarray*}
+Z & = & r ( e_1 \cos \theta + e_2 \sin \theta) \\
+  & = & e_1 r ( \cos \theta + B_3 \sin \theta)
+\end{eqnarray*}
+where $r$ is the distance of the point $Z$ from the origin
+and $\theta$ is the angle $Z$ makes to $e_1$. Also note
+that $e_1B_3 = e_1^2e_2 = e_2$. By taking the Taylor expansion of cosine
+and sine and re-arranging the coefficients it can be shown that
+\[
+e^{B_3\theta} = \cos \theta + B_3 \sin \theta
+\]
+which is the analogous form of de Moivre's theorem for complex
+numbers.
+
+We can thus represent any vector $Z$ which lies in the plane of the
+bivector $B_3$ by
+\[
+Z=e_1re^{B_3\theta}
+\]
+
+From this the same argument used for rotation in the complex plane 
+can be used to show that rotation by
+$\phi$ radians in the plane of $B_3$ is accomplished by $Z \mapsto Z'$
+where
+\begin{displaymath}
+Z' = Ze^{B_3\phi} = Z (\cos \phi + B_3 \sin \phi)
+\end{displaymath}
+
+This has all taken place in two dimensions for the moment but note that nothing
+in our development has assumed this. In fact we can define a bivector $B_3 = ab$ in
+three dimensions and rotate vectors in the place defined by $a$ and $b$ using
+the expression above.
+
+\begin{figure}
+\centering
+\includegraphics{rotation2}
+\caption{Rotating vectors in arbitrary planes\label{fig:rotation2}}
+\end{figure}
+
+Careful consideration must be given to the case where the vector to be
+rotated, $x$, does not lie on the plane of rotation as in Figure
+\ref{fig:rotation2}. Firstly decompose the
+vector into a component which lies in the plane $x_\parallel$ and one
+normal to the plane $x_\perp$
+\[
+x = x_\parallel + x_\perp
+\]
+
+Now consider the effect of the following
+\begin{eqnarray*}
+e^{-B_3\phi/2}
+x
+e^{B_3\phi/2}
+& = & \left(\cos \frac{\phi}{2} - B_3 \sin \frac{\phi}{2}\right)
+(x_\parallel + x_\perp )
+\left(\cos \frac{\phi}{2} + B_3 \sin \frac{\phi}{2}\right) \\
+& = & x_\parallel (\cos \phi + B_3 \sin \phi) + x_\perp\\ 
+\end{eqnarray*}
+since bivectors anti-commute with vectors in their plane (e.g. 
+$e_1(e_2e_1) = -e_2 = -(e_2e_1)e_1$) and commute with
+vectors normal to the plane (e.g.\ $e_1(e_2e_3) = (e_2e_3)e_1$).
+We have thus succeeded in rotating the component of the vector 
+which lies in the plane without affecting the component normal
+to the plane --- we have rotated the vector around an axis normal to
+the plane.
+
+%and hence
+%\begin{eqnarray*}
+%Z (\cos \phi + B_3 \sin \phi) & = & (\cos \phi - B_3 \sin \phi)Z \\
+%& = &
+%\left(\cos \frac{\phi}{2} - B_3 \sin \frac{\phi}{2}\right)
+%Z
+%\left(\cos \frac{\phi}{2} + B_3 \sin \frac{\phi}{2}\right)
+%\end{eqnarray*}
+
+This leads to a general method of rotation in any plane; we
+form a bivector of the form $R = e^{-B\phi/2}$ for a given rotation 
+$\phi$ in a plane specified by the bivector $B$ and the transformation
+is given by
+\begin{displaymath}
+x \mapsto RxR^{-1}
+\end{displaymath}
+We refer to these bivectors which have a rotational effect as \emph{rotors}.
+Figure \ref{fig:rotation2} shows the various objects used.
+
+The computation of $R^{-1}$ is rather difficult analytically (and indeed can
+require a full $2^n$-dimension matrix inversion for a space of
+dimension $n$). To combat this we define
+the \emph{reversion} of a $n$-vector $X = e_ie_j...e_k$ as
+\[
+\tilde{X} = e_k...e_je_i
+\]
+i.e. the literal reversion of the components. By looking at the expression for
+$R$ it is clear that $\tilde{R} \equiv R^{-1}$ for rotors. Computing $\tilde{R}$
+is easier since it is simply a permutation.
+
+Note that in spaces with dimension $n$ the maximum grade object 
+possible is an $n$-grade
+one. We denote the $n$-vector $e_1 \wedge ... \wedge e_n = I$ as the \emph{pseudoscalar}
+and the product $xI$ as the \emph{dual} of a vector or $x^*$. The dual is also defined
+for general multivectors.
 
 \subsection{The Conformal Model}
 
+In the Conformal Model \cite{hestenes2} we extend the space by adding two 
+additional basis
+vectors. 
+The notation we use will follow the original notation given in
+\cite{HS84}. Let $x$ be a vector in a space denoted ${\cala}(p,q)$.
+The annotation $(p,q)$ is termed the \emph{signature} of the space. 
+A given signature, $(p,q)$, implies that we may construct an 
+orthogonal basis for the space,
+$\{e_i\}$, $i=1,\cdots,n=p+q$ where $e_i^2=+1$ for $i=1,\cdots,p$
+and $e_i^2=-1$ for $i=p+1,\cdots,n$; i.e.\ we take a general mixed
+signature space.  
+
+To perform geometric operations using GA we now extend the space 
+to ${\cala}(p+1,q+1)$ via the inclusion of two additional orthogonal
+basis  vectors, $e$ and
+$\bar{e}$, such that
+%
+\[  e^2=+1,\;\;\;\; \bar{e}^2= -1
+\]
+%
+
+Note that if $x \in {\cala}(p,q)$, then $e\cdot x =
+\bar{e}\cdot x = 0$ since $e_i\cdot e=e_i \cdot \bar{e} = 0$
+for $i=1,\cdots,n$. We now compose vectors $n$ and
+$\bar{n}$ as
+%
+\[ n = e + \bar{e}  \qquad  \bar{n} = e - \bar{e} 
+\label{nequations}
+\]
+%
+%\begin{eqnarray}
+% n & = & e + \bar{e}  \qquad  \bar{n} = e - \bar{e} \\
+% \mbox{and thus }\; e & = & \frac{1}{2} (n + \bar{n})  \qquad   \bar{e}  =  \frac{1}{2} (n - \bar{n})
+% \label{nequations}
+% \end{eqnarray}
+% %
+These vectors will be useful later. It is easy to see that
+$n$ and $\bar{n}$ are \emph{null} vectors since
+%
+\begin{eqnarray}
+n^2  & = & (e + \bar{e})\cdot(e + \bar{e}) = e^2 + 2e\cdot\bar{e} + \bar{e}^2 \nn \\
+       & = &  1 + 0 - 1 = 0  \nn
+\end{eqnarray}
+and
+\begin{eqnarray}
+\bar{n}^2  & = & (e - \bar{e})\cdot(e - \bar{e}) = e^2 - 2e\cdot\bar{e} + \bar{e}^2 \nn \\
+       & = &  1 - 0 - 1 = 0     \nn
+\end{eqnarray}
+%
+We also note a number of useful identities for $n$, $\bar{n}$ and $x \in \cala(p,q)$
+%
+\begin{eqnarray}
+n\cdot\bar{n} & = & (e + \bar{e})\cdot(e - \bar{e}) = e^2 - \bar{e}^2 = 2 \nn \\
+x\cdot n = x\cdot \bar{n} & = & 0 \nn 
+\end{eqnarray}
+%
+It is equally easy to show that if we define the bivector $E = n \wedge \bar{n}$ 
+then $E^2 = 4$
+%
+\begin{eqnarray}
+  E^2 & = &  (n\wedge \bar{n})\cdot(n\wedge \bar{n}) \nn \\
+  & = &  (n\cdot\bar{n})(n\cdot\bar{n}) - n^2 \bar{n}^2 \nn \\
+  & = &  4
+  \end{eqnarray}
+  %
+since $n\cdot\bar{n}=2$ and $n^2=\bar{n}^2=0$.
+
+To perform geometric operations upon vectors, points and objects
+in $\cala(p,q)$ we map a point $x \in \cala(p,q)$ to a point
+$F(x) \in \cala(p+1,q+1)$ and find that the operations may be performed
+by simple algebraic manipulation of $F(x)$. The specific mapping
+used is the Hestenes (\cite{HS84}, p.302) representation
+%
+\begin{equation}
+F(x)=-\frac{1}{2}(x-e)n(x-e)
+\end{equation}
+%
+where, substituting for $n=e+\bar{e}$ and using the fact that
+$\bar{e}\cdot x = 0 = \bar{e}\cdot e = n\cdot x$, it is not
+hard to rewrite this equation in terms of the null
+vectors as follows
+%
+\begin{equation}
+  F(x) = \frac{1}{2}(x^2n + 2x - \bar{n})
+\end{equation}
+%
+which is similar to the form which is used in the more recent
+`horosphere' formulations of the conformal framework
+\cite{oldwine}. We will see that there is some choice as
+to what factor we put in front of the $x^2n + 2x -
+\bar{n}$ expression; we choose $\half$ so that our
+normalisation condition for null vectors, which allows us to
+compute the reverse mapping $F(x) \mapsto x$ independent of the
+absolute scale of $F(x)$, becomes
+%
+\[ F(x)\cdot n = -1  \]
+%
+
+We will see that it will often be necessary to work with
+normalised `unit' lines, planes, circles and spheres in order to
+apply the reflection etc. formul\ae\ which will be so
+important in later sections. It is also worth noting that the
+mapping as it stands above is dimensionally inconsistent. In later
+chapters it will be shown how correcting this can allow
+one to extend the approach to non-Euclidean geometries.
+
+It is somewhat trivial to show that $F(x)$ is always a null vector for
+any $x$ by evaluating $[F(x)]^2$
+%
+\begin{eqnarray}
+ [F(x)]^2 & = &  \frac{1}{4}(x^2n + 2x - \bar{n})\cdot (x^2n + 2x - \bar{n}) \nn \\
+              & = & -\frac{1}{2}x^2 n\cdot \bar{n} + x^2  \nn \\
+              & = &  -x^2 + x^2 = 0
+\end{eqnarray}
+%
+
+Thus we have mapped vectors in ${\cala}(p,q)$ into \emph{null}
+vectors in ${\cala}(p+1,q+1)$ and this is precisely the horosphere 
+construction. It also shows the need to impose a normalisation
+constraint upon the resultant null vectors as they remain null 
+irrespective of absolute scale.
+More generally we can show that all null vectors in $\cala(p+1,q+1)$
+must be the result of mapping some vector $x \in \cala(p,q)$ as above;
+any vector $X \in {\cala}(p+1,q+1)$ can be written as
+%
+\[ X = an + bx + c\bar{n}  \]
+%
+where $x = x^ie_i$, $i=1,\cdots,p+q$ and thus $x \in \cala(p,q)$.
+We can say that $X\cdot n = 2c$ and $X\cdot \bar{n}=2a$ (since $n$ is 
+null and $x\cdot n = 0$). Therefore $a$
+and $c$ are uniquely determined. However we can also write our
+general $X$ as  $X=b{x}^ie_i + \alpha e + \bar{\alpha}\bar{e}$ for 
+suitable scalars $\alpha$ and $\bar{\alpha}$ and
+have $X\cdot e_j= bx^j$ ($j=1,\cdots,p+q$). So, whilst the product
+$bx^j$ is uniquely defined by $X$, $b$ and $x^j$ individually are
+not. Now suppose that $X$ is null so that $X^2=0$
+%
+\begin{eqnarray}
+X^2 & = &   (an + bx + c\bar{n})\cdot (an + bx + c\bar{n}) \nn \\
+       & = &  2ac n\cdot \bar{n} + b^2x^2 \nn \\
+       & = & b^2x^2 + 4ac = 0
+       \label{condition}
+\end{eqnarray}
+%
+
+From this we are easily able to see that any null vector can be
+written in the form
+%
+\begin{equation}
+\lambda (x^2n + 2x - \bar{n}) \label{null}
+\end{equation} 
+%
+since if $(an + bx + c\bar{n}) = \lambda(x^2n + 2x -
+\bar{n})$ we have that
+%
+\[c=-\lambda\;\;\;\; \lambda x^2 = a \;\;\;\mbox{and}\;\;\; 2\lambda = b\]
+%
+and we can then eliminate $\lambda$ from these last two
+equations to give the condition $b^2 x^2 = -4ac$. This
+is precisely the condition given in
+equation~\ref{condition}.
+
+These results may now be used to provide a projective mapping
+between ${\cala}(p,q)$ and  ${\cala}(p+1,q+1)$. Specifically that the
+family of null vectors $\lambda(x^2n + 2x - \bar{n})$,
+in ${\cala}(p+1,q+1)$ are taken to correspond to the
+single point $x\in {\cala}(p,q)$. If $x$ is the origin
+then we see that $F(x) = -\bar{n}$ and we therefore may associate
+null vectors parallel to $\bar{n}$ with the origin. 
+We will see later that when we \emph{invert} $\bar{n}$ 
+we obtain $n$, thus suggesting
+that we associate null vectors parallel to $n$ with the 
+\emph{point at infinity} (the usual result of inverting the origin).
+
+When we look at the inner product of null vectors in
+${\cala}(p+1,q+1)$ we discover something very
+interesting. If $A$ and $B$ in ${\cala}(p+1,q+1)$
+represent the points $a$ and $b$ in ${\cala}(p,q)$, then
+%
+\begin{eqnarray} A\cdot B &  =  &  F(a)\cdot F(b) \nn \\
+            &  =  &  \frac{1}{4}(a^2n + 2a - \bar{n})\cdot (b^2n + 2b -
+            \bar{n})\nn \\
+            & = &    -\frac{1}{2}a^2 + a\cdot b - \frac{1}{2}b^2 \nn \\
+            &  =  &  -\frac{1}{2}(a-b)^2
+            \label{distance}
+\end{eqnarray}
+%
+and we see that $A\cdot B$ is proportional to the Euclidean
+distance between points $a$ and $b$. This property of the
+conformal space and its relationship to \emph{distance geometry}
+\cite{distgeom} is discussed at more length in \cite{oldwine}. 
+The mapping and properties described here were outlined
+originally in \cite{HS84}.
+
 \subsubsection{Rotations}
+
+
+In normal 3d GA rotations are performed with elements of the algebra termed
+\emph{rotors}. In this section we aim to show that these rotors may be used
+unchanged on the null vectors we obtain by performing our projective mapping.
+Let $x \mapsto Rx\tilde{R}$ with $x\in {\cala}(p,q)$ and $R$ be a
+rotor in the Clifford algebra over ${\cala}(p,q)$. Consider
+what happens when $R$ acts upon $F(x)$; i.e.\ the nature of
+$RF(x)\tilde{R}$
+%
+\[ RF(x)\tilde{R} =\frac{1}{2} R(x^2n + 2x - \bar{n})\tilde{R} =\frac{1}{2}[ x^2Rn\tilde{R}
++ 2Rx\tilde{R} - R\bar{n}\tilde{R}] \]
+%
+and since $R$ is a rotor it contains only even blades and therefore 
+commutes with
+$n$ and $\bar{n}$  
+%($e_in=-ne_i$, so if we have an even number of $e_i$s we
+%		have commutation), so that $Rn\tilde{R} = R\tilde{R} n = n$ and
+%$R\bar{n}\tilde{R} = \bar{n}$. Thus we have
+so
+%
+\begin{equation} RF(x)\tilde{R} = \frac{1}{2}(\hat{x}^2n + 2\hat{x} - \bar{n})
+	\end{equation}
+%
+where $\hat{x}=R x \tilde{R}$. We have therefore shown that rotors in
+${\cala}(p,q)$ remain rotors in ${\cala}(p,+1q+1)$ in that they retain
+their action about the point $x$ represented by $F(x)$. To summarise
+%
+\begin{equation} x \mapsto Rx\tilde{R} \qquad \Leftrightarrow \qquad F(x) \mapsto
+F(Rx\tilde{R}) \end{equation}
+%
+
 \subsubsection{Translators}
+
+Translation along a vector $a$ is defined as the
+mapping $x\mapsto x+a$ for some $x,a \in \cala(p,q)$. In this
+section we will show that this is performed by applying a 
+rotor $R=T_a = \exp{\frac{na}{2}}$ to $F(x)$.
+To begin with, consider the usual power series expansion of the exponential
+which we may immediately simplify thus
+%
+\begin{equation}
+R=T_a = \exp{\frac{na}{2}} = 1 + \frac{na}{2} +
+\frac{1}{2}\left(\frac{na}{2}\right)^2 + \cdots   = 1 +
+\frac{na}{2}
+\end{equation}
+%
+since $n$ is null, $an = -na$ and therefore the higher order terms are all
+zero. We now see how $R$ acts on the vectors $n$, $\bar{n}$ and $x$.
+%
+\begin{eqnarray}
+ Rn\tilde{R} & = & \left(1 + \frac{na}{2}\right)n\left(1 + \frac{an}{2}\right) \nn \\
+                & = &  n + \frac{1}{2}nan + \frac{1}{2}nan + \frac{1}{4}nanan \nn \\
+                & = & n
+                \label{rntrans}
+\end{eqnarray}
+%
+again using  $an= - na$ and $n^2=0$.    Similarly we can
+show that
+%
+\begin{eqnarray}
+ R\bar{n}\tilde{R} & = &  \bar{n}  - 2a - a^2n \\
+ Rx\tilde{R}          & = &  x + n(a\cdot x)
+\end{eqnarray}
+%
+Immediately we see that our interpretation of $n$ being the point at
+infinity and $\bar{n}$ being the origin is consistent with our claim that
+$R$ represents the translation $x \mapsto x+a$ since $R(-\bar{n})\tilde{R} = F(a)$
+and the point at infinity is unchanged by finite translation.
+
+We can now also see how the rotor acts on $F(x)$
+%
+\begin{eqnarray}
+RF(x)\tilde{R} & = & \left(1 + \frac{na}{2}\right)\half(x^2n + 2x - \bar{n})\left(1 + \frac{an}{2}\right) \nn \\
+                & = &  \half(x^2n + 2(x + n(a\cdot x)) - (\bar{n} - 2a - a^2n))   \nn \\
+                & = &  \half((x+a)^2n + 2(x+a) - \bar{n}) \nn \\
+                & = &  \half(\hat{x}^2 n + 2\hat{x} - \bar{n}) = F(x+a)
+\end{eqnarray}
+%
+where $\hat{x}=x+a$ and thus translations in
+${\cala}(p,q)$ can be performed by the
+rotor  $R=T_a$ defined above. To summarise
+ %
+ \begin{equation}
+x \mapsto x+a \qquad \Leftrightarrow \qquad F(x) \mapsto T_a
+F(x) \tilde{T}_a = F(x+a)
+\end{equation}
+
+\subsubsection{Inversion}
+
+
+In the usual 3d geometric algebra we can reflect a vector $a$ in a plane with
+unit normal $n$ by `sandwiching' the vector between the normal, $-nan$
+\cite{IJCV98}. Sandwiching the object \emph{to be reflected} between the object
+\emph{in which we wish to reflect} is a very general prescription in GA and
+one which will be used heavily in later parts of the report.  In this section
+we look at how inversions are brought about by this same reflection operation.
+
+In this report by `inversion' we mean the mapping $x \mapsto \frac{x}{x^2}$ or,
+equivalently, $x \mapsto x^{-1}$. Firstly, we look at the properties of
+the reflection in $e$ of various vectors
+%
+\[ -ene  = -ee\bar{n} = -\bar{n} \] 
+since $ne = (e+\bar{e})e=(e^2+\bar{e}e)= (e^2 - e\bar{e}) = e\bar{n}$. 
+Similarly, we can show that a number of reflection properties hold
+%
+\begin{eqnarray} -ene & = &  -\bar{n}  \\ -e\bar{n}e & = &  -{n}  \\ -exe & = &
+x \end{eqnarray}
+%
+and finally we may observe what happens to $F(x)$ under reflection in $e$
+%
+\begin{eqnarray} -eF(x)e & = &  -e\half(x^2n + 2x - \bar{n})e  \nn \\ & = &
+\half\left[-x^2\bar{n} + 2x + n\right] \nn \\ & = &  x^2\half\left[
+\frac{1}{x^2}n + 2\frac{x}{x^2} - \bar{n}\right] \nn \\ & = &  x^2
+F\left(\frac{x}{x^2}\right) \end{eqnarray}
+%
+
+We have, therefore, shown that the inversion operation in ${\cala}(p,q)$ can be
+performed via the reflection in $e$ of the projection into ${\cala}(p,+1q+1)$.
+ %
+ \begin{equation} x \mapsto \frac{x}{x^2} \qquad \Leftrightarrow \qquad F(x) \mapsto
+ -\frac{eF(x)e}{x^2} = F\left(\frac{x}{x^2}\right) \end{equation}
+%
+
+Since the absolute scale of $F(x)$ is irrelevant, as we always rescale to
+impose our normalisation constraint, we can omit the scaling by $x^{-2}$.  It
+is also irrelevant, by the same logic, whether we take $-e(\cdot)e$ or
+$e(\cdot)e$ as the reflection and henceforth we will use $e(\cdot)e$ for
+convenience. We reiterate here that later in the report the concept of
+reflection of a quantity in an object being brought about by this method
+of `sandwiching'
+%the
+%quantity between the object 
+is crucial to much of our code for fast 3d
+manipulations.
+
 \subsubsection{Dilators}
+
+
+A dilation by a factor of $\alpha$ is the mapping
+$x \mapsto \alpha x$. In this section we investigate how
+to form a rotor which has the action of dilating about the
+origin. We start by considering the rotor $R = D_{\alpha} =
+\exp{\frac{\alpha}{2}e\bar{e}}$ and a number of
+relations which can easily be verified
+%
+\begin{eqnarray}
+   -e\bar{e}n  = &  {n} & = ne\bar{e}  \nn \\
+   -\bar{n}e\bar{e} = &  \bar{n} & =  e\bar{e}\bar{n}  \label{eneqn}
+\end{eqnarray}
+%
+We can now look at what $RF(x)\tilde{R}$ gives
+%
+\begin{eqnarray}
+D_\alpha F(x) \tilde{D}_\alpha & = & \exp{\frac{\alpha}{2}e\bar{e}}\half\{ x^2n + 2x - \bar{n}\}\exp{-\frac{\alpha}{2}e\bar{e}} \nn \\
+   &  =  &  \half(x^2  \exp{\alpha e\bar{e}}n + 2x - \exp{\alpha e\bar{e}}\bar{n}) \nn \\
+   & = &  \half(x^2 \exp{-\alpha} n + 2x - \exp{\alpha}\bar{n}) \nn \\
+   & = & \exp{\alpha}\half\left\{\exp{-2\alpha}x^2n + 2\exp{-\alpha}x - \bar{n}\right\} \nn \\
+   & = & \exp{\alpha}\half\left\{\hat{x}^2n + 2\hat{x} -\bar{n}\right\}
+\label{Deqn}
+\end{eqnarray}
+%
+where $\hat{x} = \exp{-\alpha}x$. The above steps can be
+verified by considering $\exp{-\frac{\alpha}{2}e\bar{e}}$ as
+the expansion $1 - \frac{\alpha}{2}e\bar{e} +
+\frac{1}{2!}\left(\frac{\alpha}{2}e\bar{e}\right)^2 +
+\cdots$ and using the relations given in
+equation~\ref{eneqn}.
+Again noting that the absolute scale of $F(x)$ doesn't matter we
+have therefore shown that dilations  in ${\cala}(p,q)$ can be performed by
+the rotor    $R=D_\alpha$
+ %
+ \begin{equation}
+x \mapsto \exp{-\alpha}x \qquad \Leftrightarrow \qquad F(x)
+\mapsto  D_{\alpha} F(x) \tilde{D}_{\alpha} =
+\exp{\alpha}F(\exp{-\alpha}x)
+\end{equation}
+%
+Note that the signs are incorrect in the equivalent
+equations in \cite{HS84}, p.303, equation~3.22. It is worth noting
+that dilation about any other point may be achieved by concatenating the
+appropriate rotors to move that point to the origin, dilate and move back.
+
+
 \subsubsection{Special conformal transforms}
+
+
+We have seen above that we are able to express rotations,
+inversions, translations and dilations in ${\cala}(p,q)$
+by rotations and reflections in  ${\cala}(p+1,q+1)$. This
+now leads us to consider \emph{special conformal
+transformations}. These are essentially transformations
+which preserve angles and are defined by the motion
+%
+\begin{equation}
+x \mapsto  x \frac{1}{1 + ax}
+\end{equation}
+%
+
+A moment's investigation reveals this transform to be 
+a combination of inversion, translation and inversion again
+%
+\begin{eqnarray}
+x   & \stackrel{\longmapsto}{_{\mbox{inversion}}} & \frac{x}{x^2} \nn \\
+     &  \stackrel{\longmapsto}{_{\mbox{translation}}} & \frac{x}{x^2} + a  \equiv \frac{x}{x^2}(1+xa)  \nn \\
+     &  \stackrel{\longmapsto}{_{\mbox{inversion}}} & \frac{\frac{x}{x^2} + a}{(\frac{x}{x^2} + a)(\frac{x}{x^2} + a)} \nn \\
+   & = & \frac{x+ ax^2}{1+2a\cdot x + a^2x^2} = x\frac{1}{1 + ax}
+\end{eqnarray}
+%
+since $\frac{1}{1+ax} = \frac{1+xa}{(1+ax)(1+xa)}$. The
+final line in the above expression shows us that
+$x\frac{1}{1 + ax}$ is indeed a vector since $x+ ax^2$ is
+a vector. As we have built up the special conformal
+transformation via inversions and translations, we know
+exactly how to construct the ${\cala}(p+1,q+1)$ operator
+that performs such a transformation by simply chaining the
+rotors for inversion and translation we derived above.
+The required rotor is therefore given by
+%
+\begin{equation}
+ K_a = eT_a e,\qquad {\mbox{so that}} \qquad x\mapsto K_a x \tilde{K}_a
+\end{equation}
+%
+and
+\begin{equation}
+   K_a x \tilde{K}_a = e\left\{ T_a(exe)\tilde{T}_a\right\}e
+\end{equation}
+%
+%Now recall that $T_a = 1+ \frac{na}{2}$, $a\in
+%{\cala}(p,q)$, so that $eT_ae = e\{1+\frac{na}{2}\}e =
+%e^2 + \frac{1}{2}enae = 1-\frac{1}{2}\bar{n}a$. Thus, we
+Substituting for the rotors above we can write our special conformal rotor as
+%
+\begin{equation}
+K_a = 1 - \frac{1}{2}\bar{n}a
+\end{equation}
+%
+We are now in a position to see what happens when we act
+on $F(x)$ with $K_a$
+%
+\begin{eqnarray}
+ K_a F(x) \tilde{K}_a & = & eT_a(eF(x)e)\tilde{T}_a e \nn \\
+               & = & eT_a( - x^2 F(\frac{x}{x^2}))\tilde{T}_a e \nn \\
+       & = &  -x^2 e\left\{ F(\frac{x}{x^2} +a)\right\} e \nn \\
+& = & -x^2\left\{- \left(\frac{x}{x^2} + a\right)^2
+F\left(\frac{\left(
+\frac{x}{x^2} + a\right)}{\left(\frac{x}{x^2} + a\right)^2}\right)\right\} \nn \\
+          & = & (1 + 2a\cdot x + a^2x^2)F\left( x\frac{1}{1+ax}\right)
+\end{eqnarray}
+%
+The end result is therefore
+%
+\begin{equation}
+x\mapsto x\frac{1}{1+ax}  \qquad \Leftrightarrow \qquad  F(x)
+\mapsto (1+2a\cdot x + a^2x^2)F\left(x\frac{1}{1+ax}\right)
+\end{equation}
+%
+
+%
+\subsection{Observations}
+We can see that, from the above, the following results are true:
+%
+\begin{eqnarray}
+R n \tilde{R} &  =  &   n \;\;\; \mbox{for $R$ a
+rotation, since} \;\;\; n\tilde{R}=\tilde{R}n
+ \nn \\
+ R n \tilde{R} &  =  &   n \;\;\; \mbox{for $R$ a
+translation (equation~\ref{rntrans}}) \nn \\
+n\tilde{R}=\tilde{R}n \;\;\mbox{and}\;\;\; R n \tilde{R}
+& = & \exp{(-\alpha )}n \;\;\;\mbox{for dilations} \nn
+\end{eqnarray}
+%
+
+Thus rotations, translations and dilations leave $n$, which we identify with
+the point at infinity, unchanged up to a scale factor. This is a fact which
+will be important to us in subsequent sections. Indeed, we find that the
+underlying geometry described by the rotors is related to the element of the
+algebra which the rotors hold invariant. We will see later that the 5d
+conformal setup provides a framework in which we can simply describe
+non-Euclidean geometries in such terms.
+
+
+\subsubsection{Intersections}
+
+
+It is often found that many problems in computer graphics,
+robotics, inverse kinematics and many other fields require
+finding the intersections of lines, planes, circles and spheres.
+In this chapter we discuss how to use the techniques and theorems
+developed in the preceding chapters to find intersections
+and thereby show that GA provides a highly elegant framework
+for such problems.
+
+Before looking at particular examples we will look
+briefly at representations of linear combinations of
+point representations. When we represent projective geometry via 4d
+homogeneous coordinates we are still able to consider
+linear combinations of points if we are willing to make
+the appropriate normalisation operations; we would also
+like to be able to consider linear combinations of points
+in the ${\cala}(p+1,q+1)$ space. We know that a linear
+combination of two points $a,b$, in Euclidean space, of
+the form
+%
+\[  \lambda a + \mu b \;\;\;\; \mbox{where} \;\;\;\;\; \lambda + \mu =1  \]
+%
+gives another point on the line joining $a$ and $b$.
+Similarly, a linear combination of 3 points, $a,b,c$ of
+the form
+%
+\[  \lambda a + \mu b  + \nu c  \;\;\;\; \mbox{where} \;\;\;\;\; \lambda + \mu  + \nu=1  \]
+%
+gives another point on the plane containing $a,b$ and
+$c$. The usual projective representation, where we go up
+just one dimension, has the advantage of still being
+linear in the representations of the points e.g. if
+$x=\lambda a + \mu b + \nu c$  (with $\lambda + \mu + \nu
+=1$) then its 4d projective representation, $X=x+e$,
+where $e$ is the extra basis vector which takes 3d to 4d,
+can also be written in the form
+%
+\[ X = \lambda A + \mu B + \nu C  \]
+%
+since
+%
+\begin{eqnarray}
+ X  & =  & x+e=\lambda a + \mu b + \nu c +
+ (\lambda+\mu+\nu)e \nn \\
+ &    = &  \lambda A + \mu B + \nu C  \nn
+ \end{eqnarray}
+ %
+Here we note that we have insisted that the point representation
+$X$ is `normalised', i.e. that $X=x + e$ rather than some
+multiple of this. With the conformal representation,
+working in ${\cala}(p+1,q+1)$, we appear to have lost
+this advantage of linearity. For example, if $A$ and $B$
+are the ${\cala}(p+1,q+1)$ representatives of $a$ and
+$b$, then in general
+%
+\[ \lambda A + (1-\lambda)B \ne \;\;\mbox{a multiple of}\;\;\; F(\lambda a + (1-\lambda)b)  \]
+%
+This is due to the presence of the $x^2n$ term in the
+representation, which removes linearity. However, the
+following \emph{is} true and is easy to show from the
+definition of $F(x)$:
+%
+\begin{equation}
+F(\lambda a + (1-\lambda)b) = \lambda A + (1-\lambda)B +
+\lambda(1-\lambda)(A\cdot B) n \label{lincomb}
+\end{equation}
+%
+We therefore see that the departure from linear behaviour
+is given by the addition of a multiple of the representation of the point at
+infinity. This is relatively benign behaviour and means
+that many of the techniques we use in the GA version of
+projective geometry will still work here. For example,
+this gives us another way of seeing that the equation for
+a line passing through points $a$ and $b$ is $X\wedge n
+\wedge A\wedge B=0$ -- the wedging with $n$ knocks out the
+non-linear term $\lambda(1-\lambda)A\cdot B n $ and we are
+left with the usual GA projective geometry result.
+
+Precisely the same sort of thing goes through for a
+plane. Let $a,b,c$, in 3d,  define a plane and let
+%
+\[ x = \alpha a + \beta b + \gamma c \;\;\; \mbox{where}\;\;\; \alpha + \beta + \gamma = 1  \]
+%
+be a general point on the plane. Then it is easy to show
+that the representative of $x$, $X=F(x)$ satisfies
+%
+\begin{equation}
+   X = \alpha A + \beta B + \gamma C + \delta n \;\;\mbox{where}\;\;\; \delta = (\alpha\beta A\cdot B + \alpha \gamma A\cdot C + \beta\gamma B\cdot C)
+\end{equation}
+%
+again making it clear why the equation of the plane
+can be written as
+%
+\[ X\wedge  n \wedge A \wedge B \wedge C =0 \]
+%
+Note that in this chapter, and subsequent chapters  where
+we use the same multiples ($\alpha, \beta, \gamma$ etc)
+in ${\cala}(p+1,q+1)$ space as in ${\cala}(p,q)$ space,
+it is important that the representatives are taken as
+$F(a)$, $F(b)$ etc and not arbitrary multiples of these.
+What it amounts to is that we have to enforce
+our usual normalisation constraint
+%
+\begin{equation}
+ X\cdot n  = -1
+ \end{equation}
+ %
+ 
+We have already seen that when looking at the dual representation
+of lines, planes, circles and spheres, it is useful to work with
+these normalised representations. So far we have avoided using the
+term homogeneous (a variety of other approaches to the conformal
+model use the term \emph{homogeneous} e.g. \cite{oldwine}):
+although we are associating all points $\lambda X$ with a given 3d
+point $x$, by insisting upon a normalisation we increase the range
+of procedures we can employ. If one were truly to use homogeneous
+coordinates then for many operations there would be a variety of
+factors to introduce, which would mimic our normalisation. One
+argument against using normalised coordinates is that we lose the
+usefulness of being able to avoid carrying around large numbers
+when dealing with points far from the origin. In practise, we have
+not met with any difficulties, but everything in this report can be
+reproduced adopting a homogeneous viewpoint and simply introducing
+various factors if certain operations are desired. The ease with
+which the use of normalised points enables one to think about the
+addition of 5d points and its meaning persuades us that we should
+maintain this viewpoint for the theoretical analysis we are
+presenting. In practise, the points need not be stored as
+normalised points.
+
+ This formalism for dealing with linear combinations
+of 5d points has some interesting properties. Given two
+null vectors $A$ and $B$ representing 3d points $a$ and
+$b$, we know from the above that taking $X =\half (A +
+B)$ will give us  $C + \alpha n$ where $C$ is the 5d
+representative of the midpoint of the line joining $a$
+and $b$, i.e. $c=\half (a+b)$. Extracting $C$ from $X$ is
+now a special case of the more general problem of
+extracting $P$, where $P^2=0$, from an expression of the
+form
+%
+\[ X = \alpha P + \beta n   \]
+%
+To do this we first note that $XnX={\alpha}^2PnP$ since
+sandwiching $n$ gets rid of the $\beta n$ term. Secondly,
+we note that in taking $PnP$ we are effectively \emph{reflecting} 
+$n$ in the point representation $P$. It is to be expected
+that this can produce only one thing, which is a multiple
+of the point itself. Indeed this is the case, and it is
+not difficult to prove that
+%
+\[  PnP = -2P  \]
+%
+Thus using the fact that $X\cdot n = \alpha P\cdot n =
+-\alpha$, we see that $P = -(XnX)/2\alpha^2$ leading to
+%
+\begin{equation}
+  P =  \frac{-(XnX)}{2(X\cdot n)^2}
+\end{equation}
+%
+We will use the above extraction procedure a number of
+times in subsequent constructions.
+
+We now go on to look at some explicit examples of
+intersecting objects in this framework. Firstly we look
+at the general \emph{meet} operation, familiar from
+projective geometry, and how it appears in geometric
+algebra. Suppose we are intersecting two objects $W_r$
+and $W_s$ (an $r$-blade and an $s$-blade representing $r$
+and $s$-grade objects), if $X$ lies on the intersection
+of $W_r$ and $W_s$ then we know that
+%
+\[ X\wedge W_r = 0 \;\;\;\mbox{and}\;\;\;\; X\wedge W_s = 0
+\]
+%
+It can then be shown that
+%
+\begin{equation}
+X\cdot \left< W_r W_s \right>_{2n-r-s} = 0 \;\;\; \mbox{or equivalently }
+X\wedge \{\left[\left< W_r W_s \right>_{2n-r-s}\right]I_n\} = 0
+\label{newmeet}
+\end{equation}
+%
+where $n$ is the dimension of the space, in this case, $n=5$. Thus
+the intersection of the two objects $W_r$ and $W_s$ is given by
+taking the $2n-r-s$ grade part of the product of $W_r$ and $W_s$.
+%(the proof of this is given elsewhere FIXME no it isn't)
+This is equivalent to the form of the meet given in
+\cite{HZ91,HS84},
+%
+\begin{equation}
+W_r \vee W_s = \{ W_r^* \wedge W_s^*\}^*
+\end{equation}
+%
+where the operator $\vee$ denotes the meet or
+intersection operation and the $^*$ refers to taking the
+dual with respect to the \emph{join} of the two objects
+(e.g. in the case of the intersection of 2 lines, the
+join is not the whole space and we would not therefore be
+able to use our pseudoscalar $I_5$ for evaluating the
+dual in the above expression for the meet). In the case
+where the join is indeed the whole space and we can use
+the pseudoscalar $I_5$, we can also write the meet as
+%
+\[W_r \vee W_s = W_r \cdot (W_s)^*  \]
+%
+Clearly this need for evaluating the join is cumbersome, and the
+formula given in equation~\ref{newmeet} is far preferable as it
+can be computed with ease. We will now go on to see how useful
+this formalism is in intersecting objects -- it is a generic
+formula regardless of the nature of our objects (from within the
+set of spheres, circles, planes and lines), and can thus be
+programmed up very easily.
+
+
+
+\section{Intersecting spheres with spheres or planes}
+
+Let us consider the intersection of two spheres, $\Sigma_1$ and
+$\Sigma_2$ where they may intersect in a circle, at a point or not
+at all. Suppose we take the formula for the meet (where now we use
+$*$ to indicate multiplication by the pseudoscalar $I_n$):
+%
+\begin{equation}
+C = \Sigma_1 \vee \Sigma_2 = \left[\left< \Sigma_1 \Sigma_2
+\right>_{2n-r-s}\right]^*
+\end{equation}
+%
+$2n-r-s = 10-4-4=2$, so that the dual quantity will have
+grade $5-2=3$ -- generally, this will give the trivector
+representing the circle of intersection. We can tell
+whether we have a circle, a point intersection or no
+intersection according to whether
+%
+\begin{equation}
+C^2 >0 \;\;\;\; C^2 = 0 \;\;\;\mbox{or}\;\;\; C^2<0
+\end{equation}
+%
+In the case of $C^2>0$ we can extract the centre and radius
+according to equation~\ref{centre_radius}. If we also attempt to
+extract the centre and radius via these same formul\ae\ from $C$
+where $C^2=0$, we will find that the circle will have zero radius
+and its centre will be the point of tangency of the two spheres.
+Similarly, attempting to extract the radius and centre from $C$ in
+the case $C^2<0$ (i.e. no intersection) leads to an imaginary
+radius and a centre which lies on the shortest line joining the
+surfaces of the spheres (i.e. that joining the centres). If the
+two spheres have the same radii, it is the midway point on this
+line.
+
+The above all follows through if instead of having a
+second sphere, $\Sigma_2$, we have a plane, $\Phi_2$ --
+we again get a trivector for our intersection object via the meet and the sign
+of the square of this trivector tells us whether the two objects are tangent,
+intersect in a circle or do not intersect at all.
+
+Although we will not go into this here, it is interesting
+to note that in the case of the non-intersecting objects,
+we can also extract information such as the perpendicular
+vector between the surfaces from the product $W_rW_s$.
+
+
+\section{Intersecting spheres with circles or lines}
+
+Let us now intersect a sphere $\Sigma_1$ (4-blade) with a
+circle $C_2$ (3-blade). According to our meet formul\ae
+our intersection is a 2-blade, $B$, given by
+%
+\begin{equation}
+B = \Sigma_1 \vee C_2 = \left[\left< \Sigma_1 C_2
+\right>_{2n-r-s}\right]^*
+\end{equation}
+%
+where $2n-r-s=10-4-3=3$, so that the dual object has
+grade 2. We have already seen that these 2-blades
+represent 2 points -- precisely as we would expect, since
+an intersecting sphere and circle will do so at 2 points.
+Now, again, we look at the sign of the resulting 2-blade,
+$B$, and we will find that there are two, zero or one
+point of intersection according to
+%
+\[  B^2>0 \;\;\;\; B^2=0 \;\;\;\mbox{or}\;\;\;\; B^2<0
+\]
+%
+We have seen earlier that given a bivector $B$, such that
+$B^2>0$, of the above form, we can extract the two points
+of intersection via the projectors given in
+equation~\ref{extractAB}. Now, if $B^2=0$ we cannot form
+the projector, but it is trivial to find the representation of the point of
+intersection, $X$, in this case using the following
+%
+\[  X = BnB  \]
+%
+i.e. for a 2-blade of the form $W = P\wedge Q$, reflecting
+$n$ in $W$, $WnW$, would give us the midpoint of the line
+joining $P$ and $Q$ -- for our case where $B^2=0$, the
+construction $BnB$ will therefore give us a representation of the point of
+intersection. These results can easily be shown by
+considering simple cases at the origin and then extending
+the proof via rotors as previously.
+
+Precisely the same working holds if we replace our
+circles above with lines -- the meet again gives a
+2-vector whose square tells us whether there are 2, 1 or
+no intersections, and from which the intersection points
+can be obtained easily. We will return to the
+intersections of lines with spheres when we later
+consider reflections of lines in spheres.
+
+Again, in the non-intersecting case the product $W_rW_s$
+can provide us with information about the vectors between
+the surfaces.
+
+
+
+
+\section{Intersecting planes with planes, circles and lines }
+
+Consider two planes $\Phi_1$ and $\Phi_2$; taking the
+meet gives
+%
+\begin{equation}
+L = \Phi_1 \vee \Phi_2 = \left[\left< \Phi_1 \Phi_2
+\right>_{2n-r-s}\right]^*
+\end{equation}
+%
+where $2n-r-s=10-4-4=2$, so that the dual object has
+grade 3 -- as we would expect, if the planes intersect to
+give a line. We are able to tell whether the planes
+intersect by looking at the sign of $L^2$ -- if $L^2=0$
+we know that the planes are parallel and do not
+intersect, if $L^2>0$, the planes intersect in the line
+$L$.
+
+Now consider a plane $\Phi_1$ and a circle $C_2$; we take
+the meet of these two objects to give
+%
+\begin{equation}
+B = \Phi_1 \vee C_2 = \left[\left< \Phi_1 C_2
+\right>_{2n-r-s}\right]^*
+\end{equation}
+%
+where $2n-r-s=10-4-3=3$, so that the dual object has
+grade 2 -- the plane and the circle intersect in a
+maximum of two points, and the 2-blade, $B$ encodes these
+two points as with the sphere-circle intersection. Once
+again we can assert that there are 2,1 or 0 intersections
+according to whether $B^2>0,B^2=0,B^2<0$. In the case of
+two intersections, the points are extracted from $B$ by
+projectors as before, and in the case of tangency, the
+one point of contact is obtained by taking $BnB$.
+
+It is worth thinking about what happens when the circle
+$C_2$ lies in the plane $\Phi_1$ so that the intersection is
+$C_2$ itself. As one might expect, in this case there \emph{is
+no} grade 3 part of $\Phi_1C_2$. In the case of the $z=0$ plane and
+the unit circle lying in the plane and centred on the origin this can
+easily be confirmed:
+
+\[
+\Phi_1 = F(e_1) \wedge F(e_2) \wedge F(-e1) \wedge n \propto e_1e_2e\bar{e}
+\]
+\[
+C_2 = F(e_1) \wedge F(e_2) \wedge F(-e1) \propto e_1e_2\bar{e}
+\]
+thus
+\[
+\Phi_1C_2 \propto e_1e_2e\bar{e}e_1e_2\bar{e} = e \mbox{ hence }
+\left<\Phi_1C_2\right>_3 = 0
+\]
+
+We can also note that, in this case, the dual of $\Phi_1C_2$ with respect to
+$e_1e_2e\bar{e}$ is indeed $C_2$.
+
+If we now replace our circle by a line, $L_2$, it is
+clear that the meet will still give us a 2-blade, $B$;
+but we know that the line and the plane intersect in at
+most one position, so should we not be looking for a
+vector rather than a 2-blade? The answer is that if the
+plane and the line intersect, and the meet gives us $B$,
+then $B$ is always of the form
+%
+\[  B = X\wedge n  \]
+%
+where $X$ is the representation of the point of intersection. This can be
+proved easily by again considering a simple case at the
+origin. If $B^2>0$ the line and plane intersect in a
+point, if $B^2=0$ the line and plane do not intersect and
+if $B=0$ the line lies in the plane. If there is one
+point of intersection so that $B$ is of the above form,
+we can extract the 3d point of intersection,
+$x=x^ie_i,\;i=1,2,3$ (and hence $X$), by simply equating
+$x^i$ to the coefficient of the $e_i\wedge n$ term or by
+using the following expansion
+%
+\begin{equation}
+ x = (B\wedge \bar{n})\cdot E
+ \end{equation}
+%
+where $E=n\wedge \bar{n}$ as given earlier.
+
+
+\section{Intersecting circles with circles and lines }
+
+Consider two circles, $C_1$ and $C_2$, taking their meet
+gives
+%
+\begin{equation}
+X = C_1 \vee C_2 = \left[\left< C_1 C_2
+\right>_{2n-r-s}\right]^*
+\end{equation}
+%
+where $2n-r-s=10-3-3=4$, so that the dual object has
+grade 1. We know, however, that the intersection of two
+circles has at most 2 intersections (only possible if
+they lie in the same plane), so how do we get two
+intersections from our grade 1 object? In fact we find
+that the following is true
+%
+\begin{eqnarray}
+C_1 \vee C_2  &  =  &  X \;\;\mbox{where}\;\;
+X^2=0\;\;\mbox{if circles have one intersection} \nn \\
+C_1 \vee C_2  &  =  &  X \;\;\mbox{where}\;\;
+X^2\ne 0\;\;\mbox{if circles have no intersection} \nn \\
+C_1 \vee C_2  &  =  &  0 \;\; \;\;\mbox{if circles have
+two intersections}
+\end{eqnarray}
+%
+In the case where the meet gives zero and we know there
+are two intersections, these can easily be found by
+intersecting the plane of one of the circles with the
+other circle, i.e.
+%
+\begin{equation}
+B = C_1 \vee (C_2\wedge n) =  \left[\left< C_1 (C_2\wedge n)
+\right>_{2n-r-s}\right]^*
+\end{equation}
+%
+where $2n-r-s=10-3-4=3$, so that the dual object has
+grade 2, and the two points of intersection can be
+extracted from the 2-blade $B$ using
+equations~\ref{extractAB}.
+
+If we now replace $C_2$ by a line $L_2$ we see that we
+again get a grade 1 object when we take the meet, and the
+situation above is exactly replicated, i.e.
+%
+\begin{eqnarray}
+C_1 \vee L_2  &  =  &  X \;\;\mbox{where}\;\;
+X^2=0\;\;\mbox{if circle and line have one intersection} \nn \\
+C_1 \vee L_2  &  =  &  X \;\;\mbox{where}\;\;
+X^2\ne 0\;\;\mbox{if circle and line have no intersection} \nn \\
+C_1 \vee L_2  &  =  &  0 \;\; \;\;\mbox{if circle and
+line have two intersections}
+\end{eqnarray}
+%
+As before, in the case where the meet gives zero the two
+intersections can easily be found by intersecting the
+plane of one of the circles with the line. It is also
+interesting to note here that in the case where the
+circle and the line do not intersect, with the meet
+giving a vector, $X$, which is not null, the sign of
+$X^2$ tells us whether the line passes through the circle
+($X^2<0$) or does not pass through the circle ($X^2>0$)
+-- such simple checks can often be useful in graphics
+applications.
+
+
+Given that we have had a little difficulty with circles
+intersecting circles, we might expect some slight
+difficulties with lines and lines. It turns out that many
+interesting constructions emerge when we start to
+consider the intersections between two lines, these will
+be discussed in the following section.
+
+
+\section{Intersecting lines with lines }
+
+Let us consider two lines, $L_1$ and $L_2$. Taking the
+meet of these two lines gives
+%
+\begin{equation}
+X = L_1 \vee L_2 = \left[\left< L_1 L_2
+\right>_{2n-r-s}\right]^*
+\end{equation}
+%
+where $2n-r-s=10-3-3=4$, so that the dual object has
+grade 1. We might expect that if the lines intersect at a
+point, the meet, $X$, will give this intersection point
+-- however, this is not the case. We find that the
+following is true
+%
+\begin{eqnarray}
+L_1 \vee L_2 & = & 0 \;\;\; \mbox{if the lines intersect}
+\nn \\
+L_1 \vee L_2 & \propto & n \;\;\; \mbox{if the lines do
+not intersect}
+\end{eqnarray}
+%
+We therefore have a simple of way for checking for
+intersecting lines, but if the meet gives us zero so that
+we know there is an intersection point, we can no longer
+find this point in a fully covariant way by intersecting
+one line with the a plane defined by the other line,
+since such a plane is not uniquely defined. We could, in
+practise, intersect one line with the plane formed by the
+other line and the origin, but then if the other line
+passes through the origin, this will not work, and we are
+left with a non-covariant procedure and one which entails
+us forming conditionals for a number of cases. We would
+instead like to look for a method which works co-variantly
+-- such a method exists, and in the process of describing
+it, we see a number of other useful constructions.
+
+Again take our arbitrary lines, $L_1$ and $L_2$ (assume
+they are normalised, such that $L_1^2=L_2^2=1$). Suppose
+we reflect line $L_1$ in line $L_2$ -- this statement is
+not well-defined in a conventional sense, but in
+GA, we have seen that reflection of an
+object in another object is indeed well defined and is
+brought about by sandwiching the object to be reflected
+between the object that it is being reflected in. So, our
+reflected line, $L_1'$ is given by
+%
+\[  L_1' = L_2L_1L_2  \]
+%
+The operation of reflection is grade preserving if we are
+dealing with blades, and therefore we know that we get
+another line. This construction will work for any two
+lines, but let us now suppose that our lines intersect at
+a point, we can then expect that the reflected line
+$L_1'$ will be the line formed by the intersection point,
+represented by $P$, and any point on $L_1$ reflected in $L_2$. This is
+indeed what $L_1'$ is. Now, however, it becomes possible
+very easily to form the line which is perpendicular to
+$L_2$, passing through the intersection point, $P$, and
+in the plane defined by $L_1$ and $L_2$ via the following
+%
+\begin{equation}
+ L_1'' =  L_1 - L_2L_1L_2
+\end{equation}
+%
+%-- this is illustrated in figure~\ref{intersect_lines}
+%
+%\begin{figure}
+%\centerline{
+%\includegraphics[width=.4\textwidth]{c:/jl/siggraph/2002/intersect_lines}
+%} \caption[]{The rotation of intersecting lines to
+%produce two lines intersecting at right angles, via the
+%construction $L_1-L_2L_1L_2$.} \label{intersect_lines}
+%\end{figure}
+%
+\begin{figure}
+\centerline{
+\includegraphics[width=.4\textwidth]{lines}
+} \caption{The rotation of intersecting lines to
+produce two lines intersecting at right angles, via the
+construction $L_1-L_2L_1L_2$.} \label{intersect_lines}
+\end{figure}
+Clearly what we are doing here is rotating one line in
+the plane defined by the two lines,  to be perpendicular
+to the other line. We will return to this rotor
+description later.  Now we have two perpendicular lines
+which intersect, we can find the point of intersection
+relatively easily. Take any arbitrary point representation $X$ and
+reflect it in $L_1''$ (assuming again that we have
+normalised $L_1''$) via $X' = L_1''XL_1''$, then take the
+midpoint of $X$ and $X'$, we know that this must lie on
+the line $L1'$
+%
+\[ X' = L_1''XL_1'' \;\;\;\; X'' = \half (X + X')   \]
+%
+(recall that $X''$ will be our real midpoint plus some
+multiple of $n$). Now we reflect $X''$ in $L_2$ to give $X'''$ and again
+take the midpoint -- the midpoint must now give us the
+intersection point $P$ plus some multiple of $n$;
+%
+\[ X''' = L_2X''L_2 \;\;\;\;  P' = \half (X''+X''')   \]
+%
+we then extract the null vector corresponding to the representation of our
+intersection point $P$ via
+%
+\[ P = \frac{-(P'nP')}{2(P'\cdot n)^2}   \]
+%
+This construction is independent of $X$ and is a
+beautiful illustration of the ability to manipulate
+objects using geometric algebra. Although it appears
+involved, it can be programmed up very easily ($\bar{n}$
+can be used as the point $X$) and is an entirely
+covariant way of intersecting two lines. Of course, in
+practise, one can also check to see if there is at least
+one line that does not pass through the origin
+($\bar{n}\wedge L=0$ if $L$ passes through the origin), if
+there is, say this is $L_1$, we can then form the plane
+$\bar{n}\wedge L_1$ and intersect this with $L_2$, if both
+lines pass through the origin then the intersection point
+is the origin. Note that we can use precisely the same
+type of argument to extract the plane formed by two
+intersecting lines. For example, take any arbitrary point
+$X$, reflect it in the line $L_1$ via $L_1 X L_1$, so
+that the midpoint of this line is given by $P$ where $P$
+is given (up to some additional multiple of $n$) by
+%
+\[  P = \half (X + L_1 X L_1)   \]
+%
+$P$ must clearly lie on $L_1$, thus the plane formed by
+the two lines must be given by
+%
+\begin{equation}
+ L_2\wedge P = L_2 \wedge \half(X + L_1X L_1)
+\end{equation}
+%
+Again, $\bar{n}$ can be used for our point $X$ in real
+computations. The derivations given here are entirely
+covariant and the same constructions will intersect
+`lines' in different geometries, we will illustrate this
+towards the end of the report by considering 3d hyperbolic
+geometry.
+
+ Recall that
+previously we found the reflection of $L_1$ in $L_2$ via
+$L_2L_1L_2$, now note that we can rewrite this as
+%
+\begin{equation}
+ L_2L_1L_2 = (L_2L_1)L_1\widetilde{(L_2L_1)} = RL_1\tilde{R}
+\end{equation}
+%
+since $\widetilde{(L_2L_1)} = \tilde{L}_1\tilde{L}_2=L_1L_2$.
+Thus we see that the quantity $L_2L_1$ acts as a rotor
+(if the lines are normalised) which rotates through twice
+the angle between the lines about an axis through the
+intersection point and perpendicular to the plane
+containing the lines. In fact, when we write this
+reflection as a rotation, there is nothing to insist that
+our lines must intersect. If $L_1$ and $L_2$ do not
+intersect, then $L_2L_1L_2$ will still perform a {\em
+reflection of $L_1$ in $L_2$}, but we are now able to
+interpret exactly what this reflection means for
+non-intersecting lines if we regard the operator as a
+rotor. It turns out that the rotor $L_2L_1$ is the
+product of a rotation rotor and a translation rotor --
+the rotation is in the plane normal to the common
+perpendicular of the lines and the translation is along
+the common perpendicular so that one line is taken onto
+and then through the other. We can show that it is
+possible to write the product $L_2L_1$ as
+%
+\begin{equation}
+L_2L_1 = (\cos{\theta} + \hat{B}\sin{\theta})(1 + dn)
+\end{equation}
+%
+where $d$ is the 3d vector representing the length and
+direction of the common perpendicular, $\hat{B} =
+\hat{d}I_3$ (with $\hat{d}=d/\sqrt(d^2)$) and  $\theta$
+is the angle between the lines as measured when
+translated to lie in the same plane along $d$. We see
+that the above is a combination of a rotation rotor and a
+translation rotor, we will see later that rotors which
+take one object (of the same grade) into another object
+are often formed in the way we have outlined here for
+lines.
 
 \section{Existing implementations}
 
+One of the goals of this PhD was to continue to develop a software
+library designed to help with the implementation of CGA-based algorithms
+in an efficient manner. Before work started on designing 
+the software, several existing systems 
+were investigated. All of the following packages were designed to
+provide high-level access to numerical computations using GA.
+
 \subsection{CLUCalc \& CLUDraw}
+
+
+CLU \& CLUDraw were written by Christian Perwass and may be obtained from his
+web-site (http://www.perwass.de/cbup/clu.html). Of all the systems, this
+is the only one designed both for CGA and the visualisation of spheres,
+circles, etc.\ directly from the CGA model.
+
+It is written in C++ and uses the object-oriented features of the language
+extensively. Multivectors are represented as objects and operations upon
+them are performed by overloading the standard operators of the C++
+language. 
+
+CLU is a library designed for numerical computations and is not limited
+to the signature used for the conformal model but also has support for
+other signatures. CLUDraw is a library designed to take multivectors calculated
+by CLU and provide a convenient way to visualise them as spheres, lines, planes,
+etc. 
+
+Although it provides a convenient interface, the heavy use of C++ object-orientation
+and operator overloading within the library results in a rather high
+computational overhead. The decoupling of the calculation engine and
+visualisation engine however provides the useful ability to remove the
+graphics code in a clean manner.
+
+
 \subsection{GABLE}
+
+TBC
+
 \subsection{Gaigen}
+
+The Gaigen 
+homepage\footnote{http://carol.wins.uva.nl/$\tilde{\ }$fontijne/gaigen/} describes 
+it as
+\begin{quote}
+Gaigen is a program which can generate implementations of geometric algebras. It generates C++, C and assembly source code which implements a geometric algebra requested by the user. People who are new to geometric algebra may think that there is only one geometric algebra. However, there are many different geometric algebras. The properties that make these algebras different are, among others, their dimensionality and the signature of their basis vectors. Each of these different algebras may be useful for different applications.
+\end{quote}
+The user can select the signature of the space and generate C-code to implement it. The
+basic code is quite na\"ive (similar to the initial code created for
+this project, see later) insofar as it
+performs the full $O(1024)$ matrix multiplication required. It does allow the
+user to specify a number of special purpose optimised routines to
+find the geometric product of, for example, a bivector and trivector.
+Gaigen doesn't possess a visualisation engine by default.
+
+\begin{table}
+\centering
+\textbf{Geometric Product Multiplication Table}\\
+\rule{0cm}{0.3cm}
+\input{gaigen_table.tex}
+\caption{Example \TeX\ output from Gaigen\label{tab:gaigen_output}}
+\end{table}
+
+Gaigen does have the useful ability to generate product tables for the algebra
+(see Table \ref{tab:gaigen_output}) in both plain text and \TeX\ format. 
+%Indeed
+%some of these tables were used as input to the code-generating 
+%PERL\footnote{Pathologically Eclectic Rubbish Lister---see http://www.perl.org/} 
+%scripts.
+
+
 \subsection{Cambridge GA library for Maple}
 
+This library is available from the Cavendish Astrophysics
+web-site\footnote{http://www.mrao.cam.ac.uk/$\tilde{\ }$clifford/software/}. It
+provides Geometric Algebra capabilities for the Maple V and VI symbolic mathematics
+package. It provides no visualisation capabilities above those provided by
+Maple. This is a very useful tool for research but is aimed more at symbolic
+manipulation than numerical computation.
+
 \section{Existing uses}
+
+TBC
 
 \subsection{Motion Capture}
 \subsection{Computer Vision}
