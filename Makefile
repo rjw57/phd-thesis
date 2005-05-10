@@ -3,7 +3,7 @@
 
 # Variables we can alter
 SUBDIRS:=global introduction libcga visualisation noneuclid \
-	 exponential gpu
+	 exponential interpolation gpu
 EVERYTHING=$(wildcard *)
 
 #### Default target ####
