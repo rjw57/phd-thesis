@@ -79,7 +79,7 @@
 \def\@department{\ } \def\department#1{\def\@department{#1}}
 
 %% Line spacing
-\def\baselinestretch{1.5}
+\def\baselinestretch{1.667}
 
 %% Fonts
 \def\title@font{\LARGE\sc\bfseries}
