@@ -12,6 +12,8 @@
 %\usepackage[a4,cam,center]{crop}
 %\crop[font=\upshape\mdseries\small\textsf]
 
+\bibliographystyle{plain}
+
 \usepackage[pdfborder=0 0 0,draft=false]{hyperref}
 \usepackage{graphicx}
 \usepackage{pslatex}
@@ -67,5 +69,11 @@ Cambridge, CB2 1PZ, U.K.
 \include{gpu/gpu}
 \include{conclusions/conclusions}
 \end{mainmatter}
+
+\nocite{*}
+
+\begin{backmatter}
+\bibliography{bibliography}
+\end{backmatter}
 
 \end{document}

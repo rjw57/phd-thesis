@@ -38,12 +38,16 @@ TEXINPUTS=$(shell echo ' $(strip $(SUBDIRS))' | sed -e 's/ /:/g')
 export TEXINPUTS
 	
 # Run twice to ensure labels etc.
-$(PDFS): %.pdf : %.tex environment subdirs wordcount.txt
-	pdflatex $(<:.tex=)
-	pdflatex $(<:.tex=)
+$(PDFS): %.pdf : %.bbl environment
+	pdflatex $(@:.pdf=)
+	pdflatex $(@:.pdf=)
 
 $(PSS): %.ps : %.pdf 
 	pdftops $<
+
+%.bbl : %.tex environment $(wildcard *.bib)
+	pdflatex $(@:.bbl=)
+	bibtex $(@:.bbl=)
 
 #### Convenience targets
 	
@@ -82,11 +86,12 @@ clean: clean-environment
 	rm -f $(TEXFILES:.tex=.aux) $(TEXFILES:.tex=.toc)
 	rm -f $(TEXFILES:.tex=.bak) $(TEXFILES:.tex=.log)
 	rm -f $(TEXFILES:.tex=.out) 
+	rm -f $(TEXFILES:.tex=.bbl) $(TEXFILES:.tex=.blg) 
 	rm -f wordcount.txt
 
 #### General environment
 
-environment: svg2pdf 
+environment: svg2pdf  subdirs wordcount.txt
 
 clean-environment: clean-subdirs
 

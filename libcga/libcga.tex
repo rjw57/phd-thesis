@@ -1,12 +1,23 @@
 \chapter{LibCGA --- A Library for Implementing GA-based Algorithms}
 
+Any GA-based algorithm must have a method of implementation to be
+truly useful in any Engineering sense. In order to provide a solid
+base for the development of such algorithms it was decided that
+a good general-purpose GA library should be created in order to 
+allow for rapid prototyping of GA-based solutions. The library 
+was called \libcga{}.
+
 \section{Requirements}
 
-There were two broad design aims when designing the \libcga\ software library
-to perform numerical GA computations.
+There were a number design aims when designing the \libcga\ software library.
+
 \begin{itemize}
-\item Create a fast, efficient, user-friendly CGA library.
-\item Investigate geometric operations within CGA using the library. 
+\item Fast --- The library should be numerically efficient.
+\item User-friendly --- The library API should be convenient and simple to use.
+\item Compact --- The library should be small enough to be embedded within
+a larger solution.
+\item Thin --- The library should be sufficently low-level so as to introduce
+little penalty for wrapping it in a higher-level API.
 \end{itemize}
 
 These design aims were, by their nature, highly coupled. Research into
