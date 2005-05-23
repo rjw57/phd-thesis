@@ -1,6 +1,8 @@
 %\documentclass[b5paper,twoside,12pt,sabonnumbers]{RJWThesis}
 \documentclass[a4paper,oneside,12pt,sabonnumbers]{RJWThesis}
 
+%\includeonly{fractals/fractals}
+
 %% Use scalable, PostScript Type 1 versions of the Computer Modern fonts.
 \usepackage{type1cm}
 
@@ -12,7 +14,7 @@
 %\usepackage[a4,cam,center]{crop}
 %\crop[font=\upshape\mdseries\small\textsf]
 
-\bibliographystyle{plain}
+\bibliographystyle{abbrv}
 
 \usepackage[pdfborder=0 0 0,draft=false]{hyperref}
 \usepackage{graphicx}
@@ -23,7 +25,7 @@
 \usepackage{amssymb}
 \usepackage{url}
 
-\include{global/globalmacros}
+\input{global/globalmacros}
 \begin{document}
 
 \begin{frontmatter}
@@ -70,10 +72,10 @@ Cambridge, CB2 1PZ, U.K.
 \include{conclusions/conclusions}
 \end{mainmatter}
 
-\nocite{*}
+% \nocite{*}
 
 \begin{backmatter}
-\bibliography{bibliography}
+\bibliography{geometry,ga,fractals}
 \end{backmatter}
 
 \end{document}

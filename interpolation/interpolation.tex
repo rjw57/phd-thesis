@@ -2,15 +2,18 @@
 
 \section{Interpolation via Generators}
 
-We have shown that any displacement of Euclidean geometry\footnote{Other geometries may be
-considered with appropriate modification of the rotors \cite{cgwcga}.} may be mapped smoothly
-onto a linear sub-space of the bivectors. This immediately suggests applications to smooth interpolation
-of displacements. Consider a set of poses we wish to interpolate, $\{P_1, P_2, ..., P_n\}$ and a set
-of rotors which transform some origin pose to these target poses, $\{R_1, R_2, ..., R_n\}$. We
-may map these rotors onto the set of bivectors $\{\ell(R_1), \ell(R_2), ..., \ell(R_n)\}$ which
-are simply points in some linear subspace. We may now choose any interpolation of these bivectors
-which lies in this space and for any bivector on the interpolant, $B'_\lambda$, we can compute
-a pose, $\exp(B'_\lambda)$.
+We have shown that any displacement of Euclidean geometry\footnote{Other
+  geometries may be considered with appropriate modification of the rotors
+          \cite{GA:CUEDTechRep}.} 
+may be mapped smoothly onto a linear sub-space of the bivectors. This
+immediately suggests applications to smooth interpolation of displacements.
+Consider a set of poses we wish to interpolate, $\{P_1, P_2, ..., P_n\}$ and a
+set of rotors which transform some origin pose to these target poses, $\{R_1,
+    R_2, ..., R_n\}$. We may map these rotors onto the set of bivectors
+    $\{\ell(R_1), \ell(R_2), ..., \ell(R_n)\}$ which are simply points in some
+    linear subspace. We may now choose any interpolation of these bivectors
+    which lies in this space and for any bivector on the interpolant,
+    $B'_\lambda$, we can compute a pose, $\exp(B'_\lambda)$.
 
 \begin{figure}\centering
 \includegraphics[width=0.5\columnwidth]{linearinterp}

@@ -59,10 +59,10 @@ DISTNAME=thesis-$(USER)-$(DATE)
 wordcount.txt:
 	echo `find . -name '*.tex' -print0 | xargs -0 untex -o -e -m  | wc -w`\% >wordcount.txt
 
-acroview: all
+acroview: $(PDFS)
 	acroread $(PDFS)
 
-view: all
+view: $(PSS)
 	gv $(PSS)
 
 publish: all
