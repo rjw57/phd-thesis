@@ -67,7 +67,7 @@
 \def\chapnum@colour{CambridgeDeepBlue}
 \def\pagenumber@colour{CambridgeDeepBlue}
 \def\pagefooter@colour{CambridgeDeepBlue}
-\def\section@colour{CambridgeRed}
+\def\section@colour{CambridgeDeepBlue}
 \def\subsection@colour{CambridgeDeepBlue}
 \def\subsubsection@colour{CambridgeDeepBlue}
 \def\cph@colour{CambridgeDeepBlue}
@@ -79,7 +79,7 @@
 \def\@department{\ } \def\department#1{\def\@department{#1}}
 
 %% Line spacing
-\def\baselinestretch{1.667}
+\def\baselinestretch{1.5}
 
 %% Fonts
 \def\title@font{\LARGE\sc\bfseries}
@@ -89,20 +89,20 @@
 \def\author@font{\Large}
 \def\quote@font{\small\sf\em}
 \def\dedication@font{\Large\em}
-\def\chaphead@font{\sf\bfseries\LARGE}
-\def\pagenumber@font{\sf\bfseries\itshape\small}
-\def\pagefooter@font{\sf\bfseries\itshape\small}
-\def\section@font{\sf\bfseries\Large}
-\def\subsection@font{\sf\bfseries}
-\def\subsubsection@font{\bfseries\em}
+\def\chaphead@font{\sf\bfseries\fontsize{24}{30}\selectfont}
+\def\pagenumber@font{\sf\small}
+\def\pagefooter@font{\sf\small}
+\def\section@font{\fontfamily{mga}\selectfont\large}
+\def\subsection@font{\fontfamily{mga}\selectfont}
+\def\subsubsection@font{\fontfamily{mga}\selectfont\em}
 \def\chapnum@font{\usefont{T1}{\chapnum@fontname}{b}{n}\fontsize{100}{130}\selectfont}
 \def\cph@font{\sf\bfseries\small}
 \def\cpb@font{\sf\small}
 
 %% Set the geometry.
-\geometry{inner=10em,outer=8em}
-\geometry{top=0.05\paperheight,bottom=0.12\paperheight}
-\geometry{nohead,foot=0.07\paperheight}
+\geometry{inner=1.75in,outer=1.25in}
+\geometry{top=1in,bottom=2in}
+\geometry{nohead,foot=1in}
 
 \def\dedication#1{%
   {\centering%
@@ -163,20 +163,21 @@
 \setlength{\flashheight}{0.67\paperheight}
 \setlength\unitlength{1mm}%
 }
+
 \def\pagedec@skip{}
-\AddToShipoutPicture{%
-  \def\pagedec@skip{\hskip \paperwidth \hskip -\pagedecorationwidth \hskip -\decorationoffset}
-  \def\flash@width{\pagedecorationwidth}
-  \if@twoside
-    \ifodd\c@page
-      % nothing
-    \else
-      \def\pagedec@skip{\hskip \decorationoffset}
-      \def\flash@width{-\pagedecorationwidth}
-    \fi
-  \fi        
-  \AtPageLowerLeft{\pagedec@skip\includegraphics[width=\flash@width,height=\flashheight]{page_flash}}
-}
+%\AddToShipoutPicture{%
+%  \def\pagedec@skip{\hskip \paperwidth \hskip -\pagedecorationwidth \hskip -\decorationoffset}
+%  \def\flash@width{\pagedecorationwidth}
+%  \if@twoside
+%    \ifodd\c@page
+%      % nothing
+%    \else
+%      \def\pagedec@skip{\hskip \decorationoffset}
+%      \def\flash@width{-\pagedecorationwidth}
+%    \fi
+%  \fi        
+%  \AtPageLowerLeft{\pagedec@skip\includegraphics[width=\flash@width,height=\flashheight]{page_flash}}
+%}
 
 %% Quotes for fancy chapter headings.
 \newsavebox{\@quotebox}
@@ -214,7 +215,7 @@
 
 \AtBeginDocument{
 \setlength{\chapheadwidth}{\paperwidth}
-\addtolength{\chapheadwidth}{-1in}
+\addtolength{\chapheadwidth}{-1cm}
 \addtolength{\chapheadwidth}{-\oddsidemargin}
 \addtolength{\chapheadwidth}{-3\pagedecorationwidth}
 
@@ -232,7 +233,7 @@
   \relax\rule{0pt}{0pt}\par%
   \vskip -\topmargin \vskip -\headsep \vskip -\headheight %
   \vskip -1in %
-  \vskip 0.33\paperheight %
+  \vskip 0.4\paperheight %
   \vskip -0.5\baselineskip %
   \AddToShipoutPicture*{%
     \setlength\unitlength{\paperheight}%

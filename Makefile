@@ -97,7 +97,7 @@ clean-environment: clean-subdirs
 
 #### svg2pdf
 svg2pdf: svg2pdf.c
-	$(CC) -o svg2pdf svg2pdf.c `pkg-config cairo --libs --cflags` -lsvg-cairo
+	$(CC) -o svg2pdf svg2pdf.c args.c `pkg-config cairo --libs --cflags` -lsvg-cairo
 
 #### subdirectories
 CLEANSUBDIRS:=$(foreach dir,$(SUBDIRS),clean-$(dir))
