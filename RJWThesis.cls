@@ -78,9 +78,6 @@
 \def\@group{\ } \def\group#1{\def\@group{#1}}
 \def\@department{\ } \def\department#1{\def\@department{#1}}
 
-%% Line spacing
-\def\baselinestretch{1.5}
-
 %% Fonts
 \def\title@font{\LARGE\sc\bfseries}
 \def\subtitle@font{\normalsize}
@@ -91,7 +88,7 @@
 \def\dedication@font{\Large\em}
 \def\chaphead@font{\sf\bfseries\fontsize{24}{30}\selectfont}
 \def\pagenumber@font{\sf\small}
-\def\pagefooter@font{\sf\small}
+\def\pagefooter@font{\itshape}
 \def\section@font{\fontfamily{mga}\selectfont\large}
 \def\subsection@font{\fontfamily{mga}\selectfont}
 \def\subsubsection@font{\fontfamily{mga}\selectfont\em}
@@ -100,9 +97,9 @@
 \def\cpb@font{\sf\small}
 
 %% Set the geometry.
-\geometry{inner=1.75in,outer=1.25in}
-\geometry{top=1in,bottom=2in}
-\geometry{nohead,foot=1in}
+\geometry{inner=0.2\paperwidth,outer=0.15\paperwidth}
+\geometry{top=0.1\paperheight,bottom=0.15\paperheight}
+\geometry{headsep=0.025\paperheight,foot=0.075\paperheight}
 
 \def\dedication#1{%
   {\centering%
@@ -117,7 +114,7 @@
 
 % Set page header, footer
 \pagestyle{fancy}\fancyhead{}\fancyfoot{}%
-\fancyfoot[RO,LE]{\pagenumber@font\textcolor{\pagenumber@colour}{\thepage}}%
+\fancyfoot[C]{\pagenumber@font\textcolor{\pagenumber@colour}{-~\thepage~-}}%
 
 %% Section headings etc.
 
@@ -224,11 +221,11 @@
 }
 
 \renewcommand{\@makechapterhead}[1]{%
-  \fancyfoot[RE]{\pagefooter@font\textcolor{\pagefooter@colour}{%
-  \parbox[t]{0.6\paperwidth}{\raggedleft #1}%
+  \fancyhead[RE]{\pagefooter@font\textcolor{\pagefooter@colour}{%
+  \parbox[t]{0.6\paperwidth}{\raggedleft #1}\\\vskip0.25em \hrule%
   }}%
-  \fancyfoot[LO]{\pagefooter@font\textcolor{\pagefooter@colour}{%
-  \parbox[t]{0.6\paperwidth}{\raggedright #1}%
+  \fancyhead[LO]{\pagefooter@font\textcolor{\pagefooter@colour}{%
+  \parbox[t]{0.6\paperwidth}{\raggedright #1}\\\vskip0.25em \hrule%
   }}%
   \relax\rule{0pt}{0pt}\par%
   \vskip -\topmargin \vskip -\headsep \vskip -\headheight %
@@ -383,15 +380,19 @@
 
 %% Fancy captions
 \long\def\@makecaption#1#2{%
+ \renewcommand{\baselinestretch}{1.1}\selectfont
  \vskip\abovecaptionskip\hrule\vskip\abovecaptionskip%
  \setbox\@tempboxa\hbox{{\cph@font\textcolor{\cph@colour}{#1: }}%
    {\cpb@font\textcolor{\cpb@colour}{#2}}}%
  \ifdim \wd\@tempboxa >\hsize
-    \@hangfrom{{\cph@font\textcolor{\cph@colour}{#1: }}}%
-    {{\cpb@font\textcolor{\cpb@colour}{#2}}\par}%
+    \@hangfrom{{\cph@font%
+      \textcolor{\cph@colour}{#1: }}}%
+    {{\cpb@font%
+      \textcolor{\cpb@colour}{#2}}\par}%
  \else
     \hbox to\hsize{\hfil\box\@tempboxa\hfil}%
  \fi
  \vskip\abovecaptionskip\hrule%
- \vskip\belowcaptionskip}
+ \vskip\belowcaptionskip%
+}
 

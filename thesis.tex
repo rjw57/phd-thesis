@@ -1,7 +1,7 @@
 %\documentclass[b5paper,twoside,10pt,sabonnumbers]{RJWThesis}
 \documentclass[a4paper,oneside,12pt,sabonnumbers]{RJWThesis}
 
-\includeonly{fractals/fractals}
+% \includeonly{fractals/fractals}
 
 %% Use scalable, PostScript Type 1 versions of the Computer Modern fonts.
 \usepackage{type1cm}
@@ -29,6 +29,7 @@
 \begin{document}
 
 \begin{frontmatter}
+\renewcommand{\baselinestretch}{1.2}\selectfont
 \title{Computer Graphics using Conformal Geometric Algebra}
 \subtitle{A dissertation submitted to the\\{\sc University of 
     Cambridge}\\for the degree of\\{\sc Doctor of Philosophy}}
@@ -61,6 +62,7 @@ Cambridge, CB2 1PZ, U.K.
 \end{frontmatter}
 
 \begin{mainmatter}
+\renewcommand{\baselinestretch}{2.0}\selectfont
 \include{introduction/introduction}
 \include{libcga/libcga}
 \include{visualisation/visualisation}
