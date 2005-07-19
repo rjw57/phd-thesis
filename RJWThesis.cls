@@ -32,7 +32,9 @@
 
 % Width of the page decoration bars.
 \newlength{\pagedecorationwidth}
-\setlength{\pagedecorationwidth}{0.05\paperwidth}
+\setlength{\pagedecorationwidth}{0cm}
+\newlength{\chapnumoffset}
+\setlength{\chapnumoffset}{0.1\paperwidth}
 \def\rulewidth{1pt}
 
 % Margin to offset decoration by
@@ -40,7 +42,8 @@
 \setlength{\decorationoffset}{0pt}
 
 % Standard lengths
-\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{1pt}
 
 %% Colours
 \definecolor{CambridgeLightBlue}{rgb}{0.6,0.8,1.0}
@@ -97,7 +100,7 @@
 \def\cpb@font{\sf\small}
 
 %% Set the geometry.
-\geometry{inner=0.2\paperwidth,outer=0.15\paperwidth}
+\geometry{inner=0.25\paperwidth,outer=0.2\paperwidth}
 \geometry{top=0.15\paperheight,bottom=0.15\paperheight}
 \geometry{head=3em,foot=3em}
 
@@ -114,7 +117,7 @@
 
 % Set page header, footer
 \pagestyle{fancy}\fancyhead{}\fancyfoot{}%
-\fancyfoot[C]{\pagenumber@font\textcolor{\pagenumber@colour}{\renewcommand{\baselinestretch}{1.0}\selectfont\hrule\vskip0.5em-~\thepage~-}}%
+\fancyfoot[C]{\pagenumber@font\textcolor{\pagenumber@colour}{-~\thepage~-}}%
 
 %% Section headings etc.
 
@@ -214,22 +217,36 @@
 \setlength{\chapheadwidth}{\paperwidth}
 \addtolength{\chapheadwidth}{-1cm}
 \addtolength{\chapheadwidth}{-\oddsidemargin}
-\addtolength{\chapheadwidth}{-3\pagedecorationwidth}
+\addtolength{\chapheadwidth}{-\chapnumoffset}
 
 \setlength{\chapflash@width}{\paperwidth}
 \addtolength{\chapflash@width}{-2\decorationoffset}
 }
 
-\renewcommand{\@makechapterhead}[1]{%
+\if@twoside
+  \fancyhead[RE]{\pagefooter@font\textcolor{\pagefooter@colour}{%
+    \leftmark
+    % \parbox[t]{0.8\textwidth}{\raggedright\leftmark}\\\vskip0.25em \hrule%
+  }}%
+  \fancyhead[LO]{\pagefooter@font\textcolor{\pagefooter@colour}{%
+    \rightmark
+    % \parbox[t]{0.8\textwidth}{\raggedleft\rightmark}\\\vskip0.25em \hrule%
+  }}%
+\else
+  \fancyhead[LO]{\pagefooter@font\textcolor{\pagefooter@colour}{%
+    \leftmark
+    % \parbox[t]{0.8\textwidth}{\raggedright\rightmark}\\\vskip0.25em \hrule%
+  }}%
+\fi
+
+\renewcommand\sectionmark[1]{%
   \if@twoside
-    \fancyhead[RE,LO]{\pagefooter@font\textcolor{\pagefooter@colour}{%
-      \parbox[t]{0.6\paperwidth}{\raggedleft #1}\\\vskip0.25em \hrule%
-    }}%
-  \else
-    \fancyhead[L]{\pagefooter@font\textcolor{\pagefooter@colour}{%
-      \parbox[t]{0.6\paperwidth}{\raggedright #1}\\\vskip0.25em \hrule%
-    }}%
+    \markright{\thesection\ #1}
   \fi
+}
+
+\renewcommand{\@makechapterhead}[1]{%
+  \markboth{#1}
   \relax\rule{0pt}{0pt}\par%
   \vskip -\topmargin \vskip -\headsep \vskip -\headheight %
   \vskip -1in %
@@ -280,7 +297,7 @@
                 \chapnum@font\thechapter%
               }\vskip \chapnumheight%
               \raggedleft\chapnum@font\textcolor{\chapnum@colour}\thechapter%
-              \hspace*{\pagedecorationwidth}%
+              \hspace*{\chapnumoffset}%
               \hspace*{\decorationoffset}%
             }
           }
@@ -322,9 +339,9 @@
       }%
       \AtPageLowerLeft{
         \put(0,0.05){%
-          \hspace*{\pagedecorationwidth}%
-          \parbox{0.5\paperwidth}{%
-            \def\baselinestretch{1.0}
+          \hspace*{0.1\paperwidth}%
+          \parbox{0.4\paperwidth}{%
+            \def\baselinestretch{1.5}\selectfont
             {\sc\large\bfseries \@group\newline\@department}
           }
         }%
@@ -332,7 +349,7 @@
           \parbox{\paperwidth}{%
             \raggedleft%
             \includegraphics[height=0.05\paperheight]{CUnibig}%
-            \hspace*{\pagedecorationwidth}%
+            \hspace*{0.1\paperwidth}%
           }%
         }%
         \put(0,0.10){%
