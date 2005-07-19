@@ -2,11 +2,12 @@
 
 \newtheorem{thm}{Theorem}
 \newtheorem{lemma}{Lemma}
-\newtheorem{definition}{Definition}
 \newtheorem{cor}{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
 \newtheorem{alg}{Algorithm}
-\newenvironment{proof}[1][Proof]{\begin{trivlist}
-\item[\hskip \labelsep {\bfseries #1}]}{\qed\end{trivlist}}
+% \newenvironment{proof}[1][Proof]{\begin{trivlist}
+% \item[\hskip \labelsep {\bfseries #1}]}{\qed\end{trivlist}}
 \newcommand{\dt}{\cdot}
 \newcommand{\nn}{\nonumber}
 \newcommand{\half}{\frac{1}{2}}
@@ -20,7 +21,7 @@
 \newcommand{\qinterp}{\mathrm{qinterp}}
 \newcommand{\interp}{\mathrm{interp}}
 \newcommand{\slerp}{\mathrm{slerp}}
-\newcommand{\qed}{\hfill$\boxempty$}
+% \newcommand{\qed}{\hfill$\boxempty$}
 \newcommand{\libcga}{{\tt libcga}}
 \newcommand{\libcgadraw}{{\tt libcgadraw}}
 \newcommand{\cala}{\mathcal{A}}
@@ -30,3 +31,12 @@
 \newcommand{\Jperp}{{J_\perp}}
 \newcommand{\Jpar}{{J_\parallel}}
 \newcommand{\Jparperp}{{J_{\perp\parallel}}}
+
+\newenvironment{fancyalg}{%
+  \begin{algorithm}
+  \renewcommand{\baselinestretch}{1.1}\selectfont
+  \hrule\medskip
+}{%
+  \end{algorithm}
+}
+\newcommand{\theHalgorithm}{\thechapter.\arabic{algorithm}}

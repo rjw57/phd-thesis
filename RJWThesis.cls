@@ -98,8 +98,8 @@
 
 %% Set the geometry.
 \geometry{inner=0.2\paperwidth,outer=0.15\paperwidth}
-\geometry{top=0.1\paperheight,bottom=0.15\paperheight}
-\geometry{headsep=0.025\paperheight,foot=0.075\paperheight}
+\geometry{top=0.15\paperheight,bottom=0.15\paperheight}
+\geometry{head=3em,foot=3em}
 
 \def\dedication#1{%
   {\centering%
@@ -114,7 +114,7 @@
 
 % Set page header, footer
 \pagestyle{fancy}\fancyhead{}\fancyfoot{}%
-\fancyfoot[C]{\pagenumber@font\textcolor{\pagenumber@colour}{-~\thepage~-}}%
+\fancyfoot[C]{\pagenumber@font\textcolor{\pagenumber@colour}{\renewcommand{\baselinestretch}{1.0}\selectfont\hrule\vskip0.5em-~\thepage~-}}%
 
 %% Section headings etc.
 
@@ -221,12 +221,15 @@
 }
 
 \renewcommand{\@makechapterhead}[1]{%
-  \fancyhead[RE]{\pagefooter@font\textcolor{\pagefooter@colour}{%
-  \parbox[t]{0.6\paperwidth}{\raggedleft #1}\\\vskip0.25em \hrule%
-  }}%
-  \fancyhead[LO]{\pagefooter@font\textcolor{\pagefooter@colour}{%
-  \parbox[t]{0.6\paperwidth}{\raggedright #1}\\\vskip0.25em \hrule%
-  }}%
+  \if@twoside
+    \fancyhead[RE,LO]{\pagefooter@font\textcolor{\pagefooter@colour}{%
+      \parbox[t]{0.6\paperwidth}{\raggedleft #1}\\\vskip0.25em \hrule%
+    }}%
+  \else
+    \fancyhead[L]{\pagefooter@font\textcolor{\pagefooter@colour}{%
+      \parbox[t]{0.6\paperwidth}{\raggedright #1}\\\vskip0.25em \hrule%
+    }}%
+  \fi
   \relax\rule{0pt}{0pt}\par%
   \vskip -\topmargin \vskip -\headsep \vskip -\headheight %
   \vskip -1in %
