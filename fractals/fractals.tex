@@ -1,13 +1,14 @@
 \chapter{Generating Fractals using Geometric Algebra}
 
-Fractals have always been a popular topic in computer graphics due
-to their ability to give rise to great aesthetic beauty from a relatively
-simple mathematical description. Generally a fractal is considered to be
-any geometric object which posesses detail on all scales\cite{FRAC:FractalsEverywhere,
-  FRAC:FractalGeometryOfNature}. That is to say
-that one may examine the edge of the object under arbitrary magnification
-yet still find it rough and irregular. Many introductions to the 
-subject of fractals and their creation on computers exist\cite{FRAC:FractalGeometry, FRAC:ChaosAndFractals, FRAC:FractalImages}.
+Fractals have always been a popular topic in computer graphics due to their
+ability to give rise to great aesthetic beauty from a relatively simple
+mathematical description. Generally a fractal is considered to be any
+geometric object which posesses detail on all
+scales\cite{FRAC:FractalsEverywhere, FRAC:FractalGeometryOfNature}. That is to
+say that one may examine the edge of the object under arbitrary magnification
+yet still find it rough and irregular. Many introductions to the subject of
+fractals and their creation on computers exist\cite{FRAC:FractalGeometry,
+  FRAC:ChaosAndFractals, FRAC:FractalImages}.
 
 The term fractal was coined by Mandelbrot\cite{FRAC:LesObjetsFractals} in 1975,
 originally from the latin {\em fractus} (broken). In this chapter we
@@ -201,8 +202,8 @@ Clear by direct substitution.
 
 \section{Moving to Higher Dimensions}
 
-We now form an analogy to complex numbers in higher dimensions
-by removing the constraint that the vectors need be in $\mathbb{R}^2$.
+We extend this analogy to cover vectors in $\mathbb{R}^n$ 
+by simply removing the constraint that the vectors need be in $\mathbb{R}^2$.
 
 \begin{definition}
 Given a vector $z$ and some unit basis vector $e_1$ the mapping
@@ -215,7 +216,8 @@ is $z \mapsto z + c$.
 \end{definition}
 
 We may now define generalised Mandelbrot and Julia sets based upon
-a new vector recurrence relation
+a new vector recurrence relation.
+
 \begin{definition}
 The vector analogue of $z(n,c)$ is defined as
 \[
@@ -225,6 +227,17 @@ with initial values being defined by a particular fractal.
 \end{definition}
 
 \subsection{The Generalised Mandelbrot Set}
+
+\begin{figure}
+\centering
+\begin{tabular}{c@{$\quad$}c}
+\includegraphics[width=0.4\textwidth]{3dmandel1}
+ & \includegraphics[width=0.4\textwidth]{3dmandel2} 
+\end{tabular}
+\caption{\label{fig:3dmandel}
+  Two frames from an animation\cite{FRAC:MandelAnim} showing slices through
+          the 3 dimensional Mandelbrot set.}
+\end{figure}
 
 \begin{definition}[The generalised Mandelbrot set]
 The generalised Mandelbrot set, $\mathbb{M}_k$, in $\mathbb{R}^k$ 
@@ -238,6 +251,14 @@ where $z(0,c) = 0$.
 \end{definition}
 
 \subsection{The Generalised Julia Set}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.4\textwidth]{3djulia_pair.png}
+\caption{\label{fig:3djulia}
+  Two frames from an animation\cite{FRAC:JuliaAnimation} showing voxel
+          rendering of 3d Julia sets.}
+\end{figure}
 
 \begin{definition}[The generalised Julia set]
 The generalised Julia set, $\mathbb{J}_{c,k}$, in $\mathbb{R}^k$
