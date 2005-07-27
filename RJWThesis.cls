@@ -100,7 +100,7 @@
 \def\cpb@font{\sf\small}
 
 %% Set the geometry.
-\geometry{inner=0.25\paperwidth,outer=0.2\paperwidth}
+\geometry{inner=0.2\paperwidth,outer=0.125\paperwidth}
 \geometry{top=0.15\paperheight,bottom=0.15\paperheight}
 \geometry{head=3em,foot=3em}
 
@@ -217,6 +217,7 @@
 \setlength{\chapheadwidth}{\paperwidth}
 \addtolength{\chapheadwidth}{-1cm}
 \addtolength{\chapheadwidth}{-\oddsidemargin}
+\addtolength{\chapheadwidth}{-\evensidemargin}
 \addtolength{\chapheadwidth}{-\chapnumoffset}
 
 \setlength{\chapflash@width}{\paperwidth}
