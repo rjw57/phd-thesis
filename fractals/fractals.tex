@@ -408,10 +408,14 @@ where
 \begin{eqnarray*}
 R_z & = & \cos \frac{\theta}{2} + P \sin \frac{\theta}{2},
     \quad
-P = \frac{(z \wedge e_1)}{\magof{z}} \\
-D_z & = & \exp\left( \frac{-\log(\magof{z})}{2} e\bar{e} \right)
+P = \frac{(z \wedge e_1)}{\magof{z}}
 \end{eqnarray*}
 and $\theta = \cos^{-1}(z \cdot e_1)$.
+The dilator $D_z$ acts to dilate about the origin by a factor of
+$\magof{z}$. In Euclidean geometry it is given by
+\[
+D_z = \exp\left( \frac{-\log(\magof{z})}{2} e\bar{e} \right).
+\]
 \end{definition}
 
 \begin{figure}
@@ -422,6 +426,36 @@ and $\theta = \cos^{-1}(z \cdot e_1)$.
 }
 \end{figure}
 
+The second part of $f(z)$ is a translation by $c$. A translator in non-Euclidean
+geometries is only defined as translating the origin to a given point so we must be
+careful about the precise operations we perform. The GA analogue of the
+complex mapping $z \mapsto z + c$ is thus given by the following steps:
+\begin{enumerate}
+\item Translate $z$ to the origin by applying the translator $\tau(-z)$;
+\item Translate the origin to $c$ by applying the translator $\tau(z)$;
+\item `Undo' step 1 by applying the translator $\tau(z)$.
+\end{enumerate}
+where $\tau(z)$ is a function which will give the appropriate translator for our 
+chosen geometry. In Euclidean geometry $\tau(z) = 1 + \frac{nz}{2}$ and in
+non-Euclidean geometry
+\[
+\tau(z) = \frac{1}{\sqrt{\lambda^2 - z^2}}(\lambda + \bar{e}z)
+\]
+with $\lambda$ being defined as in the discussion of non-Euclidean geometries above.
+
+A little thought will reveal that this is equivalent to translating $c$ by the translator
+$1 + \frac{nz}{2}$. We may therefore define our full conformal GA analogue of $f(z)$.
+
+\begin{definition}
+The conformal GA analogue of $f(z) = ze_1z + c$ is given by
+\[
+f(z) = F^{-1}(T_z F(c) \tilde{T}_z)
+\]
+where
+\[
+T_z = \tau(F^{-1}(D_z R_z\,F(z)\,\tilde{R}_z \tilde{D}_z))
+\]
+\end{definition}
 
 \begin{figure}
 \centering
@@ -434,6 +468,20 @@ and $\theta = \cos^{-1}(z \cdot e_1)$.
   the constant $c = 0.4e_1 + 0.2e_2$ marked and (b) the Julia
   set associated with $c$.}
 \end{figure}
+
+Our algorithm for generating the generalised Mandelbrot and Julia sets is now identical
+except we substitute our new, geometric, deifnition of $f(z)$ and choose $\tau(z)$
+and the form of $D_z$ to reflect our chosen geometry. Usefully pure-rotation rotors remain
+the same in each geometry so no modification of them is necessary. Figure
+\ref{fig:noneuclidean_sets} shows a hyperbolic Mandelbrot and Julia set on the
+Poincar\'e disc generated with this method. 
+
+It is worth noting that the code to generate the Euclidean fractals in figure 
+\ref{fog:euclidean_sets} is identical to thay used to generate
+\ref{fig:noneuclidean_sets} except for the definition of translators and dilators.
+That conformal GA algorithms devloped using Euclidean geometry may so readily
+be applied to non-Euclidean geometries by simply changing the rotor definitions neatly
+indicates the power of the conformal GA approach.
 
 \subsection{The Hyperbolic Mandelbrot Set}
 
