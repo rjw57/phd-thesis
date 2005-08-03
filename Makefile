@@ -7,8 +7,8 @@ SUBDIRS:=global introduction libcga visualisation noneuclid \
 EVERYTHING=$(wildcard *)
 
 #### Default target ####
-.PHONY: all documents
-all: documents
+.PHONY: all documents fixmes
+all: documents fixmes
 	
 #### Common operations and variables ####
 include Makefile.common
@@ -48,6 +48,10 @@ $(PSS): %.ps : %.pdf
 %.bbl : %.tex environment $(wildcard *.bib)
 	pdflatex $(@:.bbl=)
 	bibtex $(@:.bbl=)
+
+fixmes : fixme2html.sh
+	./fixme2html.sh fixme_list.html
+	scp fixme_list.html sirius:~/public_html/
 
 #### Convenience targets
 	

@@ -26,7 +26,7 @@ some have joked that `fractal' is actually a portmanteau word formed from
 Below we shall investigate an extension, via GA, of the class of fractals 
 which is most associated with Mandelbrot -- those based on repeated iteration
 of a complex function.  Similar fractals have found applications in a wide
-selection of research areas including image compression\cite{Barnsley88b,Barnsley93b} and
+selection of research areas including image compression\cite{Barnsley88c,Barnsley93b} and
 antenna design\cite{FRAC:Antennas}. It is hoped that the GA-based approach here may
 also be of use in a similar manner however in this chapter we concentrate more
 on the \ae sthetic nature of the fractals.
@@ -53,7 +53,7 @@ noting how fast it `escapes' to infinity (if at all).
 
 Both fractals are displayed by mapping points in the final image to points on the
 complex plane. Usually this mapping between an image point $\mathbf{x} = [\; x\;y \;]^T$ and
-its corresponding complex number, $c$ is usually simple.
+its corresponding complex number, $c$, is simple.
 
 \begin{definition}[Representation of the Complex Plane]
 An image point $\mathbf{x} = [\; x\;y \;]^T$ is mapped to a point on the 
@@ -75,10 +75,10 @@ where constants $a,b,c$ and $d$ are set so as to specify the area of the complex
 plane shown in the image.
 \end{definition}
 
-We now define the complex function which will generate the Mandelbrot and
+The same complex function generates both the Mandelbrot and
 Julia sets\cite{FRAC:Mandelbrot, FRAC:JuliaMandelBook}. It is worth noting
-that other functions could be used and hance many other `escape-time' fractals
-exist.
+that other functions could be used and hence many other `escape-time' fractals
+exist. In this chapter we shall only consider devlelopements from this function.
 
 \begin{definition}
 The complex function $f(z)$, $c \in {\mathbb C}$,
@@ -112,12 +112,10 @@ After a little work one may readily convince onself that if $\magof{f^{\circ n}(
 for some $n$ and $x$ then $\magof{f^{\circ n}(x)} \rightarrow \infty$ as $n \rightarrow \infty$.
 Hence we may determine if some point $x$ is \emph{not} as soon as if $\magof{f^{\circ n}(x)} \ge 2$. 
 In practice one may have to wait an arbitrarily long time for this condition to be met
-and one will never obtain it if $x$ is within the set. We generally approximate the
+and one will never obtain it if $x$ is within the set. We approximate the
 set by choosing some maximum number of iterations to wait before labelling
-$x$ as being within the set. We shall assume that we can identify a complex number $c$ 
-with any point in the image plane, usually by setting $c = x + yi$ for pixel
-$(x,y)$ and scaling the co-ordinate system such that the region of interest of
-the complex plane is within the image.  Our algorithm for generating an image of the
+$x$ as being within the set.
+Our algorithm for generating an image of the
 set is shown in algorithm \ref{alg:generate_mandelbrot}.
 
 \begin{fancyalg}
@@ -149,8 +147,8 @@ a member of the set.
 
 \subsection{The Julia Set}
 
-There are an infinite number of Julia sets, each associated with
-a particular point on the complex plane. The definition of the Julia set is somewhat
+There are an infinite number of Julia sets; each point on the complex plane
+has a corresponding Julia set. The definition of the Julia set is somewhat
 similar to that of the Mandelbrot set.
 
 \begin{definition}[The Julia set]
@@ -190,15 +188,16 @@ expect, similar to that for the Mandelbrot set and is shown in algorithm
 
 Due to their similarity there exist a number of theorems and conjectures which link the
 Mandelbrot and Julia sets in some way. For example, if $c \in \mathbb{M}$ then
-the Julia set $\mathbb{J}_c$ is connected(FIXME Citation). If $c$ is near the 
-border of $\mathbb{M}$ then it is a Cantor set(FIXME Citation).
+the Julia set $\mathbb{J}_c$ is connected\cite{FRAC:JuliaAndMandelbrotSets}.
+If $c$ is near the border of $\mathbb{M}$ then it is a Cantor
+set\cite{FRAC:JuliaAndMandelbrotSets}.
 
 \section{Extending Complex Numbers}
 
 In this section we will seek to find a co-ordinate free analogue to the
 complex mapping $z \mapsto z^2$ in order to re-cast the fractals above in
 terms of geometric operations using GA. We will start by confining ourselves
-to the complex plane and then move into higher dimensions.
+to the plane and then move into higher dimensions.
 
 We start by defining a mapping between the complex numbers, $\mathbb{C}$, and
 the vector-space of the complex plane, $\mathbb{R}^2$. Letting $\{e_1, e_2\}$
@@ -249,8 +248,9 @@ Clear by direct substitution.
 
 \section{Moving to Higher Dimensions}
 
-We extend this analogy to cover vectors in $\mathbb{R}^n$ 
-by simply removing the constraint that the vectors need be in $\mathbb{R}^2$.
+In this section we extend the mapping above to more than two spacial dimensions.
+This turns out to be remarkably easy since the mapping above is co-ordinate free;
+we simply removing the constraint that the vectors need be in $\mathbb{R}^2$.
 
 \begin{definition}
 Given a vector $z$ and some unit basis vector $e_1$ the mapping
@@ -426,7 +426,7 @@ figure \ref{fig:rotate}. We firstly work only in the $z \wedge e_1$ plane to all
 our analogy with complex numbers to hold. If $\theta$ is the angle between $z$ and
 $e_1$, i.e.
 \[
-\theta = \cos^{-1}(z \cdot e_1),
+\theta = \cos^{-1}\left(\frac{z \cdot e_1}{\magof{z}}\right),
 \] 
 then the mapping $z \mapsto ze_1z$ is initially a rotation in the plane $z \wedge e_1$
 by $\theta$ followed by a dilation by a factor of $(z^2)^\frac{1}{2}$ 
@@ -444,7 +444,7 @@ R_z & = & \cos \frac{\theta}{2} + P \sin \frac{\theta}{2},
     \quad
 P = \frac{(z \wedge e_1)}{\magof{z}}
 \end{eqnarray*}
-and $\theta = \cos^{-1}(z \cdot e_1)$.
+and $\theta$ is defined above.
 The dilator $D_z$ acts to dilate about the origin by a factor of
 $\magof{z}$. In Euclidean geometry it is given by
 \[
@@ -466,7 +466,7 @@ careful about the precise operations we perform. The GA analogue of the
 complex mapping $z \mapsto z + c$ is thus given by the following steps:
 \begin{enumerate}
 \item Translate $z$ to the origin by applying the translator $\tau(-z)$;
-\item Translate the origin to $c$ by applying the translator $\tau(z)$;
+\item Translate the origin to $c$ by applying the translator $\tau(c)$;
 \item `Undo' step 1 by applying the translator $\tau(z)$.
 \end{enumerate}
 where $\tau(z)$ is a function which will give the appropriate translator for our 
