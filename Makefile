@@ -40,7 +40,7 @@ export TEXINPUTS
 # Run twice to ensure labels etc.
 $(PDFS): %.pdf : %.bbl environment
 	pdflatex $(@:.pdf=)
-	pdflatex $(@:.pdf=)
+#pdflatex $(@:.pdf=)
 
 $(PSS): %.ps : %.pdf 
 	pdftops $<
@@ -60,8 +60,12 @@ DISTNAME=thesis-$(USER)-$(DATE)
 
 .PHONY: publish backup dist dist-clean view wordcount.txt
 
-wordcount.txt:
-	echo `find . -name '*.tex' -print0 | xargs -0 untex -o -e -m  | wc -w`\% >wordcount.txt
+# Remove single letter 'words' in an attempt to reduce errors.
+wordcount.txt: 
+	pdflatex $(@:.pdf=)
+	pdftotext -nopgbrk $(PDFS)
+	echo `cat $(PDFS:.pdf=.txt) | sed -e 's/ [^ ] //g' | wc -w`\% >wordcount.txt 2>/dev/null
+	rm $(PDFS:.pdf=.txt)
 
 acroview: $(PDFS)
 	acroread $(PDFS)

@@ -57,13 +57,13 @@ clean-fig-figures:
 
 #### EOF FIG figures ####
 		
-#### PNG pngures ####
+#### PNG figures ####
 
-.PHONY: png-pngures clean-png-pngures
+.PHONY: png-figures clean-png-figures
 
 PNGEPSS := $(PNGFILES:.png=.eps)
 
-png-figures: $(PNGEPS) 
+png-figures: $(PNGEPSS) 
 
 $(PNGEPSS) : %.eps : %.png
 	convert $< $@
