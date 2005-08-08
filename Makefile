@@ -61,11 +61,10 @@ DISTNAME=thesis-$(USER)-$(DATE)
 .PHONY: publish backup dist dist-clean view wordcount.txt
 
 # Remove single letter 'words' in an attempt to reduce errors.
-wordcount.txt: 
-	pdflatex $(@:.pdf=)
+wordcount.txt:
+	if [ ! -f $(TEXFILES) ]; then pdflatex $(TEXFILES:.tex=); fi
 	pdftotext -nopgbrk $(PDFS)
 	echo `cat $(PDFS:.pdf=.txt) | sed -e 's/ [^ ] //g' | wc -w`\% >wordcount.txt 2>/dev/null
-	rm $(PDFS:.pdf=.txt)
 
 acroview: $(PDFS)
 	acroread $(PDFS)
