@@ -62,7 +62,7 @@ DISTNAME=thesis-$(USER)-$(DATE)
 
 # Remove single letter 'words' in an attempt to reduce errors.
 wordcount.txt:
-	if [ ! -f $(TEXFILES) ]; then pdflatex $(TEXFILES:.tex=); fi
+	if [ ! -f $(PDFS) ]; then pdflatex $(TEXFILES:.tex=); fi
 	pdftotext -nopgbrk $(PDFS)
 	echo `cat $(PDFS:.pdf=.txt) | sed -e 's/ [^ ] //g' | wc -w`\% >wordcount.txt 2>/dev/null
 
