@@ -14,6 +14,8 @@ set of rotors which transform some origin pose to these target poses, $\{R_1,
     linear subspace. We may now choose any interpolation of these bivectors
     which lies in this space and for any bivector on the interpolant,
     $B'_\lambda$, we can compute a pose, $\exp(B'_\lambda)$.
+    In this chapter we shall use the term \emph{displacement rotor} to refer to
+a rotor which performs some rigid-body transform.
 
 \begin{figure}\centering
 \includegraphics[width=0.5\columnwidth]{linearinterp}
@@ -39,6 +41,44 @@ interpolation is piece-wise linear interpolation of the relative rotors (the
 interpolation of the bivectors representing the final poses (the former case).
 
 \section{Methods of Interpolation}
+
+
+We have shown that any displacement of Euclidean geometry
+%\footnote{Other geometries may be
+%considered with appropriate modification of the rotors \cite{cgwcga}.} 
+may be mapped smoothly
+onto a linear subspace of the bivectors. This immediately suggests applications to smooth interpolation
+of displacements. Consider a set of poses we wish to interpolate, $\{P_1, P_2, ..., P_n\}$ and a set
+of rotors which transform some origin pose to these target poses, $\{R_1, R_2, ..., R_n\}$. We
+may map these rotors onto the set of bivectors $\{\ell(R_1), \ell(R_2), ..., \ell(R_n)\}$ which
+are simply points in some linear subspace of the bivectors. We may now choose any interpolation of these bivectors
+which lies in this space and for any bivector on the interpolant, $B'_\lambda$, we can compute
+a pose, $\exp(B'_\lambda)$. We believe this method is more elegant and conceptually simpler
+than many other approaches based on Lie-algebras \cite{LIE:Consistentmotion, LIE:Moak,
+  LIE:ROT, LIE:Sphericalfun}.
+
+\begin{figure}[t]\centering
+\includegraphics[width=0.5\columnwidth]{linearinterp}
+\caption{\label{fig:linearinterp}Rotors used to piece-wise linearly interpolate between key-rotors.}
+\end{figure}
+
+Another interpolation scheme is to have the poses defined by a set of chained rotors so that
+$\{P_1, P_2, ..., P_n\}$ is represented by 
+
+\[\{R_1, \Delta R_1R_1, \Delta R_2 R_2, ..., \Delta R_n R_n\}\]
+
+where $R_i = \Delta R_{i-1} R_{i-1}$ as in figure \ref{fig:linearinterp}. Using
+this scheme the interpolation between pose $R_i$ and $R_{i+1}$ involves forming
+the rotor $R_{i,\lambda} = \exp(B_{i,\lambda})R_{i-1}$ where $B_{i,\lambda} =
+\lambda \ell(\Delta R_{i-1})$ and $\lambda$ varies between $0$ and $1$ giving
+$R_{i,0} = R_{i-1}$ and $R_{i,1} = R_i$.
+
+We now investigate two interpolation schemes which interpolate through target
+poses, ensuring that each pose is passed through. This kind of interpolation is
+often required for key-frame animation techniques. The first form of
+interpolation is piece-wise linear interpolation of the relative rotors (the
+		latter case above). The second is direct quadratic
+interpolation of the bivectors representing the final poses (the former case).
 
 
 \subsection{Piece-wise linear interpolation}
@@ -98,6 +138,67 @@ In this section we derive a clearer picture of the precise form of
 a simple linear interpolation between two frames in order to relate the 
 interpolation to existing methods used in mechanics and robotics. We will consider
 the method used above whereby the rotor being interpolated takes one pose to another.
+
+\subsection{Interpolation of dilations}
+
+In certain circumstances it is desirable to add in the ability to interpolate
+dilations. This was investigated in \cite{jic23fyr} and is included here
+for completeness. In \cite{jic23fyr} it is shown that this can be done by extending
+the form of the bivector, $B$, which we exponentiate, as follows
+\[
+B = \phi P + tn + \omega N
+\]
+where $N = e\bar{e}$. This bivector form is now sufficiently general
+\cite{jic23fyr} to be able to represent dilations as well. In this case obtaining the
+exponentiation
+and logarithm function is somewhat involved \cite{jic23fyr}. We obtain
+finally that
+
+\[
+\begin{array}{rl}
+\multicolumn{2}{l}{\exp(\phi P + tn + \omega N)}\\
+%\quad = & \sin(\phi)\cosh(\omega)P + \cos(\phi)\sinh(\omega)N + \cos(\phi)\cosh(\omega)+\sin(\phi)\sinh(\omega)PN \\
+%&+ \frac{\omega\cos (\phi)\sinh (\omega) + \phi \sin(\phi)\cosh(\omega)}{\omega^2 + \phi^2}t_\parallel n\\
+%&+ \cos(\phi)\sinhc(\omega)t_\perp n \\
+%&- \frac{\omega\sin(\phi)\cosh(\omega)-\phi\cos(\phi)\sinh(\omega)}{\omega^2 + \phi^2} Pt_\parallel n \\
+%&+ \sin(\phi)\sinhc(\omega)Pt_\perp n\\
+\quad = & \left(\cos(\phi) + \sin(\phi)P\right)\left(\cosh(\omega) +
+		\sinh(\omega)N + \sinhc(\omega)t_\Jperp n\right)\\
+&+ (\omega^2 + \phi^2)^{-1} [-\omega\sin(\phi)\cosh(\omega)+\phi\cos(\phi)\sinh(\omega)]P\\
+&+ (\omega^2 + \phi^2)^{-1} [\omega\cos (\phi)\sinh (\omega) + \phi \sin(\phi)\cosh(\omega)] t_\parallel n \\
+	\end{array}
+\]
+where $\sinhc(\omega) = \omega^{-1}\sinh(\omega)$. Note that this expression reduces to 
+the original form for $\exp(B)$ when $\omega = 0$, as one would expect.
+
+It is relatively easy to use the above expansion to derive a logarithm-like inverse 
+function. 
+
+If we let $R = \exp(B)$ then we may recreate $B$ from $R$ using the method 
+presented
+below. Here we use $\left<R|e_i\right>$ to represent the component of $R$
+parallel to $e_i$, i.e.\ $\left<R|N\right> = \left<R|e_{45}\right>$ in 
+3-dimensions. We also use $\left<R\right>_i$ to represent the 
+$i$-th grade-part of $R$ and $S(X)$ to represent the 
+`spatial' portion of $X$ (i.e.\ those components not parallel to $e$ and 
+$\bar{e}$).
+
+\begin{tabular}{ll}
+$\begin{array}{rcl}
+  \omega &=& \tanh^{-1}\left(\frac{\left<R|N\right>}{\left<R|1\right>}\right)\\
+  \phi &=& \cos^{-1}\left(\frac{\left<R|N\right>}{\sinh(\omega)}\right)\\
+  P &=& \frac{S(\left<R\right>_2)}{\sin(\phi)\cosh(\omega)}\\
+  t_\perp &=& -\frac{\left<R\right>_4-\sin(\phi)\sinh(\omega)PN}{\sin(\phi)\sinhc(\omega)}\left(\frac{P\bar{n}}2\right)\\
+  t &=& t_\Jpar + t_\perp
+\end{array}$ &
+$\begin{array}{rcl}
+  W &=& \left<R\right>_2 - \cos(\phi)\sinh(\omega)N - \sin(\phi)\cosh(\omega)P \\
+  &&- \cos(\phi)\sinhc(\omega)t_\Jperp n\\
+  X &=& -\omega\sin(\phi)\cosh(\omega) + \phi\cos(\phi)\sinh(\omega)\\
+  Z &=&  \omega\cos(\phi)\sinh(\omega) + \phi\sin(\phi)\cosh(\omega)\\
+  t_\Jpar &=& \frac{(-XP+Z)}{\sin^2(\phi)\cosh^2(\omega) + \cos^2(\phi)\sinh^2(\omega)} W
+\end{array}$
+\end{tabular}
 
 \subsection{Path of the linear interpolation}
 
@@ -218,9 +319,43 @@ interpolant is just the rotation rotor $R_{\lambda \psi, P}$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
+\section{Applications}
 
-\section{Surface Description}
+\begin{figure}[p]
+\centering
+\includegraphics[width=0.7\columnwidth]{distorted_cube}
+\caption{\label{fig:distorted_cube}%
+  A cube distorted via the linear interpolation of rotors specifying its
+  corner vertices.
+}
+\end{figure}
 
-\section{Mesh Deformation}
+\begin{figure}[p]
+\centering
+\includegraphics[width=0.7\columnwidth]{distorted_bunny}
+\caption{\label{fig:distorted_bunny}%
+  The Stanford Bunny\cite{bunny} distorted by the same rotors.
+}
+\end{figure}
 
-\section{Limb Articulation}
+The method outlined is applicable to any problem which requires the smooth
+interpolation of pose. We have chosen to illustrate an application in
+mesh deformation. Smooth mesh deformation is often required in medical 
+imaging applications \cite{ACM:614422} or video coding \cite{ACM:704422}.
+Here we use it to deform a 3d mesh in a manner which has a visual effect
+similar to `grabbing' a corner of the mesh and `twisting' it into place.
+We do this by specifying a set of `key-rotors' which certain parts of the
+mesh must rotate and translate to co-incide with. Our implementation takes
+advantage of the hardware acceleration offered by the Graphics
+Processing Units (GPUs) available on today's consumer-level graphics 
+hardware. A full discussion of the method will appear elsewhere.
+
+We believe this method leads to images which are intuitively related to
+the rotors specifying the deformation. Furthermore, the method need not
+only be applied to meshes with simple geometry and can readily be applied to
+meshes with complex geometry without any tears or other artefacts appearing
+in the mesh. Figures \ref{fig:distorted_cube} and \ref{fig:distorted_bunny}
+illustrate the method in the case of a cube and a mesh with approximately
+36,000 vertices.
+
+

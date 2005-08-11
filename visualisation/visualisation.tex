@@ -74,14 +74,19 @@ in many problems. The specific method is given in algorithm \ref{alg:line}.
 \end{fancyalg}
 
 \subsection{Planes}
+
+A plane, $P$ is represented by three points, $P_1, P_2$ and $P_3$, as
+\[
+P = P_1 \wedge P_2 \wedge P_3 \wedge n.
+\]
+
+
 \subsection{Circles}
 
-Recall that the circle passing through the points $P_1, P_2$ and $P_3$
-is defined
-as $C = P_1 \wedge P_2 \wedge P_3$ and the plane common to these points is
+Recall that the circle passing through the point-representations $P_1, P_2$ and $P_3$
+is represented by $C = P_1 \wedge P_2 \wedge P_3$ and the plane common to these points is
 $P_1 \wedge P_2 \wedge P_3 \wedge n$ hence we can easily find the plane of 
-the circle,
-$P$ via
+the circle, $P$ via
 \[
 P = C \wedge n
 \]
@@ -103,7 +108,17 @@ using $B^2 = n^2 = 0$ and $B \cdot n = -1$. Similarly we can find $B$ via
 \[
 B = C^* \left( 1 + \frac{1}{2}C^*n \right)
 \]
+The final algorithm (for three dimensions) is outlined in algorithm \ref{alg:circle}.
+
+
+\begin{fancyalg}
+\begin{algorithmic}[1]
+\REQUIRE{$C$, a representation of a circle.}
+\STATE $\rho := \sqrt{(C^*)^2}$
+\STATE $b := F^{-1}\left(C^* \left[ 1 + \frac{1}{2}C^*n \right]\right)$
+\end{algorithmic}
+\caption{\label{alg:line}Rendering the representation of a line, $L$.}
+\end{fancyalg}
+
 
 \subsection{Spheres}
-
-\section{LibCGADraw}
