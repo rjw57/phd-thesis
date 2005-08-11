@@ -120,12 +120,12 @@ set is shown in algorithm \ref{alg:generate_mandelbrot}.
 
 \begin{fancyalg}
 \begin{algorithmic}[1]
-\STATE $i_{\mbox{max}} :=$ maximum number of iterations
+\STATE $i_{\mathrm{max}} :=$ maximum number of iterations
 \FORALL{points $\mathbf{x}$ in image}
 \STATE $c := {\mathcal I}(\mathbf{x})$
 \STATE $z := c$
 \STATE $i := 0$
-\WHILE{$zz^* < 4$ and $i < i_{\mbox{max}}$}
+\WHILE{$zz^* < 4$ and $i < i_{\mathrm{max}}$}
   \STATE $z := z^2 + c$
   \STATE $i := i+1$
 \ENDWHILE 
@@ -137,11 +137,11 @@ set is shown in algorithm \ref{alg:generate_mandelbrot}.
   Generating the Mandelbrot set}
 \end{fancyalg}
 
-The level of detail of the resulting image being determined by the value of $i_{\mbox{max}}$.
+The level of detail of the resulting image being determined by the value of $i_{\mathrm{max}}$.
 The image of the Mandelbrot set in figure \ref{fig:euclidean_sets}a was
 generated with $\mathbf{x} = [\;x\;y\;]^T, x \in (-2,2), y \in (-2,2)$.
 In figure \ref{fig:euclidean_sets}a a colour palette was also chosen such that colour 0 was black
-and colour $i_{\mbox{max}}$ was white moving through dark-green. The brightness of
+and colour $i_{\mathrm{max}}$ was white moving through dark-green. The brightness of
 each pixel is therefore some measure of how long it took to decide whether that point was
 a member of the set.
 
@@ -170,11 +170,11 @@ expect, similar to that for the Mandelbrot set and is shown in algorithm
 \begin{fancyalg}
 \begin{algorithmic}[1]
 \REQUIRE{$c =$ constant}
-\STATE $i_{\mbox{max}} :=$ maximum number of iterations
+\STATE $i_{\mathrm{max}} :=$ maximum number of iterations
 \FORALL{points $\mathbf{x}$ in image}
 \STATE $z := {\mathcal I}(\mathbf{x})$
 \STATE $i := 0$
-\WHILE{$zz^* < 4$ and $i < i_{\mbox{max}}$}
+\WHILE{$zz^* < 4$ and $i < i_{\mathrm{max}}$}
   \STATE $z := z^2 + c$
   \STATE $i := i+1$
 \ENDWHILE 
@@ -294,12 +294,12 @@ where $z(0,c) = 0$.
 \begin{fancyalg}
 \begin{algorithmic}[1]
 \REQUIRE{Set $\mathcal I$ of vectors associated with image points}
-\STATE $i_{\mbox{max}} :=$ maximum number of iterations
+\STATE $i_{\mathrm{max}} :=$ maximum number of iterations
 \STATE $e_1 :=$ a unit vector in some preferred direction
 \FORALL{$c \in {\mathcal I}$}
 \STATE $z := c$
 \STATE $i := 0$
-\WHILE{$z^2 < 4$ and $i < i_{\mbox{max}}$}
+\WHILE{$z^2 < 4$ and $i < i_{\mathrm{max}}$}
   \STATE $z := ze_1z + c$
   \STATE $i := i+1$
 \ENDWHILE 
@@ -358,11 +358,11 @@ where $z(0,c) = x$.
 \begin{algorithmic}[1]
 \REQUIRE{Set $\mathcal I$ of vectors associated with image points}
 \REQUIRE{$c =$ constant vector}
-\STATE $i_{\mbox{max}} :=$ maximum number of iterations
+\STATE $i_{\mathrm{max}} :=$ maximum number of iterations
 \STATE $e_1 :=$ a unit vector in some preferred direction
 \FORALL{$z \in {\mathcal I}$}
 \STATE $i := 0$
-\WHILE{$z^2 < 4$ and $i < i_{\mbox{max}}$}
+\WHILE{$z^2 < 4$ and $i < i_{\mathrm{max}}$}
   \STATE $z := ze_1z + c$
   \STATE $i := i+1$
 \ENDWHILE 
