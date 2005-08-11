@@ -1,10 +1,109 @@
 \chapter{Visualisation}
 
+In this chapter we will discuss some methods for visualising Euclidean objects
+in CGA as implemented by {\tt libcgadraw}, a companion library to {\tt libcga}.
+
+Many CGA visualisation solutions exist\cite{CLU}. The {\tt libcgadraw} library
+uses an approach similar to that of the CLUDraw library wereby the results of 
+a GA-based algorithm may be displayed directly on the screen.
+
 \section{Visualising Objects within the Algebra}
+
+The output of GA-based algorithms may be categorised into a number of
+geometric primitives they represent.
+
+\subsection{Point Pairs}
+
+Point pairs are represented by the wedge product of the representations of the
+points. That is to say that the point pair $(a,b)$ is represented by $F(a) \wedge F(b)$.
+Using the method of projectors in section \ref{sec:projectors} the representations
+of $a$ and $b$ can be extracted and plotted as shown in aglorithm \ref{alg:pointpair}.
+
+\begin{fancyalg}
+\begin{algorithmic}[1]
+\REQUIRE{$T$, a representation of a point-pair.}
+\STATE $T' := \frac{1}{(T \cdot n)^2} T$
+\STATE $P := \frac{1}{2}(1+T')$
+\STATE $B := P \left[ T\cdot n \right]$
+\STATE $A := - \tilde{P} \left[ T \cdot n \right]$
+\STATE $a := F^{-1}(A)$
+\STATE $b := F^{-1}(B)$
+\STATE glBegin(GL\_POINTS);
+\STATE glVertex($a$); glVertex($b$);
+\STATE glEnd();
+\end{algorithmic}
+\caption{\label{alg:pointpair}Extracting and rendering a point pair.}
+\end{fancyalg}
+
 \subsection{Lines}
+
+We render lines by intersecting them with some sphere centred on the origin
+and drawing a line between the two points of intersection. The radius of the
+sphere used effectively provides a upper limit to the distance a line may be
+from the origin while still being rendered. If the line is further from the 
+origin than the radius of the sphere it will not intersect the sphere.
+
+This is in actual fact a desirable property since it allows for a 'horizon' to
+be set. Lines, being infinite in extent, have end points at inifnity which
+cannot easily be expressed within OpenGL. Instead by setting the radius of the sphere
+to be sufficiently large we may approximate such lines sufficiently for rendering
+in many problems. The specific method is given in algorithm \ref{alg:line}.
+
+\begin{fancyalg}
+\begin{algorithmic}[1]
+\REQUIRE{$L$, a representation of a line.}
+\REQUIRE{$r_{\mathrm{max}}$, maximum distance from origin to render lines.}
+\STATE $r := 1$
+\REPEAT
+\STATE intersect := false
+\STATE $S := $ representation of sphere centred on origin radius $r$.
+\STATE $T := L \vee S$
+\IF{$T \neq 0$}
+\STATE intersect := true
+\STATE Extract point pair from $T$ to $a,b$ as in algorithm \ref{alg:pointpair}.
+\ENDIF
+\STATE $r := r+1$
+\UNTIL{intersect = true {\bfseries or} $r > r_{\mathrm{max}}$}
+\IF{intersect = true}
+\STATE glBegin(GL\_LINES);
+\STATE glVertex($a$); glVertex($b$);
+\STATE glEnd();
+\ENDIF
+\end{algorithmic}
+\caption{\label{alg:line}Rendering the representation of a line, $L$.}
+\end{fancyalg}
+
 \subsection{Planes}
 \subsection{Circles}
+
+Recall that the circle passing through the points $P_1, P_2$ and $P_3$
+is defined
+as $C = P_1 \wedge P_2 \wedge P_3$ and the plane common to these points is
+$P_1 \wedge P_2 \wedge P_3 \wedge n$ hence we can easily find the plane of 
+the circle,
+$P$ via
+\[
+P = C \wedge n
+\]
+
+To find the radius and centre of the circle we use the alternate form of the 
+circle
+\cite{wareham_lasenby}
+\[
+C^* = B - \frac{1}{2}\rho^2n
+\]
+where $C^* \equiv CI_4$ here (the dual of $C$ with respect to the pseudoscalar 
+for the plane), $B$ is the centre of the circle and $\rho$ is the radius. The
+radius can be found simply using
+\begin{eqnarray*}
+(C^*)^2 & = & \left(B - \frac{1}{2}\rho^2n\right)\left(B - \frac{1}{2}\rho^2n\right) \\
+        & = & -\rho^2 B\cdot n = \rho^2
+\end{eqnarray*}
+using $B^2 = n^2 = 0$ and $B \cdot n = -1$. Similarly we can find $B$ via
+\[
+B = C^* \left( 1 + \frac{1}{2}C^*n \right)
+\]
+
 \subsection{Spheres}
-\subsection{Point Pairs}
 
 \section{LibCGADraw}
