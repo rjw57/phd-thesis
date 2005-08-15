@@ -1,1 +1,59 @@
-\chapter{GPU Based Implementation}
+\chapter{Hardware Accelerated Geometric Algebra on the GPU}
+
+In this chapter we explore how the \emph{Graphics Processing
+Units} (GPUs) in modern consumer-level graphics cards can be
+used to perform Geometric Algebra computations faster than a 
+typical single-core CPU.
+
+\section{General purpose computation on GPUs}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.9\textwidth]{gpu_architecture}
+\caption{\label{fig:gpu_architecture}A simplified view of a typical GPU.}
+\end{figure}
+
+The GPU in a graphics card is not designed for general purpose 
+computing. It is designed, not suprisingly, to perform the
+sort of operations useful for graphics rendering. Figure
+\ref{fig:gpu_architecture} shows a simplified block diagram of
+a typical GPU.
+
+In a traditional fixed-function GPU the CPU uploads, over the AGP
+bus, a set of vertices, texture maps and some state information. The
+state includes projection matrices, view matrices, clipping planes, 
+lighting models, etc. The vertex list and texture maps (if present) 
+are then stored in some on-card memory.
+
+On the card there exists a number of rendering pipelines, each of which
+can be run in parallel to increase throughput. The pipeline consists
+of a \emph{vertex shader} which fetches triplets of vertices from
+the vertex memory, transforms them using the current projection and 
+view matrices, performs any clipping and sends them to the rasterizer.
+
+The rasteriser takes triplets of screen co-ordinate vertices, forms
+a triangle from them and outputs a set of pixel positions which form
+render the triangle along with depth information and interpolated texture
+co-ordinates. 
+
+The fragment shader takes these pixel positions and, using the texture maps
+stored in texture memory along with appropriate state information calculates
+the colour of the pixel after all lighting, etc. is performed. The shaded pixel
+is then sent to the screen.
+
+In reality the rendering stage is split at the rasterizer allowing for differing
+numbers of vertex and fragment shaders but for the purposes of GPU programming
+one can view the shaders as being within the same pipeline.
+
+In modern programmable GPUs both the vertex and fragment shaders are fully 
+programmable allowing different per-vertex and per-pixel transformation
+and shading that is allowed in the traditional fixed-function pipeline.
+
+Each shader is, in effect, an efficient vector processor and, on modern 
+graphics cards, there are a number working in parallel. To perform
+general purpose computation on the GPU we must find ways of modifying our
+algorithms to fit this model.
+
+\section{GPU Programming Methods}
+
+
