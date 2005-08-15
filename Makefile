@@ -51,7 +51,7 @@ $(PSS): %.ps : %.pdf
 
 fixmes : fixme2html.sh
 	./fixme2html.sh fixme_list.html
-	scp fixme_list.html sirius:~/public_html/
+#	scp fixme_list.html sirius:~/public_html/
 
 #### Convenience targets
 	
@@ -65,7 +65,7 @@ wordcount.txt:
 	touch wordcount.txt
 	if [ ! -f $(PDFS) ]; then pdflatex $(TEXFILES:.tex=); fi
 	pdftotext -nopgbrk $(PDFS)
-	echo `cat $(PDFS:.pdf=.txt) | sed -e 's/ [^ ] //g' | wc -w`\% >wordcount.txt 2>/dev/null
+	echo \\numprint{`cat $(PDFS:.pdf=.txt) | sed -e 's/ [^aAI] //g'| sed -e 's/[\\.][\\.]*//g' | wc -w | perl -e '$$_=<STDIN>; print $$_ - ($$_ % 50);'`}\% >wordcount.txt 2>/dev/null
 
 acroview: $(PDFS)
 	acroread $(PDFS)

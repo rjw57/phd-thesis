@@ -1,4 +1,4 @@
-\chapter{Hardware Accelerated Geometric Algebra on the GPU}
+\chapter{Hardware Assisted Geometric Algebra on the GPU}
 
 In this chapter we explore how the \emph{Graphics Processing
 Units} (GPUs) in modern consumer-level graphics cards can be
@@ -10,7 +10,8 @@ typical single-core CPU.
 \begin{figure}
 \centering
 \includegraphics[width=0.9\textwidth]{gpu_architecture}
-\caption{\label{fig:gpu_architecture}A simplified view of a typical GPU.}
+\caption{\label{fig:gpu_architecture}%
+  A simplified block diagram of a typical GPU.}
 \end{figure}
 
 The GPU in a graphics card is not designed for general purpose 
@@ -56,4 +57,18 @@ algorithms to fit this model.
 
 \section{GPU Programming Methods}
 
+\subsection{DirectX shader language}
 
+\cite{GPU:DirectX,GPU:DirectXShadingLanguage}
+
+\subsection{OpenGL shader language}
+
+\cite{GPU:OpenGLSpec,GPU:OpenGLShadingLanguage}
+
+\subsection{The Cg toolkit from nVidia}
+
+\cite{nvidia:cgtoolkit,nvidia:sm3unleashed}
+
+\section{Mesh deformation}
+
+\section{Cloth simulation}

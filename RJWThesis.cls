@@ -17,6 +17,7 @@
 \RequirePackage{color}
 \RequirePackage{amssymb}
 \RequirePackage{sectsty}
+\RequirePackage[autolanguage]{numprint}
 \RequirePackage{eso-pic}
 
 \newcommand{\chapnum@fontname}{ptm}
@@ -81,6 +82,9 @@
 \def\@group{\ } \def\group#1{\def\@group{#1}}
 \def\@department{\ } \def\department#1{\def\@department{#1}}
 
+%% Text
+\newcommand*{\fnumbersep}{,}
+
 %% Fonts
 \def\title@font{\LARGE\sc\bfseries}
 \def\subtitle@font{\normalsize}
@@ -92,9 +96,15 @@
 \def\chaphead@font{\sf\bfseries\fontsize{24}{30}\selectfont}
 \def\pagenumber@font{\sf\small}
 \def\pagefooter@font{\itshape}
+
 \def\section@font{\fontfamily{mga}\selectfont\large}
 \def\subsection@font{\fontfamily{mga}\selectfont}
-\def\subsubsection@font{\fontfamily{mga}\selectfont\em}
+%\def\subsubsection@font{\fontfamily{mga}\selectfont\em}
+
+%\def\section@font{\large\itshape\bfseries}
+%\def\subsection@font{\itshape\bfseries}
+\def\subsubsection@font{\itshape}
+
 \def\chapnum@font{\usefont{T1}{\chapnum@fontname}{b}{n}\fontsize{100}{130}\selectfont}
 \def\cph@font{\sf\bfseries\small}
 \def\cpb@font{\sf\small}
@@ -155,7 +165,7 @@
 \subsubsectionfont{\subsubsect@format}
 
 % Make section numbers appear in margin
-\def\@seccntformat#1{\protect\makebox[0pt][r]{\csname the#1\endcsname\quad}}
+\def\@seccntformat#1{\protect\makebox[0pt][r]{{\csname the#1\endcsname}\quad}}
 
 %% Background picture
 \AtBeginDocument{
@@ -416,4 +426,5 @@
  \vskip\abovecaptionskip\hrule%
  \vskip\belowcaptionskip%
 }
+
 
