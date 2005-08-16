@@ -40,7 +40,10 @@ export TEXINPUTS
 # Run twice to ensure labels etc.
 $(PDFS): %.pdf : %.bbl environment
 	latex $(@:.pdf=) 
+	dvips -o $(@:.pdf=ps) $(@:.pdf=)
 	pdflatex $(@:.pdf=)
+	rm $(@:.pdf=dvi)
+	rm $(@:.pdf=ps)
 
 $(PSS): %.ps : %.pdf 
 	pdftops $<
@@ -63,7 +66,7 @@ DISTNAME=thesis-$(USER)-$(DATE)
 # Remove single letter 'words' in an attempt to reduce errors.
 wordcount.txt:
 	touch wordcount.txt
-	if [ ! -f $(PDFS) ]; then latex $(TEXFILES:.tex=); pdflatex $(TEXFILES:.tex=); fi
+	if [ ! -f $(PDFS) ]; then latex $(TEXFILES:.tex=); dvips -o $(@:.pdf=ps) $(@:.pdf=); pdflatex $(TEXFILES:.tex=); rm $(@:.pdf=ps); fi
 	pdftotext -nopgbrk $(PDFS)
 	echo \\numprint{`cat $(PDFS:.pdf=.txt) | sed -e 's/ [^aAI] //g'| sed -e 's/[\\.][\\.]*//g' | wc -w | perl -e '$$_=<STDIN>; print $$_ - ($$_ % 50);'`}\% >wordcount.txt 2>/dev/null
 
