@@ -39,14 +39,14 @@ export TEXINPUTS
 	
 # Run twice to ensure labels etc.
 $(PDFS): %.pdf : %.bbl environment
+	latex $(@:.pdf=) 
 	pdflatex $(@:.pdf=)
-#pdflatex $(@:.pdf=)
 
 $(PSS): %.ps : %.pdf 
 	pdftops $<
 
 %.bbl : %.tex environment $(wildcard *.bib)
-	pdflatex $(@:.bbl=)
+	latex $(@:.bbl=)
 	bibtex $(@:.bbl=)
 
 fixmes : fixme2html.sh
