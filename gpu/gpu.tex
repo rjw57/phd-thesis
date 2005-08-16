@@ -1,3 +1,9 @@
+\begin{savequote}
+\quoteperson{They can't keep this level of graphics up for much longer!
+We used to be lucky if we only got three shades of gray, let alone any 
+real colours!}{Cranky Kong}
+\end{savequote}
+
 \chapter{Hardware Assisted Geometric Algebra on the GPU}
 
 In this chapter we explore how the \emph{Graphics Processing
@@ -5,7 +11,7 @@ Units} (GPUs) in modern consumer-level graphics cards can be
 used to perform Geometric Algebra computations faster than a 
 typical single-core CPU.
 
-\section{General purpose computation on GPUs}
+\section{An Overview of GPU Architecture}
 
 \begin{figure}
 \centering
@@ -59,11 +65,31 @@ algorithms to fit this model.
 
 \subsection{DirectX shader language}
 
-\cite{GPU:DirectX,GPU:DirectXShadingLanguage}
+Microsoft's DirectX\cite{GPU:DirectX} is a graphics programming API for
+Windows and, to some extent, the Microsoft XBox gaming platform. As part of
+the API it specifies a generic shading language\cite{GPU:DirectXShadingLanguage}
+which abstracts the vertex and fragment shaders. Each version of DirectX
+specifies a minimum set shader capabilities which \emph{must} be supported by a 
+card claiming compatibility with that level of the API. Consequently a shader written in
+DirectX's shading language is portable across all cards which support that level
+of the API. A disadvantage of DirectX is that it doesn't expose any functionaility
+beyond the specified minimum and it is not portable across operating systems.
 
 \subsection{OpenGL shader language}
 
-\cite{GPU:OpenGLSpec,GPU:OpenGLShadingLanguage}
+OpenGL\cite{GPU:OpenGLSpec} is a cross-platform C-based graphics API. 
+It is the \emph{de facto} standard API for non-Windows platforms and
+is well supported on Windows platforms by both ATI and nVidia, the dominant
+vendor at the time of writing. 
+
+The OpenGL 2.0 specification\cite{GPU:OpenGL2Overview} proposed by 3DLabs
+includes a hardware agnostic shading language\cite{GPU:OpenGLShadingLanguage}
+known as \emph{GL Shading Language} (GLSL) which provides a similar level
+of functionality to that exposed in DirectX. 
+
+Currently few hardware vendors support OpenGL 2.0 --- at the time of writing
+nVidia was the only mainstream vendor to provide support in their
+consumer-level hardware\cite{nvidia:7664relnotes}.
 
 \subsection{The Cg toolkit from nVidia}
 

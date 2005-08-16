@@ -277,7 +277,7 @@
         \includegraphics[width=\chapflash@width,height=0.33\paperheight]{chapter_flash}
       }%
       % Quote
-      \put(0,-0.05){%
+      \put(-0.03,-0.05){%
         \hspace{0.05\paperwidth}\hspace{\oddsidemargin}%
         \@printquote%
       }%
