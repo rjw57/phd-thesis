@@ -204,36 +204,36 @@ as required.
 \end{proof}
 
 \begin{definition}
-A \emph{twist} is a rotor whose action is to rotate by $\psi$ in the 
+A \emph{twist} is a rotor whose action is to rotate by $\phi$ in the 
 plane of $P$ whilst translating along a vector $a$ perpendicular to
 the plane of $P$. It may therefore be 
 defined by the rotor 
 \[
-\tau(\psi, P, a) =
- \left[ \cos\left(\frac{\psi}{2}\right) +
-   \sin\left(\frac{\psi}{2}\right)P
+\tau(\phi, P, a) =
+ \left[ \cos\left(\frac{\phi}{2}\right) +
+   \sin\left(\frac{\phi}{2}\right)P
  \right]
  \left[
    1 + \frac{na}{2}
  \right]
 \]
-where $\psi$ is a scalar, $P$ is a $2$-blade normalised such that 
+where $\phi$ is a scalar, $P$ is a $2$-blade normalised such that 
 $P^2 = -1$ and $a$ is some vector satisfying $a \cdot n = a \cdot P = 0$.
 \end{definition}
 
 \begin{lemma}
 The exponentiation function may be re-expressed using a twist
 \[
-\exp\left(\frac{\psi}{2}P + \frac{tn}{2}\right) =
-\left[ 1 + \sinc\left(\frac{\psi}{2}\right)\frac{t_\parallel n}{2} \tilde{\tau}(\psi, P, - t_\perp) \right]
-\tau(\psi, P, - t_\perp)
+\exp\left(\frac{\phi}{2}P + \frac{tn}{2}\right) =
+\left[ 1 + \sinc\left(\frac{\phi}{2}\right)\frac{t_\parallel n}{2} \tilde{\tau}(\phi, P, - t_\perp) \right]
+\tau(\phi, P, - t_\perp)
 \]
 \end{lemma}
 \begin{proof}
 We firstly substitute our definition of a twist into our form for the exponential
 \begin{equation}
-\exp\left(\frac{\psi}{2}P + \frac{tn}{2}\right) =
-\tau(\psi, P, - t_\perp) + \sinc\left(\frac{\psi}{2}\right)\frac{t_\parallel n}{2}
+\exp\left(\frac{\phi}{2}P + \frac{tn}{2}\right) =
+\tau(\phi, P, - t_\perp) + \sinc\left(\frac{\phi}{2}\right)\frac{t_\parallel n}{2}
 \label{eqn:twistform}
 \end{equation}
 noting that, since twists are rotors, $\tau( \cdot ) \tilde{\tau}(\cdot) = 1$, it is
@@ -243,15 +243,15 @@ trivial to verify that the required expression is equivalent to this form of the
 \begin{lemma}
 The expression
 \[
- 1 + \sinc\left(\frac{\psi}{2}\right)\frac{t_\parallel n}{2} \tilde{\tau}(\psi, P, - t_\perp)
+ 1 + \sinc\left(\frac{\phi}{2}\right)\frac{t_\parallel n}{2} \tilde{\tau}(\phi, P, - t_\perp)
 \]
 is a rotor which acts to translate along a vector $t'_\parallel$ given by
 \[
-t'_\parallel = - \sinc\left(\frac{\psi}{2}\right)
+t'_\parallel = - \sinc\left(\frac{\phi}{2}\right)
 t_\parallel
 \left(
-\cos\left(\frac{\psi}{2}\right) -
-\sin\left(\frac{\psi}{2}\right) P 
+\cos\left(\frac{\phi}{2}\right) -
+\sin\left(\frac{\phi}{2}\right) P 
 \right)
 \]
 \end{lemma}
@@ -265,22 +265,22 @@ We have now developed the required thms and tools to discuss the
 action of the rotor
 \[
 R = \exp\left(
-\frac{\psi}{2} P + \frac{tn}{2}
+\frac{\phi}{2} P + \frac{tn}{2}
 \right)
 \]
 It translates along a vector $t_\perp$ which is the component of $t$ which does not lie in the
-plane of $P$, rotates by $\psi$ in the plane of $P$ and finally translates along 
+plane of $P$, rotates by $\phi$ in the plane of $P$ and finally translates along 
 $t'_\parallel$ which is given by
 \[
-t'_\parallel =- \sinc\left(\frac{\psi}{2}\right)
+t'_\parallel =- \sinc\left(\frac{\phi}{2}\right)
 t_\parallel
 \left(
-\cos\left(\frac{\psi}{2}\right) -
-\sin\left(\frac{\psi}{2}\right) P 
+\cos\left(\frac{\phi}{2}\right) -
+\sin\left(\frac{\phi}{2}\right) P 
 \right)
 \]
 which is the component of $t$ lying in the
-plane of $P$, rotated by $\psi/2$ in that plane.
+plane of $P$, rotated by $\phi/2$ in that plane.
 
 \section{Checking $\exp(B)$ is a rotor}
 
@@ -298,23 +298,23 @@ given in lemma
 Consider the twist form of $\exp(B)$ from equation \ref{eqn:twistform}
 \[
 R = \exp(B) =
-\tau(\psi, P, - t_\perp) + \sinc\left(\frac{\psi}{2}\right)\frac{t_\parallel n}{2}
+\tau(\phi, P, - t_\perp) + \sinc\left(\frac{\phi}{2}\right)\frac{t_\parallel n}{2}
 \]
-and make use of our knowledge that $\tau(\psi, P, - t_\perp)$ is a rotor.
+and make use of our knowledge that $\tau(\phi, P, - t_\perp)$ is a rotor.
 Hence,
 \begin{eqnarray*}
-R\tilde{R} & = & \tau(\psi, P, - t_\perp)\tilde{\tau}(\psi, P, - t_\perp)
-+ \sinc^2\left(\frac{\psi}{2}\right)
+R\tilde{R} & = & \tau(\phi, P, - t_\perp)\tilde{\tau}(\phi, P, - t_\perp)
++ \sinc^2\left(\frac{\phi}{2}\right)
 \frac{t_\parallel n^2 t_\parallel}{4}\\
-&& + \ \sinc\left(\frac{\psi}{2}\right)
-\left[ \tau(\psi, P, - t_\perp)nt_\parallel + 
-       t_\parallel n\tilde{\tau}(\psi, P, - t_\perp) \right] \\
-& = & 1 + 0 + \sinc\left(\frac{\psi}{2}\right)
+&& + \ \sinc\left(\frac{\phi}{2}\right)
+\left[ \tau(\phi, P, - t_\perp)nt_\parallel + 
+       t_\parallel n\tilde{\tau}(\phi, P, - t_\perp) \right] \\
+& = & 1 + 0 + \sinc\left(\frac{\phi}{2}\right)
 \left[ T + \tilde{T} \right]
 \end{eqnarray*}
-where $T = \tau(\psi, P, - t_\perp)nt_\parallel$.
+where $T = \tau(\phi, P, - t_\perp)nt_\parallel$.
 
-Looking at the definition of $\tau(\psi, P, - t_\perp)$, it is clear
+Looking at the definition of $\tau(\phi, P, - t_\perp)$, it is clear
 that it has only scalar, bivector and 4-vector components with
 the bivector components being parallel to $P$ or $t_\perp n$ and
 the 4-vector components being parallel to $Pt_\perp n$. When
@@ -347,29 +347,29 @@ given in lemma
 \begin{proof}
 Again using the twist form of $R$ from equation \ref{eqn:twistform} we have
 \begin{eqnarray*}
-Rn & = & \tau(\psi, P, - t_\perp)n + 
-\sinc\left(\frac{\psi}{2}\right)\frac{t_\parallel n^2}{2} \\
-&=& \tau(\psi, P, - t_\perp)n + 0
+Rn & = & \tau(\phi, P, - t_\perp)n + 
+\sinc\left(\frac{\phi}{2}\right)\frac{t_\parallel n^2}{2} \\
+&=& \tau(\phi, P, - t_\perp)n + 0
 \end{eqnarray*}
-Defining the rotation rotor $R_{(P,\psi)}$ as
+Defining the rotation rotor $R_{(P,\phi)}$ as
 \[
-R_{(P,\psi)} = \cos\left(\frac{\psi}{2}\right) +
-   \sin\left(\frac{\psi}{2}\right)P
+R_{(P,\phi)} = \cos\left(\frac{\phi}{2}\right) +
+   \sin\left(\frac{\phi}{2}\right)P
 \]
 and substituting for the definition of the twist above gives
 \[
-Rn = R_{(P,\psi)} n
+Rn = R_{(P,\phi)} n
 \]
 Similarly, again using the twist form of $R$ we have
 \begin{eqnarray*}
-nR & = & n\tau(\psi, P, - t_\perp) + 
-\sinc\left(\frac{\psi}{2}\right)\frac{nt_\parallel n}{2} \\
-% & = & n\tau(\psi, P, t_\perp) - 
-%\sinc\left(\frac{\psi}{2}\right)\frac{t_\parallel n^2}{2} \\
-&=& n\tau(\psi, P, - t_\perp) + 0 \\
-&=& n R_{(P,\psi)} \left( 1 + \frac{tn}{2} \right) \\
-&=& R_{(P,\psi)} n \left( 1 + \frac{tn}{2} \right) \\
-&=& R_{(P,\psi)} n 
+nR & = & n\tau(\phi, P, - t_\perp) + 
+\sinc\left(\frac{\phi}{2}\right)\frac{nt_\parallel n}{2} \\
+% & = & n\tau(\phi, P, t_\perp) - 
+%\sinc\left(\frac{\phi}{2}\right)\frac{t_\parallel n^2}{2} \\
+&=& n\tau(\phi, P, - t_\perp) + 0 \\
+&=& n R_{(P,\phi)} \left( 1 + \frac{tn}{2} \right) \\
+&=& R_{(P,\phi)} n \left( 1 + \frac{tn}{2} \right) \\
+&=& R_{(P,\phi)} n 
 \end{eqnarray*}
 We now have that $Rn = nR$ and hence, using
 $R\tilde{R} = 1$ from the previous thm, 
@@ -386,16 +386,16 @@ that all displacement rotors can be formed from a single exponentiated bivector
 of special form is valid. We shall term this initial bivector
 the \emph{generator} rotor (to draw a parallel with Lie algebras).
 
-We can obtain the following identities for $B=(\psi / 2) P + tn / 2$ by simply considering
+We can obtain the following identities for $B=(\phi / 2) P + tn / 2$ by simply considering
 the grade of each component of the exponential:
 \begin{eqnarray*}
-\left< R \right>_0 & = & \cos\left(\frac{\psi}{2}\right) \\
-\left< R \right>_2 & = & \sin\left(\frac{\psi}{2}\right) P + 
-  \cos\left(\frac{\psi}{2}\right) t_\perp n + \sinc\left(\frac{\psi}{2}\right) t_\parallel n \\
-\left< R \right>_4 & = & \sin\left(\frac{\psi}{2}\right) Pt_\perp n
+\left< R \right>_0 & = & \cos\left(\frac{\phi}{2}\right) \\
+\left< R \right>_2 & = & \sin\left(\frac{\phi}{2}\right) P + 
+  \cos\left(\frac{\phi}{2}\right) t_\perp n + \sinc\left(\frac{\phi}{2}\right) t_\parallel n \\
+\left< R \right>_4 & = & \sin\left(\frac{\phi}{2}\right) Pt_\perp n
 \end{eqnarray*}
 
-It is somewhat straightforward to reconstruct $\psi, t_\perp$ and $t_\parallel$ from these
+It is somewhat straightforward to reconstruct $\phi, t_\perp$ and $t_\parallel$ from these
 components by partitioning a rotor as above. Once we have a method which gives the
 generator $B$ for any displacement rotor $R$ we have validated our assumption.
 
@@ -491,7 +491,7 @@ generator representation.
 Recall that we represent a rotor, $R$, as $R = \exp(B)$ where $B$ is a bivector
 The generator bivector, $B$, may itself be
 parameterised in terms of a spatial bivector $P$ normalised such that
-$P^2 = -1$, a scalar $\psi$ and a spactial vector $t$
+$P^2 = -1$, a scalar $\phi$ and a spactial vector $t$
 as in lemma \ref{lem:bk}.
 Letting $P = p_1 e_{12} + p_2 e_{23} + p_3 e{31}$ and
 $t = t_1 e_1 + t_2 e_2 + t_3 e_3$ we may represent $B$ via the
@@ -508,44 +508,79 @@ hence a valid rotor.
 %algorithms. This note aims to develop an algorithm for converting from
 %one to another with the proviso that 
 
-It is also worht noting that this method of converting from a matrix representation
+It is also worth noting that this method of converting from a matrix representation
 to a generator is lossy in so much as the matrix representation cannot uniquely
 represent rotations by more the $2\pi$.
 
 \subsection{Method}
 
-Given a rotor $R$ generated by a bivector $B$ of the form above we may find
-a function $h(\psi, P, t, p, \lambda)$ which applies the rotor generated
-by $\psi, P$ and $t$ to the vector $p$:
+We shall attempt to linearise the application of a rotor associated
+with a generator to a point by defining an appropriate linear function
+$h(\cdot)$.
+
+\begin{definition}
+The function $h(\phi, P, t, p, \lambda)$ is defined, for $\lambda = 1$ as
 \[
-h(\psi, P, t, p, 1) = F^{-1} \left( R F(p) \tilde{R} \right)
+h(\phi, P, t, p, 1) = F^{-1} \left( R F(p) \tilde{R} \right)
 \]
-where $F(\cdot)$ is our usual vector to null-vector mapping.
-After a little algebra\footnote{This phrase covers a multitude
-  of sins...} we can see that the
-following satisfies this requirement:
+where $R = \exp(B)$, $B = \phi P+tn$ and $P, \phi$ and $t$ are
+as defined in lemma \ref{lem:bk}. $F(\cdot)$ is the usual vector 
+to null-vector mapping.
+\end{definition}
+
+It is easy, if somewhat tedious, to show by direct expansion and comparison of terms that
+an expression for $h(\cdot)$ which matches the definition above is
 \begin{align}
-h(\psi, P, t, p, \lambda) &=c^2p - s^2PpP - sc\left[pP - Pp\right] \nonumber \\
+h(\phi, P, t, p, \lambda) &=c^2p - s^2PpP - sc\left[pP - Pp\right] \nonumber \\
 &\quad+ \lambda\left[ 
  \frac{kc+1}{2} t + \frac{kc-1}{2} PtP
 - \frac{sk}{2} (tP - Pt)
 \right] \label{eqn:defnh}
 \end{align}
-where $s = \sin(\psi/2)$, $c = \cos(\psi/2)$ and $k = \textrm{sinc}(\psi/2)$.
-The function $h(\psi, P, t, p, \lambda)$ is clearly linear in $(p,\lambda)$ and so
-we can find some $3\times4$ matrix $\mathcal{H}$, dependent on
-$\psi, P$ and $t$, s.t.
+where $s = \sin(\phi/2)$, $c = \cos(\phi/2)$ and $k = \textrm{sinc}(\phi/2)$.
+
+\begin{definition}
+The function $\mathbf{v}(x)$ maps the $m$-dimensional vector $x$ to its column-vector
+representation,
+\[
+\mathbf{v}(x) = \left[
+\begin{array}{c}
+x \cdot e_1 \\ x \cdot e_2 \\ \vdots \\ x \cdot e_m
+\end{array} 
+\right].
+\]
+\end{definition}
+
+It is clear by inspection that the function $h(\cdot)$ is linear in $(p,\lambda)$ 
+therefore we can find some $3\times4$ matrix $\mathcal{H}(\phi, P, t)$, such that
 \begin{equation}
 \mathbf{e}^T 
- \mathcal{H} \left[
+ \mathcal{H}(\phi, P, t) \left[
 \begin{array}{c}
 \mathbf{v}(p) \\ 1
 \end{array} 
-\right] = h(p, 1). \label{eqn:hi}
+\right] = h(\phi, P, t, p, 1) \label{eqn:hi}
 \end{equation}
-where $\mathbf{e}^T = \left[ e_1 \; e_2 \; e_3 \right]$ and
-$\mathbf{v} (p) = \left[ p\cdot e_1 ; p \cdot e_2 ; p \cdot e_3 \right]^T$. It is
-fairly clear that
+where $\mathbf{e}^T = \left[ e_1 \; e_2 \; e_3 \right]$.
+
+Comparing the action of $\mathcal{H}$ and the form of $\left[ \mathbf{v}(p) \; 1 \right]^T$
+to the discussion of $4\times4$ transformation matrixes above it is easy to
+see that the mapping $p \mapsto h(\phi, P, t, p, 1)$ is equivalent to
+\[
+\left[
+\begin{array}{c}
+\mathbf{v}(p) \\ 1
+\end{array} 
+\right]
+\mapsto
+\mathcal{R}
+\left[
+\begin{array}{c}
+\mathbf{v}(p) \\ 1
+\end{array} 
+\right]
+\]
+with
 \[
 \mathcal{R} = \left[
 \begin{array}{cccc}
@@ -616,7 +651,7 @@ b_3
 \end{align*}
 we may rewrite equation \ref{eqn:defnh} as
 \begin{align*}
-h(\psi, P, t, p, \lambda) &= c^2\;\mathbf{e}^T\mathbf{v}(p) - s^2PpP + 2sc\;\mathbf{e}^T\mathbf{M}_1(P)\mathbf{v}(p) \\
+h(\phi, P, t, p, \lambda) &= c^2\;\mathbf{e}^T\mathbf{v}(p) - s^2PpP + 2sc\;\mathbf{e}^T\mathbf{M}_1(P)\mathbf{v}(p) \\
 &\quad+ \lambda\left[ 
  \frac{kc+1}{2} \mathbf{e}^T\mathbf{v}(t) + \frac{kc-1}{2} PtP
 + sk\;\mathbf{e}^T\mathbf{M}_1(P)\mathbf{v}(t)
@@ -637,9 +672,9 @@ a^2_{12} - a^2_{23} + a^2_{31} &  - 2a_{23}a_{31} & - 2a_{12}a_{23} \\
 \end{array}
 \right].
 \]
-We can now substitute into $h(\psi, P, t, p,\lambda)$ to obtain
+We can now substitute into $h(\phi, P, t, p,\lambda)$ to obtain
 \begin{align*}
-h(\psi, P, t, p, \lambda) &= c^2\;\mathbf{e}^T\mathbf{v}(p) - s^2\;\mathbf{e}^T\mathbf{M}_2(P)\mathbf{v}(p) + 2sc\;\mathbf{e}^T\mathbf{M}_1(P)\mathbf{v}(p) \\
+h(\phi, P, t, p, \lambda) &= c^2\;\mathbf{e}^T\mathbf{v}(p) - s^2\;\mathbf{e}^T\mathbf{M}_2(P)\mathbf{v}(p) + 2sc\;\mathbf{e}^T\mathbf{M}_1(P)\mathbf{v}(p) \\
 &\quad+ \lambda\left[ 
  \frac{kc+1}{2} \mathbf{e}^T\mathbf{v}(t) + \frac{kc-1}{2} \;\mathbf{e}^T\mathbf{M}_2(P)\mathbf{v}(t)
 + sk\;\mathbf{e}^T\mathbf{M}_1(P)\mathbf{v}(t)
@@ -693,7 +728,7 @@ of $\mathbf{M}_1(P)$ and $\mathbf{M}_2(P)$ it is clear that
 \end{align*}
 If $sc \ne 0$ then we may recover $P$ by extracting elements of 
 $\mathbf{A} - \mathbf{A}^{T}$ and renormalising. If $sc = 0$ then either
-$s = 0$ or $c = 0$. If $s = 0$ it implies $\psi = 2n\pi$, $c = 1$ and 
+$s = 0$ or $c = 0$. If $s = 0$ it implies $\phi = 2n\pi$, $c = 1$ and 
 therefore that 
 $\mathbf{A} + \mathbf{A}^{T}$ should be the identity matrix and
 we are free to choose $P$ as we wish. If $c = 0$ then $s = \pm 1$
@@ -708,4 +743,4 @@ estimate $\mathbf{M}_3(P)$ directly and hence recover
 In practice we might wish to use LU decomposition or similar rather
 than computing the matrix inverse if we deal with spaces with higer
 dimensionality. Finally, given $s$, $c$ and $k$, an estimate for 
-$\psi$ can be made. 
+$\phi$ can be made. 
