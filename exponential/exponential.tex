@@ -473,12 +473,12 @@ and
 \[
 \mathcal{R} = \left[
 \begin{array}{cc}
-\mathbf{A} & \mathbf{t} \\
+\mathbf{R} & \mathbf{t} \\
                 0 & 1
 \end{array}
 \right].
 \]
-Here $\mathbf{A}$ is an orthonormal $3 \times 3$ rotation matrix and $\mathbf{t}$ is some
+Here $\mathbf{R}$ is an orthonormal $3 \times 3$ rotation matrix and $\mathbf{t}$ is some
 translation vector.
 
 Due to the common nature of such a representation it would be advantageous
@@ -672,7 +672,7 @@ The desired result is then clear by substitution.
 \end{cor}
 
 \begin{definition}
-Define $\mathbf{M}_1(A)$ to be a matrix dependent on a three-dimensional bivector $A$,
+Define $\mathbf{M}_1(A)$ to be a function of a three-dimensional bivector $A$,
 \[
 \mathbf{M}_1(A) = \left[ 
 \begin{array}{ccc}
@@ -707,7 +707,7 @@ Direct substitution and application of lemma \ref{lem:ABandBA}.
 \end{cor}
 
 \begin{definition}
-Define $\mathbf{M}_2(A)$ to be a vector dependent on a three-dimensional bivector $A$,
+Define $\mathbf{M}_2(A)$ to be a function of a three-dimensional bivector $A$,
 \[
 \mathbf{M}_2(A)  =
 \left[
@@ -759,7 +759,7 @@ and rearrange.
 
 \begin{definition}
 \label{def:m3}
-Define $\mathbf{M}_3(A)$ to be a matrix dependent on a three-dimensional bivector $A$,
+Define $\mathbf{M}_3(A)$ to be a function of a three-dimensional bivector $A$,
 \[
 \mathbf{M}_3(A) = \frac{kc+1}{2} \mathbf{I}_3 
 + \frac{kc-1}{2} \;\mathbf{M}_2(A) + sk\;\mathbf{M}_1(P)
@@ -784,42 +784,97 @@ Clear by comparison of lemma \ref{lem:finalh} with definition \ref{def:m3}.
 
 \noindent The required $4\times4$ matrix $\mathcal{R}$ can now easily be found from $\mathcal{H}$.
 
-\subsection{Finding the generator from $\mathcal{H}$}
+\subsection{Mapping $\mathcal{H}$ to the corresponding generator}
 
-Firstly represent $\mathcal{H}$ as
+In this section we develop a method to reconstruct a generator given only the
+transformation matrix. Note that this method can only reconstruct a generator
+up to a rotation of $2\pi$ due to difficencies in the matrix representation.
+
+\begin{definition}
+Define the two sub matrices of $\mathcal{H}$,
+$\mathbf{R}$ and $\mathbf{t}$
 \[
-\mathcal{H} = [ \mathbf{A}\; ; \; \mathbf{c} ]
+\mathcal{H} = [ \mathbf{R}\; ; \; \mathbf{t} ]
 \]
-where 
-\[\mathbf{A} = c^2\mathbf{I}_3 - s^2\;\mathbf{M}_2(P) + 2sc\;\mathbf{M}_1(P)\]
+as 
+\begin{equation}
+\mathbf{R} = c^2\mathbf{I}_3 - s^2\;\mathbf{M}_2(P) + 2sc\;\mathbf{M}_1(P)\label{eqn:A}
+\end{equation}
 and
 \begin{equation}
-\mathbf{c} = \mathbf{M}_3(P)\mathbf{v}(t). \label{eqn:b}
+\mathbf{t} = \mathbf{M}_3(P)\mathbf{v}(t). \label{eqn:b}
 \end{equation}
-Both $\mathbf{A}$ and $\mathbf{c}$ may be extracted from $\mathcal{R}$ easily.
+\end{definition}
+
+Both $\mathbf{R}$ and $\mathbf{t}$ may easily be extracted from $\mathcal{R}$.
 Given the anti-symmetric and symmetric nature
 of $\mathbf{M}_1(P)$ and $\mathbf{M}_2(P)$ it is clear that
 \begin{align*}
-\mathbf{A} + \mathbf{A}^T &= 
+\mathbf{R} + \mathbf{R}^T &= 
 2\left[ c^2\mathbf{I}_3 - s^2\;\mathbf{M}_2(P) \right] \\
-\mathbf{A} - \mathbf{A}^T &= 
+\mathbf{R} - \mathbf{R}^T &= 
 4sc\;\mathbf{M}_1(P).
-\end{align*}
+\end{align*} 
+
+\begin{definition}
+The function $\mathbf{\alpha}(\mathbf{A},\mathbf{B})$ estimates $s^2$ 
+and $c^2$ and returns $\frac{s}{c}$ given the constraints
+\[
+\mathbf{B} = c^2 \mathbf{I}_3 - s^2\mathbf{A}
+\]
+and
+\[
+c^2 + s^2 = 1.
+\]
+There are four constraints in two unknowns and hence the system is over-constrained and
+so in practice one would use a linear-least-squares estimator.
+\end{definition}
+
+\begin{fancyalg}
+\begin{algorithmic}[1]
+\STATE Extract the sub-matrices $\mathbf{R}$ and $\mathbf{t}$ from $\mathcal{R}$.
+\STATE $\mathbf{K} := \mathbf{R} - \mathbf{R}^T$.
+\STATE $\mathbf{L} := \mathbf{R} + \mathbf{R}^T$.
+\STATE $k := \mathbf{K}^2_{12} + \mathbf{K}^2_{13} + \mathbf{K}^2_{23} $
+\IF{$k \ne 0$}
+\STATE $P := \frac{1}{\sqrt{k}}\left(\mathbf{K}^2_{12}e_{12} + \mathbf{K}^2_{23}e_{23} - \mathbf{K}^2_{13}e_{31}\right)$
+\STATE $\psi := \tan^{-1}\left[\mathbf{\alpha}\left(\mathbf{M}_2(P), \frac{1}{2}\mathbf{L}\right)\right]$
+\ELSE
+\IF{$L = 2\mathbf{I}_3$}
+\STATE $P := e_{12}$
+\STATE $\psi := 0$
+\ELSE
+\STATE $P := \mathbf{M}^{-1}_2\left(\frac{1}{2}\mathbf{L}\right)$
+\STATE $\psi := \frac{\pi}{2}$
+\ENDIF
+\ENDIF
+\STATE $t := \mathbf{v}^{-1}\left(\left[\mathbf{M}_3(P)\right]^{-1}\right)$
+\STATE $B := \psi P + tn$
+\end{algorithmic}
+\caption{Reconstruction of a generator from a $4\times4$ transformation matrix.%
+\label{alg:reconstructGenerator}}
+\end{fancyalg}
+
 If $sc \ne 0$ then we may recover $P$ by extracting elements of 
-$\mathbf{A} - \mathbf{A}^{T}$ and renormalising. If $sc = 0$ then either
+$\mathbf{R} - \mathbf{R}^{T}$ and renormalising. If $sc = 0$ then either
 $s = 0$ or $c = 0$. If $s = 0$ it implies $\phi = 2n\pi$, $c = 1$ and 
-therefore that 
-$\mathbf{A} + \mathbf{A}^{T}$ should be the identity matrix and
+therefore
+$\mathbf{R} + \mathbf{R}^{T} = 2\mathbf{I}_3$ and
 we are free to choose $P$ as we wish. If $c = 0$ then $s = \pm 1$
-and $\mathbf{A} + \mathbf{A}^{T} = 2 \mathbf{M}_2(P)$. We can then
+and $\mathbf{R} + \mathbf{R}^{T} = 2 \mathbf{M}_2(P)$. We can then
 extract $P$ from $\mathbf{M}_2(P)$. The sign of $s$, in this case, is arbitrary.
 
 Assuming we have estimates for $s$, $k$ and $c$ from above, we may
-estimate $\mathbf{M}_3(P)$ directly and hence recover
+reconstruct $\mathbf{M}_3(P)$ directly from $\mathbf{t}$ and hence recover
 \[
-\mathbf{v}(t) = \mathbf{M}^{-1}_3(P) \mathbf{c}.
+\mathbf{v}(t) = \mathbf{M}^{-1}_3(P) \mathbf{t}.
 \]
+Finally, given $s$, $c$ and $k$, an estimate for 
+$\phi$ can be made. This algorithm is outlines explicitly in algorithm 
+\ref{alg:reconstructGenerator}.
+
 In practice we might wish to use LU decomposition or similar rather
 than computing the matrix inverse if we deal with spaces with higer
-dimensionality. Finally, given $s$, $c$ and $k$, an estimate for 
-$\phi$ can be made. 
+dimensionality. Similarly one would calculate the inverse tangent in terms
+of $s$ and $c$ directly so as to ensure the result for the correct quadrant is
+returned.
