@@ -590,12 +590,34 @@ with
 \right].
 \]
 
+Mapping a given generator, parameterised in terms of $\phi, P$ and $t$ therefore
+requires finding a closed form of $\mathcal{H}$ given $h(\cdot)$.
+
 \subsection{Finding $\mathcal{H}$ from a generator}
 
-Given $A = a_{12}e_{12} + a_{23}e_{23} + a_{31}e_{31}$ and
-$b = b_1e_1 + b_2e_2 + b_3e_3$, if we define
-\begin{align*}
-\mathbf{f}_1(A,b) &=
+In this section we shall develop a specific homomorphism from the specific
+aspects of Geometric Algebra used to evaluate $h(\cdot)$ and linear algebra with
+a view to inducing a form for $\mathcal{H}$.
+
+\begin{definition}
+Define the resolution of a bivector $A$ onto the orthonormal basis
+set $\{e_{12}, e_{23}, \cdots\}$ as the set of scalars $\{a_{12}, a_{23}, \cdots\}$ where
+\[A = a_{12}e_{12} + a_{23}e_{23} + \cdots.\]
+\end{definition}
+
+\begin{definition}
+Define the resolution of a vector $b$ onto the orthonormal basis
+set $\{e_{1}, e_{2}, \cdots\}$ as the set of scalars $\{b_{1}, b_{2}, \cdots\}$ where
+\[b = b_1e_1 + b_2e_2 + \cdots.\]
+\end{definition}
+
+\begin{definition}
+Define the function $\mathbf{f}_1(A,b)$,
+       with $A$ a three-dimensional
+bivector and $b$ a three-dimensional vector,
+as
+\[
+\mathbf{f}_1(A,b) =
 \left[ 
 \begin{array}{ccc}
 0 & a_{12} & - a_{31} \\
@@ -607,11 +629,31 @@ a_{31} & - a_{23} & 0
 \begin{array}{c}
 b_1 \\ b_2 \\ b_3
 \end{array} 
-\right]  
-\\
-f_2(A,b) &= (a_{12}b_{3} + a_{23}b_1 + a_{31}b_2) 
-\end{align*}
-it is easy to show directly that
+\right].\]
+\end{definition}
+
+\begin{definition}
+Define the function $f_2(A,b)$,
+       with $A$ a three-dimensional
+bivector and $b$ a three-dimensional vector,
+       as
+\[
+f_2(A,b) = (a_{12}b_{3} + a_{23}b_1 + a_{31}b_2).
+\]
+\end{definition}
+
+\begin{cor}
+\label{lem:ABandBA}
+Given  $A$ a three-dimensional
+bivector and $b$ a three-dimensional vector
+\[
+bA - Ab = -
+\left[ e_1 \; e_2 \; e_3 \right]
+2\mathbf{f}_1(A,b).
+\]
+\begin{proof}
+With the definitions for resolving $A$ and $b$ above it is trivial to show by direct expansion
+over an orthonormal basis that
 \[
 Ab =
 f_2(A,b)\;e_{123} +
@@ -625,31 +667,33 @@ f_2(A,b)\;e_{123} -
 \left[ e_1 \; e_2 \; e_3 \right]
 \mathbf{f}_1(A,b)
 \]
-Hence
+The desired result is then clear by substitution.
+\end{proof}
+\end{cor}
+
+\begin{definition}
+Define $\mathbf{M}_1(A)$ to be a matrix dependent on a three-dimensional bivector $A$,
 \[
-bA - Ab = -
-\left[ e_1 \; e_2 \; e_3 \right]
-2\mathbf{f}_1(A,b).
-\]
-%Recalling $\mathbf{e}^T = \left[ e_1 \; e_2 \; e_3 \right]$
-Defining
-\begin{align*}
-\mathbf{M}_1(A) &= \left[ 
+\mathbf{M}_1(A) = \left[ 
 \begin{array}{ccc}
 0 & a_{12} & - a_{31} \\
 - a_{12} & 0 & a_{23}\\
 a_{31} & - a_{23} & 0 
 \end{array} 
-\right]  \quad\mathrm{and}\quad
-\mathbf{v}(b) = \left[ 
-\begin{array}{c}
-b_1 \\
-b_2 \\
-b_3 
-\end{array} 
-\right]  
-\end{align*}
-we may rewrite equation \ref{eqn:defnh} as
+\right].
+%\quad\mathrm{and}\quad
+%\mathbf{v}(b) = \left[ 
+%\begin{array}{c}
+%b_1 \\
+%b_2 \\
+%b_3 
+%\end{array} 
+%\right]  
+\]
+\end{definition}
+
+\begin{cor}
+Equation \ref{eqn:defnh} is equivalent to
 \begin{align*}
 h(\phi, P, t, p, \lambda) &= c^2\;\mathbf{e}^T\mathbf{v}(p) - s^2PpP + 2sc\;\mathbf{e}^T\mathbf{M}_1(P)\mathbf{v}(p) \\
 &\quad+ \lambda\left[ 
@@ -657,11 +701,13 @@ h(\phi, P, t, p, \lambda) &= c^2\;\mathbf{e}^T\mathbf{v}(p) - s^2PpP + 2sc\;\mat
 + sk\;\mathbf{e}^T\mathbf{M}_1(P)\mathbf{v}(t)
 \right].
 \end{align*}
-Similarly it is easy to verify that
-\[
-AbA = \mathbf{e}^T \mathbf{M}_2(A) \mathbf{v}(b)
-\]
-where
+\begin{proof}
+Direct substitution and application of lemma \ref{lem:ABandBA}.
+\end{proof}
+\end{cor}
+
+\begin{definition}
+Define $\mathbf{M}_2(A)$ to be a vector dependent on a three-dimensional bivector $A$,
 \[
 \mathbf{M}_2(A)  =
 \left[
@@ -672,14 +718,24 @@ a^2_{12} - a^2_{23} + a^2_{31} &  - 2a_{23}a_{31} & - 2a_{12}a_{23} \\
 \end{array}
 \right].
 \]
-We can now substitute into $h(\phi, P, t, p,\lambda)$ to obtain
+\end{definition}
+
+\begin{cor}
+Given a three-dimensional bivector $A$ and a three-dimensional vector $b$,
+\[
+AbA = \mathbf{e}^T \mathbf{M}_2(A) \mathbf{v}(b).
+\]
+\begin{proof}
+Clear by substitution and expansion.
+\end{proof}
+\end{cor}
+
+\begin{lemma}
+\label{lem:finalh}
+An equivalent form for $h(\cdot)$ as given in equation \ref{eqn:defn} is
 \begin{align*}
-h(\phi, P, t, p, \lambda) &= c^2\;\mathbf{e}^T\mathbf{v}(p) - s^2\;\mathbf{e}^T\mathbf{M}_2(P)\mathbf{v}(p) + 2sc\;\mathbf{e}^T\mathbf{M}_1(P)\mathbf{v}(p) \\
-&\quad+ \lambda\left[ 
- \frac{kc+1}{2} \mathbf{e}^T\mathbf{v}(t) + \frac{kc-1}{2} \;\mathbf{e}^T\mathbf{M}_2(P)\mathbf{v}(t)
-+ sk\;\mathbf{e}^T\mathbf{M}_1(P)\mathbf{v}(t)
- \right] \\
-& = \mathbf{e}^T \left[ 
+h(\phi, P, t, p, \lambda) &= 
+\mathbf{e}^T \left[ 
  c^2\;\mathbf{v}(p) - s^2\;\mathbf{M}_2(P)\mathbf{v}(p) + 2sc\;\mathbf{M}_1(P)\mathbf{v}(p) 
 \right] \\
 &\quad+ \lambda\mathbf{e}^T\left[ 
@@ -687,23 +743,46 @@ h(\phi, P, t, p, \lambda) &= c^2\;\mathbf{e}^T\mathbf{v}(p) - s^2\;\mathbf{e}^T\
 + sk\;\mathbf{M}_1(P)\mathbf{v}(t)
  \right].
 \end{align*}
-Taking $\mathbf{I}_3$ as the $3\times3$ identity matrix, defining
+\begin{proof}
+Substitute the above corollarys into $h(\phi, P, t, p,\lambda)$ to obtain
+\begin{align*}
+h(\phi, P, t, p, \lambda) &= 
+c^2\;\mathbf{e}^T\mathbf{v}(p) - s^2\;\mathbf{e}^T\mathbf{M}_2(P)\mathbf{v}(p) + 2sc\;\mathbf{e}^T\mathbf{M}_1(P)\mathbf{v}(p) \\
+&\quad+ \lambda\left[ 
+ \frac{kc+1}{2} \mathbf{e}^T\mathbf{v}(t) + \frac{kc-1}{2} \;\mathbf{e}^T\mathbf{M}_2(P)\mathbf{v}(t)
++ sk\;\mathbf{e}^T\mathbf{M}_1(P)\mathbf{v}(t)
+ \right]
+\end{align*}
+and rearrange.
+\end{proof}
+\end{lemma}
+
+\begin{definition}
+\label{def:m3}
+Define $\mathbf{M}_3(A)$ to be a matrix dependent on a three-dimensional bivector $A$,
 \[
-\mathbf{M}_3(P) = \frac{kc+1}{2} \mathbf{I}_3 
-+ \frac{kc-1}{2} \;\mathbf{M}_2(P) + sk\;\mathbf{M}_1(P)
+\mathbf{M}_3(A) = \frac{kc+1}{2} \mathbf{I}_3 
++ \frac{kc-1}{2} \;\mathbf{M}_2(A) + sk\;\mathbf{M}_1(P)
 \]
-%(note the sign change is due to 
-%representing the matrix via its transpose for typograpsic convenience). 
-and comparing with 
-equation \ref{eqn:hi} we see that
+where  $\mathbf{I}_3$ is the $3\times3$ identity matrix.
+\end{definition}
+
+\begin{thm}
+The $3\times4$ matrix $\mathcal{H}$ may be found directly from a
+generator $B=\phi P + tn$ as
 \[
 \mathcal{H} = \left[
  c^2\mathbf{I}_3 - s^2\;\mathbf{M}_2(P) + 2sc\;\mathbf{M}_1(P) \; ; \;
  \mathbf{M}_3(P)\mathbf{v}(t)
 \right]
 \]
-which is indeed a $3\times4$ matrix as required. The matrix $\mathcal{R}$ may
-now be found easily.
+where  $\mathbf{I}_3$ is the $3\times3$ identity matrix.
+\begin{proof}
+Clear by comparison of lemma \ref{lem:finalh} with definition \ref{def:m3}.
+\end{proof}
+\end{thm}
+
+\noindent The required $4\times4$ matrix $\mathcal{R}$ can now easily be found from $\mathcal{H}$.
 
 \subsection{Finding the generator from $\mathcal{H}$}
 

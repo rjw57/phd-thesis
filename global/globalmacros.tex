@@ -1,11 +1,12 @@
 % Global macros used throughout thesis
 
-\newtheorem{thm}{Theorem}
-\newtheorem{lemma}{Lemma}
-\newtheorem{cor}{Corollary}
+\newtheorem{thm}{Theorem}[chapter]
+\newtheorem{lemma}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corollary}
 \theoremstyle{definition}
-\newtheorem{definition}{Definition}
-\newtheorem{alg}{Algorithm}
+\newtheorem{definition}[thm]{Definition}
+\newtheorem{alg}[thm]{Algorithm}
+
 % \newenvironment{proof}[1][Proof]{\begin{trivlist}
 % \item[\hskip \labelsep {\bfseries #1}]}{\qed\end{trivlist}}
 \newcommand{\dt}{\cdot}
