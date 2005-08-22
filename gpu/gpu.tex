@@ -91,10 +91,46 @@ Currently few hardware vendors support OpenGL 2.0 --- at the time of writing
 nVidia was the only mainstream vendor to provide support in their
 consumer-level hardware\cite{nvidia:7664relnotes}.
 
+OpenGL 1.4 and below provide support for programmable shaders via a set of per-vendor
+extensions. Unfortunately these requires progamming the GPU in a variety of
+assembly languages and vary between different GPUs.
+
 \subsection{The Cg toolkit from nVidia}
 
-\cite{nvidia:cgtoolkit,nvidia:sm3unleashed}
+Both the OpenGL and DirectX shading languages have a number of disadvantages
+from the point of view of research. The OpenGL shading language, whilst being
+high-level and convenient to program in, is not widely available. The
+DirectX toolkit porvides only a `lowest common denomitator' shading language,
+it is not particularly high-level and is, for all intents and purposes, limited
+to the Microsoft Windows operating systems. 
+
+An attempt to bridge these gaps is the Cg toolkit\cite{nvidia:cgtoolkit} from nVidia.
+It provides a high-level C-like shading language which may be compiled at run-time or
+ahead of time into either DirectX shading language or the myrriad of OpenGL extensions
+which exist for accessing the programmable shaders. 
+
+Along with these advantages is the `future-proof' nature of Cg. The core Cg language
+is easily extended via so-called `profiles'. These either restrict the language to
+correspond to the capabilities of particular GPUs or add more features to expose
+new GPU abilities. As an example in figure \ref{fig:gpu_architecture} it was implied
+that the vertex shader cannot access the texture-map memory. This was true
+of older cards but the latest generation of nVidia cards can
+access texture maps from within the vertex shader\cite{nvidia:sm3unleashed}. Addid this
+capability to Cg was simply a case of releasing a new profile where texture-map related
+parts of the language were now available from within both shaders. Older shaders
+would still work however and the presence of this capability could be queried
+at run-time.
+
+Because of these advantages it was decided to use Cg as the basis for the GPU
+computing research. None of the techniques described below require it as they
+can all be re-structured to use alternate APIs.
 
 \section{Mesh deformation}
 
+In this section we shall give an example of a vertex shader that uses GA to
+perform mesh deformation.
+
 \section{Cloth simulation}
+
+In this section we shall give an example of a fragment shader which is used to
+perform a simple cloth simulation.
