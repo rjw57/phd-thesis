@@ -47,8 +47,8 @@ vertout main(appin IN, const uniform float4x4 ModelViewProj : _GL_MVP,
 
   /* Project mesh point to screen-space and light it as usual. */
   OUT.HPosition = mul(ModelViewProj, p);
-  float3 lightVec = normalize(float3(3,-2,-1));
-  OUT.Color = (0.4 + 0.7*lit(dot(normalVec.xyz, lightVec.xyz),0,0).y ) * IN.Diffuse; 
+  float3 lightVec = normalize(float3(0,0,-5));
+  OUT.Color = (0.3 + 0.7*lit(dot(normalVec.xyz, lightVec.xyz),0,0).y ) * IN.Diffuse; 
   OUT.Color.a = IN.Diffuse.a;
 
   return OUT;

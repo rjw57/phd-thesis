@@ -68,7 +68,7 @@ wordcount.txt:
 	touch wordcount.txt
 	if [ ! -f $(PDFS) ]; then latex $(TEXFILES:.tex=); dvips -o $(@:.pdf=.ps) $(@:.pdf=); pdflatex $(TEXFILES:.tex=); rm $(@:.pdf=.ps); fi
 	pdftotext -nopgbrk $(PDFS)
-	echo \\numprint{`cat $(PDFS:.pdf=.txt) | sed -e 's/ [^aAI] //g'| sed -e 's/[\\.][\\.]*//g' | wc -w | perl -e '$$_=<STDIN>; print $$_ - ($$_ % 50);'`}\% >wordcount.txt 2>/dev/null
+	echo \\numprint{`cat $(PDFS:.pdf=.txt) | sed -e 's/[\\.][\\.]*//g' | wc -w | perl -e '$$_=<STDIN>; print $$_ - ($$_ % 50) + 50;'`}\% >wordcount.txt 2>/dev/null
 
 acroview: $(PDFS)
 	acroread $(PDFS)
