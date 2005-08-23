@@ -132,6 +132,8 @@ perform mesh deformation.
 
 FIXME: Medium-length review of mesh deformation.
 
+\subsection{Method}
+
 We shall now present a GA-based mesh deformation scheme. In this scheme we start with
 an existing mesh and set of key rotors, $\left\{ R_1, R_2, \cdots, R_k \right\}$,
 which we wish to use to deform the mesh. Our scheme seeks to find some automatic
@@ -164,10 +166,23 @@ distance from it to the image of the origin in each key-rotor,
 d_{k,i} = \sqrt{-2O_k \cdot P_i}.
 \]
 We then form a rotor, $R_i$, for each point on the mesh as a weighted sum of the
-key-rotors thus
+key-rotors,
 \[
-R_i = \exp\left(\frac{\sum^{k}_1 d_{k,i} B_i}{\sum^{k}_1 d_{k,i}}\right).
+R_i = \exp\left(\frac{\sum^{k}_1 w_i(d_{k,i}) B_i}{\sum^{k}_1 w_i(d_{k,i})}\right)
 \]
+where $w_i(d)$ is a function which defines the relative weights of each rotor depending
+on its proximity to the mesh point. One might choose a relatively simple weight function
+\[
+w_i(d) = \frac{1}{d + \epsilon}
+\]
+where $\epsilon$ is a small value to avoid a singularity when the key-rotor and mesh
+intersect. If our implementation we wished to have key-rotors with varying degrees of influence.
+This was accomplished by using a Gaussian weight function,
+\[
+w_i(d) = \exp\left(-\frac{d^2}{\sigma_i^2}\right)
+\]
+with $\sigma_i$ giving the radius of influence of a particular key-rotor.
+
 Finally we find a point, $p_i$, which is transformed by $R_i$ to coincide
 with $P_i$,
 \[
@@ -186,9 +201,100 @@ generators, $\left\{B'_1, B'_2, \cdots, B'_k\right\}$, we can form the deformed
 mesh point $P'_i$ given the previously calculated $d_{k,i}$ and $p_i$ as
 \begin{align}
 R'_i &= 
-\exp\left(\frac{\sum^{k}_1 d_{k,i} B'_i}{\sum^{k}_1 d_{k,i}}\right) \\
+\exp\left(\frac{\sum^{k}_1 w_i(d_{k,i}) B'_i}{\sum^{k}_1 w_i(d_{k,i})}\right) \label{eqn:summation} \\
 P'_i &= R'_i p_i \tilde{R}'_i.
 \end{align}
+
+\subsection{GPU-based implementation}
+
+Since the GPU distinguishes between global state and per-vertex information we
+must decide what information needs to be given to the GPU and how. In our mesh
+deformation example we need the key-rotors which are part of the global state
+and, for each mesh point, the vector $p_i$ and set of distances $d_{k,i}$.
+
+In OpenGL each vertex has at least a three-dimensional position vector associated 
+with it and may have a normal vector. In addition there are a number of 
+texture co-ordinates which may be associated with each vertex. In our implmentation
+the values of $w(d_{k,i})$ will be stored into the texture co-ordinates. The weight
+function is pre-computed to save time.
+
+\begin{figure}[p]
+\centering
+\scalebox{0.8}{
+\begin{minipage}{\textwidth}
+\singlespacing
+\lstinputlisting[language=c]{vertex_shader.cg}
+\end{minipage}}
+\caption{\label{fig:meshshader}The vertex shader used to perform GA-based mesh
+deformation.}
+\end{figure}
+
+Figure \ref{fig:meshshader} gives the vertex shader used to perform mesh deformation in
+this example. Line 2 includes the standard set of rotor manipulation functions which
+will be described below. For the moment it is sufficient to note that generators are
+stored as a pair of 3-vectors, giving 6 components in all, and rotors are stored as a
+pair of 4-vectors, giving 8 components.
+
+The generators associated with the key rotors are passed in the state array {\tt generators[][]}
+and are constant for a particular scene. Lines 32 to 39 perform the summation in 
+equation \ref{eqn:summation} and line 41 uses the function {\tt exp\_generator()} to 
+form $R'_i$. Line 42 applies $R'_i$ to the point $p_i$ and the remainder of the shader
+is bolierplate code to project into screen-space and perform a simple lighting calculation.
+
+\begin{fancyalg}
+\begin{algorithmic}[1]
+\REQUIRE{$P_i$, the null-vector representation of mesh vertex $i$.}
+\REQUIRE{$\mathcal{B} \equiv \{B_1, B_2, \cdots, B_k, \cdots \}$,
+  the set of key-rotor generators.}
+\STATE $w_{\mathrm{sum}} := 0$
+\FOR{$k := 1$ to $n(\mathcal{B})$}
+\STATE $R := \exp(B_k)$
+\STATE $O := R\bar{n}\tilde{R}$
+\STATE $w_k := w(\sqrt{-2 O \cdot P})$
+\STATE $w_{\mathrm{sum}} := w_{\mathrm{sum}} + w_k$
+\ENDFOR
+\FOR{$k := 1$ to $n(\mathcal{B})$}
+\STATE $w_k := \frac{w_k}{w_{\mathrm{sum}}}$
+\ENDFOR
+\STATE $p := \tilde{R}P_iR$
+\STATE glMultiTexCoord2f(GL\_TEXTURE0, $w_1$, $w_2$);
+\STATE glMultiTexCoord2f(GL\_TEXTURE1, $w_3$, $w_4$); 
+\STATE glMultiTexCoord2f(GL\_TEXTURE2, $w_5$, $w_6$);
+\STATE glMultiTexCoord2f(GL\_TEXTURE3, $w_7$, $w_8$);
+\STATE glVertex($p$);
+\end{algorithmic}
+\caption{\label{alg:meshpoint}Algorithm for computing $w(d_{k,i})$ and $p_i$ for 
+  each mesh point and storing them in the texture co-ordinates and vertex position.
+  In this case there are eight key-rotors.}
+\end{fancyalg}
+
+The algorithm and OpenGL code required to compute the rotor wieghts and offset-vector
+$p_i$ for each mesh vertex is shown in algorithm \ref{alg:meshpoint}. Note that this
+need only be performed once-per vertex at initialisation.
+
+In the actual implementation \emph{display lists} were utilised. A display list 
+is an OpenGL technique for uploading a set of OpenGL calls to the graphics card
+and executing them again with one call. Since the vertices and texture co-ordinates
+generated by algorithm \ref{alg:meshpoint} don't change once calculated each mesh could
+be processed once and sent to the graphics card as a display list.
+
+Using a display list meant that the deformation now became extremely efficient in
+terms of CPU usage. For each frame all that needed to be done by the CPU was update the
+state variables holding the key-rotor generators and ask for the display list to be drawn.
+Using such a technique resulted in the Unix \emph{top} utility reporting 0\% CPU utilisation,
+i.e. below the resolution it measures to.
+
+\subsection{Quality of the deformation}
+
+\begin{figure}[p]
+\centering
+\includegraphics[height=0.8\textheight]{mesh_example}
+\caption{\label{fig:meshexample}An example of animating a rabbit's head using key-rotors and an automatically
+  assigned mesh.}
+\end{figure}
+
+The quality of a mesh deformation technique is ultimately subjective. A simple example is shown
+in figure \ref{fig:meshexample}.
 
 \section{Cloth simulation}
 

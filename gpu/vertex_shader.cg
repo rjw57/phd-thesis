@@ -1,0 +1,55 @@
+/* Include Cg implementations of rotor exponentiation and 'logarithm' */
+#include "rotor_tools.cg"
+
+/* Per-vertex input */
+struct appin {
+  float4 Position  : POSITION;    /* Store p_i as the vertex position */
+  float4 Normal    : NORMAL;      /* Normal vector */
+  float4 Diffuse   : DIFFUSE;     /* Diffuse colour */
+
+  /* Store d_{k,i} in the texture co-ordinates */
+  float2 Coeffs1 : TEXCOORD0; float2 Coeffs2 : TEXCOORD1;
+  float2 Coeffs3 : TEXCOORD2; float2 Coeffs4 : TEXCOORD3;
+};
+
+/* Per-vertex output */
+struct vertout {
+  float4 HPosition : POSITION;    /* Screen-space position */
+  float4 Color     : COLOR;       /* Colour after lighting */
+};
+
+vertout main(appin IN, const uniform float4x4 ModelViewProj : _GL_MVP,
+		uniform float4x4 ModelViewIT, uniform float4x4 ModelView,
+		uniform float3 generators[8][2]) 
+{
+  vertout OUT; float4 p = IN.Position;
+  float3 generator[2]; float4 rotor[2]; /* For calculating R'_i */
+
+  /* Initialse generator to be zero */
+  generator[0] = float3(0,0,0); generator[1] = float3(0,0,0);
+
+  /* Perform summation */
+  generator[0] += generators[0][0] * IN.Coeffs1.x; generator[1] += generators[0][1] * IN.Coeffs1.x;
+  generator[0] += generators[1][0] * IN.Coeffs1.y; generator[1] += generators[1][1] * IN.Coeffs1.y;
+  generator[0] += generators[2][0] * IN.Coeffs2.x; generator[1] += generators[2][1] * IN.Coeffs2.x;
+  generator[0] += generators[3][0] * IN.Coeffs2.y; generator[1] += generators[3][1] * IN.Coeffs2.y;
+  generator[0] += generators[4][0] * IN.Coeffs3.x; generator[1] += generators[4][1] * IN.Coeffs3.x;
+  generator[0] += generators[5][0] * IN.Coeffs3.y; generator[1] += generators[5][1] * IN.Coeffs3.y;
+  generator[0] += generators[6][0] * IN.Coeffs4.x; generator[1] += generators[6][1] * IN.Coeffs4.x;
+  generator[0] += generators[7][0] * IN.Coeffs4.y; generator[1] += generators[7][1] * IN.Coeffs4.y;
+
+  exp_generator(generator, rotor);             /* Exponentiate to form R'_i ... */
+  p.xyz = apply_rotor_to_point(rotor, p);      /* ... and apply it to p_i to get our final mesh point */
+  
+  /* Set translation part of the rotor to zero and rotate the normal to match the new mesh point. */
+  rotor[1] = float4(0,0,0,0); float4 normalVec = mul(ModelViewIT, IN.Normal);
+  normalVec.xyz = normalize(apply_rotor_to_point(rotor, normalVec.xyz));
+
+  /* Project mesh point to screen-space and light it as usual. */
+  OUT.HPosition = mul(ModelViewProj, p);
+  float3 lightVec = normalize(float3(3,-2,-1));
+  OUT.Color = (0.4 + 0.7*lit(dot(normalVec.xyz, lightVec.xyz),0,0).y ) * IN.Diffuse; 
+  OUT.Color.a = IN.Diffuse.a;
+
+  return OUT;
+}
