@@ -294,7 +294,22 @@ i.e. below the resolution it measures to.
 \end{figure}
 
 The quality of a mesh deformation technique is ultimately subjective. A simple example is shown
-in figure \ref{fig:meshexample}.
+in figure \ref{fig:meshexample}. In this example there were eight key rotors labelled `000' to
+`111' in binary. The rotors were moved to positions within a rabbit model and appropriate
+weighting and offset-vectors were assigned using algorithm \ref{alg:meshpoint}. The `001' rotor,
+which was positioned within the rabbit's head, was then moved and the results are shown.
+The movement is smooth, natural and intuitive.
+
+\begin{figure}[p]
+\centering
+\includegraphics[height=0.37\textheight]{cube_before} \\
+\noindent (a) \\ \rule{0pt}{\parskip} \\
+\includegraphics[height=0.37\textheight]{cube_after} \\
+\noindent (b) 
+\caption{\label{fig:cubeexample}An example of mesh deformation acting on a unit cube.
+  (a) Initial key-rotors and automatically assigned mesh. 
+  (b) Deformed mesh after movement of key-rotors.} 
+\end{figure}
 
 \section{Cloth simulation}
 

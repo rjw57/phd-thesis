@@ -98,12 +98,8 @@
 \def\pagefooter@font{\itshape}
 
 \def\section@font{\fontfamily{mga}\selectfont\large}
-\def\subsection@font{\fontfamily{mga}\selectfont}
-%\def\subsubsection@font{\fontfamily{mga}\selectfont\em}
-
-%\def\section@font{\large\itshape\bfseries}
-%\def\subsection@font{\itshape\bfseries}
-\def\subsubsection@font{\itshape}
+\def\subsection@font{\fontfamily{mga}\selectfont\em\normalsize}
+\def\subsubsection@font{\normalfont\em\normalsize}
 
 \def\chapnum@font{\usefont{T1}{\chapnum@fontname}{b}{n}\fontsize{100}{130}\selectfont}
 \def\cph@font{\sf\bfseries\small}
@@ -143,6 +139,7 @@
   }%
 }%
 \sectionfont{\sect@format}
+
 \newcommand{\subsect@format}[1]{%
   \noindent\protect{%
     \@tempdima=\hsize
@@ -153,6 +150,7 @@
   }%
 }%
 \subsectionfont{\subsect@format}
+
 \newcommand{\subsubsect@format}[1]{%
   \noindent\protect{%
     \@tempdima=\hsize
