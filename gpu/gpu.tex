@@ -28,7 +28,7 @@ a typical GPU.
 
 In a traditional fixed-function GPU the CPU uploads, over the AGP
 bus, a set of vertices, texture maps and some state information. The
-state includes projection matrices, view matrices, clipping planes, 
+state includes projection and view matrices, clipping planes, 
 lighting models, etc. The vertex list and texture maps (if present) 
 are then stored in some on-card memory.
 
@@ -128,13 +128,17 @@ can all be re-structured to use alternate APIs.
 \section{Mesh deformation}
 
 In this section we shall give an example of a vertex shader that uses GA to
-perform mesh deformation.
+perform mesh deformation. The deformation scheme given is a simple application
+of Geometric Algebra to the problem but nicely shows the applicability of GA to a
+wide variety of problems.
 
-FIXME: Medium-length review of mesh deformation.
+FIXME: Medium-length review of mesh deformation. Not too long as this is an example
+rather than trying to say `this is the best way to do it' --- which of course it is.
 
 \subsection{Method}
 
-We shall now present a GA-based mesh deformation scheme. In this scheme we start with
+We shall now present a GA-based mesh deformation scheme suitable for
+implementation on a GPU. In this scheme we start with
 an existing mesh and set of key rotors, $\left\{ R_1, R_2, \cdots, R_k \right\}$,
 which we wish to use to deform the mesh. Our scheme seeks to find some automatic
 method of representing each point on the mesh as some function of the key
@@ -293,11 +297,12 @@ i.e. below the resolution it measures to.
   assigned mesh.}
 \end{figure}
 
-The quality of a mesh deformation technique is ultimately subjective. A simple example is shown
-in figure \ref{fig:meshexample}. In this example there were eight key rotors labelled `000' to
-`111' in binary. The rotors were moved to positions within a rabbit model and appropriate
-weighting and offset-vectors were assigned using algorithm \ref{alg:meshpoint}. The `001' rotor,
-which was positioned within the rabbit's head, was then moved and the results are shown.
+The quality of a mesh deformation technique is ultimately subjective. A simple
+example is shown in figure \ref{fig:meshexample}. In this example there were
+eight key rotors labelled `000' to `111' in binary. The rotors were moved to
+positions within a rabbit model and appropriate weighting and offset-vectors
+were assigned using algorithm \ref{alg:meshpoint}. The `001' rotor, which was
+positioned within the rabbit's head, was then moved and the results are shown.
 The movement is smooth, natural and intuitive.
 
 \begin{figure}[p]
@@ -311,7 +316,22 @@ The movement is smooth, natural and intuitive.
   (b) Deformed mesh after movement of key-rotors.} 
 \end{figure}
 
-\section{Cloth simulation}
+\begin{figure}[p]
+\centering
+\includegraphics[height=0.37\textheight]{twist_cube_before} \\
+\noindent (a) \\ \rule{0pt}{\parskip} \\
+\includegraphics[height=0.37\textheight]{twist_cube_after} \\
+\noindent (b) 
+\caption{\label{fig:twistcubeexample}An example of twist deformation acting on a unit cube.
+  (a) Initial key-rotors and automatically assigned mesh. 
+  (b) Twisted mesh after movement of key-rotors.} 
+\end{figure}
 
-In this section we shall give an example of a fragment shader which is used to
-perform a simple cloth simulation.
+Figure \ref{fig:cubeexample} shows the natural `plasticine-like' effect the deformation
+scheme has on a unit cube with key-rotors initially placed on it's corners. In addition to
+this figure \ref{fig:twistcubeexample} shows the effect of placing the key rotors along
+a central axis and applying opposite rotations at either end. Notice how the cube behaves as
+expected and does not collapse in the middle.
+
+\section{Dynamics}
+
