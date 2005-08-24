@@ -180,8 +180,8 @@ on its proximity to the mesh point. One might choose a relatively simple weight 
 w_i(d) = \frac{1}{d + \epsilon}
 \]
 where $\epsilon$ is a small value to avoid a singularity when the key-rotor and mesh
-intersect. If our implementation we wished to have key-rotors with varying degrees of influence.
-This was accomplished by using a Gaussian weight function,
+intersect. In our implementation we wished to have key-rotors with varying degrees of 
+influence. This was accomplished by using a Gaussian weight function,
 \[
 w_i(d) = \exp\left(-\frac{d^2}{\sigma_i^2}\right)
 \]
@@ -208,6 +208,8 @@ R'_i &=
 \exp\left(\frac{\sum^{k}_1 w_i(d_{k,i}) B'_i}{\sum^{k}_1 w_i(d_{k,i})}\right) \label{eqn:summation} \\
 P'_i &= R'_i p_i \tilde{R}'_i.
 \end{align}
+It is easy to show by direct substitution that for $R'_k = R_k$ this 
+reduces to $P'_i = P_i$ as would be expected.
 
 \subsection{GPU-based implementation}
 
@@ -332,6 +334,48 @@ scheme has on a unit cube with key-rotors initially placed on it's corners. In a
 this figure \ref{fig:twistcubeexample} shows the effect of placing the key rotors along
 a central axis and applying opposite rotations at either end. Notice how the cube behaves as
 expected and does not collapse in the middle.
+
+\subsection{Performance}
+
+\begin{table}[p]
+\centering
+\scalebox{0.8}{%
+\begin{tabular}{|c|c|c|c|}
+\hline                 
+Polygons & Hardware & Software & Ratio \\
+\hline                 
+\hline                 
+14,406 & 219.10 & 18.81 & 11.65:1\\
+20,886 & 160.80 & 12.50 & 12.86:1\\
+29,400 & 119.50 & 9.08 & 13.16:1\\       
+43,350 & 83.91 & 6.26 & 13.40:1\\
+60,000 & 62.13 & 4.65 & 13.36:1\\
+\hline                 
+\end{tabular}%
+\hspace{3ex}
+\begin{tabular}{|c|c|c|c|}
+\hline                 
+Polygons & Hardware & Software & Ratio \\
+\hline                 
+\hline                 
+93,750 & 20.42 & 2.89 & 7.07:1\\        
+135,000 & 14.20 & 2.07 & 6.86:1\\
+240,000 & 8.13 & 1.14 & 7.13:1\\         
+372,006 & 5.32 & 0.75 & 7.09:1\\         
+&&& \\
+\hline                 
+\end{tabular}
+}
+\caption{\label{tab:performance}The relative performance, in frames per
+second, between the SPU and pure-software mesh deformation implementations.}
+\end{table}
+
+\begin{figure}[p]
+\centering
+\includegraphics[width=0.9\textwidth]{performance}
+\caption{\label{fig:performance}A plot of the ratio between FPS using the
+GPU-based implementation and the pure-software implementation.}
+\end{figure}
 
 \section{Dynamics}
 
