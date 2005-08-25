@@ -8,46 +8,11 @@ in-between.}{Ayn Rand}
 
 \section{Interpolation via Generators}
 
-We have shown that any displacement of Euclidean geometry\footnote{Other
-  geometries may be considered with appropriate modification of the rotors
-          \cite{GA:CUEDTechRep}.} 
-may be mapped smoothly onto a linear sub-space of the bivectors. This
-immediately suggests applications to smooth interpolation of displacements.
-Consider a set of poses we wish to interpolate, $\{P_1, P_2, ..., P_n\}$ and a
-set of rotors which transform some origin pose to these target poses, $\{R_1,
-    R_2, ..., R_n\}$. We may map these rotors onto the set of bivectors
-    $\{\ell(R_1), \ell(R_2), ..., \ell(R_n)\}$ which are simply points in some
-    linear subspace. We may now choose any interpolation of these bivectors
-    which lies in this space and for any bivector on the interpolant,
-    $B'_\lambda$, we can compute a pose, $\exp(B'_\lambda)$.
-    In this chapter we shall use the term \emph{displacement rotor} to refer to
-a rotor which performs some rigid-body transform.
-
-\begin{figure}\centering
+\begin{figure}[t]
+\centering
 \includegraphics[width=0.5\columnwidth]{linearinterp}
 \caption{\label{fig:linearinterp}Rotors used to piece-wise linearly interpolate between key-rotors.}
 \end{figure}
-
-Another interpolation scheme is to have the poses defined by a set of chained rotors so that
-$\{P_1, P_2, ..., P_n\}$ is represented by 
-
-\[\{R_1, \Delta R_1R_1, \Delta R_2 R_2, ..., \Delta R_n R_n\}\]
-
-where $R_i = \Delta R_{i-1} R_{i-1}$ as in figure \ref{fig:linearinterp}. Using
-this scheme the interpolation between pose $R_i$ and $R_{i+1}$ involves forming
-the rotor $R_{i,\lambda} = \exp(B_{i,\lambda})R_{i-1}$ where $B_{i,\lambda} =
-\lambda \ell(\Delta R_{i-1})$ and $\lambda$ varies between $0$ and $1$ giving
-$R_{i,0} = R_{i-1}$ and $R_{i,1} = R_i$.
-
-We now investigate two interpolation schemes which interpolate through target
-poses, ensuring that each pose is passed through. This kind of interpolation is
-often required for key-frame animation techniques. The first form of
-interpolation is piece-wise linear interpolation of the relative rotors (the
-		latter case above). The second is direct quadratic
-interpolation of the bivectors representing the final poses (the former case).
-
-\section{Methods of Interpolation}
-
 
 We have shown that any displacement of Euclidean geometry
 %\footnote{Other geometries may be
@@ -62,11 +27,6 @@ which lies in this space and for any bivector on the interpolant, $B'_\lambda$, 
 a pose, $\exp(B'_\lambda)$. We believe this method is more elegant and conceptually simpler
 than many other approaches based on Lie-algebras \cite{LIE:Consistentmotion, LIE:Moak,
   LIE:ROT, LIE:Sphericalfun}.
-
-\begin{figure}[t]\centering
-\includegraphics[width=0.5\columnwidth]{linearinterp}
-\caption{\label{fig:linearinterp}Rotors used to piece-wise linearly interpolate between key-rotors.}
-\end{figure}
 
 Another interpolation scheme is to have the poses defined by a set of chained rotors so that
 $\{P_1, P_2, ..., P_n\}$ is represented by 
@@ -325,43 +285,43 @@ interpolant is just the rotation rotor $R_{\lambda \psi, P}$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\section{Applications}
-
-\begin{figure}[p]
-\centering
-\includegraphics[width=0.7\columnwidth]{distorted_cube}
-\caption{\label{fig:distorted_cube}%
-  A cube distorted via the linear interpolation of rotors specifying its
-  corner vertices.
-}
-\end{figure}
-
-\begin{figure}[p]
-\centering
-\includegraphics[width=0.7\columnwidth]{distorted_bunny}
-\caption{\label{fig:distorted_bunny}%
-  The Stanford Bunny\cite{bunny} distorted by the same rotors.
-}
-\end{figure}
-
-The method outlined is applicable to any problem which requires the smooth
-interpolation of pose. We have chosen to illustrate an application in
-mesh deformation. Smooth mesh deformation is often required in medical 
-imaging applications \cite{ACM:614422} or video coding \cite{ACM:704422}.
-Here we use it to deform a 3d mesh in a manner which has a visual effect
-similar to `grabbing' a corner of the mesh and `twisting' it into place.
-We do this by specifying a set of `key-rotors' which certain parts of the
-mesh must rotate and translate to co-incide with. Our implementation takes
-advantage of the hardware acceleration offered by the Graphics
-Processing Units (GPUs) available on today's consumer-level graphics 
-hardware. A full discussion of the method will appear elsewhere.
-
-We believe this method leads to images which are intuitively related to
-the rotors specifying the deformation. Furthermore, the method need not
-only be applied to meshes with simple geometry and can readily be applied to
-meshes with complex geometry without any tears or other artefacts appearing
-in the mesh. Figures \ref{fig:distorted_cube} and \ref{fig:distorted_bunny}
-illustrate the method in the case of a cube and a mesh with approximately
-36,000 vertices.
-
-
+%\section{Applications}
+%
+%\begin{figure}[p]
+%\centering
+%\includegraphics[width=0.7\columnwidth]{distorted_cube}
+%\caption{\label{fig:distorted_cube}%
+%  A cube distorted via the linear interpolation of rotors specifying its
+%  corner vertices.
+%}
+%\end{figure}
+%
+%\begin{figure}[p]
+%\centering
+%\includegraphics[width=0.7\columnwidth]{distorted_bunny}
+%\caption{\label{fig:distorted_bunny}%
+%  The Stanford Bunny\cite{bunny} distorted by the same rotors.
+%}
+%\end{figure}
+%
+%The method outlined is applicable to any problem which requires the smooth
+%interpolation of pose. We have chosen to illustrate an application in
+%mesh deformation. Smooth mesh deformation is often required in medical 
+%imaging applications \cite{ACM:614422} or video coding \cite{ACM:704422}.
+%Here we use it to deform a 3d mesh in a manner which has a visual effect
+%similar to `grabbing' a corner of the mesh and `twisting' it into place.
+%We do this by specifying a set of `key-rotors' which certain parts of the
+%mesh must rotate and translate to co-incide with. Our implementation takes
+%advantage of the hardware acceleration offered by the Graphics
+%Processing Units (GPUs) available on today's consumer-level graphics 
+%hardware. A full discussion of the method will appear elsewhere.
+%
+%We believe this method leads to images which are intuitively related to
+%the rotors specifying the deformation. Furthermore, the method need not
+%only be applied to meshes with simple geometry and can readily be applied to
+%meshes with complex geometry without any tears or other artefacts appearing
+%in the mesh. Figures \ref{fig:distorted_cube} and \ref{fig:distorted_bunny}
+%illustrate the method in the case of a cube and a mesh with approximately
+%36,000 vertices.
+%
+%
