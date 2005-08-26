@@ -10,7 +10,7 @@ In this chapter we will discuss some methods for visualising Euclidean objects
 in CGA as implemented by {\tt libcgadraw}, a companion library to {\tt libcga}.
 
 Many CGA visualisation solutions exist\cite{CLU}. The {\tt libcgadraw} library
-uses an approach similar to that of the CLUDraw library wereby the results of 
+uses an approach similar to that of the CLUDraw library were by the results of 
 a GA-based algorithm may be displayed directly on the screen.
 
 \section{Visualising Objects within the Algebra}
@@ -23,7 +23,7 @@ geometric primitives they represent.
 Point pairs are represented by the wedge product of the representations of the
 points. That is to say that the point pair $(a,b)$ is represented by $F(a) \wedge F(b)$.
 Using the method of projectors in section \ref{sec:projectors} the representations
-of $a$ and $b$ can be extracted and plotted as shown in aglorithm \ref{alg:pointpair}.
+of $a$ and $b$ can be extracted and plotted as shown in algorithm \ref{alg:pointpair}.
 
 \begin{fancyalg}
 \begin{algorithmic}[1]
@@ -50,7 +50,7 @@ from the origin while still being rendered. If the line is further from the
 origin than the radius of the sphere it will not intersect the sphere.
 
 This is in actual fact a desirable property since it allows for a 'horizon' to
-be set. Lines, being infinite in extent, have end points at inifnity which
+be set. Lines, being infinite in extent, have end points at infinity which
 cannot easily be expressed within OpenGL. Instead by setting the radius of the sphere
 to be sufficiently large we may approximate such lines sufficiently for rendering
 in many problems. The specific method is given in algorithm \ref{alg:line}.

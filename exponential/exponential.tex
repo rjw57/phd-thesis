@@ -75,7 +75,7 @@ $\alpha _{0}^{(1)}=\alpha _{0}^{(2)}=
 \alpha _{0}^{(3)}=\alpha _{0}^{(4)}=0$.
 \end{lemma}
 \begin{proof}
-Firstly note that the thm is trivially provable by direct 
+Firstly note that the theorem is trivially provable by direct 
 substitution for the cases $k=0$ and $k=1$. We thereafter seek a 
 proof by induction.
 
@@ -261,7 +261,7 @@ It is clearly a vector since multiplying $t_\parallel$ on the left by $P$ is jus
 of $P$.
 \end{proof}
 
-We have now developed the required thms and tools to discuss the
+We have now developed the required theories and tools to discuss the
 action of the rotor
 \[
 R = \exp\left(
@@ -453,7 +453,7 @@ and mesh deformation, as will be presented later, it is somewhat cumbersome
 to integrate into an existing graphical pipeline. Most graphics hardware and
 nearly all graphics APIs represent rigid-body transformations as $4 \times 4$ matrices.
 Specifically given the projective mapping from a three-dimensional vector $\mathbf{x}$ to
-its homogenous representation,
+its homogeneous representation,
 \[
 \mathbf{x} \mapsto \left[ \begin{array}{c}
 w \mathbf{x} \\ w
@@ -482,7 +482,7 @@ Here $\mathbf{R}$ is an orthonormal $3 \times 3$ rotation matrix and $\mathbf{t}
 translation vector.
 
 Due to the common nature of such a representation it would be advantageous
-to have some method of mapping between the coneniently linear space of generators
+to have some method of mapping between the conveniently linear space of generators
 to the decidedly non-linear space of these $4 \times 4$ matrices. In this section
 we shall develop such a method. Note that we shall only be working in three-dimensions due
 to the limitations of the matrix representation rather than the exponentiated
@@ -490,8 +490,8 @@ generator representation.
 
 Recall that we represent a rotor, $R$, as $R = \exp(B)$ where $B$ is a bivector
 The generator bivector, $B$, may itself be
-parameterised in terms of a spatial bivector $P$ normalised such that
-$P^2 = -1$, a scalar $\phi$ and a spactial vector $t$
+parametrised in terms of a spatial bivector $P$ normalised such that
+$P^2 = -1$, a scalar $\phi$ and a spacial vector $t$
 as in lemma \ref{lem:bk}.
 Letting $P = p_1 e_{12} + p_2 e_{23} + p_3 e{31}$ and
 $t = t_1 e_1 + t_2 e_2 + t_3 e_3$ we may represent $B$ via the
@@ -564,7 +564,7 @@ therefore we can find some $3\times4$ matrix $\mathcal{H}(\phi, P, t)$, such tha
 where $\mathbf{e}^T = \left[ e_1 \; e_2 \; e_3 \right]$.
 
 Comparing the action of $\mathcal{H}$ and the form of $\left[ \mathbf{v}(p) \; 1 \right]^T$
-to the discussion of $4\times4$ transformation matrixes above it is easy to
+to the discussion of $4\times4$ transformation matrices above it is easy to
 see that the mapping $p \mapsto h(\phi, P, t, p, 1)$ is equivalent to
 \[
 \left[
@@ -590,7 +590,7 @@ with
 \right].
 \]
 
-Mapping a given generator, parameterised in terms of $\phi, P$ and $t$ therefore
+Mapping a given generator, parametrised in terms of $\phi, P$ and $t$ therefore
 requires finding a closed form of $\mathcal{H}$ given $h(\cdot)$.
 
 \subsection{Finding $\mathcal{H}$ from a generator}
@@ -788,7 +788,7 @@ Clear by comparison of lemma \ref{lem:finalh} with definition \ref{def:m3}.
 
 In this section we develop a method to reconstruct a generator given only the
 transformation matrix. Note that this method can only reconstruct a generator
-up to a rotation of $2\pi$ due to difficencies in the matrix representation.
+up to a rotation of $2\pi$ due to deficiencies in the matrix representation.
 
 \begin{definition}
 Define the two sub matrices of $\mathcal{H}$,
@@ -827,7 +827,7 @@ and
 c^2 + s^2 = 1.
 \]
 There are four constraints in two unknowns and hence the system is over-constrained and
-so in practice one would use a linear-least-squares estimator.
+so in practise one would use a linear-least-squares estimator.
 \end{definition}
 
 \begin{fancyalg}
@@ -873,8 +873,8 @@ Finally, given $s$, $c$ and $k$, an estimate for
 $\phi$ can be made. This algorithm is outlines explicitly in algorithm 
 \ref{alg:reconstructGenerator}.
 
-In practice we might wish to use LU decomposition or similar rather
-than computing the matrix inverse if we deal with spaces with higer
+In practise we might wish to use LU decomposition or similar rather
+than computing the matrix inverse if we deal with spaces with higher
 dimensionality. Similarly one would calculate the inverse tangent in terms
 of $s$ and $c$ directly so as to ensure the result for the correct quadrant is
 returned.

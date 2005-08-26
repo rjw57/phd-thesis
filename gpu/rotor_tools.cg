@@ -1,0 +1,41 @@
+/* Cg interface for generator exponentiation and rotor operations */
+
+/* Rotors are represented as an array of two four-dimensional vectors to form
+ * an eight-dimensional vector which represents the following components of
+ * the rotor:
+ *
+ *   [ e_0, e_12, e_23, e_31, e_14, e_24, e_34, e_1234 ]
+ *
+ * where e = e_4 and \bar{e} = e_5. We need not represent the components with
+ * parts parallel to e_5 since we may trivially reconstruct them for
+ * rigid-body rotors.
+ */
+
+/* Generators are represented as na array of two three-dimensional vectors[1]
+ * to form a six-dimensional vector which represents the following components
+ * of the generator:
+ *
+ *   [ e_12, e_23, e_31, e_14, e_24, e_34 ]
+ * 
+ * where e = e_4 and \bar{e} = e_5. Again the components containing e_5 can be
+ * reconstructed.
+ *
+ * [1] When compiled for the GPU this may well be expanded out to two
+ * /four/-dimensional vectors but it is convenient to split the generator such
+ * in the implementation.
+ */
+
+/* Sets rotor[] to contain the exponentiation of generator[] */
+void exp_generator(in float3 generator[2], out float4 rotor[2]) {
+  ...
+}
+
+/* Returns the point the origin is mapped to by rotor[] */
+float3 apply_rotor_to_origin(in float4 rotor[2]) {
+  ...
+}
+
+/* Returns the point x is mapped to by rotor[] */
+float3 apply_rotor_to_point(in float4 rotor[2], in float3 x) {
+  ...
+}
