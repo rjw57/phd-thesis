@@ -122,7 +122,9 @@ The Mandelbrot set, $\mathbb{M}$, is defined as
 where $\magof{z} \equiv (zz^*)^\frac{1}{2}$.
 \end{definition}
 
-\begin{lemma} If $\magof{f^{(n)}(x)} \ge 2$
+\begin{lemma} 
+\label{lem:convergence}
+If $\magof{f^{(n)}(x)} \ge 2$
 for some $n$ and $x$ then $\magof{f^{(n)}(x)} \rightarrow \infty$ as $n
 \rightarrow \infty$.
 \begin{proof}Suppose 
@@ -152,14 +154,13 @@ implying $\magof{f^{(n)}(x)} \rightarrow \infty$ as $n
 \end{proof}
 \end{lemma}
 
-
-Hence we may determine if some point $x$ is \emph{not}
-as soon as if $\magof{f^{(n)}(x)} \ge 2$.  In practise one may have to wait an
-arbitrarily long time for this condition to be met and one will never obtain
-it if $x$ is within the set. We approximate the set by choosing some maximum
-number of iterations to wait before labelling $x$ as being within the set.
-Our algorithm for generating an image of the set is shown in algorithm
-\ref{alg:generate_mandelbrot}.
+Using lemma \ref{lem:convergence} we may determine if some point $x$ is
+\emph{not} in the set as soon as $\magof{f^{(n)}(x)} \ge 2$.  In practise one
+may have to wait an arbitrarily long time for this condition to be met and one
+will never obtain it if $x$ is within the set. We approximate the set by
+choosing some maximum number of iterations to wait before labelling $x$ as
+being within the set.  Our algorithm for generating an image of the set is
+shown in algorithm \ref{alg:generate_mandelbrot}.
 
 \begin{fancyalg}
 \begin{algorithmic}[1]
@@ -195,8 +196,8 @@ has a corresponding Julia set. The definition of the Julia set is somewhat
 similar to that of the Mandelbrot set.
 
 \begin{definition}[The Julia set]
-The Julia set associated
-with the complex number $c$, $\mathbb{J}_c$, is given by
+The Julia set, $\mathbb{J}_c$, associated
+with the complex number $c$ is given by
 \[
 \mathbb{J}_c = 
 \left\{z \in \mathbb{C}
@@ -221,7 +222,7 @@ expect, similar to that for the Mandelbrot set and is shown in algorithm
   \STATE $z := z^2 + c$
   \STATE $i := i+1$
 \ENDWHILE 
-\STATE set pixel $z$ to colour $i$
+\STATE set pixel $x$ to colour $i$
 \ENDFOR
 \end{algorithmic}
 \caption{
@@ -242,48 +243,49 @@ complex mapping $z \mapsto z^2$ in order to re-cast the fractals above in
 terms of geometric operations using GA. We will start by confining ourselves
 to the plane and then move into higher dimensions.
 
-We start by defining a mapping between the complex numbers, $\mathbb{C}$, and
+Firstly define a mapping between the complex numbers, $\mathbb{C}$, and
 the vector-space of the complex plane, $\mathbb{R}^2$. Letting $\{e_1, e_2\}$
 be some orthonormal basis for $\mathbb{R}^2$ we can form a natural one-to-one
-mapping between $z \in \mathbb{R}^2$ and $C(z) \in \mathbb{C}$:
+mapping between $r \in \mathbb{R}^2$ and $C(r) \in \mathbb{C}$:
 
 \begin{definition}
-Given some vector $z \in \mathbb{R}^2$, we can map one-to-one into the
+Given some vector $r \in \mathbb{R}^2$, we can map one-to-one into the
 complex plane by forming the complex number
 \[
-C(z) = (z \cdot e_1) + (z \cdot e_2)i.
+C(r) = (r \cdot e_1) + (r \cdot e_2)i.
 \]
 \end{definition}
 
 Here it is clear that $e_1$ corresponds to the real-axis and $e_2$ 
 corresponds to the imaginary axis of the complex plane.
-It is now trivial to show that
+By squaring we have
 \begin{align*}
-C^2(z) &= [(z \cdot e_1) + (z \cdot e_2)i]^2 \\
-       &= (z \cdot e_1)^2 - (z \cdot e_2)^2 + 2(z \cdot e_1)(z \cdot e_2)i
+[C(r)]^2 &= [(r \cdot e_1) + (r \cdot e_2)i]^2 \\
+       &= (r \cdot e_1)^2 - (r \cdot e_2)^2 + 2(r \cdot e_1)(r \cdot e_2)i.
 \end{align*}
-which is analogous to the usual method of squaring complex numbers.
+%which is analogous to the usual method of squaring complex numbers.
 
 \begin{lemma}
-Given some vector $z \in \mathbb{R}^2$ representing the complex number
-$C(z)$, the mapping $z \mapsto ze_1$ is equivalent to $C(z) \mapsto C^2(z)$.
+Given some vector $r \in \mathbb{R}^2$ representing the complex number
+$C(r)$, the mapping $r \mapsto re_1r$ is equivalent to $C(r) \mapsto [C(r)]^2$.
 \end{lemma}
 \begin{proof}
-Let $z = xe_1 + ye_2$. Therefore $C(z) = x + yi$. It is clear that
+Let $r = xe_1 + ye_2$. Therefore $C(r) = x + yi$. It is clear that
 \begin{align*}
-ze_1z &= (x^2 - y^2) e_1 + 2xye_2 \\
-\Rightarrow\;C(ze_1z) &= (x^2 - y^2) + 2xyi\\
-        &= C^2(z)
+re_1r &= (x^2 - y^2) e_1 + 2xye_2 \\
+\Rightarrow\;C(re_1r) &= (x^2 - y^2) + 2xyi\\
+        &= [C(r)]^2
 \end{align*}
 as required.
 \end{proof}
 
-To complete the extension one must also define a geometric equivalent of
-addition:
+%To complete the extension one must also define a geometric equivalent of
+%addition:
+Complex addition is identical to vector addition using this representation.
 \begin{lemma}
-Given vectors $z, c \in \mathbb{R}^2$ representing the complex numbers
-$C(z)$ and $C(c)$, the mapping $z \mapsto z + c$ is equivalent to 
-$C(z) \mapsto C(z) + C(z)$.
+Given vectors $r, c \in \mathbb{R}^2$ representing the complex numbers
+$C(r)$ and $C(c)$, the mapping $r \mapsto r + c$ is equivalent to 
+$C(r) \mapsto C(r) + C(c)$.
 \end{lemma}
 \begin{proof}
 Clear by direct substitution.
@@ -291,27 +293,29 @@ Clear by direct substitution.
 
 \section{Moving to Higher Dimensions}
 
-In this section we extend the mapping above to more than two spacial dimensions.
-This turns out to be remarkably easy since the mapping above is co-ordinate free;
-we simply removing the constraint that the vectors need be in $\mathbb{R}^2$.
+In this section we extend the mapping above to more than two spatial dimensions.
+This turns out to be remarkably easy since the mapping is co-ordinate free;
+we simply remove the constraint that the vectors need be in $\mathbb{R}^2$.
 
 \begin{definition}
-Given a vector $z$ and some unit basis vector $e_1$ the mapping
-$z \mapsto ze_1z$ is the geometric analogue of squaring a complex number.
+Given a vector $r$ and some unit basis vector $e_1$ the mapping
+$r \mapsto re_1r$ is the geometric analogue of squaring a complex number.
 \end{definition}
 
-\begin{definition}
-Given two vectors, $z$ and $c$, the geometric analogue of complex addition
-is $z \mapsto z + c$.
-\end{definition}
+Vector addition can once again be used in place of complex addition.
+
+%\begin{definition}
+%Given two vectors, $r$ and $c$, the geometric analogue of complex addition
+%is $r \mapsto r + c$.
+%\end{definition}
 
 We may now define generalised Mandelbrot and Julia sets based upon
 a new vector recurrence relation.
 
-\begin{definition}\label{def:gen_f(z)}
-The vector analogue of $f(z)$ is 
+\begin{definition}\label{def:gen_f(r)}
+The vector analogue of $f(r)$ is 
 \[
-f(z) = ze_1z + c
+f_v(r) = re_1r + c
 \]
 with initial values being defined by a particular fractal.
 \end{definition}
@@ -321,17 +325,18 @@ with initial values being defined by a particular fractal.
 We can now reformulate the definition of the Mandelbrot set in a co-ordinate
 free, dimension agnostic manner. Our new algorithm is shown in algorithm
 \ref{alg:generalised_mandelbrot} and we may define the generalised
-Mandelbrot set similarly to the Mandelbrot set.
+Mandelbrot set similarly to the Mandelbrot set. Referring back to lemma
+\ref{lem:convergence} we see that the argument we used to terminate the iteration
+when $\magof{f^{(n)}(x)} \ge 2$ still holds when we use $\magof{x} = \sqrt{x \cdot x}$.
 
 \begin{definition}[The generalised Mandelbrot set]
 The generalised Mandelbrot set, $\mathbb{M}_k$, in $\mathbb{R}^k$ 
     is defined as
 \[
 \mathbb{M}_k = 
-\left\{x \in \mathbb{R}^k 
-: \lim_{n \rightarrow \infty} z_v^2(n,x) < \infty \right\} 
+\left\{c \in \mathbb{R}^k 
+: \lim_{n \rightarrow \infty} f_v^{(n)}(0) < \infty \right\}.
 \]
-where $z(0,c) = 0$.
 \end{definition}
 
 \begin{fancyalg}
@@ -340,10 +345,10 @@ where $z(0,c) = 0$.
 \STATE $i_{\mathrm{max}} :=$ maximum number of iterations
 \STATE $e_1 :=$ a unit vector in some preferred direction
 \FORALL{$c \in {\mathcal I}$}
-\STATE $z := c$
+\STATE $r := c$
 \STATE $i := 0$
-\WHILE{$z^2 < 4$ and $i < i_{\mathrm{max}}$}
-  \STATE $z := ze_1z + c$
+\WHILE{$r^2 < 4$ and $i < i_{\mathrm{max}}$}
+  \STATE $r := re_1r + c$
   \STATE $i := i+1$
 \ENDWHILE 
 \STATE set pixel $c$ to colour $i$
@@ -365,9 +370,13 @@ where $z(0,c) = 0$.
           the 3 dimensional Mandelbrot set.}
 \end{figure}
 
-Since we are no longer restricted to the complex plane we may choose many ways
-to associate an image plane point $(x,y)$ with a corresponding constant
-vector $c$. In figure \ref{fig:3dmandel} vectors lying in three orthogonal
+FIXME: ... voxel stuff
+
+%Since we are no longer restricted to the complex plane we may choose many ways
+%to associate an image plane point $(x,y)$ with a corresponding constant
+%vector $c$. 
+
+In figure \ref{fig:3dmandel} vectors lying in three orthogonal
 planes were used to generate three images of the three-dimensional
 Mandelbrot set which are then displayed mapped onto the original planes. This
 gives a crude visualisation method. A better method used to generate pictures
@@ -392,9 +401,8 @@ which is associated with the vector $c \in \mathbb{R}^k$ is given by
 \[
 \mathbb{J}_{c,k} = 
 \left\{x \in \mathbb{R}^k
-: \lim_{n \rightarrow \infty} z_v^2(n,c) < \infty \right\} 
+: \lim_{n \rightarrow \infty} f_v^{(n)}(x) < \infty \right\}.
 \]
-where $z(0,c) = x$.
 \end{definition}
 
 \begin{fancyalg}
@@ -403,13 +411,13 @@ where $z(0,c) = x$.
 \REQUIRE{$c =$ constant vector}
 \STATE $i_{\mathrm{max}} :=$ maximum number of iterations
 \STATE $e_1 :=$ a unit vector in some preferred direction
-\FORALL{$z \in {\mathcal I}$}
+\FORALL{$r \in {\mathcal I}$}
 \STATE $i := 0$
-\WHILE{$z^2 < 4$ and $i < i_{\mathrm{max}}$}
-  \STATE $z := ze_1z + c$
+\WHILE{$r^2 < 4$ and $i < i_{\mathrm{max}}$}
+  \STATE $r := re_1r + c$
   \STATE $i := i+1$
 \ENDWHILE 
-\STATE set pixel $z$ to colour $i$
+\STATE set pixel $r$ to colour $i$
 \ENDFOR
 \end{algorithmic}
 \caption{
@@ -431,7 +439,7 @@ Figure \ref{fig:3djulia} was rendered using a crude form of voxel rendering. A
 number of 2-dimensional 'slices' were rendered at varying heights in the set. Each
 pixel was coloured or left transparent depending on whether it was within or without
 the set. Finally, each slice was rendered at an oblique angle. The resulting
-'stack' of slices gave an approximation to the true shape. Figure
+`stack' of slices gave an approximation to the true shape. Figure
 \ref{fig:voxel} illustrates this process.
 
 The voxel rendering was adequate to visualise the fractals and confirm the algorithm
@@ -457,46 +465,48 @@ FIXME: chat Ray tracing.
 
 \section{Moving to Hyperbolic Geometry}
 
-So far all our fractals have been generated using the Euclidean geometry of the complex plane
-or $n$-dimensional flat space. In this section we investigate extending our algorithm once
-more using the non-Euclidean tools given to us by conformal GA. We firstly need to re-define 
-our complex function in terms of the geometric operations.
+So far all our fractals have been generated using the Euclidean geometry of
+the complex plane or $n$-dimensional flat space. In this section we
+investigate extending our algorithm once more using the non-Euclidean tools
+given to us by conformal GA. We firstly need to re-define our complex function
+in terms of the geometric operations.
 
-Viewed using Euclidean geometry our function $f(z)$ firstly transforms the vector
-$z \mapsto ze_1z$ and then translates via the vector $c$. We know already how to translate
-using conformal GA so we turn our attention to the former operation.
+Viewed using Euclidean geometry our function $f(r)$ firstly reflects and
+scales the vector $r \mapsto re_1r$ and then translates via the vector $c$. We
+know already how to translate using conformal GA so we turn our attention to
+the former operation.
 
 Since we constructed our GA approach to be analogous to the complex number approach we
 may borrow the geometric interpretation from complex numbers. In this case the mapping 
-$z \mapsto z^2$ acts to rotate z by $\mathrm{arg}(z)$ and scale it by
-$\magof{z}$. We may therefore extend this interpretation into our GA solution as in
-figure \ref{fig:rotate}. We firstly work only in the $z \wedge e_1$ plane to allow
-our analogy with complex numbers to hold. If $\theta$ is the angle between $z$ and
+$r \mapsto r^2$ acts to rotate r by $\mathrm{arg}(r)$ and scale it by
+$\magof{r}$. We may therefore extend this interpretation into our GA solution as in
+figure \ref{fig:rotate}. We firstly work only in the $r \wedge e_1$ plane to allow
+our analogy with complex numbers to hold. If $\theta$ is the angle between $r$ and
 $e_1$, i.e.
 \[
-\theta = \cos^{-1}\left(\frac{z \cdot e_1}{\magof{z}}\right),
+\theta = \cos^{-1}\left(\frac{r \cdot e_1}{\magof{r}}\right),
 \] 
-then the mapping $z \mapsto ze_1z$ is initially a rotation in the plane $z \wedge e_1$
-by $\theta$ followed by a dilation by a factor of $(z^2)^\frac{1}{2}$ 
+then the mapping $r \mapsto re_1r$ is initially a rotation in the plane $r \wedge e_1$
+by $\theta$ followed by a dilation by a factor of $(r^2)^\frac{1}{2}$ 
 which may be expressed in terms of rotors and dilators using their geometric
 definitions above.
 
 \begin{definition}
-The conformal GA analogue of $z \mapsto ze_1z$ is given by
+The conformal GA analogue of $r \mapsto re_1r$ is given by
 \[
-F(ze_1z) = D_z R_z\,F(z)\,\tilde{R}_z \tilde{D}_z
+F(re_1r) = D_r R_r\,F(r)\,\tilde{R}_r \tilde{D}_r
 \]
 where
 \begin{eqnarray*}
-R_z & = & \cos \frac{\theta}{2} + P \sin \frac{\theta}{2},
+R_r & = & \cos \frac{\theta}{2} + P \sin \frac{\theta}{2},
     \quad
-P = \frac{(z \wedge e_1)}{\magof{z}}
+P = \frac{(r \wedge e_1)}{\magof{r}}
 \end{eqnarray*}
 and $\theta$ is defined above.
-The dilator $D_z$ acts to dilate about the origin by a factor of
-$\magof{z}$. In Euclidean geometry it is given by
+The dilator $D_r$ acts to dilate about the origin by a factor of
+$\magof{r}$. In Euclidean geometry it is given by
 \[
-D_z = \exp\left( \frac{-\log(\magof{z})}{2} e\bar{e} \right).
+D_r = \exp\left( \frac{-\log(\magof{r})}{2} e\bar{e} \right).
 \]
 \end{definition}
 
@@ -504,38 +514,38 @@ D_z = \exp\left( \frac{-\log(\magof{z})}{2} e\bar{e} \right).
 \centering
 \includegraphics[width=0.5\textwidth]{rotate}
 \caption{\label{fig:rotate}%
-  The geometrical interpretation of $z \mapsto ze_1z$ as a rotation followed by a dilation.
+  The geometrical interpretation of $r \mapsto re_1r$ as a rotation followed by a dilation.
 }
 \end{figure}
 
-The second part of $f(z)$ is a translation by $c$. A translator in non-Euclidean
+The second part of $f(r)$ is a translation by $c$. A translator in non-Euclidean
 geometries is only defined as translating the origin to a given point so we must be
 careful about the precise operations we perform. The GA analogue of the
-complex mapping $z \mapsto z + c$ is thus given by the following steps:
+complex mapping $r \mapsto r + c$ is thus given by the following steps:
 \begin{enumerate}
-\item Translate $z$ to the origin by applying the translator $\tau(-z)$;
+\item Translate $r$ to the origin by applying the translator $\tau(-r)$;
 \item Translate the origin to $c$ by applying the translator $\tau(c)$;
-\item `Undo' step 1 by applying the translator $\tau(z)$.
+\item `Undo' step 1 by applying the translator $\tau(r)$.
 \end{enumerate}
-where $\tau(z)$ is a function which will give the appropriate translator for our 
-chosen geometry. In Euclidean geometry $\tau(z) = 1 + \frac{nz}{2}$ and in
+where $\tau(r)$ is a function which will give the appropriate translator for our 
+chosen geometry. In Euclidean geometry $\tau(r) = 1 + \frac{nr}{2}$ and in
 non-Euclidean geometry
 \[
-\tau(z) = \frac{1}{\sqrt{\lambda^2 - z^2}}(\lambda + \bar{e}z)
+\tau(r) = \frac{1}{\sqrt{\lambda^2 - r^2}}(\lambda + \bar{e}r)
 \]
 with $\lambda$ being defined as in the discussion of non-Euclidean geometries above.
 
 A little thought will reveal that this is equivalent to translating $c$ by the translator
-$1 + \frac{nz}{2}$. We may therefore define our full conformal GA analogue of $f(z)$.
+$1 + \frac{nr}{2}$. We may therefore define our full conformal GA analogue of $f(r)$.
 
 \begin{definition}
-The conformal GA analogue of $f(z) = ze_1z + c$ is given by
+The conformal GA analogue of $f(r) = re_1r + c$ is given by
 \[
-f(z) = F^{-1}(T_z F(c) \tilde{T}_z)
+f(r) = F^{-1}(T_r F(c) \tilde{T}_r)
 \]
 where
 \[
-T_z = \tau(F^{-1}(D_z R_z\,F(z)\,\tilde{R}_z \tilde{D}_z))
+T_r = \tau(F^{-1}(D_r R_r\,F(r)\,\tilde{R}_r \tilde{D}_r))
 \]
 \end{definition}
 
@@ -552,8 +562,8 @@ T_z = \tau(F^{-1}(D_z R_z\,F(z)\,\tilde{R}_z \tilde{D}_z))
 \end{figure}
 
 Our algorithm for generating the generalised Mandelbrot and Julia sets is now identical
-except we substitute our new, geometric, definition of $f(z)$ and choose $\tau(z)$
-and the form of $D_z$ to reflect our chosen geometry. Usefully pure-rotation rotors remain
+except we substitute our new, geometric, definition of $f(r)$ and choose $\tau(r)$
+and the form of $D_r$ to reflect our chosen geometry. Usefully pure-rotation rotors remain
 the same in each geometry so no modification of them is necessary. Figure
 \ref{fig:noneuclidean_sets} shows a hyperbolic Mandelbrot and Julia set on the
 Poincar\'e disc generated with this method. 
@@ -566,7 +576,7 @@ step 7 for one performing the iteration outlined above.
 
 \subsection{The Hyperbolic Julia Set}
 
-A particular hyperbolic Julia set is shown in figures \ref{fig:julia_montage}b
+A particular hyperbolic Julia set is shown in figures \ref{fig:noneuclidean_sets}b
 and \ref{fig:julia_montage}.  Once again, it is generated using algorithm
 \ref{alg:generalised_julia} substituting step 6.
 
