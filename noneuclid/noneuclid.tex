@@ -5,8 +5,7 @@
 
 \chapter{Non-Euclidean Techniques}
 
-\section{Non-Euclidean Geometries}
-
+% \section{Non-Euclidean Geometries}
 
 Euclidean geometry, the geometry of the plane, is defined by \emph{Euclid's Postulates}:
 
@@ -24,11 +23,17 @@ Hyperbolic space is one of the simplest geometries that satisfy all but this
 last postulate.
 
 Ignoring the last postulate may, initially, seem a purely intellectual exercise
-although the last postulate has never been proved to e
+although the last postulate has never been proved to exist in real-space
+by experiment. Who is to say that parallel beams of light emitted from
+Earth won't eventually converge somewhere out by Andromeda? Indeed, the 
+`bending' effect upon light by large gravitational fields almost
+guarantee the convergence of some light beams.
 
 \subsection{Spherical Geometry}
-\subsection{Hyperbolic Geometry}
 
+FIXME: Spherical chat
+
+\subsection{Hyperbolic Geometry}
 
 Hyperbolic geometry is usually represented in two dimensions on the
 \emph{Poincar\'e disc}. Here the boundary circle of the disc represents
@@ -49,14 +54,15 @@ Taken from \cite{transhyp}.}
 \label{fig:circlelimit}
 \end{figure}
 
+% \subsection{Space-Time Algebra}
 
+\section{Extending the Conformal Model to cover Hyperbolic Geometry}
 
-\subsection{Space-Time Algebra}
-
-\section{Extending the Conformal Model}
-\subsection{Spherical Geometry}
-\subsection{Hyperbolic Geometry}
-
+%\subsection{Spherical Geometry}
+%
+%FIXME: spherical rotors
+%
+%\subsection{Hyperbolic Geometry}
 
 All rigid-body transformation (i.e.\ rotation and translation) rotors in 
 the Euclidean approach above leave $n$ invariant, i.e.\ 
@@ -180,16 +186,13 @@ F_e(x) = \frac{1}{\lambda^2 - x^2}(x^2 + 2\lambda x - \lambda^2\bar{n})
 \label{eqn:nonEuclidMapping}
 \end{equation}
 
-We can also show that the form of the translation rotor given in 
-\ref{eqn:nonEuclidTrans1} can be written as
+We can also show, by substituting the results in equation \ref{eqn:sinhcosh}, 
+that the form of the translation rotor given in 
+equation \ref{eqn:nonEuclidTrans1} can also be written as
 \begin{equation}
 T_x = \frac{1}{\sqrt{\lambda^2 - x^2}}(\lambda + \bar{e}x)
+\label{eqn:transrotor}
 \end{equation}
-
-By finding the metric as shown in Lasenby \emph{et al.} (2002) it can be shown
-that this gives rise to the Poincar\'e disc representation of non-Euclidean
-geometry (see Brannan \emph{et al.} \cite{GEOM:brannan} for a description of the 
-Poincar\'e disc).
 
 Some discussion of the relevance of $\lambda$ is worthwhile here. Notice that
 in order for the translator to remain real-valued, $x^2 \le \lambda^2$. 
@@ -203,7 +206,586 @@ Poincar\'e disc representation if $\lambda = 1$ and simple dilations of
 the Poincar\'e representation if $\lambda \ne 1$. To maintain compatibility
 with the Poincar\'e representation, we usually set $\lambda$ to be unity.
 
-\subsection{Space-Time Algebra}
+%
+The rotor in equation \ref{eqn:transrotor} is, by construction, the rotor 
+which takes us from
+the origin to position $x$. A difference from the
+Euclidean case is that now $T_x$ and $T_y$ do not commute
+for two different positions $x$ and $y$. This means that
+$T_{y-x}$ is {\em not\/} the rotor taking us from
+position $x$ to position $y$. However, this is not a
+problem, since we can always achieve this motion via
+going back through the origin, and forming
+%
+\begin{equation}
+T_{x \mapsto y} = T_y T_{-x}
+\end{equation}
+%
+Since composition of rotors always produces another
+rotor, this means that we have the same freedom as in the
+Euclidean case to prove a relation we are interested in,
+at some special position and orientation, and then use
+the covariant rotor structure to generalise the result to
+general positions and orientations. Spatial rotations are
+of course achieved as before with rotors of the form
+$R=\exp\left(\frac{\theta}{2}e_1 e_2\right)$.
+
+The final motion we should consider is the analogue of
+inversion. Unlike in the Euclidean case, inversion using
+reflection in $e$ is now a fully covariant operation.
+Specifically, if $R$ represents any combination of
+rotation and translation, and $A$ is some object in the
+space, we have
+%
+\begin{equation}
+eAe \mapsto Re\tilde{R}\, RA\tilde{R}\, Re\tilde{R} = e
+RA\tilde{R} e = R(eAe) \tilde{R}
+\end{equation}
+%
+The last equality means that transforming $A$ first and
+then reflecting is the same as reflecting and then
+transforming, which is what is required of a covariant
+operation. The availability of this reflection operation
+is very useful. The translation rotors discussed above
+clearly only allow us to move around within the interior
+of the disc $r<\lambda$. By reflection in $e$, as we
+shall see below, we are able to jump into a `dual world'
+outside the disc.
+
+Having achieved a representation function, and discussed
+the set of motions, we should examine this new space in
+relation to the Poincar\'e disc, which we have said it is
+equivalent to. The first thing is to examine the distance
+function, i.e. how we assign a non-Euclidean distance
+function between points in the space.
+
+If we consider a simple rotation,
+$\exp\left(\frac{\theta}{2}\hat{B}\right)$, where $\hat{B}$ is some unit
+spatial bivector, then we are used to the idea that
+$\theta$ is the correct measure of distance (here
+angular) to describe the transformation. Thus if we
+consider again the translation rotor in
+equation \ref{eqn:nonEuclidTrans1}, $T_x = \exp\left(\frac{f(r)}{2}\bar{e}\hat{r}\right)$,
+%
+%\begin{equation}
+%T_x = \cosh(f(r)/2) + \ebar \rhat \sinh(f(r)/2) =
+%\exp((f(r)/2) \ebar\rhat)
+%\end{equation}
+%
+%where $f(r) = \sinh^{-1}\left(\frac{2\lambda
+%r}{\lambda^2-r^2}\right)$,
+we would expect the correct distance
+measure to associate with it would be $f(r)$. This would be a
+viable option, except that for points close to the origin of the
+disc ($r\ll\lambda$) we would like ordinary Euclidean notions of
+distance to apply, at least approximately. Now $\ebar =
+(1/2)(n-\nb)$ and the $\nb$ part of this, when exponentiated and
+applied as in equation \ref{eqn:almost-X-rep}, has no effect to
+first order on the origin point $-\nb$, whereas the $n$ part does;
+e.g.
+%
+\begin{eqnarray}
+T_x(-\nb)\tilde{T}_x & \approx  & \left(1+
+\frac{f(r)}{2}\frac{(n-\nb)\rhat}{2}\right)(-\nb)\left(1-
+\frac{f(r)}{2}\frac{(n-\nb)\rhat}{2}\right)   \nn \\
+ & =  &
+\left(1+
+\frac{f(r)}{2}\frac{n\rhat}{2}\right)(-\nb)\left(1 -
+\frac{f(r)}{2}\frac{n\rhat}{2}\right)
+\end{eqnarray}
+%
+This means that, to first order near the origin, the
+$T_x$ rotor approximates in its actions the Euclidean
+translation rotor corresponding to distance $f(r)/2$
+rather than $f(r)$, i.e.
+%
+\begin{equation}
+T_x \approx 1 + \frac{f(r)}{2}\frac{n \rhat}{2}
+\end{equation}
+%
+For this reason, we take the non-Euclidean distance
+between a point and the origin to be given by $f(r)/2$
+rather than $f(r)$. Calling this non-Euclidean distance
+function $d(r)$, and using equation
+\ref{eqn:sinhcosh} along with the identity 
+\[\sinh\left(\frac{z}{2}\right) =
+\left[\frac{\cosh z - 1}{2}\right]^{\frac{1}{2}},\]
+gives
+%
+\begin{equation} \label{eqn:defines-dofr}
+d(r) =
+\sinh^{-1}\left(\frac{r}{\sqrt{\lambda^2-r^2}}\right)
+\end{equation}
+%
+We note this approximates to $r/\lambda$ for
+$r\ll\lambda$, i.e. we recover the Euclidean distance
+measured in units of $\lambda$.
+
+This function gives us the distance of a point from the
+origin, but what about the distance between two general
+points, neither of which is at the origin? One of the
+major advantages of the conformal approach to Euclidean
+geometry is that it gives us an inner product formula for
+computing the distance between any two points, and we
+would hope that the same would be possible here. This is
+indeed the case. Let $X$ be the null vector corresponding
+to the point $x=r\, \rhat$ using our representation,
+equation (\ref{eqn:nonEuclidMap1}). Then, since $n\dt\nb =
+2$, we can rewrite eqn~(\ref{eqn:defines-dofr}) as
+%
+\begin{equation} \label{eqn:dist-to-origin}
+d(r) = \sinh^{-1}\left(\sqrt{-\frac{1}{2} X \dt (-\nb) }
+\right)
+\end{equation}
+%
+Note, $X \dt (-\nb)$ is the inner product of $X$ with the
+null vector representing the origin. Two points in any
+general positions can be wound back using a common
+translation rotor so that one of them ends up at the
+origin. For example, let $T_y$ be the translation rotor
+that takes $Y$ back to the origin, then
+%
+\[ X' = T_y X \tilde{T}_y \qquad  Y' = T_y Y \tilde{T}_y
+= -\nb
+\]
+%
+so that $X'\dt Y' = (T_y X \tilde{T}_y)\dt T_y Y \tilde{T}_y =
+X\dt Y =  X'\dt (-\nb)$. Since we know that a function of $-\half
+X'\dt (-\nb)$ gives the distance between the two points from
+equation~(\ref{eqn:dist-to-origin}), we can now write this
+distance in terms of $X\dt Y$. Note that at no stage in the
+process is the inner product between the null vectors changed (the
+inner product is rotor invariant), and thus we have succeeded in
+defining a distance between general points in terms of inner
+products. If the general points are $x$ and $y$ with
+representatives $X$ and $Y$, the expression for the distance
+function is thus
+%
+\begin{equation}\label{eqn:general-dist-formula}
+d(x,y) = \sinh^{-1}\left(\sqrt{-\frac{1}{2} X \dt Y }
+\right)
+\end{equation}
+%
+which is a satisfyingly simple relationship. As in the
+Euclidean case, it is a monotonic function of $X\dt Y$.
+If we take the inner product of $X$ and $Y$ we obtain,
+using equation~\ref{eqn:nonEuclidMap1},
+%
+\begin{eqnarray}
+X\dt Y  & = &
+\frac{1}{(\lambda^2-x^2)(\lambda^2-y^2)}\left[-2\lambda^2x^2-2\lambda^2y^2+4\lambda^2xy\right] \nn \\
+  &  =  &
+  \frac{-2\lambda^2}{(\lambda^2-x^2)(\lambda^2-y^2)}(x-y)^2
+  \end{eqnarray}
+%
+Written in terms of the points themselves the distance
+between the points is therefore
+%
+\begin{equation}\label{eqn:general-dist-formula-points}
+d(x,y) = \sinh^{-1}\left(\lambda
+\sqrt{\frac{(x-y)^2}{(\lambda^2-x^2)(\lambda^2-y^2)} }
+\right)
+\end{equation}
+%
+
+Armed with this distance function, we can now investigate
+geodesics in the disc. These are the lines that are `straightest'
+in the geometry defined by the distance function (more precisely,
+the arc length along them is extremal.) We will not give the
+details, but show some numerically computed examples in
+Fig.~\ref{fig:hyper-geos}.
+%
+\begin{figure} \label{fig:hyper-geos}
+\centerline{\includegraphics[width=0.5\textwidth]{hyper_geos}}
+\caption{Geodesics emanating from a point in hyperbolic space.
+They all intersect the unit circle at right angles and each is in
+fact the arc of a circle. ($\lambda=1$ has been taken here.) }
+\end{figure}
+%
+In calculating these we have taken $\lambda=1$, so the disc is now
+the unit disc ordinarily considered in the Poicar\'e model. One
+finds that each geodesic is an arc of a circle, and that each of
+them asymptotically approaches the bounding unit circle at right
+angles. At this point we can start making contact with the
+description of the classical approach to the Poincar\'e disc given
+in \cite{GEOM:brannan}. The geodesics there are called {\em $d$-lines}.
+They are not justified in terms of being geodesics, but simply
+defined as being arcs of circles which cut the boundary at right
+angles. However a distance function is given in \cite{GEOM:brannan}, which
+in terms of distance to the origin is
+%
+\begin{equation}
+d(x,0) = \tanh^{-1}(|x|)
+\end{equation}
+%
+and therefore agrees with our identification of $d(r)=
+f(r)/2$, using equation (\ref{eqn:sinhcosh}), and
+taking $\lambda=1$.
+
+Thus far, apart from the formula for non-Euclidean
+distance in terms of $X \dt Y$, we have only mirrored
+what is already known. We now start to show the power of
+the conformal GA approach to this geometry, by showing
+how the operations and objects defined previously in
+conformal Euclidean geometry have immediate analogues
+here, representing a considerable unification, and saving
+of effort. It may also be worth noting here that the
+power of this approach extends immediately to 3
+dimensions. All the above formulation, and what we do
+next, transfers seamlessly to 3d, where the Poincar\'e
+disc becomes a ball. All the formulae are correct already
+for this transition. On the other hand, to provide a
+computational scheme which is somewhat akin to our rotor
+formulation, Brannan \emph{et al} \cite{GEOM:brannan} introduce complex coordinates
+to work in the Poincar\'e disc, and use Mobius
+transformations in place of the rotors. These are
+effective computationally in 2d, but of course the
+complex variable apparatus does not extend at all to 3d
+(unless one uses the GA approach!). Also of course, the
+conformal setup enabling points, lines, circles, spheres
+and planes to be integrated into one algebraic system
+does not exist in the complex variable approach, even in
+2d.
+
+\subsection{Geometric Objects in Hyperbolic Geometry}
+
+\subsubsection{Hyperbolic lines}
+
+Having dealt with distances between points, let us start with the
+next most fundamental objects --- lines. In Euclidean space we
+have seen that these are given by $L = n \wedge A \wedge B$, where $A$
+and $B$ are (the representatives of) any two points on the line.
+Rotor transformations are able to move lines around successfully
+because for either a rotation or translation, $R n \tilde{R} = n$.
+Thus when we perform $R L \tilde{R}$ we end up with $n \wedge (R A \tilde{R})
+\wedge (R B \tilde{R})$ which is a line through the transformed points.
+(Dilations also fit into this, since although they introduce a
+scale factor when acting on both $n$ and general points, this
+still produces the intended line up to a scale factor in the
+Euclidean case.)
+
+This discussion makes it clear what a line must be in the
+conformal approach to hyperbolic geometry. Instead of
+using $n$, we must use the invariant object $e$. Thus we
+define a hyperbolic line as
+%
+\begin{equation}\label{eqn:line-def}
+L = e \wedge A \wedge B
+\end{equation}
+%
+where $A$ and $B$ are the two points through which we
+wish it to pass. This construction will guarantee
+covariance of the definition of a line, for the same
+reasons as in the Euclidean case (namely here that $R e
+\tilde{R} = e$ for any allowable rotor $R$).
+
+The immediate, very important question, of course, is
+what precisely {\em is\/} the object we have constructed.
+Ideally it should correspond to the $d$-line geodesics we
+have just discussed. To determine whether a position $X$
+lies on this line, we need to solve $X\wedge L=0$. Let us
+take $x=x_1 e_1 + x_2 e_2$, $a=a_1 e_1 + a_2 e_2$ and
+$b=b_1 e_1 + b_2 e_2$. Then, taking $\lambda=1$ for
+convenience,  it is easy to show the resulting equation
+for $x$ is of the form
+%
+\begin{equation}\label{eqn:brannan-d-line}
+x_1^2+x_2^2-2 p x_1 -2 q x_2 +1 =0
+\end{equation}
+%
+where $p^2+q^2>1$. Specifically, one finds
+%
+\begin{align}
+p &= -\frac{1}{2}\,\frac {\left\{({a_1}^2+{a_2}^2
++1)\,b_2 - ({b_1}^2+{b_2}^2 +1)\,a_2\right\}}{ a_1\, b_2-
+a_2\, b_1} \nn \\
+%
+q &= -\frac{1}{2}\,{\frac {\left\{-({a_1}^2+{a_2}^2
++1)\,b_1 + ({b_1}^2+{b_2}^2 +1)\,a_1\right\}}{{ a_1}\,{
+b_2}-{ a_2}\,{ b_1}}} \nn
+%
+\end{align}
+%
+Equation (\ref{eqn:brannan-d-line}) is precisely the form
+of equation given for $d$-lines in \cite{GEOM:brannan} page 283 and shows that
+indeed our recipe in terms of wedging with $e$ has worked.
+
+We can combine the notions of lines and distance, by asking for
+the `hyperbolic midpoint' of the line segment joining two
+positions $a$ and $b$. This is that point lying on the $d$-line
+between $a$ and $b$ which is an equal hyperbolic distance from
+each. Brannan \emph{et al} deal with this on page 288\cite{GEOM:brannan}, but consider only
+the easiest case where the two points lie along a diameter of the
+unit disc.
+
+We know in the Euclidean case, that forming $A+B$ will give a
+non-null point consisting of a multiple of the null vector
+representing the desired midpoint, plus a multiple of the point at
+infinity $n$. We hypothesise that we will get the same behaviour
+here, but with $e$ playing the role of $n$. We can use two
+different methods to obtain these results. The second is faster
+than the first, but we outline both, since they both typify the
+techniques available for use, and serve as good illustrations of
+the power of the covariant method for hyperbolic geometry.
+
+Firstly, since we can move objects around at will, let us
+establish the result in the simplest case, where the two
+points are symmetrically disposed about the origin, e.g.
+let $a=\alpha e_1$ and $b=-\alpha e_1$. Clearly, by
+symmetry the hyperbolic midpoint must be the origin
+itself, so we write
+%
+\begin{equation} \label{eqn:mid-point-requirement}
+A+B = \beta (-\nb) + \delta e
+\end{equation}
+%
+where $\delta$ and $\beta$ are scalar multiples to be determined.
+Since $A+B = \frac{2}{\lambda^2 - \alpha^2}(\alpha^2 n - \lambda^2
+\nb)$ it is easy to see that we must have
+%
+\begin{equation}
+\delta = \frac{4\alpha^2}{\lambda^2-\alpha^2} \quad
+\text{and} \quad \beta =
+\frac{2(\alpha^2+\lambda^2)}{\lambda^2-\alpha^2}
+\end{equation}
+%
+Meanwhile, we note that
+%
+\begin{equation}
+A\dt B = -\frac{8 \alpha^2
+\lambda^2}{(\lambda^2-\alpha^2)^2}
+\end{equation}
+%
+and some straightforward manipulation then tells us that
+%
+\begin{equation} \label{eqn:delta-beta-results}
+\delta=\sqrt{4-2 A\dt B} -2 \quad \text{and} \quad \beta
+= \sqrt{4-2 A\dt B}
+\end{equation}
+%
+We have by this means actually solved the general
+problem! To see this, note that we can now rearrange
+equation (\ref{eqn:mid-point-requirement}) to get
+%
+\begin{equation}
+-\nb = \frac{1}{\sqrt{1-\frac{1}{2} A \dt B}} \left\{
+\frac{1}{2} (A+B) - e \left(\sqrt{1-\half A \dt
+B}-1\right) \right\}
+\end{equation}
+%
+Everything on the r.h.s. is covariant, and the separation between
+$A$ and $B$ was controlled by a variable which was kept general
+($\alpha$), so by employing translation and rotation rotors on the
+r.h.s. we can make $A$ and $B$ line up with any two desired
+points. Meanwhile the l.h.s. will keep track, and must still
+remain the midpoint. (To see this, note that its `dot' with the
+new points that $A$ and $B$ transform into, will remain constant
+during this process.) The $e$ term just remains invariant. For two
+completely general points $A$ and $B$ therefore, their
+hyperbolic midpoint is given by
+%
+\begin{equation} \label{eqn:mid-point-expr}
+X_{\rm mid} = \frac{1}{\sqrt{1-\frac{1}{2} A \dt B}}
+\left\{ \frac{1}{2} (A+B) - e \left(\sqrt{1-\half A \dt
+B}-1\right) \right\}
+\end{equation}
+%
+which is a fully covariant expression.
+
+The alternative method, which is quicker computationally, is as
+follows. Let us write equation (\ref{eqn:mid-point-requirement})
+again but this time with $X_{\rm mid}$ in place of $-\nb$ and with
+a general $A$ and $B$ in place from the beginning. So
+%
+\begin{equation}
+A+B = \beta \, X_{\rm mid} + \delta e
+\end{equation}
+%
+Rearranging, we have
+%
+\begin{equation}
+X_{\rm mid} = \frac{1}{\beta} (A+B-\delta e)
+\end{equation}
+%
+which shows that our assumption about the form of the
+midpoint is in fact valid. This is because dotting the
+r.h.s. with $A$ and $B$ in turn, we obtain
+%
+\begin{equation}
+X_{\rm mid} \dt A = X_{\rm mid} \dt B = \frac{1}{\beta}
+(A\dt B+\delta)
+\end{equation}
+%
+This means that $X_{\rm mid}$ is indeed equidistant, in a
+hyperbolic sense, from $A$ and $B$. Moreover,
+%
+\begin{equation}
+X_{\rm mid} \wedge (e \wedge A \wedge B) = 0
+\end{equation}
+%
+so it correctly lies on the $d$-line joining them.
+
+It just remains to fix $\delta$ and $\beta$ via requiring
+that $X_{\rm mid}$ is null and is correctly normalised.
+The null requirement gives
+%
+\begin{equation}
+2 A \dt B + 4 \delta + \delta^2 = 0
+\end{equation}
+%
+and requiring $X_{\rm mid} \dt e = -1$ yields
+%
+\begin{equation}
+\beta=\delta+2
+\end{equation}
+%
+Solving these yields (\ref{eqn:delta-beta-results}) as
+before, and we recover (\ref{eqn:mid-point-expr}).
+
+\subsubsection{Hyperbolic circles}
+
+A great deal of hyperbolic geometry is concerned with
+hyperbolic circles, i.e. the locus of points that are
+at a constant hyperbolic distance from a given centre.
+We can immediately hypothesise that such a circle,
+passing through the points $A$, $B$, $D$  should be given
+by the trivector.
+%
+\begin{equation}
+C = A \wedge B \wedge D
+\end{equation}
+%
+Thus the set of points $X$ which satisfy $X\wedge C=0$ can be found
+from the Euclidean case, since we have the same null points being
+wedged together here, up to scale, and this will not affect the
+outcome (e.g.\ in the Euclidean case we know that $X =
+\frac{1}{2\lambda^2}[x^2n + 2\lambda x - \lambda^2\nb]$ and in the
+hyperbolic case $X = \frac{1}{\lambda^2 - x^2}[x^2n + 2\lambda
+x - \lambda^2\nb]$). If the above hypothesis is true, we can
+immediately deduce the somewhat surprising, though in fact true,
+conclusion that hyperbolic circles are also Euclidean circles.
+It turns out that it is just their centres that are in general
+different.
+
+To establish that $C$ is a hyperbolic circle (as well as
+clearly a Euclidean one) we can take the special case of a circle
+centred at the origin. By symmetry, this must be both a Euclidean
+and hyperbolic circle. Let this have Euclidean radius $\rho$.
+If we recall our earlier work, then for the scaled version of the
+null point representative, the inner product between two points
+$A$ and $B$ is given by
+%
+\begin{equation}
+     A\dt B = -\frac{1}{2\lambda^2}(a-b)^2
+     \end{equation}
+%
+Then, since $X\dt B = -\frac{1}{2\lambda^2}(x-b)^2 =
+-\frac{1}{2\lambda^2}(\rho)^2$ for a circle centre $B$ and radius
+$\rho$, we have that
+%
+\begin{equation}
+  X\dt (B-\frac{1}{2\lambda^2}(\rho)^2n)=0
+\end{equation}
+%
+giving $C^*=B-\frac{1}{2\lambda^2}(\rho)^2n$, where $C$ is the
+trivector describing the circle. Thus if $B$ is the origin, so
+that $B = -\frac{1}{2}\nb$, the dual of $C$ is given by $C^* =
+-\frac{1}{2\lambda^2}\{\rho^2 n + \lambda^2\nb\}$. Now, since
+$n+\nb = 2e$ we can write $\rho^2 n + \lambda^2\nb$ as
+%
+\begin{equation} \label{eqn:dual-to-C}
+\rho^2 n + \lambda^2 \nb = 2 \rho^2 e + (\lambda^2 -
+\rho^2) \nb
+\end{equation}
+%
+We can normalise this to $C^2=(C^{*})^2=1$ via the scaling
+\[C^* \mapsto \alpha(\rho^2n + \lambda^2\bar{n})\quad\mbox{such that}
+\quad(C^{*})^2 = 1
+\]
+and hence $\alpha = \frac{1}{2\rho\lambda}$, thus
+\begin{equation}
+C^* = \frac{1}{2 \rho \lambda} \left(\rho^2 n + \lambda^2 
+\nb\right)
+		=
+\frac{1}{2\rho\lambda}[2\rho^2e + (\lambda^2 - \rho^2)\bar{n}].
+\end{equation}
+%
+This displays the dual to $C$ as a linear combination of
+the vector representing the origin, which is here the
+centre of the circle, and a multiple of $e$. This is the
+covariant form we require for generalisation. Note
+%
+%
+\begin{equation}
+X \dt (IC) = \frac{1}{2 \rho \lambda} \left\{ X \dt (2 \rho^2 e +
+(\lambda^2 - \rho^2) \nb) \right\} = \frac{1}{2 \rho \lambda}
+\left\{ -2\rho^2 -(\lambda^2-\rho^2) X \dt (-\nb) \right\}
+\end{equation}
+%
+shows us how $X$ maintaining a constant hyperbolic distance
+from the centre ($-\nb$) is guaranteed by $X \dt (IC)=0$, in which
+case we have
+%
+\begin{equation}
+X \dt (-\nb) = \frac{-2\rho^2}{(\lambda^2 - \rho^2)}
+\end{equation}
+%
+Let us act on $IC=I(A \wedge B \wedge D)$ with hyperbolic rotors,
+to move the 3 points around as we wish. These same rotors acting
+on the right hand side of (\ref{eqn:dual-to-C}) mean that we will
+continue to get the required behaviour of constant hyperbolic
+distance from the transformed centre, since the rotors will take
+the origin to the new centre of the circle, say $P$. Thus indeed,
+the wedge of 3 points generates a hyperbolic circle, and
+moreover the above enables us to extract its (hyperbolic)
+radius and centre from the dual object. Again we see that the
+r\^ole of the $n$ appearing in the Euclidean expressions is
+replaced by $e$ here. Specifically we find the following: the
+(normalised dual to the) hyperbolic circle with hyperbolic
+centre $P$, Euclidean radius $\rho$ and hyperbolic radius $d$,
+is given by
+%
+\begin{equation}\label{eqn:non-e-circle}
+IC = \frac{1}{2 \rho \lambda} \left( 2 \rho^2 e +
+(\rho^2-\lambda^2) P \right)
+\end{equation}
+%
+with $d= \sinh^{-1} (\rho/\sqrt{\lambda^2-\rho^2})$, from
+equation~\ref{eqn:general-dist-formula}.
+
+\subsubsection{Hyperbolic reflection}
+
+A very useful operation in hyperbolic geometry is the notion of
+hyperbolic reflection, as defined for example in \cite{GEOM:brannan}. 
+It is extremely easy to calculate the hyperbolic
+reflection of a point $X$ in the $d$-line $L$ in the GA approach.
+Assuming $L$ is normalised to satisfy $L^2=1$, we just form $LXL$,
+the standard form of reflecting one object in another. Since $L e
+L = e$ for any (normalised) line, we see that $X'=LXL$ is both
+null and satisfies $X' \dt e=-1$ thus qualifying it to represent a
+point. Moreover it is co-variantly constructed;
+under a rotor transformation it just rotates to $R X'
+\tilde{R}$ and thus must represent something physical. It is not
+hard to show that the point it represents is that found by moving
+along a $d$-line intersecting $L$ at right angles and passing
+through $X$, by an equal hyperbolic distance on the other side
+of the line as $X$ is on the original side. This is indeed the
+definition of reflection in this case.
+
+\subsection{Extension to Higher Dimensions and Other Geometries}
+
+All the above transfers seamlessly to 3 and higher dimensions, in
+most cases with no changes at all to the formulae. This is in
+contrast to e.g. the methods introduced in \cite{GEOM:brannan}, which
+rely on standard complex analysis and so only work in the 2d
+plane. Furthermore, we can extend all the above analysis to the
+case of \textit{spherical geometry} as well. This involves
+replacing the role of $e$ with that of $\bar{e}$, which changes
+some trigonometric functions and ranges of applicability, but
+otherwise most of the above discussion goes through unchanged.
+
+% \subsection{Space-Time Algebra}
+
 \section{Non-Euclidean Visualisation Methods}
 \subsection{NURBs}
 
@@ -453,4 +1035,5 @@ draw a little more than one hemisphere. Circular clipping paths in the
 parameter space are then used to form spherical caps.
 
 This method was used to draw the spherical caps in the implementation.
-\section{Guidelines for Generalising Euclidean Algorithms}
+
+% \section{Guidelines for Generalising Euclidean Algorithms}
