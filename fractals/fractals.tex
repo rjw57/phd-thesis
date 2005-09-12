@@ -122,15 +122,44 @@ The Mandelbrot set, $\mathbb{M}$, is defined as
 where $\magof{z} \equiv (zz^*)^\frac{1}{2}$.
 \end{definition}
 
-After a little work one may readily convince oneself that if $\magof{f^{(n)}(x)} \ge 2$
-for some $n$ and $x$ then $\magof{f^{(n)}(x)} \rightarrow \infty$ as $n \rightarrow \infty$.
-Hence we may determine if some point $x$ is \emph{not} as soon as if $\magof{f^{(n)}(x)} \ge 2$. 
-In practise one may have to wait an arbitrarily long time for this condition to be met
-and one will never obtain it if $x$ is within the set. We approximate the
-set by choosing some maximum number of iterations to wait before labelling
-$x$ as being within the set.
-Our algorithm for generating an image of the
-set is shown in algorithm \ref{alg:generate_mandelbrot}.
+\begin{lemma} If $\magof{f^{(n)}(x)} \ge 2$
+for some $n$ and $x$ then $\magof{f^{(n)}(x)} \rightarrow \infty$ as $n
+\rightarrow \infty$.
+\begin{proof}Suppose 
+$\magof{f^{(n)}(x)} > 2$ and $\magof{f^{(n)}(x)} > \magof{c}$. It is
+clear that
+\[
+\frac{\magof{f^{(n+1)}(x)}}{\magof{f^{(n)}(x)}} =
+\frac{\magof{f^{(n)}(x)^2 + c}}{\magof{f^{(n)}(x)}}
+\]
+and hence
+\[
+\frac{\magof{f^{(n+1)}(x)}}{\magof{f^{(n)}(x)}} \ge 
+\frac{\magof{f^{(n)}(x)}^2 - \magof{c}}{\magof{f^{(n)}(x)}} =
+\magof{f^{(n)}(x)} - \frac{\magof{c}}{\magof{f^{(n)}(x)}}.
+\]
+As $\magof{f^{(n)}(x)} > \magof{c}$ and $\magof{f^{(n)}(x)} > 2$ then
+\[
+\magof{f^{(n)}(x)} - \frac{\magof{c}}{\magof{f^{(n)}(x)}} >
+\magof{f^{(n)}(x)} - 1 > 1
+\]
+giving
+\[
+\frac{\magof{f^{(n+1)}(x)}}{\magof{f^{(n)}(x)}} \ge 1
+\]
+implying $\magof{f^{(n)}(x)} \rightarrow \infty$ as $n
+\rightarrow \infty$ as required.
+\end{proof}
+\end{lemma}
+
+
+Hence we may determine if some point $x$ is \emph{not}
+as soon as if $\magof{f^{(n)}(x)} \ge 2$.  In practise one may have to wait an
+arbitrarily long time for this condition to be met and one will never obtain
+it if $x$ is within the set. We approximate the set by choosing some maximum
+number of iterations to wait before labelling $x$ as being within the set.
+Our algorithm for generating an image of the set is shown in algorithm
+\ref{alg:generate_mandelbrot}.
 
 \begin{fancyalg}
 \begin{algorithmic}[1]
