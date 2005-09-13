@@ -5,9 +5,13 @@
 
 \chapter{Non-Euclidean Techniques}
 
-% \section{Non-Euclidean Geometries}
+In this chapter we will extend the conformal model to cover non-Euclidean
+geometries. Specifically we shall fully develop a description of hyperbolic
+geometry within the conformal model and show how a similar development may be
+performed for spherical geometry.
 
-Euclidean geometry, the geometry of the plane, is defined by \emph{Euclid's Postulates}:
+Euclidean geometry, the geometry of the plane, was first defined\cite{Heath56} by
+\emph{Euclid's Postulates}:
 
 \begin{enumerate}
 \item A straight line segment can be drawn joining any two points. 
@@ -18,33 +22,34 @@ Euclidean geometry, the geometry of the plane, is defined by \emph{Euclid's Post
 \end{enumerate} 
 
 This last postulate is equivalent to what is known as the \emph{parallel postulate}
-which loosely states that two parallel lines will never meet, even at infinity.
-Hyperbolic space is one of the simplest geometries that satisfy all but this
-last postulate.
+which, loosely, states that two parallel lines will never meet, even at infinity.
+In this chapter we shall explore hyperbolic geometry, one of the simplest
+geometries that satisfy all but this last postulate.
 
-Ignoring the last postulate may, initially, seem a purely intellectual exercise
-although the last postulate has never been proved to exist in real-space
-by experiment. Who is to say that parallel beams of light emitted from
-Earth won't eventually converge somewhere out by Andromeda? Indeed, the 
-`bending' effect upon light by large gravitational fields almost
-guarantee the convergence of some light beams.
+%Ignoring the last postulate may, initially, seem a purely intellectual exercise
+%although the last postulate has never been proved to exist in real-space
+%by experiment. Who is to say that parallel beams of light emitted from
+%Earth won't eventually converge somewhere out by Andromeda? Indeed, the 
+%`bending' effect upon light by large gravitational fields almost
+%guarantee the convergence of some light beams.
 
-\subsection{Spherical Geometry}
-
-FIXME: Spherical chat
+\section{Non-Euclidean Geometries}
 
 \subsection{Hyperbolic Geometry}
 
 Hyperbolic geometry is usually represented in two dimensions on the
-\emph{Poincar\'e disc}. Here the boundary circle of the disc represents
-the points at infinity. Everywhere outside the disc is inaccessible to
-the hyperbolic geometry. Straight lines, called $d$-lines by Brannan
-\emph{et al.} \cite{GEOM:brannan}, are represented by circular arcs which erupt 
-normal to the boundary circle. Perhaps the most famous example of this
-geometry is given in Escher's \emph{Circle Limit} series of wood
-prints (see figure \ref{fig:circlelimit}). In these, infinite tessellations
-of hyperbolic space are represented mapped to the Poincar\'e disc. They
-clearly show the circular nature of $d$-lines.
+\emph{Poincar\'e disc}. This is a unit disc centred on the origin
+upon which all space is mapped. A metric is defined within the
+disc\cite{GEOM:Brannan} along with a set of congruence transformations.
+The boundary circle of the disc represents the points at infinity. Everywhere
+outside the disc is inaccessible to the hyperbolic geometry. Straight lines,
+called $d$-lines\cite{GEOM:brannan}, are represented by circular arcs which
+erupt normal to the boundary circle. Perhaps one of the most famous example of this
+geometry is given in Escher's \emph{Circle Limit} series of wood prints, an example of
+which is re-created in figure \ref{fig:circlelimit}. In these prints infinite
+tessellations of hyperbolic space are represented mapped to the Poincar\'e
+disc and they show the circular nature of $d$-lines although Escher was
+unaware of the Poincar\'e disc model at the time the prints were made.
 
 \begin{figure} \centering
 \scalebox{0.6}{\includegraphics{circlelimit}}
@@ -56,13 +61,23 @@ Taken from \cite{transhyp}.}
 
 % \subsection{Space-Time Algebra}
 
-\section{Extending the Conformal Model to cover Hyperbolic Geometry}
+\subsection{Spherical Geometry}
+
+FIXME: Spherical chat
+
+\section{Extending the Conformal Model}
+
+In this section we shall extend the conformal model we have developed to
+represent Euclidean geometry to the hyperbolic geometry of the Poincar\'e
+disc and show how many results which are tedious to prove using existing
+metric-based derrivations become simple and, in some cases, obvious using the
+GA-based approach.
 
 %\subsection{Spherical Geometry}
 %
 %FIXME: spherical rotors
 %
-%\subsection{Hyperbolic Geometry}
+\subsection{Hyperbolic Geometry}
 
 All rigid-body transformation (i.e.\ rotation and translation) rotors in 
 the Euclidean approach above leave $n$ invariant, i.e.\ 
@@ -83,10 +98,8 @@ Applying them to $e$ via $R_{k\ell }e\tilde{R}_{k\ell } \equiv R_{k\ell }eR_{\el
 the bivector generators of the rotors which preserve $e$ are $\bar{e}e_1$, 
 $\bar{e}e_2$ and $e_1e_2$. The latter just correspond to rotations in the
 $e_1e_2$ plane and hence, the former two must be the generators of
-translations.
-
-Hence we can say that a rotor which translates the origin to the vector
-$x$ must be given by
+translations. We can say, therefore, that a rotor which translates the origin to the vector
+$x$ must be given by a multivector of the form
 \begin{equation}
 T_x = \exp\left(\frac{f(r)}{2}\bar{e}\hat{r}\right)
 \end{equation}
