@@ -471,15 +471,15 @@ teo dimensions.
 Having dealt with distances between points, let us start with the
 next most fundamental objects --- lines. In Euclidean space we
 have seen that these are given by $L = n \wedge A \wedge B$, where $A$
-and $B$ are (the representatives of) any two points on the line.
+and $B$ are the representatives of any two points on the line.
 Rotor transformations are able to move lines around successfully
 because for either a rotation or translation, $R n \tilde{R} = n$.
 Thus when we perform $R L \tilde{R}$ we end up with $n \wedge (R A \tilde{R})
 \wedge (R B \tilde{R})$ which is a line through the transformed points.
-(Dilations also fit into this, since although they introduce a
+Dilations also fit into this, since although they introduce a
 scale factor when acting on both $n$ and general points, this
 still produces the intended line up to a scale factor in the
-Euclidean case.)
+Euclidean case.
 
 This discussion makes it clear what a line must be in the
 conformal approach to hyperbolic geometry. Instead of
@@ -523,17 +523,18 @@ b_2}-{ a_2}\,{ b_1}}} \nn
 %
 \end{align}
 %
-Equation (\ref{eqn:brannan-d-line}) is precisely the form
-of equation given for $d$-lines in \cite{GEOM:Brannan} page 283 and shows that
+Equation \ref{eqn:brannan-d-line} is precisely the form
+of equation given for $d$-lines in Brannan \emph{et al}\cite{GEOM:Brannan} 
+page 283 and shows that
 indeed our recipe in terms of wedging with $e$ has worked.
 
 We can combine the notions of lines and distance, by asking for
 the `hyperbolic midpoint' of the line segment joining two
 positions $a$ and $b$. This is that point lying on the $d$-line
 between $a$ and $b$ which is an equal hyperbolic distance from
-each. Brannan \emph{et al} deal with this on page 288\cite{GEOM:Brannan}, but consider only
-the easiest case where the two points lie along a diameter of the
-unit disc.
+each. Brannan \emph{et al}\cite{GEOM:Brannan} deal with this on page 288, but
+consider only the easiest case where the two points lie along a diameter of
+the unit disc.
 
 We know in the Euclidean case, that forming $A+B$ will give a
 non-null point consisting of a multiple of the null vector
@@ -577,12 +578,14 @@ and some straightforward manipulation then tells us that
 %
 \begin{equation} \label{eqn:delta-beta-results}
 \delta=\sqrt{4-2 A\dt B} -2 \quad \text{and} \quad \beta
-= \sqrt{4-2 A\dt B}
+= \sqrt{4-2 A\dt B}.
 \end{equation}
 %
-We have by this means actually solved the general
-problem! To see this, note that we can now rearrange
-equation (\ref{eqn:mid-point-requirement}) to get
+%We have by this means actually solved the general
+%problem! To see this, note that we can now rearrange
+%equation (\ref{eqn:mid-point-requirement}) to get
+We may solve the more general problem by rearranging 
+equation \ref{eqn:mid-point-requirement} to get
 %
 \begin{equation}
 -\nb = \frac{1}{\sqrt{1-\frac{1}{2} A \dt B}} \left\{
@@ -590,14 +593,14 @@ equation (\ref{eqn:mid-point-requirement}) to get
 B}-1\right) \right\}
 \end{equation}
 %
-Everything on the r.h.s. is covariant, and the separation between
+Everything on the right hand side is covariant, and the separation between
 $A$ and $B$ was controlled by a variable which was kept general
 ($\alpha$), so by employing translation and rotation rotors on the
-r.h.s. we can make $A$ and $B$ line up with any two desired
-points. Meanwhile the l.h.s. will keep track, and must still
-remain the midpoint. (To see this, note that its `dot' with the
+right hand side we can make $A$ and $B$ line up with any two desired
+points. Meanwhile the left hand side will keep track, and must still
+remain the midpoint. To see this, note that its `dot' with the
 new points that $A$ and $B$ transform into, will remain constant
-during this process.) The $e$ term just remains invariant. For two
+during this process. The $e$ term just remains invariant. For two
 completely general points $A$ and $B$ therefore, their
 hyperbolic midpoint is given by
 %
@@ -609,8 +612,8 @@ B}-1\right) \right\}
 %
 which is a fully covariant expression.
 
-The alternative method, which is quicker computationally, is as
-follows. Let us write equation (\ref{eqn:mid-point-requirement})
+The alternative method, which is easier computationally, is as
+follows. Let us write equation \ref{eqn:mid-point-requirement}
 again but this time with $X_{\rm mid}$ in place of $-\nb$ and with
 a general $A$ and $B$ in place from the beginning. So
 %
@@ -626,7 +629,7 @@ X_{\rm mid} = \frac{1}{\beta} (A+B-\delta e)
 %
 which shows that our assumption about the form of the
 midpoint is in fact valid. This is because dotting the
-r.h.s. with $A$ and $B$ in turn, we obtain
+right hand side with $A$ and $B$ in turn, we obtain
 %
 \begin{equation}
 X_{\rm mid} \dt A = X_{\rm mid} \dt B = \frac{1}{\beta}
@@ -656,8 +659,8 @@ and requiring $X_{\rm mid} \dt e = -1$ yields
 \beta=\delta+2
 \end{equation}
 %
-Solving these yields (\ref{eqn:delta-beta-results}) as
-before, and we recover (\ref{eqn:mid-point-expr}).
+Solving these yields equation \ref{eqn:delta-beta-results} as
+before, and we recover equation \ref{eqn:mid-point-expr}.
 
 \subsubsection{Hyperbolic circles}
 
@@ -672,20 +675,21 @@ by the trivector.
 C = A \wedge B \wedge D
 \end{equation}
 %
-Thus the set of points $X$ which satisfy $X\wedge C=0$ can be found
-from the Euclidean case, since we have the same null points being
-wedged together here, up to scale, and this will not affect the
-outcome (e.g.\ in the Euclidean case we know that $X =
+The set of points $X$ which satisfy $X\wedge C=0$ can be found
+in a similar manner to the Euclidean case since the null-vector
+representation is the same up to a scale factor; 
+i.e.\ in the Euclidean case we know that $X =
 \frac{1}{2\lambda^2}[x^2n + 2\lambda x - \lambda^2\nb]$ and in the
 hyperbolic case $X = \frac{1}{\lambda^2 - x^2}[x^2n + 2\lambda
-x - \lambda^2\nb]$). If the above hypothesis is true, we can
+x - \lambda^2\nb]$.
+If the above hypothesis is true, we can
 immediately deduce the somewhat surprising, though in fact true,
 conclusion that hyperbolic circles are also Euclidean circles.
 It turns out that it is just their centres that are in general
 different.
 
-To establish that $C$ is a hyperbolic circle (as well as
-clearly a Euclidean one) we can take the special case of a circle
+To establish that $C$ is a hyperbolic circle, as well as
+clearly a Euclidean one, we can take the special case of a circle
 centred at the origin. By symmetry, this must be both a Euclidean
 and hyperbolic circle. Let this have Euclidean radius $\rho$.
 If we recall our earlier work, then for the scaled version of the
@@ -744,12 +748,12 @@ from the centre ($-\nb$) is guaranteed by $X \dt (IC)=0$, in which
 case we have
 %
 \begin{equation}
-X \dt (-\nb) = \frac{-2\rho^2}{(\lambda^2 - \rho^2)}
+X \dt (-\nb) = \frac{-2\rho^2}{(\lambda^2 - \rho^2)}.
 \end{equation}
 %
 Let us act on $IC=I(A \wedge B \wedge D)$ with hyperbolic rotors,
 to move the 3 points around as we wish. These same rotors acting
-on the right hand side of (\ref{eqn:dual-to-C}) mean that we will
+on the right hand side of equation \ref{eqn:dual-to-C} mean that we will
 continue to get the required behaviour of constant hyperbolic
 distance from the transformed centre, since the rotors will take
 the origin to the new centre of the circle, say $P$. Thus indeed,
@@ -773,12 +777,12 @@ equation~\ref{eqn:general-dist-formula}.
 \subsubsection{Hyperbolic reflection}
 
 A very useful operation in hyperbolic geometry is the notion of
-hyperbolic reflection, as defined for example in \cite{GEOM:Brannan}. 
+hyperbolic reflection as defined, for example, in \cite{GEOM:Brannan}. 
 It is extremely easy to calculate the hyperbolic
 reflection of a point $X$ in the $d$-line $L$ in the GA approach.
 Assuming $L$ is normalised to satisfy $L^2=1$, we just form $LXL$,
 the standard form of reflecting one object in another. Since $L e
-L = e$ for any (normalised) line, we see that $X'=LXL$ is both
+L = e$ for any normalised line, we see that $X'=LXL$ is both
 null and satisfies $X' \dt e=-1$ thus qualifying it to represent a
 point. Moreover it is co-variantly constructed;
 under a rotor transformation it just rotates to $R X'
@@ -791,8 +795,8 @@ definition of reflection in this case.
 
 \subsection{Extension to Higher Dimensions and Other Geometries}
 
-All the above transfers seamlessly to 3 and higher dimensions, in
-most cases with no changes at all to the formulae. This is in
+All the above transfers seamlessly to three and higher dimensions, in
+most cases with no changes at all to the formul\ae. This is in
 contrast to e.g. the methods introduced in \cite{GEOM:Brannan}, which
 rely on standard complex analysis and so only work in the 2d
 plane. Furthermore, we can extend all the above analysis to the
@@ -817,8 +821,7 @@ hyperbolic geometry.
 The $d$-lines on the Poincar\'e disc are circular arcs (and straight lines
 for the special cases of lines through the origin). OpenGL, the graphics
 library used for the implementation, has native support for a class
-of curves called \emph{NURBS} (Non-uniform Rational B-Splines) 
-\cite{mecg}. 
+of curves called Non-uniform Rational B-Splines (NURBS)\cite{mecg}. 
 
 %It is
 %not the r\^ole of this report to provide a complete tutorial on NURBS,
@@ -861,7 +864,7 @@ useful in Computer Graphics. A NURBS curve \emph{always} stays inside the
 convex hull of its control points \cite{rogers} and thus is is very easy
 to compute whether the curve will be displayed at all. Further they
 are tangential to the piece-wise linear interpolation of control
-points and the end-points, see figure \ref{fig:samplenurb}.
+points at the end-points as illustrated in figure \ref{fig:samplenurb}.
 
 \begin{figure} \centering
 \scalebox{0.9}{\includegraphics{samplenurb}}
@@ -880,13 +883,13 @@ with end-points on the boundary circle and erupting normal to it.
 A large number of different curves can be created with different control 
 point numbers, positions and weights. Fortunately there are a number of
 standard techniques to generate common curves. One such method of
-drawing arcs is useful to us. We use three control
+drawing circular arcs\cite{NURBS:arc} is useful to us. We use three control
 points; one at the start of the circular arc, one at the origin of the
 boundary circle and one
 at its end, see figure \ref{fig:nurbs}. 
 The end-point weights are unity whereas the weight of the control
 point at the origin is $\cos \gamma$ where $\gamma$ is the angle
-$OA$ makes with $AB$\footnote{See http://www.ddt.pwp.blueyonder.co.uk/evgeny/Intro/NURBS.htm for a demonstration of this.}. 
+$OA$ makes with $AB$.
 
 \begin{figure} \centering
 \scalebox{0.7}{\includegraphics{nurbs}}
@@ -922,7 +925,7 @@ bivector $A \wedge B$ as with circle/sphere intersections and the like.
 We have already shown that this bivector can be factorised into $A$ and 
 $B$ via the method of projectors.
 We finally need to calculate the angle $\gamma$ which is a trivial
-exercise in trigonometric geometry. 
+exercise in trigonometry.
 
 Figure
 \ref{fig:hyp1} shows the rendering of $d$-lines in action.
@@ -942,9 +945,9 @@ operation could be repeated to tile the space.
 
 
 Drawing $d$-lines is interesting in itself but is an already solved 
-problem many-times over. What is interesting is the generality the CGA
+problem many-times over. What is interesting is the generality the GA
 approach provides. Recalling our discussion of the development of
-hyperbolic geometry in CGA, at no point did we ever assume only 
+hyperbolic geometry in GA, at no point did we ever assume only 
 two-dimensions. We now have the intriguing opportunity to investigate
 visualisation algorithms in three-dimensions.
 
@@ -985,7 +988,7 @@ re-write equation \ref{eqn:plane} as
 %%     & = & \left[\prod_{i = 1...4} s(x_i)\right] \Sigma
 \end{eqnarray}
 
-Now $\Phi$ is defined as the product of some scalar function, $S(...)$
+We have expressed $\Phi$ as the product of some scalar function, $S(...)$
 of the defining points and the \emph{Euclidean} definition of a sphere. This
 allows us to infer that, within the Poincar\'e sphere, a $d$-plane passing
 through points $\{x_1, ..., x_4\}$ is represented by a sphere passing
@@ -1004,7 +1007,7 @@ This neatly shows the analytical simplicity that this approach provides.
 Figure \ref{fig:dplane} shows the
 relation between $d$-planes and the corresponding Euclidean sphere.
 
-%This nicely illustrates the analytical power that CGA provides us
+%This nicely illustrates the analytical power that GA provides us
 %with. We have managed to obtain the form of a $d$-plane without
 %resorting to complex extreemality calculations and, interestingly,
 %without ever explicitly finding the metric. This suggests a powerful
@@ -1022,7 +1025,7 @@ cap corresponding to the $d$-plane.
 
 The spherical cap forming the $d$-plane can be thought of as the
 intersection of the half-space containing the origin and bounded
-by the plane of intersection (see figure \ref{fig:sphereplane}).
+by the plane of intersection.
 The circle of intersection is important since we wish to extract
 this \emph{plane} of intersection efficiently. This is trivial
 if we note that the circle is equivalent to the wedge-product of three
@@ -1036,21 +1039,19 @@ P = k (\Phi \vee B) \wedge n
 where $B$ is the Euclidean representation of the boundary sphere
 and $k$ is some scale factor.
 
-\begin{figure} \centering
-\scalebox{0.3}{\includegraphics{sphereplane}}
-\caption{$d$-plane spherical cap is intersection of associated sphere and half-space
-to right of plane $P$.}
-\label{fig:sphereplane}
-\end{figure}
+%\begin{figure} \centering
+%\scalebox{0.3}{\includegraphics{sphereplane}}
+%\caption{$d$-plane spherical cap is intersection of associated sphere and half-space
+%to right of plane $P$.}
+%\label{fig:sphereplane}
+%\end{figure}
 
 Bajaj \emph{et al.} \cite{spherecap} provide a method of finding
 a suitable set of control points and NURBS parameter space clipping
 curve to draw spherical caps from sphere/half-space intersections.
-
 Their approach gives a set of control points and weights that together
 draw a little more than one hemisphere. Circular clipping paths in the 
 parameter space are then used to form spherical caps.
-
 This method was used to draw the spherical caps in the implementation.
 
 % \section{Guidelines for Generalising Euclidean Algorithms}
