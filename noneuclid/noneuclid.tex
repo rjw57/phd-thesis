@@ -43,7 +43,7 @@ upon which all space is mapped. A metric is defined within the
 disc\cite{GEOM:Brannan} along with a set of congruence transformations.
 The boundary circle of the disc represents the points at infinity. Everywhere
 outside the disc is inaccessible to the hyperbolic geometry. Straight lines,
-called $d$-lines\cite{GEOM:brannan}, are represented by circular arcs which
+called $d$-lines\cite{GEOM:Brannan}, are represented by circular arcs which
 erupt normal to the boundary circle. Perhaps one of the most famous example of this
 geometry is given in Escher's \emph{Circle Limit} series of wood prints, an example of
 which is re-created in figure \ref{fig:circlelimit}. In these prints infinite
@@ -83,11 +83,11 @@ All rigid-body transformation (i.e.\ rotation and translation) rotors in
 the Euclidean approach above leave $n$ invariant, i.e.\ 
 $Rn\tilde{R} = n$ for all rotors $R$. They also leave $\bar{n}$ invariant. We have
 already identified $n$ and $\bar{n}$ with the points at infinity and the origin 
-respectively. The question arises: `What if we restrict rotors to keep other
-vectors invariant?'. Since a geometry is defined by its congruence transformations,
-changing those transformations will therefore reflect a different geometry.
+respectively. We shall now show that, since a geometry may be defined by its 
+congruence transformations, changing which vectors are left invariant by rotors
+will reflect a different geometry.
 
-Instead we choose to restrict the rotors such that they keep $e$
+Suppose we choose to restrict the rotors such that they keep $e$
 invariant. Without loss of generality, we deal with a conformal extension of
 $\mathbb{R}^2$ and write down a set of four basis vectors
 \begin{equation}
@@ -112,13 +112,14 @@ T_x = \cosh\left(\frac{f(r)}{2}\right) + \bar{e}\hat{r}\sinh\left(\frac{f(r)}{2}
 \label{eqn:nonEuclidTrans1}
 \end{equation}
 
-The choice of the origin is only restricted in that it must differ from the 
-point at infinity and must not contain components of $e_1$ or $e_2$ (to retain
-isotropy). Either $n$ or $\bar{n}$ is a suitable choice but we choose
-a multiple of $\bar{n}$
-to retain compatibility with the Euclidean case.
+We now consider how to represent the origin. Our choice is restricted in 
+that the origin must differ from the 
+point at infinity and, to retain isotropy, must not contain components
+parallel to $e_1$ or $e_2$.  Either $n$ or $\bar{n}$ would be a suitable
+choice to investigate but we choose a multiple of $\bar{n}$ to retain
+compatibility with the Euclidean case.
 
-Again, as with the Euclidean case, we wish to impose a normalisation condition 
+As with the Euclidean case we wish to impose a normalisation condition 
 on the null-vectors, 
 $X = F_e(x)$, such that 
 \begin{equation}
@@ -139,9 +140,10 @@ F_e(x) & = & T_x\,(-\bar{n})\,\tilde{T}_x \\
 then letting $C = \cosh(f(r))$ and $S = \sinh(f(r))$ giving $c^2 = (C+1) / 2$,
 $s^2 = (C-1)/2$, $sc = S/2$ and hence
 \begin{eqnarray}
-F_e(x) & = & \frac{1}{2}n (C-1) - \frac{1}{2}\bar{n}(C+1) + S\hat{r} \\
+F_e(x) & = & \frac{1}{2}n (C-1) - \frac{1}{2}\bar{n}(C+1) + S\hat{r} \nonumber \\
 & = & \frac{1}{2} \left[ \, (C-1)n + 2S\hat{r} - (C+1)\bar{n} \, \right] 
 % & = & \frac{1}{2} \left[ \, (\cosh(f(r))-1)n + 2\sinh(f(r))\hat{r} - (\cosh(f(r))+1)\bar{n} \, \right] 
+\label{eqn:almost-X-rep} 
 \end{eqnarray}
 As required $(F_e(x))^2 = 0$ and $F_e(x) \cdot e = -1$.
 
@@ -189,7 +191,8 @@ and hence we can form the following expressions for
 $\sinh(f(r))$ and $\cosh(f(r))$
 \begin{equation}
 \sinh(f(r)) = \frac{2\lambda r}{\lambda^2 - r^2} \quad \mbox{ and } \quad
-\cosh(f(r)) = \frac{2\lambda^2}{\lambda^2 - r^2} - 1
+\cosh(f(r)) = \frac{2\lambda^2}{\lambda^2 - r^2} - 1.
+\label{eqn:sinhcosh}
 \end{equation}
 
 Inserting these into equation \ref{eqn:nonEuclidMap1} gives the final form
@@ -210,16 +213,16 @@ T_x = \frac{1}{\sqrt{\lambda^2 - x^2}}(\lambda + \bar{e}x)
 Some discussion of the relevance of $\lambda$ is worthwhile here. Notice that
 in order for the translator to remain real-valued, $x^2 \le \lambda^2$. 
 We can never therefore translate the origin outside of a circle radius
-$\lambda$ centred upon it. The value of $\lambda$ effectively defines
-a region of inaccessible space from the origin, effectively a boundary to
-the geometry.
+$\lambda$ centred upon it. The value of $\lambda$ gives the distance to
+the boundary of a region of inaccessible space from the origin. It is
+in effect a circular boundary to the geometry. This circle corresponds
+directly to the unit-circle boundary in the Poincar\'e disc representation if
+$\lambda = 1$ and simple dilations of the Poincar\'e representation if
+$\lambda \ne 1$. To maintain compatibility with the Poincar\'e representation,
+we usually set $\lambda$ to be unity.
 
-This circle corresponds directly to the unit-circle boundary in the
-Poincar\'e disc representation if $\lambda = 1$ and simple dilations of
-the Poincar\'e representation if $\lambda \ne 1$. To maintain compatibility
-with the Poincar\'e representation, we usually set $\lambda$ to be unity.
+FIXME: expand this paragraph 
 
-%
 The rotor in equation \ref{eqn:transrotor} is, by construction, the rotor 
 which takes us from
 the origin to position $x$. A difference from the
@@ -239,7 +242,7 @@ rotor, this means that we have the same freedom as in the
 Euclidean case to prove a relation we are interested in,
 at some special position and orientation, and then use
 the covariant rotor structure to generalise the result to
-general positions and orientations. Spatial rotations are
+general positions and orientations. Spatial rotations about the origin are
 of course achieved as before with rotors of the form
 $R=\exp\left(\frac{\theta}{2}e_1 e_2\right)$.
 
@@ -267,8 +270,9 @@ outside the disc.
 
 Having achieved a representation function, and discussed
 the set of motions, we should examine this new space in
-relation to the Poincar\'e disc, which we have said it is
-equivalent to. The first thing is to examine the distance
+relation to the Poincar\'e disc, which we have claimed it is
+equivalent to with a view to justifying this claim.
+To do this we shall examine the distance
 function, i.e. how we assign a non-Euclidean distance
 function between points in the space.
 
@@ -291,11 +295,11 @@ we would expect the correct distance
 measure to associate with it would be $f(r)$. This would be a
 viable option, except that for points close to the origin of the
 disc ($r\ll\lambda$) we would like ordinary Euclidean notions of
-distance to apply, at least approximately. Now $\ebar =
+distance to apply, at least approximately. It is clear that $\ebar =
 (1/2)(n-\nb)$ and the $\nb$ part of this, when exponentiated and
 applied as in equation \ref{eqn:almost-X-rep}, has no effect to
-first order on the origin point $-\nb$, whereas the $n$ part does;
-e.g.
+first order on the origin point $-\nb$, whereas the $n$ part does,
+i.e.
 %
 \begin{eqnarray}
 T_x(-\nb)\tilde{T}_x & \approx  & \left(1+
@@ -304,7 +308,7 @@ T_x(-\nb)\tilde{T}_x & \approx  & \left(1+
  & =  &
 \left(1+
 \frac{f(r)}{2}\frac{n\rhat}{2}\right)(-\nb)\left(1 -
-\frac{f(r)}{2}\frac{n\rhat}{2}\right)
+\frac{f(r)}{2}\frac{n\rhat}{2}\right).
 \end{eqnarray}
 %
 This means that, to first order near the origin, the
@@ -331,7 +335,7 @@ d(r) =
 \end{equation}
 %
 We note this approximates to $r/\lambda$ for
-$r\ll\lambda$, i.e. we recover the Euclidean distance
+$r\ll\lambda$, i.e.\ we recover the Euclidean distance
 measured in units of $\lambda$.
 
 This function gives us the distance of a point from the
@@ -367,7 +371,7 @@ X\dt Y =  X'\dt (-\nb)$. Since we know that a function of $-\half
 X'\dt (-\nb)$ gives the distance between the two points from
 equation~(\ref{eqn:dist-to-origin}), we can now write this
 distance in terms of $X\dt Y$. Note that at no stage in the
-process is the inner product between the null vectors changed (the
+process has the inner product between the null vectors changed (the
 inner product is rotor invariant), and thus we have succeeded in
 defining a distance between general points in terms of inner
 products. If the general points are $x$ and $y$ with
@@ -397,7 +401,7 @@ between the points is therefore
 \begin{equation}\label{eqn:general-dist-formula-points}
 d(x,y) = \sinh^{-1}\left(\lambda
 \sqrt{\frac{(x-y)^2}{(\lambda^2-x^2)(\lambda^2-y^2)} }
-\right)
+\right).
 \end{equation}
 %
 
@@ -406,10 +410,10 @@ geodesics in the disc. These are the lines that are `straightest'
 in the geometry defined by the distance function (more precisely,
 the arc length along them is extremal.) We will not give the
 details, but show some numerically computed examples in
-Fig.~\ref{fig:hyper-geos}.
+figure~\ref{fig:hyper-geos}.
 %
 \begin{figure} \label{fig:hyper-geos}
-\centerline{\includegraphics[width=0.5\textwidth]{hyper_geos}}
+\centerline{\includegraphics[width=0.9\textwidth]{hyper_geos}}
 \caption{Geodesics emanating from a point in hyperbolic space.
 They all intersect the unit circle at right angles and each is in
 fact the arc of a circle. ($\lambda=1$ has been taken here.) }
@@ -420,11 +424,11 @@ the unit disc ordinarily considered in the Poicar\'e model. One
 finds that each geodesic is an arc of a circle, and that each of
 them asymptotically approaches the bounding unit circle at right
 angles. At this point we can start making contact with the
-description of the classical approach to the Poincar\'e disc given
-in \cite{GEOM:brannan}. The geodesics there are called {\em $d$-lines}.
+description of the classical approach to the Poincar\'e
+disc\cite{GEOM:Brannan}. The geodesics there are called {\em $d$-lines}.
 They are not justified in terms of being geodesics, but simply
 defined as being arcs of circles which cut the boundary at right
-angles. However a distance function is given in \cite{GEOM:brannan}, which
+angles. However the distance function given in \cite{GEOM:Brannan}
 in terms of distance to the origin is
 %
 \begin{equation}
@@ -432,8 +436,10 @@ d(x,0) = \tanh^{-1}(|x|)
 \end{equation}
 %
 and therefore agrees with our identification of $d(r)=
-f(r)/2$, using equation (\ref{eqn:sinhcosh}), and
+f(r)/2$, using equation \ref{eqn:sinhcosh}, and
 taking $\lambda=1$.
+
+FIXME: Talk about Dilations
 
 Thus far, apart from the formula for non-Euclidean
 distance in terms of $X \dt Y$, we have only mirrored
@@ -443,22 +449,20 @@ how the operations and objects defined previously in
 conformal Euclidean geometry have immediate analogues
 here, representing a considerable unification, and saving
 of effort. It may also be worth noting here that the
-power of this approach extends immediately to 3
-dimensions. All the above formulation, and what we do
-next, transfers seamlessly to 3d, where the Poincar\'e
-disc becomes a ball. All the formulae are correct already
-for this transition. On the other hand, to provide a
+power of this approach extends immediately to three or more
+dimensions where the Poincar\'e
+disc becomes a sphere. On the other hand, to provide a
 computational scheme which is somewhat akin to our rotor
-formulation, Brannan \emph{et al} \cite{GEOM:brannan} introduce complex coordinates
+formulation, Brannan \emph{et al} \cite{GEOM:Brannan} introduce complex coordinates
 to work in the Poincar\'e disc, and use Mobius
 transformations in place of the rotors. These are
-effective computationally in 2d, but of course the
-complex variable apparatus does not extend at all to 3d
-(unless one uses the GA approach!). Also of course, the
+effective computationally in two dimensions, but of course the
+complex variable apparatus does not extend at all to three dimensions.
+Also the
 conformal setup enabling points, lines, circles, spheres
 and planes to be integrated into one algebraic system
 does not exist in the complex variable approach, even in
-2d.
+teo dimensions.
 
 \subsection{Geometric Objects in Hyperbolic Geometry}
 
@@ -520,14 +524,14 @@ b_2}-{ a_2}\,{ b_1}}} \nn
 \end{align}
 %
 Equation (\ref{eqn:brannan-d-line}) is precisely the form
-of equation given for $d$-lines in \cite{GEOM:brannan} page 283 and shows that
+of equation given for $d$-lines in \cite{GEOM:Brannan} page 283 and shows that
 indeed our recipe in terms of wedging with $e$ has worked.
 
 We can combine the notions of lines and distance, by asking for
 the `hyperbolic midpoint' of the line segment joining two
 positions $a$ and $b$. This is that point lying on the $d$-line
 between $a$ and $b$ which is an equal hyperbolic distance from
-each. Brannan \emph{et al} deal with this on page 288\cite{GEOM:brannan}, but consider only
+each. Brannan \emph{et al} deal with this on page 288\cite{GEOM:Brannan}, but consider only
 the easiest case where the two points lie along a diameter of the
 unit disc.
 
@@ -769,7 +773,7 @@ equation~\ref{eqn:general-dist-formula}.
 \subsubsection{Hyperbolic reflection}
 
 A very useful operation in hyperbolic geometry is the notion of
-hyperbolic reflection, as defined for example in \cite{GEOM:brannan}. 
+hyperbolic reflection, as defined for example in \cite{GEOM:Brannan}. 
 It is extremely easy to calculate the hyperbolic
 reflection of a point $X$ in the $d$-line $L$ in the GA approach.
 Assuming $L$ is normalised to satisfy $L^2=1$, we just form $LXL$,
@@ -789,7 +793,7 @@ definition of reflection in this case.
 
 All the above transfers seamlessly to 3 and higher dimensions, in
 most cases with no changes at all to the formulae. This is in
-contrast to e.g. the methods introduced in \cite{GEOM:brannan}, which
+contrast to e.g. the methods introduced in \cite{GEOM:Brannan}, which
 rely on standard complex analysis and so only work in the 2d
 plane. Furthermore, we can extend all the above analysis to the
 case of \textit{spherical geometry} as well. This involves
