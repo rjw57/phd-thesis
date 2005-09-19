@@ -5,15 +5,13 @@
 
 \chapter{Introduction}
 
-It has long been known that going to a 4d, projective, description
-of 3d Euclidean space can have various advantages -- particularly
+It has long been known that going to a four-dimensional, projective, description
+of three-dimensional Euclidean geometry can have various advantages --- particularly
 when intersections of planes and lines are required. Such
 projective descriptions are used extensively in computer vision
 where rotations and translations can be described by a single
 $4\times 4$ matrix and non-linear projective transformations
-become linear. This 4d description of projective geometry fits
-very nicely into the Geometric Algebra framework and applications
-are given in \cite{HZ91,IJPR00}. 
+become linear. 
 Since its inception in the mid-1970s, Computer Graphics (CG) has almost
 universally used linear vector algebra as its mathematical framework.
 This is due primarily to two factors; most early practitioners of
@@ -35,17 +33,20 @@ As computing power becomes cheaper, the opportunity
 arises to investigate new
 frameworks for CG which, although not providing the time/space
 efficiency of vector algebra, may provide a conceptually simpler
-system or one of greater analytical power.
+system or one of greater analytical power. This thesis presents 
+Geometric Algebra (GA) as one such approach.
+As one might hope the original four-dimensional description of projective geometry fits
+very nicely into the Geometric Algebra framework\cite{HZ91,IJPR00}. 
 
 \section{A Brief Overview of Geometric Algebra}
 
 As stated above, classical vector algebra has a number of problems
 once one moves away from three-dimensional Euclidean space. Perhaps the
-clearest example is the cross-product of two vectors.  The product, $\mathbf{a}
+clearest example is the cross-product of two vectors; the product, $\mathbf{a}
 \times \mathbf{b}$, is conventionally defined as a vector normal to the plane
 that $\mathbf{a}$ and $\mathbf{b}$ both lie in and has magnitude $ab\sin\theta$
 where $\theta$ is the angle between $\mathbf{a}$ and $\mathbf{b}$. However, the
-normal to the plane is only uniquely defined in 3-dimensions and has no meaning
+normal to the plane is only uniquely defined in three-dimensions and has no meaning
 in 2- or 1-dimensional space; the cross-product does not generalise to
 higher-dimension spaces. The product is an important element of vector
 algebra and one can see that performing geometric operations in higher-spaces
@@ -77,7 +78,7 @@ $n$-vector has grade $n$.
 \caption{Illustration of bi- and trivectors\label{fig:geometric}}
 \end{figure}
 
-The geometric objects are illustrated in Figure \ref{fig:geometric}. A 
+The geometric objects are illustrated in figure \ref{fig:geometric}. A 
 key feature is that the outer-product is anti-commutative and 
 associative so that
 \begin{displaymath}
@@ -115,11 +116,11 @@ A \cdot B = \frac{1}{2}(AB + BA)
 \]
 
 The power of this approach may be illustrated through its application
-to rotation. In 2-D this is easily performed using complex numbers. Representing
+to rotation. In two dimensions this is easily performed using complex numbers. Representing
 the vector $[x\ y]$ as the complex number $z = x + iy$, rotation by
 $\theta$ radians can be performed by multiplication with $e^{i\theta}$.
 William Hamilton (1805--1865) worked for many years to extend this approach
-to 3-D. He eventually created \emph{quaternions} \cite{hamilton2,hamilton1},
+to three-dimensions. He eventually created \emph{quaternions} \cite{hamilton2,hamilton1},
 an algebra with 4 
 elements $\left\{1, \mathbf{i}, \mathbf{j}, \mathbf{k}\right\}$ which, although
 functional, lacked an obvious geometrical interpretation and again didn't
@@ -153,12 +154,12 @@ e_1B_3 = e_1e_1e_2 = e_1^2e_2=e_2
 \caption{The rotation effect of bivector $B_3 = e_1e_2$\label{fig:rotation}}
 \end{figure}
 
-By looking at Figure \ref{fig:rotation} it is clear that $B_3$ has the
+By looking at figure \ref{fig:rotation} it is clear that $B_3$ has the
 effect of rotating the vectors counter-clockwise by 90 degrees. It is, in
 fact, a general property that the bivector $e_ie_j$ will rotate a
 vector 90 degrees in the plane defined by $e_i$ and $e_j$. At first 
 glance this seems to offer little more than quaternions but at no point 
-have we assumed that we are working in 3-dimensional space; this method
+have we assumed that we are working in three-dimensional space; this method
 also works in higher-dimension spaces.
 
 Now we extend to general rotations. Firstly it is trivial to
@@ -209,7 +210,7 @@ the expression above.
 \end{figure}
 
 Careful consideration must be given to the case where the vector to be
-rotated, $x$, does not lie on the plane of rotation as in Figure
+rotated, $x$, does not lie on the plane of rotation as in figure
 \ref{fig:rotation2}. Firstly decompose the
 vector into a component which lies in the plane $x_\parallel$ and one
 normal to the plane $x_\perp$
@@ -245,7 +246,7 @@ the plane.
 %\end{eqnarray*}
 
 This leads to a general method of rotation in any plane; we
-form a bivector of the form $R = \exp{-B\phi/2}$ for a given rotation 
+form a bivector of the form $R = \exp({-B\phi/2})$ for a given rotation 
 $\phi$ in a plane specified by the bivector $B$ and the transformation
 is given by
 \begin{displaymath}
@@ -265,10 +266,10 @@ i.e. the literal reversion of the components. By looking at the expression for
 $R$ it is clear that $\tilde{R} \equiv R^{-1}$ for rotors. Computing $\tilde{R}$
 is easier since it is simply a permutation.
 
-Note that in spaces with dimension $n$ the maximum grade object 
+Note that in spaces with dimension $n$, the maximum grade object 
 possible is an $n$-grade
 one. We denote the $n$-vector $e_1 \wedge ... \wedge e_n = I$ as the \emph{pseudoscalar}
-and the product $xI$ as the \emph{dual} of a vector or $x^*$. The dual is also defined
+and the product $xI$ as the \emph{dual} of a vector or $x^*$. The dual is similarly defined
 for general multivectors.
 
 \subsection{The Conformal Model}
@@ -278,7 +279,7 @@ additional basis
 vectors. 
 The notation we use will follow the original notation given in
 \cite{HS84}. Let $x$ be a vector in a space denoted ${\cala}(p,q)$.
-The annotation $(p,q)$ is termed the \emph{signature} of the space. 
+The annotation $(p,q)$ shall be termed the \emph{signature} of the space. 
 A given signature, $(p,q)$, implies that we may construct an 
 orthogonal basis for the space,
 $\{e_i\}$, $i=1,\cdots,n=p+q$ where $e_i^2=+1$ for $i=1,\cdots,p$
@@ -344,7 +345,7 @@ To perform geometric operations upon vectors, points and objects
 in $\cala(p,q)$ we map a point $x \in \cala(p,q)$ to a point
 $F(x) \in \cala(p+1,q+1)$ and find that the operations may be performed
 by simple algebraic manipulation of $F(x)$. The specific mapping
-used is the Hestenes (\cite{HS84}, p.302) representation
+used is the Hestenes (\cite{HS84}, page 302) representation
 %
 \begin{equation}
 F(x)=-\frac{1}{2}(x-e)n(x-e)
@@ -368,7 +369,7 @@ normalisation condition for null vectors, which allows us to
 compute the reverse mapping $F(x) \mapsto x$ independent of the
 absolute scale of $F(x)$, becomes
 %
-\[ F(x)\cdot n = -1  \]
+\[ F(x)\cdot n = -1.  \]
 %
 
 We will see that it will often be necessary to work with
@@ -380,7 +381,7 @@ chapters it will be shown how correcting this can allow
 one to extend the approach to non-Euclidean geometries.
 
 It is somewhat trivial to show that $F(x)$ is always a null vector for
-any $x$ by evaluating $[F(x)]^2$
+any $x$ by directly evaluating $[F(x)]^2$
 %
 \begin{eqnarray}
  [F(x)]^2 & = &  \frac{1}{4}(x^2n + 2x - \bar{n})\cdot (x^2n + 2x - \bar{n}) \nn \\
@@ -470,7 +471,7 @@ originally in \cite{HS84}.
 \subsubsection{Rotations}
 
 
-In normal 3d GA rotations are performed with elements of the algebra termed
+In the usual three-dimensional GA rotations are performed with elements of the algebra termed
 \emph{rotors}. In this section we aim to show that these rotors may be used
 unchanged on the null vectors we obtain by performing our projective mapping.
 Let $x \mapsto Rx\tilde{R}$ with $x\in {\cala}(p,q)$ and $R$ be a
@@ -505,12 +506,12 @@ F(Rx\tilde{R}) \end{equation}
 Translation along a vector $a$ is defined as the
 mapping $x\mapsto x+a$ for some $x,a \in \cala(p,q)$. In this
 section we will show that this is performed by applying a 
-rotor $R=T_a = \exp{\frac{na}{2}}$ to $F(x)$.
+rotor $R=T_a = \exp\left({\frac{na}{2}}\right)$ to $F(x)$.
 To begin with, consider the usual power series expansion of the exponential
 which we may immediately simplify thus
 %
 \begin{equation}
-R=T_a = \exp{\frac{na}{2}} = 1 + \frac{na}{2} +
+R=T_a = \exp\left({\frac{na}{2}}\right) = 1 + \frac{na}{2} +
 \frac{1}{2}\left(\frac{na}{2}\right)^2 + \cdots   = 1 +
 \frac{na}{2}
 \end{equation}
@@ -559,7 +560,7 @@ F(x) \tilde{T}_a = F(x+a)
 \subsubsection{Inversion}
 
 
-In the usual 3d geometric algebra we can reflect a vector $a$ in a plane with
+In the usual three-dimensional geometric algebra we can reflect a vector $a$ in a plane with
 unit normal $n$ by `sandwiching' the vector between the normal, $-nan$
 \cite{IJCV98}. Sandwiching the object \emph{to be reflected} between the object
 \emph{in which we wish to reflect} is a very general prescription in GA and
@@ -596,13 +597,15 @@ Since the absolute scale of $F(x)$ is irrelevant, as we always rescale to
 impose our normalisation constraint, we can omit the scaling by $x^{-2}$.  It
 is also irrelevant, by the same logic, whether we take $-e(\cdot)e$ or
 $e(\cdot)e$ as the reflection and henceforth we will use $e(\cdot)e$ for
-convenience. We reiterate here that later in the report the concept of
-reflection of a quantity in an object being brought about by this method
-of `sandwiching'
+convenience. This `sandwiching' operation will be a common one in the algorithms
+we will describe below.
+%We reiterate here that later the concept of
+%reflection of a quantity in an object being brought about by this method
+%of `sandwiching' will be a very common operation in 
 %the
 %quantity between the object 
-is crucial to much of our code for fast 3d
-manipulations.
+%is crucial to much of our code for fast three-dimensions
+%manipulations.
 
 \subsubsection{Dilators}
 
@@ -611,7 +614,7 @@ A dilation by a factor of $\alpha$ is the mapping
 $x \mapsto \alpha x$. In this section we investigate how
 to form a rotor which has the action of dilating about the
 origin. We start by considering the rotor $R = D_{\alpha} =
-\exp{\frac{\alpha}{2}e\bar{e}}$ and a number of
+\exp\left({\frac{\alpha}{2}e\bar{e}}\right)$ and a number of
 relations which can easily be verified
 %
 \begin{eqnarray}
@@ -622,16 +625,16 @@ relations which can easily be verified
 We can now look at what $RF(x)\tilde{R}$ gives
 %
 \begin{eqnarray}
-D_\alpha F(x) \tilde{D}_\alpha & = & \exp{\frac{\alpha}{2}e\bar{e}}\half\{ x^2n + 2x - \bar{n}\}\exp{-\frac{\alpha}{2}e\bar{e}} \nn \\
-   &  =  &  \half(x^2  \exp{\alpha e\bar{e}}n + 2x - \exp{\alpha e\bar{e}}\bar{n}) \nn \\
-   & = &  \half(x^2 \exp{-\alpha} n + 2x - \exp{\alpha}\bar{n}) \nn \\
-   & = & \exp{\alpha}\half\left\{\exp{-2\alpha}x^2n + 2\exp{-\alpha}x - \bar{n}\right\} \nn \\
-   & = & \exp{\alpha}\half\left\{\hat{x}^2n + 2\hat{x} -\bar{n}\right\}
+D_\alpha F(x) \tilde{D}_\alpha & = & \exp\left({\frac{\alpha}{2}e\bar{e}}\right)\half\{ x^2n + 2x - \bar{n}\}\exp\left({-\frac{\alpha}{2}e\bar{e}\right)} \nn \\
+   &  =  &  \half(x^2  \exp\left({\alpha e\bar{e}}\right)n + 2x - \exp\left({\alpha e\bar{e}}\right)\bar{n}) \nn \\
+   & = &  \half(x^2 \exp\left({-\alpha}\right) n + 2x - \exp\left({\alpha}\right)\bar{n}) \nn \\
+   & = & \exp\left({\alpha}\right)\half\left\{\exp\left({-2\alpha}\right)x^2n + 2\exp\left({-\alpha}\right)x - \bar{n}\right\} \nn \\
+   & = & \exp\left({\alpha}\right)\half\left\{\hat{x}^2n + 2\hat{x} -\bar{n}\right\}
 \label{Deqn}
 \end{eqnarray}
 %
-where $\hat{x} = \exp{-\alpha}x$. The above steps can be
-verified by considering $\exp{-\frac{\alpha}{2}e\bar{e}}$ as
+where $\hat{x} = \exp\left({-\alpha}\right)x$. The above steps can be
+verified by considering $\exp\left({-\frac{\alpha}{2}e\bar{e}}\right)$ as
 the expansion $1 - \frac{\alpha}{2}e\bar{e} +
 \frac{1}{2!}\left(\frac{\alpha}{2}e\bar{e}\right)^2 +
 \cdots$ and using the relations given in
@@ -743,9 +746,9 @@ n\tilde{R}=\tilde{R}n \;\;\mbox{and}\;\;\; R n \tilde{R}
 
 Thus rotations, translations and dilations leave $n$, which we identify with
 the point at infinity, unchanged up to a scale factor. This is a fact which
-will be important to us in subsequent sections. Indeed, we find that the
+will be important to us in subsequent chapters. Indeed, we find that the
 underlying geometry described by the rotors is related to the element of the
-algebra which the rotors hold invariant. We will see later that the 5d
+algebra which the rotors hold invariant. We will see later that the five-dimensional
 conformal setup provides a framework in which we can simply describe
 non-Euclidean geometries in such terms.
 
@@ -763,7 +766,7 @@ for such problems.
 
 Before looking at particular examples we will look
 briefly at representations of linear combinations of
-point representations. When we represent projective geometry via 4d
+point representations. When we represent projective geometry via four-dimensions
 homogeneous coordinates we are still able to consider
 linear combinations of points if we are willing to make
 the appropriate normalisation operations; we would also
@@ -785,8 +788,8 @@ $c$. The usual projective representation, where we go up
 just one dimension, has the advantage of still being
 linear in the representations of the points e.g. if
 $x=\lambda a + \mu b + \nu c$  (with $\lambda + \mu + \nu
-=1$) then its 4d projective representation, $X=x+e$,
-where $e$ is the extra basis vector which takes 3d to 4d,
+=1$) then its four-dimensions projective representation, $X=x+e$,
+where $e$ is the extra basis vector which takes three-dimensions to four-dimensions,
 can also be written in the form
 %
 \[ X = \lambda A + \mu B + \nu C  \]
@@ -826,12 +829,12 @@ that many of the techniques we use in the GA version of
 projective geometry will still work here. For example,
 this gives us another way of seeing that the equation for
 a line passing through points $a$ and $b$ is $X\wedge n
-\wedge A\wedge B=0$ -- the wedging with $n$ knocks out the
+\wedge A\wedge B=0$ --- the wedging with $n$ knocks out the
 non-linear term $\lambda(1-\lambda)A\cdot B n $ and we are
 left with the usual GA projective geometry result.
 
 Precisely the same sort of thing goes through for a
-plane. Let $a,b,c$, in 3d,  define a plane and let
+plane. Let $a,b,c$, in three-dimensions,  define a plane and let
 %
 \[ x = \alpha a + \beta b + \gamma c \;\;\; \mbox{where}\;\;\; \alpha + \beta + \gamma = 1  \]
 %
@@ -865,7 +868,7 @@ of lines, planes, circles and spheres, it is useful to work with
 these normalised representations. So far we have avoided using the
 term homogeneous (a variety of other approaches to the conformal
 model use the term \emph{homogeneous} e.g. \cite{oldwine}):
-although we are associating all points $\lambda X$ with a given 3d
+although we are associating all points $\lambda X$ with a given three-dimensions
 point $x$, by insisting upon a normalisation we increase the range
 of procedures we can employ. If one were truly to use homogeneous
 coordinates then for many operations there would be a variety of
@@ -884,7 +887,7 @@ normalised points.
 
  This formalism for dealing with linear combinations
 of 5d points has some interesting properties. Given two
-null vectors $A$ and $B$ representing 3d points $a$ and
+null vectors $A$ and $B$ representing three-dimensions points $a$ and
 $b$, we know from the above that taking $X =\half (A +
 B)$ will give us  $C + \alpha n$ where $C$ is the 5d
 representative of the midpoint of the line joining $a$
@@ -961,7 +964,7 @@ the pseudoscalar $I_5$, we can also write the meet as
 Clearly this need for evaluating the join is cumbersome, and the
 formula given in equation~\ref{newmeet} is far preferable as it
 can be computed with ease. We will now go on to see how useful
-this formalism is in intersecting objects -- it is a generic
+this formalism is in intersecting objects --- it is a generic
 formula regardless of the nature of our objects (from within the
 set of spheres, circles, planes and lines), and can thus be
 programmed up very easily.
@@ -986,7 +989,7 @@ C = \Sigma_1 \vee \Sigma_2 = \left[\left< \Sigma_1 \Sigma_2
 \end{equation}
 %
 $2n-r-s = 10-4-4=2$, so that the dual quantity will have
-grade $5-2=3$ -- generally, this will give the trivector
+grade $5-2=3$ --- generally, this will give the trivector
 representing the circle of intersection. We can tell
 whether we have a circle, a point intersection or no
 intersection according to whether
@@ -1118,7 +1121,7 @@ B = \Sigma_1 \vee C_2 = \left[\left< \Sigma_1 C_2
 %
 where $2n-r-s=10-4-3=3$, so that the dual object has
 grade 2. We have already seen that these 2-blades
-represent 2 points -- precisely as we would expect, since
+represent 2 points --- precisely as we would expect, since
 an intersecting sphere and circle will do so at 2 points.
 Now, again, we look at the sign of the resulting 2-blade,
 $B$, and we will find that there are two, zero or one
@@ -1138,14 +1141,14 @@ intersection, $X$, in this case using the following
 %
 i.e. for a 2-blade of the form $W = P\wedge Q$, reflecting
 $n$ in $W$, $WnW$, would give us the midpoint of the line
-joining $P$ and $Q$ -- for our case where $B^2=0$, the
+joining $P$ and $Q$ --- for our case where $B^2=0$, the
 construction $BnB$ will therefore give us a representation of the point of
 intersection. These results can easily be shown by
 considering simple cases at the origin and then extending
 the proof via rotors as previously.
 
 Precisely the same working holds if we replace our
-circles above with lines -- the meet again gives a
+circles above with lines --- the meet again gives a
 2-vector whose square tells us whether there are 2, 1 or
 no intersections, and from which the intersection points
 can be obtained easily. We will return to the
@@ -1170,9 +1173,9 @@ L = \Phi_1 \vee \Phi_2 = \left[\left< \Phi_1 \Phi_2
 \end{equation}
 %
 where $2n-r-s=10-4-4=2$, so that the dual object has
-grade 3 -- as we would expect, if the planes intersect to
+grade 3 --- as we would expect, if the planes intersect to
 give a line. We are able to tell whether the planes
-intersect by looking at the sign of $L^2$ -- if $L^2=0$
+intersect by looking at the sign of $L^2$ --- if $L^2=0$
 we know that the planes are parallel and do not
 intersect, if $L^2>0$, the planes intersect in the line
 $L$.
@@ -1186,7 +1189,7 @@ B = \Phi_1 \vee C_2 = \left[\left< \Phi_1 C_2
 \end{equation}
 %
 where $2n-r-s=10-4-3=3$, so that the dual object has
-grade 2 -- the plane and the circle intersect in a
+grade 2 --- the plane and the circle intersect in a
 maximum of two points, and the 2-blade, $B$ encodes these
 two points as with the sphere-circle intersection. Once
 again we can assert that there are 2,1 or 0 intersections
@@ -1233,7 +1236,7 @@ origin. If $B^2>0$ the line and plane intersect in a
 point, if $B^2=0$ the line and plane do not intersect and
 if $B=0$ the line lies in the plane. If there is one
 point of intersection so that $B$ is of the above form,
-we can extract the 3d point of intersection,
+we can extract the three-dimensions point of intersection,
 $x=x^ie_i,\;i=1,2,3$ (and hence $X$), by simply equating
 $x^i$ to the coefficient of the $e_i\wedge n$ term or by
 using the following expansion
@@ -1359,7 +1362,7 @@ it, we see a number of other useful constructions.
 
 Again take our arbitrary lines, $L_1$ and $L_2$ (assume
 they are normalised, such that $L_1^2=L_2^2=1$). Suppose
-we reflect line $L_1$ in line $L_2$ -- this statement is
+we reflect line $L_1$ in line $L_2$ --- this statement is
 not well-defined in a conventional sense, but in
 GA, we have seen that reflection of an
 object in another object is indeed well defined and is
@@ -1417,7 +1420,7 @@ the line $L1'$
 %
 (recall that $X''$ will be our real midpoint plus some
 multiple of $n$). Now we reflect $X''$ in $L_2$ to give $X'''$ and again
-take the midpoint -- the midpoint must now give us the
+take the midpoint --- the midpoint must now give us the
 intersection point $P$ plus some multiple of $n$;
 %
 \[ X''' = L_2X''L_2 \;\;\;\;  P' = \half (X''+X''')   \]
@@ -1459,7 +1462,7 @@ Again, $\bar{n}$ can be used for our point $X$ in real
 computations. The derivations given here are entirely
 covariant and the same constructions will intersect
 `lines' in different geometries, we will illustrate this
-towards the end of the report by considering 3d hyperbolic
+towards the end of the report by considering three-dimensions hyperbolic
 geometry.
 
  Recall that
@@ -1494,7 +1497,7 @@ possible to write the product $L_2L_1$ as
 L_2L_1 = (\cos{\theta} + \hat{B}\sin{\theta})(1 + dn)
 \end{equation}
 %
-where $d$ is the 3d vector representing the length and
+where $d$ is the three-dimensions vector representing the length and
 direction of the common perpendicular, $\hat{B} =
 \hat{d}I_3$ (with $\hat{d}=d/\sqrt(d^2)$) and  $\theta$
 is the angle between the lines as measured when
