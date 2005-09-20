@@ -1,0 +1,1240 @@
+\begin{savequote}
+\quoteperson{A topologist is one who doesn't know the difference between a doughnut and a coffee cup.}%
+{John Kelley}%
+\end{savequote}
+\chapter{Blades as Objects in the Conformal Representation}
+
+In this chapter we will summarise our findings of the previous chapters, look
+at the r\^ole played by bivectors in this algebra and give some useful
+alternative representations of lines, planes, circles and spheres based upon
+those developed previously.
+
+\section{Vectors and 2-blades}
+
+We have seen that we may use null vectors, $X$, in our 5d space to represent 
+points in Euclidean 3-space. In particular we identify $n$ and $\bar{n}$ with 
+the point at infinity and the origin respectively. In our 5d space there
+clearly exist vectors which do not square to zero. The interpretation of such 
+vectors will be discussed later.
+
+The term \emph{blade} in GA is used to refer to quantities which can be written as the wedge
+product of vectors. For example a $r$-blade can always be written as
+$A_1\wedge A_2 \wedge \cdots \wedge A_r$. It is important to distinguish this
+from an $r$-vector which may be any linear combination of $r$-blades. 
+This is important since, in 5d, not all bivectors can be written as 2-blades;
+for example $e_1e_2 + e_3e_4$ cannot be written in the form $a\wedge b$. 
+
+In previous sections we have considered the geometric meaning of 3-blades and
+4-blades. We shall now consider the geometric meaning of the 2-blade 
+$A \wedge B$ given that $A$ and $B$ are null vectors in $\cala(4,1)$. 
+We start by recalling that null vectors represent points, 3-blades represent
+generalised circles\footnote{Here we use `generalised' to indicate that
+we include the special case involving the point at infinity, i.e.\ lines and 
+planes} and 4-blades represent generalised spheres. It will be seen later,
+when discussing intersections, that the representation of the intersection
+of a line and a sphere is actually a 2-blade. We also know that the intersection
+of a sphere and a non-tangential line occurs at two points on the sphere. We 
+postulate, therefore, that $A \wedge B$ represents the pair of points 
+represented by $A$ and $B$. This is clear when considering the incidence 
+relation
+\[
+X \wedge A \wedge B = 0
+\]
+which is only true in general for $X=A$ or $X=B$. If we accept that
+$A\wedge B$ represents two points then, for completeness, we should develop 
+a method of extracting the points $A$ and $B$.
+
+\subsection{Extracting $A$ and $B$ from $A\wedge B$}
+\label{sec:projectors}
+
+In this section we develop a method of extracting $A$ and $B$ from
+$A\wedge B$ using a method of \emph{projectors}. Throughout we shall assume
+that $A$ and $B$ have been normalised so that, for example, $A\cdot n = -1$.
+We start by considering the 2-blade $T = A\wedge B$ and forming
+%
+\begin{equation}
+  F = \frac{1}{\beta} A\wedge B
+\end{equation}
+%
+where $\beta>0$ and ${\beta}^2 = T^2$, so that $F^2 = 1$
+if $\beta^2 \ne 0$. We now use $F$ to define two
+\emph{projector} operators
+%
+\begin{eqnarray}
+   P & = & \frac{1}{2}(1+F) \nn \\
+   \tilde{P} & = & \frac{1}{2}(1-F)
+\end{eqnarray}
+%
+where $\tilde{P}$ denotes the normal reversion operation applied to
+$P$. Note that $P^2 = P$, which can be easily be verified
+%
+\begin{eqnarray}
+  PP & = & \frac{1}{4}(1+F)(1+F) \nn \\
+     & = & \frac{1}{4}(1+2F + 1) = \frac{1}{2}(1+F)
+\end{eqnarray}
+%
+Similarly, we can easily show that $\tilde{P}\tilde{P} =
+\tilde{P}$. These properties justify calling these
+operators \emph{projectors}, borrowing the term from Physics. 
+An equally important property is that $P\tilde{P}=\tilde{P}P = 0$
+which, again, is easy to prove
+%
+\begin{equation}
+   P\tilde{P} = \frac{1}{4}(1+F)(1-F)= \frac{1}{4}(1-1)=0
+\end{equation}
+%
+and similarly for $\tilde{P}P$. We may now see what effect
+these projectors have on $A$ and $B$
+%
+\begin{eqnarray}
+ PA & = & \frac{1}{2}\left[1+\frac{1}{\beta}A\wedge
+ B\right]A \nn \\
+   & = & \frac{1}{2} \left[A + \frac{1}{\beta}(A\wedge
+ B)A \right] \nn \\
+  & = & \frac{1}{2}\left[ A + \frac{1}{\beta}(A\dt
+  B)A\right]
+  \nn \\
+  & = & \frac{1}{2} (A - A) = 0
+\end{eqnarray}
+%
+since $(A\wedge B)A=(A\wedge B)\dt A = -A^2B+(A\dt B)A=(A\dt
+B)A$ ($A^2=0$) and  $A\dt B = -\beta$. This is easily
+seen from $\beta^2 = (A\wedge B)\dt (A\wedge B) = -A^2B^2 +
+(A\dt B)^2$ and the facts that $A^2 = B^2 = 0$ and $A\dt
+B$ must be negative as seen in equation~\ref{distance}.
+
+Using similar working we can also show the results of
+$P$ and $\tilde{P}$ acting on $A$ and $B$
+%
+\begin{eqnarray}
+ PA & = & 0 \\
+ PB & = & B \\
+ \tilde{P}A & = & A  \\
+ \tilde{P}B & = & 0
+\end{eqnarray}
+%
+The next step is to consider the vector obtained by
+dotting $A\wedge B$ with $n$.
+%
+\begin{equation}
+  (A\wedge B)\dt n = -n\dt (A\wedge B) = -(n\dt A)B + (n\dt
+  B)A = (B-A)
+\end{equation}
+%
+using the fact that $A$ and $B$ are normalised points
+such that $A\dt n=B\dt n = -1$. It therefore follows that
+we have
+%
+\begin{eqnarray}
+  P [(A\wedge B)\dt n] & = & P(B - A) = B \\
+ - \tilde{P} [(A\wedge B)\dt n] & = & -\tilde{P}(B - A) = A
+\end{eqnarray}
+%
+We note also that since $AP = \tilde{P}A = A$ 
+%(see this
+%by expanding $A(A\wedge B)$ rather than $(A\wedge B)A$) 
+it follows that
+$\tilde{P}A P = \tilde{P}\tilde{P}A = \tilde{P}A$.
+Similar relations hold for $BP$ etc., so that we have
+%
+\begin{eqnarray}
+ \tilde{P}AP & = & \tilde{P}A \nn \\
+ PA\tilde{P} & = & 0 \nn \\
+{P}B\tilde{P} & = & {P}B \nn \\
+\tilde{P}BP & = & 0 \nn
+\end{eqnarray}
+%
+which means that we can also write the projections as
+two-sided operations.
+%
+Thus from a 2-blade $A\wedge B$ we can extract the two
+points, $A$ and $B$ that it represents via
+%
+\begin{eqnarray}
+A & = & -\tilde{P}\left[(A\wedge B)\dt n\right] \equiv
+-\tilde{P}\left[(A\wedge B)\dt n\right]P  \nn
+\\
+B & = & {P}\left[(A\wedge B)\dt n\right] \equiv
+{P}\left[(A\wedge B)\dt n\right]\tilde{P} \label{extractAB}
+\end{eqnarray}
+%
+We will see later that when we perform intersection operations
+that yield two points the two points in question can then be found 
+using the formul\ae\ in equation~\ref{extractAB}. Usefully we do not 
+have to solve a quadratic equation as we would do using
+conventional approaches.
+
+\section{Trivectors}
+We have already seen that there are two classes of object
+represented by trivectors. If $P,Q,R$ are null vectors in our 5d
+space representing points in 3d space then trivectors of the form
+%
+\[ C = P\wedge Q\wedge R \]
+%
+represent circles. Recall that it is specifically a circle 
+passing through points represented by $P,Q$ and $R$. Trivectors of the form
+%
+\[ L = P\wedge Q\wedge n \]
+%
+represent lines, specifically that line passing through the
+points represented by $P$ and $Q$.
+
+In GA it is often found that the operation of taking the dual, that
+is multiplication by the pseudoscalar $I$, is usually useful and
+often has physical or geometric significance. The dual of an element
+is always just another element of the algebra and does not live
+in a separate `dual' or `tangent' space. Below we shall consider
+the dual operation with respect to the representations of circles 
+and lines.
+
+\subsection{Circles as trivectors}
+
+Here we will show that taking the dual of the trivector representing
+a circle gives rise to a useful alternative representation which
+naturally encodes both the centre and radius.
+Let us first of all work in the plane so that our conformal space is
+4-dimensional, and is
+${\cala}(3,1)$, having basis vectors $e_1,e_2$ and $e,\bar{e}$. We may
+easily extend the method to 3d space or higher dimensions as we have done
+in previous chapters. 
+
+We start with the unit circle in the plane and take as three points
+on it those shown in figure~\ref{figcircle}.
+ %
+\begin{figure}
+\centerline{
+\includegraphics[height=0.25\textheight]{circle}
+} \caption{Unit circle with three key points marked}
+\label{figcircle}
+\end{figure}
+%
+For any unit length vector, $\hat{x}$, we know that
+$F(\hat{x})= \half ( n + 2\hat{x} -\bar{n}) = (\hat{x} + \bar{e})$.
+In particular we have
+%
+\[ F(e_1) \wedge F(e_2) \wedge F(-e_1) = 2e_1e_2\bar{e} \]
+%
+and hence the trivector $C = 2e_1e_2\bar{e}$ represents the unit circle.
+In the plane the pseudoscalar, which we shall write as $I_4$,
+is given by $I_4 = e_1e_2e\bar{e}$ and so the dual of
+$C$, which we write as $C^{*}$, can easily be shown to be
+given by
+%
+\begin{equation}
+ C^{*}=CI_4 = 2e = (n+\bar{n})
+ \end{equation}
+ %
+We know that $X\wedge C=0$ is the incidence relation for the circle  and that
+$X \wedge C = 0 $ can be rewritten as
+%
+\[ X \dt (CI_4) =0  \;\;\; \Leftrightarrow \;\;\; X\dt C^{*} = 0  \]
+%
+Note that $C^{*}$ is the dual of a trivector in a 4d space and is, therefore,
+a vector. This suggests a very useful alternative representation
+for a circle (or a sphere when generalised to higher dimensions) which we now
+discuss.
+
+We know from equation~\ref{distance} that for any two normalised
+point representations $A$ and $B$
+%
+\begin{equation}
+A\dt B =  -\half(a-b)^2 \nn
+\end{equation}
+%
+and thus, if $X$ represents a point on a circle and $B$ represents its centre,
+we know that we can write
+%
+\[  X\dt B = -\half(x-b)^2 \equiv -\half\rho^2  \]
+%
+where $\rho$ is the radius of the circle. For a
+normalised point representation $X$ this implies that
+%
+\[ X\dt (B - \half\rho^2n) =0 \]
+%
+since $X\dt n = -1$. Comparing this with $X\dt C^*$ we see that
+provided we normalise $C^*$ after taking the dual (so that $C^*\dt
+n=-1$), then we find
+%
+\begin{equation}
+   C^* = B - \half\rho^2 n
+   \label{circle}
+   \end{equation}
+%
+The vector $C^*$, therefore, encodes in a neat fashion
+the centre and radius of the circle in the plane.  
+
+Also note that if we take our $(n+\bar{n})$ as the
+representation of the dual of the unit circle centred on the
+origin and rotate, translate and dilate the expression,
+we get precisely the same result as in
+equation~\ref{circle}. We can see this by first
+taking our unit circle at the origin, $C_o^*=n+\bar{n}$ and
+rotating it. We have seen that rotation rotors leave $n$
+and $\bar{n}$ invariant, so $C_o^*$ remains unchanged.
+Now dilate this with a dilation rotor
+$D_{\alpha}=e^{\frac{\alpha}{2}e\bar{e}}$ where
+$\rho=e^{-\alpha}$ is the dilation factor. We have seen
+previously that
+$D_{\alpha}n\tilde{D}_{\alpha}=e^{-\alpha}n$ and
+$D_{\alpha}\bar{n}\tilde{D}_{\alpha}=e^{\alpha}\bar{n}$,
+so that
+%
+\begin{equation}
+C_o^* \rightarrow  W = e^{-\alpha}n + e^{\alpha}\bar{n}
+\end{equation}
+%
+Now, translate by $a$ using a translation rotor,
+$T_{\alpha}=1+\frac{na}{2}$. Again, using previous results, we
+know that $n$ is left invariant and $-\half \bar{n}$ is taken to
+$F(a)$, giving us
+%
+\begin{equation}
+W \rightarrow  Z = e^{-\alpha}n -2e^{\alpha}F(a)
+\end{equation}
+%
+Normalising this to give us our new $C^*$, where $C^*\dt
+n=-1$, means dividing $Z$ above by $-2e^{\alpha}$ (since
+$A=F(a)$ satisfies $A\dt n=-1$) leaving us with
+%
+\begin{equation}
+C^* =  -\half e^{-2\alpha}n + A
+\end{equation}
+%
+and we can now see that this is precisely equation~\ref{circle}
+with $A$ representing the centre and $\rho=e^{-\alpha}$ as the radius.
+
+So far we have talked about circles in the plane. We shall
+now look at the treatment of circles at general positions and orientations
+in space. Firstly we note that since we can think of $C$
+as the wedge product of the representations of three
+points on the circle, it follows that the \emph{plane}
+which the circle lies in is $C \wedge n$.
+
+In deriving equation~\ref{circle} for the circle in the plane we
+used the pseudoscalar for the 4d space. It therefore seems plausible that
+when we move to general circles in 3d the r\^ole of this
+pseudoscalar will be taken by the plane in which the circle lies.
+
+We firstly define the \emph{unit} plane $I_c$ by
+%
+\begin{equation}
+  I_c = \frac{n\wedge C}{\sqrt{(-[n\wedge C]^2)}}
+\end{equation}
+%
+since $(n\wedge C)$ always squares to give a negative
+scalar. In future we will find
+that it is convenient to always take the line, plane, circle,
+sphere etc. of unit magnitude.
+The dual of the circle $C$ is then given by the
+analogous equation to equation~\ref{circle} where we
+assume that given $C$, which can be `unit', we form $C^*$
+and then normalise such that $C^*\dt n= -1$. That is
+%
+\begin{equation}
+   C^* \equiv C I_c= B - \half\rho^2 n
+   \label{circle2}
+   \end{equation}
+%
+where $B$ is again the centre of the circle, $\rho$ is the radius.
+Note that the `dual' in this case is with respect the `unit' plane
+in which the circle lies. The proof of this is in most respects
+identical to the previous proof for the plane but, where before we
+used $I_4$, we now use the unit plane. This plane is proportional to
+$e_1\wedge e_2\wedge \bar{n}\wedge n$, and is indeed identical to $I_4$.
+We can then rotate, dilate and translate as before and note that
+$R(C_o I_c)\tilde{R}=RC_o\tilde{R}RI_c\tilde{R}$ and hence our new
+dual has the form given in equation~\ref{circle2}. The dual is formed by
+taking the product of the transformed circle with the transformed
+plane it lies in.  We also note that we can find the radius of
+this general circle very simply by squaring $C^*$
+%
+\begin{eqnarray}
+\left(C^*\right)^2 &  = &  (B - \half\rho^2n)^2 \nn \\
+                  & = &  -\rho^2B\dt n = \rho^2
+\end{eqnarray}
+%
+using the facts that $B^2=0$, $n^2=0$ and $B\dt n = -1$. From this
+it then follows that $B = C^* + \frac{1}{2}(C^*)^2n$. To
+summarise, from the vector form of any general circle, we can
+easily obtain the centre and radius as follows
+%
+\begin{eqnarray}
+    \left(C^*\right)^2 &  = &      \rho^2 \\
+    B & = &  C^* \left[ 1 + \frac{1}{2}C^*n \right]
+ \end{eqnarray}
+ %
+Note here that the above relations assume $C^*$  is normalised
+such that $C^*\dt n=-1$ since $C^*\dt n = B\dt n = -1$, as we
+assume $B$ is a normalised null vector.
+
+While the above formulation is indeed useful, we will now see
+that there is a far more elegant way of finding the
+centre of a circle in 3d. The centre of a circle, $C$,  is also given 
+by simply reflecting the point at infinity, $n$, in the
+circle, i.e.
+%
+\begin{equation}
+CnC
+\end{equation}
+
+To prove that $CnC$ gives the centre we can return to our circle
+centre the origin, radius one. We saw earlier in this section that we can
+write this circle as  $C= 2e_1e_2\bar{e}$ and, again, we can
+define a \emph{unit circle}, $\hat{C}$, as $\hat{C}= e_1e_2\bar{e}$. 
+Thus we see that
+ %
+ \begin{eqnarray}
+ \hat{C}n\hat{C} &  = &  e_1e_2\bar{e}ne_1e_2\bar{e} \nn \\
+        & = &  -e_2\bar{e}n e_2 \bar{e} \nn \\
+        & = &  -\bar{e}n\bar{e}  \nn \\
+        & = & \bar{e}(e + \bar{e})\bar{e} = e - \bar{e} \nn
+        \\
+        & = &  \bar{n}
+\end{eqnarray}
+%
+which is indeed the origin and therefore the centre of
+the circle. Having proved that the result holds for this
+simple case, we can now rotate, dilate and translate our
+circle to give any other circle and the result will still
+hold. Suppose we apply a rotor, $R$, which is a
+composition of rotors which rotate, dilate and translate,
+to take our circle, $C$, to any other general circle,
+$C'=R C \tilde{R}$. Then we see that
+%
+\begin{equation}
+C'nC' \propto RC\tilde{R}(Rn\tilde{R}) RC\tilde{R} \propto
+R(CnC)\tilde{R} \label{eqCnC}
+\end{equation}
+%
+since we have seen previously that $Rn\tilde{R} \propto n$ for $R$
+composed of rotations, translations and dilations.
+Equation~\ref{eqCnC} thus tells us that the rotated origin,
+$R(CnC)\tilde{R}$, is indeed given by $C'nC'$. This type of simple
+proof, ie proving a result for some simple case at the origin and
+generalising via rotations, translations and dilations, is a nice
+feature of the conformal framework. There will many other examples
+of the $XaX$ formulation producing something interesting in
+subsequent sections.
+
+In many physical systems we find that GA is very useful in that
+it exposes how {\em observables} usually arise by sandwiching a
+`fiducial' object between a multivector and its inverse or reverse.
+For example, in quantum mechanics, we get the spin current in 3d
+from a Pauli spinor, $\phi$, via $s = \phi e_3 \tilde{\phi}$. We see then
+that this example of sandwiching $n$ between a circle and its
+reverse (the reverse of a circle is itself up to a scale factor)
+is an example of this principle at work in the conformal setting.
+
+\subsection{Lines as trivectors}
+
+ Next we consider the circles passing through
+the point at infinity which we have already seen are
+lines. Again we begin by asking ourselves what the dual
+of a line, $L$, actually encodes. We suspect the answer to
+this questions will provide relevant information.  
+As with circles, let us begin by considering lines in the plane.
+As a starting point we take the line $L$ parallel to the $x$-axis and
+distance $d$ from the $x$-axis.
+%, as shown in
+%figure~\ref{linedual}.
+%
+%\begin{figure}
+%\centerline{
+%\includegraphics[width=.3\textwidth]{linedual.eps}
+%} \caption[]{Simple line in the plane, parallel to the
+%$x$-axis and distance $d$ from it} \label{linedual}
+%\end{figure}
+%
+This line is given by wedging together any two points on
+the line, say $A = F(de_2)$, $B = F(e_1 + de_2)$, and $n$;
+%
+\begin{eqnarray}
+L & = & F(de_2)\wedge F(e_1 + de_2)\wedge n \nn \\
+  & = & \frac{1}{4}(d^2n+2de_2-\bar{n})\wedge
+  \left(\sqrt{(1+d^2)}n+2(e_1+de_2-\bar{n}\right)\wedge n \nn \\
+  & = & -\half e_1\wedge n\wedge \bar{n} - d e_1\wedge e_2\wedge
+  n
+\end{eqnarray}
+%
+If we then take the dual of $L$, again with respect to
+the pseudoscalar, $I_4$, for our 2d conformal space, we
+see that
+%
+\begin{eqnarray}
+L^* & = & LI_4 = -(\half e_1E + de_1 e_2n)e_1e_2e\bar{e} \nn \\
+    & = & e_2 + dn = e_1I_2 + dn
+\end{eqnarray}
+%
+using the identities, $e_1E=Ee_1$, $e_2E=Ee_2$,
+$ne\bar{e}=n$ and $Ee\bar{e}=-2$. Thus, we see that the
+dual of the line in the plane gives the dual, with
+respect to the pseudoscalar in Euclidean space,
+$I_2=e_1e_2$, of the Euclidean unit vector in the
+direction of the line plus $dn$ where $d$ is the
+perpendicular distance of the line from the origin. This
+holds for any $d$, and if we apply rotors to rotate our
+line (noting again that $RnR=n$) we see that we can
+extend our proof to any line in the plane, therefore
+giving
+%
+\begin{equation}
+L^* = \hat{m}I_2 + dn
+\end{equation}
+%
+where $\hat{m}$ is the unit vector in the direction of
+the line and $d$ is the perpendicular distance of the
+line from the origin.
+
+Recalling that $n\dt\bar{n}=2$, we can extract $d$ easily
+from $L^*$ as follows
+%
+\begin{equation}
+ d = \half L^*\dt \bar{n}
+\end{equation}
+%
+Similarly we can then extract $\hat{m}$ as
+%
+\begin{equation}
+   \hat{m} = -[L^* - \half (L^*\dt\bar{n})n]I_2
+\end{equation}
+%
+
+As with circles, it should be straightforward to
+extend this work on lines from the plane into space.
+However, unlike the circle case, we do not have an
+obviously specified plane with which to define a 4d
+pseudoscalar, so instead we look at the dual of the line
+with respect to the pseudoscalar for the whole 5d space.
+Clearly we multiply a 3-vector with a 5-vector and get a
+2-vector. Once again, consider the same line that we
+considered above.
+%, depicted in figure~\ref{linedual} --
+%again we have $L = -\half e_1\wedge n\wedge \bar{n} - d
+%e_1\wedge e_2\wedge n$. Now 
+We look at the dual of this line with $I\equiv I_5$
+%
+\begin{eqnarray}
+L^* & = & -(\half e_1\wedge n\wedge \bar{n})I - d(e_1 e_2 n)I
+\nn \\
+    & = &  e_2e_3 - d(e_1\wedge e_2)In \nn \\
+    & = &  e_1I_3 + [((de_2)\wedge e_1))I]n
+\end{eqnarray}
+%
+since $In=nI$. Clearly the first term gives us the unit
+vector in the direction of the line and the second term
+gives us its moment. As this holds for any $d$, if we
+rotate our line we can produce any line in space and we
+see that the above can therefore be generalised to hold
+for any such line. More specifically we write the dual
+of the line $L$ as
+%
+\[ L^* = \hat{m} I_3 + [(a \wedge \hat{m})I_3]n  \]
+%
+where $\hat{m}$ denotes the unit vector (in 3d) in the
+direction of the line and $a$ is any 3d point on the
+line. This is analogous to writing the line in terms of
+Pl\"ucker coordinates, where 3 of the coordinates give
+the line's direction and the other 3 give its moment
+about the origin.
+
+\section{4-Vectors}
+
+We have already seen that 4-vectors in the conformal
+setting can represent both spheres and planes. Having
+seen how we interpret the duals for circles and lines it
+will now be easy to extend these arguments to spheres and
+planes.
+
+\subsection{Spheres as 4-vectors}
+
+Given any 4 points whose 5d representations are
+$P,Q,R,S$, the sphere through those points is given by
+the 4-vector $\Sigma$
+%
+\[  \Sigma = P\wedge Q \wedge R\wedge S   \]
+%
+We know that $X \wedge \Sigma = 0 $ for any $X$ lying on
+the sphere.  This can be rewritten as
+%
+\[ X \dt (\Sigma I) =0  \;\;\; \implies \;\;\; X\dt \Sigma^{*} = 0  \]
+%
+where $\Sigma^{*}= \Sigma I$ is the dual to
+$\Sigma$ and, hence, is a vector. We can now follow precisely the
+same workings given for the circle to show that the dual
+representation of the sphere naturally encodes the centre
+and the radius.
+
+If $X$ is a point on a sphere and $C$ is its centre we
+know that we can write
+%
+\[  X\dt C = -\half(x-c)^2 \equiv -\half\rho^2  \]
+%
+where $\rho$ is the radius of the sphere. For a
+normalised point $X$ ($X\dt n = -1$) this therefore
+implies that
+%
+\[ X\dt (C - \half\rho^2n) =0 \]
+%
+Comparing this with $X\dt \Sigma^*$ we see that provided
+we normalise $\Sigma^*$ after taking the dual (such that
+$\Sigma^*\dt n = -1$), then we will find
+%
+\begin{equation}
+   \Sigma^* = C - \half\rho^2 n
+   \end{equation}
+%
+As before, the dual  vector $\Sigma^*$ encodes the
+centre and radius of the sphere. Whether one wishes to
+use $\Sigma$ or $\Sigma^*$ depends on whether it is most
+useful to specify the sphere by 4 points lying on it or
+by its centre and radius. Given a $\Sigma^*$ (via taking
+the normalised form of the dual of $\Sigma = P\wedge Q\wedge
+R\wedge S $) we can immediately get the radius and centre
+in the manner outlined earlier for the circle
+%
+\begin{eqnarray}
+    \left(\Sigma^*\right)^2 &  = &      \rho^2 \\
+    C & = &  \Sigma^* \left[ 1 + \frac{1}{2}\Sigma^*n \right]
+ \end{eqnarray}
+ \label{centre_radius}
+ %
+As we saw with the case of circles, there is also a more
+elegant means of extracting the centre of a sphere given
+$\Sigma$ or $S = \Sigma^*$. The method is to reflect the
+point at infinity, $n$, in the sphere, so that the
+centre, $C$, is given by
+%
+\begin{equation}
+  C = SnS = \Sigma n \Sigma
+  \end{equation}
+%
+To show this we consider the sphere of radius 1 centred
+on the origin, $\Sigma_o = F(e_1)\wedge F(e_2)\wedge
+F(e_3)\wedge F(-e_1)$ which we can expand to give
+$2e_1e_2e_3\bar{e}$, so that the dual, $S$, is given by
+the particularly concise expression $2e$; we therefore
+take the 'unit' sphere to be $e$. We therefore see that
+%
+\begin{equation}
+  SnS = ene = \bar{n}
+\end{equation}
+%
+which is indeed the origin, which is the centre of the
+sphere in this case. Now if we rotate, dilate, and
+translate our sphere at the origin to any other sphere in
+space, $S'$ say, then, reflecting $n$ in our new sphere
+gives
+%
+\begin{eqnarray}
+  S'nS'&  = &
+  (RS\tilde{R})n(RS\tilde{R})=(RS\tilde{R})Rn\tilde{R}(RS\tilde{R})\nn
+  \\
+  & = & R[SnS]\tilde{R}
+\end{eqnarray}
+%
+since $R[SnS]\tilde{R}$ is the transformed origin, i.e.
+the new centre of the sphere, we see that the formula
+$S'nS'$ does indeed give the centre.
+
+
+
+
+\subsection{Planes as 4-vectors}
+
+A plane, $\Phi$, passing through the 3 points whose 5d
+representations are $P,Q,R$, is given by
+%
+\[ \Phi = P\wedge Q \wedge R \wedge n  \]
+%
+The physical quantities that we might want to extract
+from such a 4-vector are clearly the normal to the plane
+and the perpendicular distance of the plane from the
+origin. We now investigate how the dual form of the plane
+helps us to do this. Once again we start by considering
+the plane $z=d$ which is parallel to the $x$-$y$ plane
+and distance $d$ from it. We can represent $\Phi$ by
+%
+\begin{eqnarray}
+\Phi &  =  &  F(de_3)\wedge F(e_1 + de_3) \wedge
+F(e_2+de_3)\wedge n \nn \\
+     &  =  & \frac{1}{8} \left\{ (2de_3-\bar{n})\wedge
+     (2[e_1+de_3]-\bar{n})\wedge (2[e_2+de_3]-\bar{n})\wedge
+     n\right\}  \nn \\
+     &  =  &  de_1\wedge e_2 \wedge e_3\wedge n - \half e_1\wedge
+     e_2\wedge \bar{n}\wedge n \nn \\
+     &  =  & de_1\wedge e_2 \wedge e_3\wedge n - e_1\wedge
+     e_2\wedge e\wedge \bar{e}
+     \label{planeeq1}
+\end{eqnarray}
+%
+where the second line in equation~\ref{planeeq1} follows
+because wedging with $n$ removes any term containing $n$.
+Then it is simple to show that the dual of $\Phi$ is
+given by
+%
+\begin{equation}
+\Phi^* = \Phi I=  dn + e_3
+\end{equation}
+%
+This holds for any $d$. If we rotate this plane via a
+rotor we know that the proof must hold and see therefore
+that since $Rn\tilde{R}=n$ and $Re_3\tilde{R}=\hat{n}$,
+where $\hat{n}$ is the new rotated normal to the plane,
+the general equation for the dual of the plane is given
+by
+%
+\begin{equation}
+\Phi^* = dn + \hat{n}
+\end{equation}
+%
+Note that the above assumes that we have normalised the
+dual such that $[\Phi^*]^2=1$; we can ensure this by
+normalising the plane such that $\Phi^2 = 1$. Therefore,
+given 3 points on the plane, $P,Q,R$, we form the
+normalised plane $\Phi$ and its dual $\Phi^*$, and we can
+then extract $\hat{n}$ and $d$ as follows
+%
+\begin{eqnarray}
+ d  & = &  \half \Phi^*\dt \bar{n} \\
+   \hat{n} &  = &  \Phi^* - \half (\Phi^*\dt\bar{n})n
+\end{eqnarray}
+%
+Whether we use the 4-vector form or the  \emph{normal-distance} 
+form of the plane will depend upon the
+problem we are solving.
+
+
+\section{Intersections}
+
+In this section we outline the various ways of intersecting to
+objects within the conformal model,
+
+\subsection{Spheres with spheres or planes}
+
+Let us consider the intersection of two spheres, $\Sigma_1$ and
+$\Sigma_2$ where they may intersect in a circle, at a point or not
+at all. Suppose we take the formula for the meet (where now we use
+$*$ to indicate multiplication by the pseudoscalar $I_n$):
+%
+\begin{equation}
+C = \Sigma_1 \vee \Sigma_2 = \left[\left< \Sigma_1 \Sigma_2
+\right>_{2n-r-s}\right]^*
+\end{equation}
+%
+$2n-r-s = 10-4-4=2$, so that the dual quantity will have
+grade $5-2=3$ --- generally, this will give the trivector
+representing the circle of intersection. We can tell
+whether we have a circle, a point intersection or no
+intersection according to whether
+%
+\begin{equation}
+C^2 >0 \;\;\;\; C^2 = 0 \;\;\;\mbox{or}\;\;\; C^2<0
+\end{equation}
+%
+In the case of $C^2>0$ we can extract the centre and radius
+according to equation~\ref{centre_radius}. If we also attempt to
+extract the centre and radius via these same formul\ae\ from $C$
+where $C^2=0$, we will find that the circle will have zero radius
+and its centre will be the point of tangency of the two spheres.
+Similarly, attempting to extract the radius and centre from $C$ in
+the case $C^2<0$ (i.e. no intersection) leads to an imaginary
+radius and a centre which lies on the shortest line joining the
+surfaces of the spheres (i.e. that joining the centres). If the
+two spheres have the same radii, it is the midway point on this
+line.
+
+The above all follows through if instead of having a
+second sphere, $\Sigma_2$, we have a plane, $\Phi_2$ -- we again get a
+trivector for our intersection object via the meet and the sign of the square
+of this trivector tells us whether the two objects are tangent, intersect in a
+circle or do not intersect at all.
+
+Although we will not go into this here, it is interesting
+to note that in the case of the non-intersecting objects,
+we can also extract information such as the perpendicular
+vector between the surfaces from the product $W_rW_s$.
+
+%
+%\subsection{The method of projectors}
+%
+%Some intersections discussed below, namely line-sphere and line-circle give, in general, two points of
+%intersection. In these cases we find that the meet generates a new class of object, a
+%bivector representing a pair of points; the points $A$ and $B$ are simply represented
+%by $A \wedge B$. It is simple to show that the null-space of this has the 
+%required form since
+%\[
+%(A \wedge B) \wedge X = A \wedge (B \wedge X) =  0
+%\]
+%is only true in general if $B = X$ and, by symmetry, if $A = X$. 
+%
+%Extracting $A$ and $B$ from $A \wedge B$ requires a little care and may be
+%preformed using the method of projectors.  Let our bivector be $T = A \wedge
+%B$. Firstly consider the effect of taking the inner product of $T$ with $n$ 
+%
+%%\textbf{FIXME}: Should I explain this more
+%%fully?
+%\[
+%T \cdot n = -n \cdot T = -(n\cdot A)B + (n\cdot B)A = B-A
+%\]
+%which is true as the identity $n \cdot F(x) = -1$ can be shown by 
+%direct substitution. Now form
+%\[
+%F = \frac{1}{\beta}A \wedge B
+%\]
+%where $\beta = T^2$ and hence $F^2=1$ (we shall consider the special 
+%case $\beta =0$ later). We now define two \emph{projector} operators in terms of $F$
+%\[
+%P = \frac{1}{2}(1 + F)
+%\]
+%\[
+%\tilde{P} = \frac{1}{2}(1 - F)
+%\]
+%
+%As suggested by the operator naming, $\tilde{P}$ is the reverse of $P$ (the reverse of a 
+%bivector $F$ is simply $-F$). These operators also have the following interesting 
+%property
+%\begin{eqnarray*}
+%P^2 & = & \frac{1}{4} (1+F)(1+F) \\
+%    & = & \frac{1}{4} (1 + 2F + F^2) \\
+%    & = & \frac{1}{4} (2 + 2F) \\
+%    & = & \frac{1}{2} (1 + F) = P
+%\end{eqnarray*}
+%and similarly $\tilde{P}^2 = \tilde{P}$. It is also trivial to show that $P\tilde{P}=0$ and
+%that
+%\[
+%PA = \tilde{P}B = 0
+%\]
+%\[
+%PB = B, \  \tilde{P}A = A
+%\]
+%We can now extract $A$ and $B$ from $T$
+%\begin{equation}
+%P \left[ T\cdot n \right] = P (B - A) = PB-PA = B\label{eqn:extractB}
+%\end{equation}
+%\begin{equation}
+%\tilde{P} \left[ T \cdot n \right] = \tilde{P} (B-A) = \tilde{P}B - \tilde{P}A = -A
+%\label{eqn:extractA}
+%\end{equation}
+%
+%Remember that this approach was only valid if $\beta^2 \ne 0$. Let's consider the
+%form of $\beta_2$ a little more 
+%\begin{eqnarray*}
+%\beta & = & (A \wedge B)(A \wedge B) \\
+%      & = & \frac{1}{4}(AB - BA)(AB - BA) \\
+%      & = & \frac{1}{4}(ABAB - ABBA - BAAB + BABA) \\
+%      & = & 0 \quad\mbox{ iff } ABAB + BABA = ABBA - BAAB
+%\end{eqnarray*}
+%The condition for $\beta = 0$ can be simplified further
+%\begin{eqnarray*}
+%ABAB + BABA & = & ABBA - BAAB \\
+%            & = & AB^2A - BA^2B \\
+%	    & = & 0 - 0 = 0 \\
+%\Rightarrow ABAB & = & -BABA 
+%\end{eqnarray*}
+%
+%This condition is only satisfied in general if $A = B$ and hence 
+%if there is only one point of intersection, i.e.\ the line
+%is tangential to the sphere. A similar type of analysis can be used to
+%show that there is no intersection if $\beta^2 < 0$.
+%We thus have a general method for factorising $A \wedge B$.
+
+\subsection{Spheres with circles or lines}
+
+Let us now intersect a sphere $\Sigma_1$ (4-blade) with a
+circle $C_2$ (3-blade). According to our meet formul\ae
+our intersection is a 2-blade, $B$, given by
+%
+\begin{equation}
+B = \Sigma_1 \vee C_2 = \left[\left< \Sigma_1 C_2
+\right>_{2n-r-s}\right]^*
+\end{equation}
+%
+where $2n-r-s=10-4-3=3$, so that the dual object has
+grade 2. We have already seen that these 2-blades
+represent 2 points --- precisely as we would expect, since
+an intersecting sphere and circle will do so at 2 points.
+Now, again, we look at the sign of the resulting 2-blade,
+$B$, and we will find that there are two, zero or one
+point of intersection according to
+%
+\[  B^2>0 \;\;\;\; B^2=0 \;\;\;\mbox{or}\;\;\;\; B^2<0.
+\]
+%
+We have seen earlier that given a bivector $B$, such that
+$B^2>0$, of the above form, we can extract the two points
+of intersection via the projectors given in
+equations~\ref{eqn:extractB} and \ref{eqn:extractA}. Now, if $B^2=0$ we cannot form
+the projector, but it is trivial to find the representation of the point of
+intersection, $X$, in this case using the following
+%
+\[  X = BnB  \]
+%
+i.e. for a 2-blade of the form $W = P\wedge Q$, reflecting
+$n$ in $W$, $WnW$, would give us the midpoint of the line
+joining $P$ and $Q$ --- for our case where $B^2=0$, the
+construction $BnB$ will therefore give us a representation of the point of
+intersection. These results can easily be shown by
+considering simple cases at the origin and then extending
+the proof via rotors as previously.
+
+Precisely the same working holds if we replace our
+circles above with lines --- the meet again gives a
+2-vector whose square tells us whether there are 2, 1 or
+no intersections, and from which the intersection points
+can be obtained easily. We will return to the
+intersections of lines with spheres when we later
+consider reflections of lines in spheres.
+
+Again, in the non-intersecting case the product $W_rW_s$
+can provide us with information about the vectors between
+the surfaces.
+
+
+
+
+\subsection{Planes with planes, circles and lines }
+
+Consider two planes $\Phi_1$ and $\Phi_2$; taking the
+meet gives
+%
+\begin{equation}
+L = \Phi_1 \vee \Phi_2 = \left[\left< \Phi_1 \Phi_2
+\right>_{2n-r-s}\right]^*
+\end{equation}
+%
+where $2n-r-s=10-4-4=2$, so that the dual object has
+grade 3 --- as we would expect, if the planes intersect to
+give a line. We are able to tell whether the planes
+intersect by looking at the sign of $L^2$ --- if $L^2=0$
+we know that the planes are parallel and do not
+intersect, if $L^2>0$, the planes intersect in the line
+$L$.
+
+Now consider a plane $\Phi_1$ and a circle $C_2$; we take
+the meet of these two objects to give
+%
+\begin{equation}
+B = \Phi_1 \vee C_2 = \left[\left< \Phi_1 C_2
+\right>_{2n-r-s}\right]^*
+\end{equation}
+%
+where $2n-r-s=10-4-3=3$, so that the dual object has
+grade 2 --- the plane and the circle intersect in a
+maximum of two points, and the 2-blade, $B$ encodes these
+two points as with the sphere-circle intersection. Once
+again we can assert that there are 2,1 or 0 intersections
+according to whether $B^2>0,B^2=0,B^2<0$. In the case of
+two intersections, the points are extracted from $B$ by
+projectors as before, and in the case of tangency, the
+one point of contact is obtained by taking $BnB$.
+
+It is worth thinking about what happens when the circle
+$C_2$ lies in the plane $\Phi_1$ so that the intersection is
+$C_2$ itself. As one might expect, in this case there \emph{is
+no} grade 3 part of $\Phi_1C_2$. In the case of the $z=0$ plane and
+the unit circle lying in the plane and centred on the origin this can
+easily be confirmed:
+
+\[
+\Phi_1 = F(e_1) \wedge F(e_2) \wedge F(-e1) \wedge n \propto e_1e_2e\bar{e}
+\]
+\[
+C_2 = F(e_1) \wedge F(e_2) \wedge F(-e1) \propto e_1e_2\bar{e}
+\]
+thus
+\[
+\Phi_1C_2 \propto e_1e_2e\bar{e}e_1e_2\bar{e} = e \mbox{ hence }
+\left<\Phi_1C_2\right>_3 = 0
+\]
+
+We can also note that, in this case, the dual of $\Phi_1C_2$ with respect to
+$e_1e_2e\bar{e}$ is indeed $C_2$.
+
+If we now replace our circle by a line, $L_2$, it is
+clear that the meet will still give us a 2-blade, $B$;
+but we know that the line and the plane intersect in at
+most one position, so should we not be looking for a
+vector rather than a 2-blade? The answer is that if the
+plane and the line intersect, and the meet gives us $B$,
+then $B$ is always of the form
+%
+\[  B = X\wedge n  \]
+%
+where $X$ is the representation of the point of intersection. This can be
+proved easily by again considering a simple case at the
+origin. If $B^2>0$ the line and plane intersect in a
+point, if $B^2=0$ the line and plane do not intersect and
+if $B=0$ the line lies in the plane. If there is one
+point of intersection so that $B$ is of the above form,
+we can extract the three-dimensional point of intersection,
+$x=x^ie_i,\;i=1,2,3$ (and hence $X$), by simply equating
+$x^i$ to the coefficient of the $e_i\wedge n$ term or by
+using the following expansion
+%
+\begin{equation}
+ x = (B\wedge \bar{n})\cdot E
+ \end{equation}
+%
+where $E=n\wedge \bar{n}$ as given earlier.
+
+
+\subsection{Circles with circles and lines }
+
+Consider two circles, $C_1$ and $C_2$, taking their meet
+gives
+%
+\begin{equation}
+X = C_1 \vee C_2 = \left[\left< C_1 C_2
+\right>_{2n-r-s}\right]^*
+\end{equation}
+%
+where $2n-r-s=10-3-3=4$, so that the dual object has
+grade 1. We know, however, that the intersection of two
+circles has at most 2 intersections (only possible if
+they lie in the same plane), so how do we get two
+intersections from our grade 1 object? In fact we find
+that the following is true
+%
+\begin{eqnarray}
+C_1 \vee C_2  &  =  &  X \;\;\mbox{where}\;\;
+X^2=0\;\;\mbox{if circles have one intersection} \nn \\
+C_1 \vee C_2  &  =  &  X \;\;\mbox{where}\;\;
+X^2\ne 0\;\;\mbox{if circles have no intersection} \nn \\
+C_1 \vee C_2  &  =  &  0 \;\; \;\;\mbox{if circles have
+two intersections}.
+\end{eqnarray}
+%
+In the case where the meet gives zero and we know there
+are two intersections, these can easily be found by
+intersecting the plane of one of the circles with the
+other circle, i.e.
+%
+\begin{equation}
+B = C_1 \vee (C_2\wedge n) =  \left[\left< C_1 (C_2\wedge n)
+\right>_{2n-r-s}\right]^*
+\end{equation}
+%
+where $2n-r-s=10-3-4=3$, so that the dual object has
+grade 2, and the two points of intersection can be
+extracted from the 2-blade $B$ using
+equations~\ref{eqn:extractB} and \ref{eqn:extractA}.
+
+If we now replace $C_2$ by a line $L_2$ we see that we
+again get a grade 1 object when we take the meet, and the
+situation above is exactly replicated, i.e.
+%
+\begin{eqnarray}
+C_1 \vee L_2  &  =  &  X \;\;\mbox{where}\;\;
+X^2=0\;\;\mbox{if circle and line have one intersection} \nn \\
+C_1 \vee L_2  &  =  &  X \;\;\mbox{where}\;\;
+X^2\ne 0\;\;\mbox{if circle and line have no intersection} \nn \\
+C_1 \vee L_2  &  =  &  0 \;\; \;\;\mbox{if circle and
+line have two intersections}
+\end{eqnarray}
+%
+As before, in the case where the meet gives zero the two
+intersections can easily be found by intersecting the
+plane of one of the circles with the line. It is also
+interesting to note here that in the case where the
+circle and the line do not intersect, with the meet
+giving a vector, $X$, which is not null, the sign of
+$X^2$ tells us whether the line passes through the circle
+($X^2<0$) or does not pass through the circle ($X^2>0$)
+-- such simple checks can often be useful in graphics
+applications.
+
+
+Given that we have had a little difficulty with circles
+intersecting circles, we might expect some slight
+difficulties with lines and lines. It turns out that many
+interesting constructions emerge when we start to
+consider the intersections between two lines, these will
+be discussed in the following section.
+
+
+\subsection{Lines with lines }
+
+Let us consider two lines, $L_1$ and $L_2$. Taking the
+meet of these two lines gives
+%
+\begin{equation}
+X = L_1 \vee L_2 = \left[\left< L_1 L_2
+\right>_{2n-r-s}\right]^*
+\end{equation}
+%
+where $2n-r-s=10-3-3=4$, so that the dual object has
+grade 1. We might expect that if the lines intersect at a
+point, the meet, $X$, will give this intersection point
+-- however, this is not the case. We find that the
+following is true
+%
+\begin{eqnarray}
+L_1 \vee L_2 & = & 0 \;\;\; \mbox{if the lines intersect}
+\nn \\
+L_1 \vee L_2 & \propto & n \;\;\; \mbox{if the lines do
+not intersect}
+\end{eqnarray}
+%
+We therefore have a simple of way for checking for
+intersecting lines, but if the meet gives us zero so that
+we know there is an intersection point, we can no longer
+find this point in a fully covariant way by intersecting
+one line with the a plane defined by the other line,
+since such a plane is not uniquely defined. We could, in
+practise, intersect one line with the plane formed by the
+other line and the origin, but then if the other line
+passes through the origin, this will not work, and we are
+left with a non-covariant procedure and one which entails
+us forming conditionals for a number of cases. We would
+instead like to look for a method which works co-variantly
+-- such a method exists, and in the process of describing
+it, we see a number of other useful constructions.
+
+Again take our arbitrary lines, $L_1$ and $L_2$ (assume
+they are normalised, such that $L_1^2=L_2^2=1$). Suppose
+we reflect line $L_1$ in line $L_2$ --- this statement is
+not well-defined in a conventional sense, but in
+GA, we have seen that reflection of an
+object in another object is indeed well defined and is
+brought about by sandwiching the object to be reflected
+between the object that it is being reflected in. So, our
+reflected line, $L_1'$ is given by
+%
+\[  L_1' = L_2L_1L_2  \]
+%
+The operation of reflection is grade preserving if we are
+dealing with blades, and therefore we know that we get
+another line. This construction will work for any two
+lines, but let us now suppose that our lines intersect at
+a point, we can then expect that the reflected line
+$L_1'$ will be the line formed by the intersection point,
+represented by $P$, and any point on $L_1$ reflected in $L_2$. This is
+indeed what $L_1'$ is. Now, however, it becomes possible
+very easily to form the line which is perpendicular to
+$L_2$, passing through the intersection point, $P$, and
+in the plane defined by $L_1$ and $L_2$ via the following
+%
+\begin{equation}
+ L_1'' =  L_1 - L_2L_1L_2
+\end{equation}
+%
+%-- this is illustrated in figure~\ref{intersect_lines}
+%
+%\begin{figure}
+%\centerline{
+%\includegraphics[width=.4\textwidth]{c:/jl/siggraph/2002/intersect_lines}
+%} \caption[]{The rotation of intersecting lines to
+%produce two lines intersecting at right angles, via the
+%construction $L_1-L_2L_1L_2$.} \label{intersect_lines}
+%\end{figure}
+%
+\begin{figure}
+\centerline{
+\includegraphics[width=.4\textwidth]{lines}
+} \caption{The rotation of intersecting lines to
+produce two lines intersecting at right angles, via the
+construction $L_1-L_2L_1L_2$.} \label{intersect_lines}
+\end{figure}
+Clearly what we are doing here is rotating one line in
+the plane defined by the two lines,  to be perpendicular
+to the other line. We will return to this rotor
+description later.  Now we have two perpendicular lines
+which intersect, we can find the point of intersection
+relatively easily. Take any arbitrary point representation $X$ and
+reflect it in $L_1''$ (assuming again that we have
+normalised $L_1''$) via $X' = L_1''XL_1''$, then take the
+midpoint of $X$ and $X'$, we know that this must lie on
+the line $L1'$
+%
+\[ X' = L_1''XL_1'' \;\;\;\; X'' = \half (X + X')   \]
+%
+(recall that $X''$ will be our real midpoint plus some
+multiple of $n$). Now we reflect $X''$ in $L_2$ to give $X'''$ and again
+take the midpoint --- the midpoint must now give us the
+intersection point $P$ plus some multiple of $n$;
+%
+\[ X''' = L_2X''L_2 \;\;\;\;  P' = \half (X''+X''')   \]
+%
+we then extract the null vector corresponding to the representation of our
+intersection point $P$ via
+%
+\[ P = \frac{-(P'nP')}{2(P'\cdot n)^2}   \]
+%
+This construction is independent of $X$ and is a
+beautiful illustration of the ability to manipulate
+objects using geometric algebra. Although it appears
+involved, it can be programmed up very easily ($\bar{n}$
+can be used as the point $X$) and is an entirely
+covariant way of intersecting two lines. Of course, in
+practise, one can also check to see if there is at least
+one line that does not pass through the origin
+($\bar{n}\wedge L=0$ if $L$ passes through the origin), if
+there is, say this is $L_1$, we can then form the plane
+$\bar{n}\wedge L_1$ and intersect this with $L_2$, if both
+lines pass through the origin then the intersection point
+is the origin. Note that we can use precisely the same
+type of argument to extract the plane formed by two
+intersecting lines. For example, take any arbitrary point
+$X$, reflect it in the line $L_1$ via $L_1 X L_1$, so
+that the midpoint of this line is given by $P$ where $P$
+is given (up to some additional multiple of $n$) by
+%
+\[  P = \half (X + L_1 X L_1)   \]
+%
+$P$ must clearly lie on $L_1$, thus the plane formed by
+the two lines must be given by
+%
+\begin{equation}
+ L_2\wedge P = L_2 \wedge \half(X + L_1X L_1)
+\end{equation}
+%
+Again, $\bar{n}$ can be used for our point $X$ in real
+computations. The derivations given here are entirely
+covariant and the same constructions will intersect `lines' in different
+geometries, we will illustrate this towards the end of the report by
+considering three-dimensional hyperbolic geometry.
+
+Recall that
+previously we found the reflection of $L_1$ in $L_2$ via
+$L_2L_1L_2$, now note that we can rewrite this as
+%
+\begin{equation}
+ L_2L_1L_2 = (L_2L_1)L_1\widetilde{(L_2L_1)} = RL_1\tilde{R}
+\end{equation}
+%
+since $\widetilde{(L_2L_1)} = \tilde{L}_1\tilde{L}_2=L_1L_2$.
+Thus we see that the quantity $L_2L_1$ acts as a rotor
+(if the lines are normalised) which rotates through twice
+the angle between the lines about an axis through the
+intersection point and perpendicular to the plane
+containing the lines. In fact, when we write this
+reflection as a rotation, there is nothing to insist that
+our lines must intersect. If $L_1$ and $L_2$ do not
+intersect, then $L_2L_1L_2$ will still perform a {\em
+reflection of $L_1$ in $L_2$}, but we are now able to
+interpret exactly what this reflection means for
+non-intersecting lines if we regard the operator as a
+rotor. It turns out that the rotor $L_2L_1$ is the
+product of a rotation rotor and a translation rotor --
+the rotation is in the plane normal to the common
+perpendicular of the lines and the translation is along
+the common perpendicular so that one line is taken onto
+and then through the other. We can show that it is
+possible to write the product $L_2L_1$ as
+%
+\begin{equation}
+L_2L_1 = (\cos{\theta} + \hat{B}\sin{\theta})(1 + dn)
+\end{equation}
+%
+where $d$ is the three-dimensions vector representing the length and
+direction of the common perpendicular, $\hat{B} =
+\hat{d}I_3$ (with $\hat{d}=d/\sqrt(d^2)$) and  $\theta$
+is the angle between the lines as measured when
+translated to lie in the same plane along $d$. We see
+that the above is a combination of a rotation rotor and a
+translation rotor, we will see later that rotors which
+take one object (of the same grade) into another object
+are often formed in the way we have outlined here for
+lines.
+
+

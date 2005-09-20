@@ -2,7 +2,7 @@
 # Rich Wareham (rjw57)
 
 # Variables we can alter
-SUBDIRS:=global introduction libcga visualisation noneuclid \
+SUBDIRS:=global introduction objects libcga visualisation noneuclid \
 	 fractals exponential interpolation gpu conclusions
 EVERYTHING=$(wildcard *)
 
