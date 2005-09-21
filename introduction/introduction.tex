@@ -4,6 +4,7 @@
 \end{savequote}
 
 \chapter{Introduction}
+\label{chap:introduction}
 
 It has long been known that going to a four-dimensional, projective, description
 of three-dimensional Euclidean geometry can have various advantages --- particularly
@@ -271,6 +272,47 @@ possible is an $n$-grade
 one. We denote the $n$-vector $e_1 \wedge ... \wedge e_n = I$ as the \emph{pseudoscalar}
 and the product $xI$ as the \emph{dual} of a vector or $x^*$. The dual is similarly defined
 for general multivectors.
+
+\subsection{Relation to quaternions}
+\label{sec:quaternions}
+
+It is worth comparing this method of rotation to quaternions. The three bivectors
+$B_1,B_2$ and $B_3$ act identically to the three imaginary components of quaternions,
+$\mathbf{i}, -\mathbf{j}$ and $\mathbf{k}$ respectively. The sign difference
+between $B_2$ and $\mathbf{j}$ is due to the fact that the quaternions are not derived from the usual
+right-handed orthogonal co-ordinate system.
+
+A particular rotation is represented via the quaternion $q$ given by
+\[
+q = q_0 + q_1 \mathbf{i} + q_2 \mathbf{j} + q_3 \mathbf{k}
+\]
+where $q_0^2 + q_1^2 + q_2^2 + q_3^2 = 1$. Interpolation between rotations is then
+performed by interpolating each of $q_i$ over the surface of a four-dimensional
+hyper-sphere. If we are interpolating between unit quaternions
+$q_0$ and $q_1$ the SLERP interpolation is
+\[
+q = \left\{
+\begin{array}{ll}
+q_0(q_0^{-1}q_1)^\lambda & {\rm ~if~} q_0 \cdot q_1 \ge 0 \\
+q_0(q_0^{-1}(-q_1))^\lambda & {\rm ~otherwise}
+\end{array}
+\right.
+\]
+where $\lambda$ varies in the range $(0,1)$ \cite{slerp}.
+
+Recalling that, in complex numbers, the locus of $\exp(i\theta)$ is the unit
+circle, it is somewhat simple to show that, for some normalised
+bivector $B$, the locus of the action of $\exp(B\theta)$ upon a point with respect to varying
+$\theta$ is also a circle in the plane of $B$. Therefore if we consider
+some rotations $R_1, R_2 = \exp(kB)R_1$, where $k$ is a scalar and
+$B$ is some normalised bivector, it is easy to see after some thought that
+the quaternionic interpolation is exactly given by
+\[
+R_\lambda = (R_2 \tilde{R}_1)^\lambda R_1 = \exp(\lambda kB) R_1
+\]
+where $\lambda$, the interpolation parameter, varies in the range $(0,1)$. A further
+moment's thought will reveal that this method is not confined to three dimensions, like
+quaternionic interpolation, but instead readily generalises to higher-dimensions.
 
 \subsection{The Conformal Model}
 
