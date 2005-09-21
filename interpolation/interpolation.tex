@@ -51,7 +51,7 @@ interpolation of the bivectors representing the final poses (the former case).
 
 Direct piece-wise linear interpolation of the set of bivectors is one of the simplest interpolation
 schemes we can consider. Consider the example shown in figure \ref{fig:linearinterp}. Here there are
-three rotors to be interpolated. We firstly find a rotor, $\Delta R_n$ which takes us from 
+three rotors to be interpolated. We firstly find rotors, $\Delta R_n$, which take us from 
 rotor $R_n$ to the next in the interpolation sequence, $R_{n+1}$.
 \begin{eqnarray*}
 R_{n+1} & = & (\Delta R_n) R_n\\
@@ -65,7 +65,7 @@ R_{n,\lambda} = \exp(\lambda \Delta B_n)R_n
 \]
 where $\lambda$ is in the range $[0,1]$ and $R_{n,0} = R_n$ and $R_{n,1} = R_{n+1}$.
 Clearly this interpolation scheme changes abruptly at interpolation points, something which is
-reflected in the resulting interpolation as shown in figure \ref{fig:interp}.
+reflected in the resulting interpolation as shown in figure \ref{fig:interp}a.
 
 \begin{figure}\centering
 \includegraphics[width=\columnwidth]{interp}
@@ -86,24 +86,20 @@ giving
 B'_{-1} = B_1,\quad B'_{0}=B_2\ \mbox{ and }\ B'_{+1} = B_3
 \]
 This interpolation varies smoothly through $B_2$ and is reflected in the final
-interpolation, as shown in figure \ref{fig:interp}. Extensions to the quadratic
+interpolation, as shown in figure \ref{fig:interp}b. Extensions to the quadratic
 interpolation for more than three interpolation points, such as smoothed
 quadratic interpolation \cite{cendes} are readily available.
 
 \subsection{Alternate methods}
 
-It is worth noting that each of the methods described above may be performed
-using either direct interpolation of the bivector $\ell(R)$ corresponding
-to a rotor $R$ or by interpolating the relative rotors which take one frame
-to another. It is not yet clear which will give the best results and indeed
-it is probably application dependent.
-
-\section{Form of the Interpolation}
-
-In this section we derive a clearer picture of the precise form of
-a simple linear interpolation between two frames in order to relate the 
-interpolation to existing methods used in mechanics and robotics. We will consider
-the method used above whereby the rotor being interpolated takes one pose to another.
+It is worth noting that the methods described above
+used either a direct interpolation of the bivector $\ell(R)$ corresponding
+to a rotor $R$, as in the quadratic interpolation example, or by interpolating 
+the relative rotors which take one frame
+to another, as in the piece-wise linear example. Either method could have used either
+convention when choosing the bivectors to interpolate. Generally it is not clear
+which is the best approach and choosing that which fits a particular application
+best may be the best course of action.
 
 \subsection{Interpolation of dilations}
 
@@ -149,6 +145,9 @@ $i$-th grade-part of $R$ and $S(X)$ to represent the
 `spatial' portion of $X$ (i.e.\ those components not parallel to $e$ and 
 $\bar{e}$).
 
+FIXME: Check with Jonathan's work for defn of $t_\Jperp$.
+
+\scalebox{0.8}{
 \begin{tabular}{ll}
 $\begin{array}{rcl}
   \omega &=& \tanh^{-1}\left(\frac{\left<R|N\right>}{\left<R|1\right>}\right)\\
@@ -165,6 +164,14 @@ $\begin{array}{rcl}
   t_\Jpar &=& \frac{(-XP+Z)}{\sin^2(\phi)\cosh^2(\omega) + \cos^2(\phi)\sinh^2(\omega)} W
 \end{array}$
 \end{tabular}
+}
+
+\section{Form of the Interpolation}
+
+In this section we derive a clearer picture of the precise form of
+a simple linear interpolation between two frames in order to relate the 
+interpolation to existing methods used in mechanics and robotics. We will consider
+the method used above whereby the rotor being interpolated takes one pose to another.
 
 \subsection{Path of the linear interpolation}
 
@@ -181,21 +188,21 @@ desirable property in itself but also provides a powerful analysis mechanism.
 \end{figure}
 
 We have identified in section \ref{subsec:form} the action of the $\exp(B)$
-rotor in terms of $\psi, P, t_\parallel$ and $t_\perp$. We now investigate the resulting interpolant
+rotor in terms of $\phi, P, t_\parallel$ and $t_\perp$. We now investigate the resulting interpolant
 path when interpolating from the origin. We shall consider the interpolant
 $R_\lambda = \exp(\lambda B)$ where $\lambda$ is the interpolation co-ordinate and
-varies from 0 to 1. For any values of $\psi, P, t_\parallel$ and $t_\perp$,
+varies from 0 to 1. For any values of $\phi, P, t_\parallel$ and $t_\perp$,
 \[
-\lambda B = \frac{\lambda \psi}{2} P + \frac{\lambda (t_\perp + t_\parallel) n}{2}
+\lambda B = \frac{\lambda \phi}{2} P + \frac{\lambda (t_\perp + t_\parallel) n}{2}
 \]
 from which we see that the action of $\exp(\lambda B)$ is a translation along $\lambda t_\perp$, a rotation by
-$\lambda \psi$ in the plane of $P$ and finally a translation along
+$\lambda \phi$ in the plane of $P$ and finally a translation along
 \[
-t'_\parallel =- \sinc\left(\frac{\lambda\psi}{2}\right)
+t'_\parallel =- \sinc\left(\frac{\lambda\phi}{2}\right)
 \lambda t_\parallel
 \left(
-\cos\left(\frac{\lambda \psi}{2}\right) -
-\sin\left(\frac{\lambda \psi}{2}\right) P 
+\cos\left(\frac{\lambda \phi}{2}\right) -
+\sin\left(\frac{\lambda \phi}{2}\right) P 
 \right).
 \]
 
@@ -217,24 +224,24 @@ see the next section).
 \begin{figure}\centering
 \includegraphics[width=\columnwidth]{helix}
 \caption{\label{fig:helix} Example of an interpolant path with the final location being given by
-$t_\parallel = 4a + 6b$, $\psi = 9\pi$ and $t_\perp$ having a magnitude of 1.}
+$t_\parallel = 4a + 6b$, $\phi = 9\pi$ and $t_\perp$ having a magnitude of 1.}
 \end{figure}
 
 Finally there is a translation along $t'_\parallel$ which, 
-using $c = \cos\left(\frac{\lambda \psi}{2}\right)$ and $s = \sin\left(\frac{\lambda \psi}{2}\right)$,
+using $c = \cos\left(\frac{\lambda \phi}{2}\right)$ and $s = \sin\left(\frac{\lambda \phi}{2}\right)$,
 can be expressed in terms of $a$ and $b$ as
 \begin{eqnarray*}
-t'_\parallel & = & - \frac{2s}{\lambda\psi} \lambda (t^a a + t^b b) (c - sab) \\
-& = & -\frac{2s}{\psi} c (t^a a + t^b b) + s ( t^b a - t^a b) \\
-& \equiv & -\frac{2s}{\psi} a (t^a c + t^b s) + b ( t^b c - t^a s).
+t'_\parallel & = & - \frac{2s}{\lambda\phi} \lambda (t^a a + t^b b) (c - sab) \\
+& = & -\frac{2s}{\phi} \left[c (t^a a + t^b b) + s ( t^b a - t^a b) \right]\\
+& \equiv & -\frac{2s}{\phi} \left[a (t^a c + t^b s) + b ( t^b c - t^a s)\right].
 \end{eqnarray*}
 The position, $r_\lambda$, of the frame at $\lambda$ along the interpolation is therefore
 \[
-r_\lambda = -\frac{2s}{\psi} (a (t^a c + t^b s) + b ( t^b c - t^a s)) + \lambda t_\perp
+r_\lambda = -\frac{2s}{\phi} [a (t^a c + t^b s) + b ( t^b c - t^a s)] + \lambda t_\perp
 \]
 which can easily be transformed via the harmonic addition theorem to
 \[
-r_\lambda = -\frac{2s}{\psi} \alpha \left[ a \cos\left(\frac{\lambda\psi}{2} + \beta_1\right) + b \cos\left(\frac{\lambda\psi}{2} + \beta_2\right) \right] + \lambda t_\perp
+r_\lambda = -\frac{2s}{\phi} \alpha \left[ a \cos\left(\frac{\lambda\phi}{2} + \beta_1\right) + b \cos\left(\frac{\lambda\phi}{2} + \beta_2\right) \right] + \lambda t_\perp
 \]
 where $\alpha^2 = (t^a)^2 + (t^b)^2$, $\tan \beta_1 = - \frac{t^b}{t^a}$ and $\tan \beta_2 = - \frac{-t^a}{t^b}$. 
 %Figure \ref{fig:tan} is a geometric construction which clearly shows by similar figures and triangle
@@ -242,20 +249,20 @@ where $\alpha^2 = (t^a)^2 + (t^b)^2$, $\tan \beta_1 = - \frac{t^b}{t^a}$ and $\t
 It is easy, via geometric construction or otherwise, to verify that this implies
 that $\beta_2 = \beta_1 + \frac{\pi}{2}$. Hence $\cos(\theta + \beta_2) = - \sin(\theta + \beta_1)$. We can now express the frame's position as
 \[
-r_\lambda = -\frac{2\alpha}{\psi} \left[ a \sin\left(\frac{\lambda\psi}{2}\right)\cos\left(\frac{\lambda\psi}{2} + \beta_1\right) - b \sin\left(\frac{\lambda\psi}{2}\right)\sin\left(\frac{\lambda\psi}{2} + \beta_1\right) \right] + \lambda t_\perp
+r_\lambda = -\frac{2\alpha}{\phi} \left[ a \sin\left(\frac{\lambda\phi}{2}\right)\cos\left(\frac{\lambda\phi}{2} + \beta_1\right) - b \sin\left(\frac{\lambda\phi}{2}\right)\sin\left(\frac{\lambda\phi}{2} + \beta_1\right) \right] + \lambda t_\perp
 \]
 which can be re-arranged to give
 \begin{eqnarray*}
-r_\lambda & = & -\frac{\alpha}{\psi} \left[ a \left(\sin\left(\lambda\psi + \beta_1\right) - \sin\beta_1\right)
-+ b \left(\cos\left(\lambda\psi + \beta_1\right) - \cos\beta_1\right) \right] + \lambda t_\perp \\
-& = & -\frac{\alpha}{\psi} \left[ a \sin\left(\lambda\psi + \beta_1\right)
-+ b \cos\left(\lambda\psi + \beta_1\right) \right] + \frac{\alpha}{\psi} \left[
+r_\lambda & = & -\frac{\alpha}{\phi} \left[ a \left(\sin\left(\lambda\phi + \beta_1\right) - \sin\beta_1\right)
++ b \left(\cos\left(\lambda\phi + \beta_1\right) - \cos\beta_1\right) \right] + \lambda t_\perp \\
+& = & -\frac{\alpha}{\phi} \left[ a \sin\left(\lambda\phi + \beta_1\right)
++ b \cos\left(\lambda\phi + \beta_1\right) \right] + \frac{\alpha}{\phi} \left[
 a \sin \beta_1 + b \cos \beta_1
 \right] + \lambda t_\perp 
 \end{eqnarray*}
-noting that in the case $\psi \rightarrow 0$, the expression becomes $r_\lambda = \lambda t_\perp$ as one would
+noting that in the case $\phi \rightarrow 0$, the expression becomes $r_\lambda = \lambda t_\perp$ as one would
 expect. Since $a$ and $b$ are defined to be orthonormal, the path is clearly some cylindrical helix with the axis of rotation passing through 
-$\alpha/\psi  \left[ a \sin \beta_1 + b \cos \beta_1 \right]$.
+$\alpha/\phi  \left[ a \sin \beta_1 + b \cos \beta_1 \right]$.
 %where the cone has an elliptical cross-section with major and minor axes aligned
 %to $a$ and $b$ with magnitudes $\alpha |a|$ and $\alpha |b|$ respectively. 
 An illustrative example, with $a$ and $b$ having
@@ -277,10 +284,10 @@ existing ones based upon these interpolations.
 \subsection{Pose of the linear interpolation}
 
 The pose of the transformed frame is unaffected by pure translation and hence the initial
-translation by $\lambda t_\perp$ has no effect. The rotation by $\lambda \psi$ in the plane,
+translation by $\lambda t_\perp$ has no effect. The rotation by $\lambda \phi$ in the plane,
 however, now becomes important. The subsequent translation along $t'_\parallel$ also has
 no effect on the pose. We find, therefore, that the pose change $\lambda$ along the 
-interpolant is just the rotation rotor $R_{\lambda \psi, P}$.
+interpolant is just the rotation rotor $R_{\lambda \phi, P}$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
