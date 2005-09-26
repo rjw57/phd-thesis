@@ -442,10 +442,59 @@ count.
 
 \section{Dynamics}
 
-FIXME: In this section:
-\begin{itemize}
-\item Note GPUs have more fragment shaders than vetex shaders
-\item Output can be fed back into itself - iterative solutions
-\item Extensions, floating-point buffers, etc.
-\item Example, cloth simulation.
-\end{itemize}
+In this section we will develop a simple method for doing dynamics with a sphere
+which has been deformed with a set of rotors. We shall show how a simple dynamics example
+using such a method may be implemented on the GPU.
+
+Recall that a GPU has two classes of shaders; it has vertex shaders which are applied
+per-vertex and fragment shaders which are applied per-pixel. Since, in a typical scene,
+one would expect the number of pixels on screen to be very much greater than the number
+of vertices, GPUs generally have more parallel fragment shaders than vertex shaders.
+If we can re-formulate our solution to use fragment shaders we might expect even
+greater performance than simply using the vertex shader.
+
+Algorithms implemented on the fragment shaders have one further 
+advantage when compared to those implemented on the vertex shader when one makes use
+of the \emph{render to texture} feature on modern graphics cards. Using this feature
+rendering can be directed to a texture stored in the graphics card memory rather than the
+screen. This feature allows iterative algorithms to be developed.
+The concept is simple. A texture is created which stores a set of initial values. 
+A square is then rendered with a fragment shader which, for each pixel in the square,
+reads the initial value from the texture and outputs the result of the next iteration.
+If this square is rendered into the original texture then the result of each iteration
+replaces the previous one. This process may be repeated as often as is desired.
+In reality there are a few implementation issues. Aside from the API calls required to
+setup the render to texture and appropriate projection matrices a significan issue is
+that the shader is required to write back to its input which could lead to
+concurrency issues. To avoid this one generally uses two textures, an `input' and `output',
+which are swapped between each iteration.
+
+\subsection{Collision detection via deformation}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.8\textwidth]{deformation_scheme}
+\caption{\label{fig:deformation_scheme}Given a deformation scheme $\mathcal{D}$ which maps
+  our object to the unit sphere we can tell whether a point, $P$, is inside the object by
+          testing if the mapped point, $P'$, is inside the sphere.}
+\end{figure}
+
+We shall develop a simple example to illustrate this method. In our example we shall 
+implement an approximate simulation of a cloth falling onto a complex smooth object.
+Our approach is illustrated in figure \ref{fig:deformation_scheme}. We shall assume
+some GA-based deformation scheme $\mathcal{D}$ which will deform our object to the
+unit sphere. Ideally this deformation scheme should preserve both position and orientation
+information so that we can perform physics on the unit sphere and deform the result back to 
+our original object.
+
+\begin{figure}[p]
+\centering
+\scalebox{0.7}{
+\begin{minipage}{\textwidth}
+\singlespacing
+\lstinputlisting[language=c]{map.cg}
+\end{minipage}}
+\caption{\label{fig:map}The vertex shader utility functions for mapping to and
+  from a rotor-deformed space.}
+\end{figure}
+

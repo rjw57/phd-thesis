@@ -1,0 +1,24 @@
+/* Program to calculate new vertices from velocities */
+#include "map.cg"
+
+float3 main(in float2 wPos : WPOS, 
+                uniform samplerRECT verticesTex : TEXUNIT0, 
+                uniform samplerRECT velocitiesTex : TEXUNIT1
+                ) : COLOR
+{
+  float3 v = texRECT(verticesTex, wPos).rgb;
+  float3 vel = texRECT(velocitiesTex, wPos).rgb;
+  float3 junk = float3(1,0,0);
+
+  v += vel;
+
+  map_pos_to_sphere(v, junk, v);
+
+  if(length(v) < 1.0) {
+    v = normalize(v);
+  }
+
+  map_sphere_to_pos(v, junk, v);
+
+  return v;
+}

@@ -1,0 +1,62 @@
+// ** Utility functions to map to and from a rotor deformed space. **
+// The 6D generators representing the deforming rotors are stored in a
+// texture. The 6 components are held in a 2-pixel pair where the first pixel
+// hold the 3 rotational components and the second holds the 3 positional
+// components.
+
+#include "rotor_tools.cg"
+
+#define MAX_GENERATORS 4    // Maximum number of deforming generators stored in texture
+#define RANGE 2.5           // The range of influence of the deformation rotors.
+const float M_PI = 3.14159265358979323846; // Pi (more or less)
+uniform const samplerRECT deformGenerators : TEXUNIT3; // The actual generators are held in texture unit 3.
+
+// Function to deform a point and normal by the deforming rotors
+void map_pos_to_sphere(in const float3 pos, inout float3 normal, out float3 sph)
+{
+  int i;
+  sph = pos;
+  for(i=0; i<MAX_GENERATORS; i++) {
+    float3 rotPart = texRECT(deformGenerators, int2(i*2, 0)).rgb;
+    float3 location = texRECT(deformGenerators, int2(i*2 + 1, 0)).rgb;
+    
+    if(length(rotPart) > 0.0) {
+      sph -= location;
+      float ls = length(sph) / RANGE;
+      if(ls < 1.0) {
+        float3 myrp = - rotPart * (0.5 * cos(M_PI * ls) + 0.5);
+        float4 r1;
+        if(length(myrp) > 0.0) {
+          exp_rot_generator(myrp, r1);
+          sph = apply_rot_rotor_to_point(r1,sph); normal = apply_rot_rotor_to_point(r1,normal);
+        }
+      }
+      sph += location;
+    }
+  }
+}
+
+// Function to undo the deformation applied by map_pos_to_sphere().
+void map_sphere_to_pos(in const float3 sph, inout float3 normal, out float3 pos)
+{
+  int i;
+
+  for(i=MAX_GENERATORS-1; i>=0; i--) {
+    float3 rotPart = texRECT(deformGenerators, int2(i*2, 0)).rgb;
+    float3 location = texRECT(deformGenerators, int2(i*2 + 1, 0)).rgb;
+
+    if(length(rotPart) > 0.0) {
+      pos -= location;
+      float ls = length(pos) / RANGE;
+      if(ls < 1.0) {
+        float3 myrp = rotPart * (0.5 * cos(M_PI * ls) + 0.5);
+        float4 r1;
+        if(length(myrp) > 0.0) {
+          exp_rot_generator(myrp, r1);
+          pos = apply_rot_rotor_to_point(r1,pos); normal = apply_rot_rotor_to_point(r1,normal);
+        }
+      }
+      pos += location;
+    }
+  }
+}
