@@ -59,25 +59,14 @@ Taken from \cite{transhyp}.}
 \label{fig:circlelimit}
 \end{figure}
 
-% \subsection{Space-Time Algebra}
-
-%\subsection{Spherical Geometry}
-%
-%FIXME: Spherical chat
-
 \section{Extending the Conformal Model}
+\label{sec:extendconfmodel}
 
 In this section we shall extend the conformal model we have developed to
 represent Euclidean geometry to the hyperbolic geometry of the Poincar\'e
 disc and show how many results which are tedious to prove using existing
 metric-based derivations become simple and, in some cases, obvious using the
 GA-based approach.
-
-%\subsection{Spherical Geometry}
-%
-%FIXME: spherical rotors
-%
-%\subsection{Hyperbolic Geometry}
 
 All rigid-body transformation (i.e.\ rotation and translation) rotors in 
 the Euclidean approach above leave $n$ invariant, i.e.\ 
@@ -439,7 +428,17 @@ and therefore agrees with our identification of $d(r)=
 f(r)/2$, using equation \ref{eqn:sinhcosh}, and
 taking $\lambda=1$.
 
-FIXME: Talk about Dilations
+This distance function allows us to define a geometrically analagous
+dilator about the origin. Suppose we dilate some vector $x$ about the
+origin so that $x \mapsto x'$. We would expect that, given a dilation
+factor of $a$, $d(x',0) = a\,d(x,0)$ or, equivalently,
+\begin{eqnarray*}
+\tanh^{-1}(|x'|) = a \tanh^{-1}(|x|) \\
+|x'| = \tanh[ a \tanh^{-1}(|x|) ] \\
+\frac{|x'|}{|x|} = {\tanh[ a \tanh^{-1}(|x|) ]}({|x|})^{-1}.
+\end{eqnarray*}
+We see that a hyperbolic dilation by a factor of $a$ is therefore
+equivalent to an Euclidean dilation by ${\tanh[ a \tanh^{-1}(|x|) ]}({|x|})^{-1}$.
 
 Thus far, apart from the formula for non-Euclidean
 distance in terms of $X \dt Y$, we have only mirrored
