@@ -1,22 +1,30 @@
-\begin{savequote}
-\quoteperson{A picture is worth 10K words --- but only those 
-  to describe the picture. Hardly any sets of 10K words can
-          be adequately described with pictures.}{Alan Perlis}
-\end{savequote}
+%\begin{savequote}
+%\quoteperson{A picture is worth 10K words --- but only those 
+%  to describe the picture. Hardly any sets of 10K words can
+%          be adequately described with pictures.}{Alan Perlis}
+%\end{savequote}
 
-\chapter{Visualisation}
+%\chapter{Visualisation}
 
-In this chapter we will discuss some methods for visualising Euclidean objects
-in CGA as implemented by {\tt libcgadraw}, a companion library to {\tt libcga}.
+%In this chapter we will discuss some methods for visualising Euclidean objects
+%in CGA as implemented by {\tt libcgadraw}, a companion library to {\tt libcga}.
 
-Many CGA visualisation solutions exist\cite{CLU}. The {\tt libcgadraw} library
-uses an approach similar to that of the CLUDraw library were by the results of 
-a GA-based algorithm may be displayed directly on the screen.
+%% AUTHOR NOTE
+% This was originally a separate chapter. I didn't like that.
 
 \section{Visualising Objects within the Algebra}
 
+Many CGA visualisation solutions exist\cite{CLU}. The {\tt libcgadraw}
+companion library to {\tt libcga} was created as a convenience library
+for visualising the output of algorithms implemented with
+{\tt libcga}. The library
+uses an approach similar to that of the CLUDraw library were by the results of 
+a GA-based algorithm may be displayed directly on the screen.
 The output of GA-based algorithms may be categorised into a number of
-geometric primitives they represent.
+geometric primitives they represent. Below is an a selection of the
+visualisation algorithms used. In section \ref{sec:noneuclid-vis} we will
+develop some further algorithms for visualising the output of algorithms
+working in non Euclidean geometries.
 
 \subsection{Point Pairs}
 
@@ -79,12 +87,12 @@ in many problems. The specific method is given in algorithm \ref{alg:line}.
 \caption{\label{alg:line}Rendering the representation of a line, $L$.}
 \end{fancyalg}
 
-\subsection{Planes}
-
-A plane, $P$ is represented by three points, $P_1, P_2$ and $P_3$, as
-\[
-P = P_1 \wedge P_2 \wedge P_3 \wedge n.
-\]
+%\subsection{Planes}
+%
+%A plane, $P$ is represented by three points, $P_1, P_2$ and $P_3$, as
+%\[
+%P = P_1 \wedge P_2 \wedge P_3 \wedge n.
+%\]
 
 
 \subsection{Circles}
@@ -126,5 +134,4 @@ The final algorithm (for three dimensions) is outlined in algorithm \ref{alg:cir
 \caption{\label{alg:line}Rendering the representation of a line, $L$.}
 \end{fancyalg}
 
-
-\subsection{Spheres}
+% \subsection{Spheres}
