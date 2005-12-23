@@ -6,72 +6,69 @@
 \chapter{Introduction}
 \label{chap:introduction}
 
-It has long been known that going to a four-dimensional, projective, description
-of three-dimensional Euclidean geometry can have various advantages --- particularly
-when intersections of planes and lines are required. Such
-projective descriptions are used extensively in computer vision
-where rotations and translations can be described by a single
-$4\times 4$ matrix and non-linear projective transformations
-become linear. 
-Since its inception in the mid-1970s, Computer Graphics (CG) has almost
-universally used linear vector algebra as its mathematical framework.
-This is due primarily to two factors; most early practitioners of
-computer graphics were mathematicians familiar with it and 
-linear algebra provided a compact, efficient way of representing points, 
-transformations, lines, etc.
+It is generally accepted that a four-dimensional projective description of
+three-dimensional Euclidean geometry can have various advantages, particularly
+when intersections of planes and lines are required. Such projective
+descriptions are used extensively in computer vision and graphics where
+rotations and translations are usually described by a single $4\times 4$
+matrix. Since its inception in the mid-1970s, computer graphics (CG) has
+almost universally used linear vector algebra as its mathematical framework.
+This is due primarily to two factors; most early practitioners of computer
+graphics were mathematicians familiar with it and linear algebra provided a
+compact, efficient way of representing points, transformations, lines, etc.
 
-In the early-1980s CG moved out of the realm of Computer
-Science research and started to be used in the broader scientific 
-community as an important research tool, both for simulation and visualisation.
-Computer Graphics was still tied to classical vector algebra which
-had started to show a number of problems when applied to the problems
-being investigated. Amongst these were poor generalisation to
-spaces other than $\mathbb{R}^3$ and great conceptual difficulty 
-in extending problems to non-Euclidean spaces and
-manipulating geometric objects other than simple lines, planes and points.
+In the early-1980s CG moved out of the realm of Computer Science research and
+started to be used in the broader scientific community as an important
+research tool both for simulation and visualisation.  Computer Graphics was
+then, and to an extent still is, tied to classical vector algebra which has
+started to show a number of problems when applied to the problems being
+investigated. Amongst these problems were poor generalisation to spaces other
+than $\mathbb{R}^3$, great conceptual difficulty in extending problems to
+non-Euclidean geometries and manipulating geometric objects other than simple
+lines, planes and points.
 
-As computing power becomes cheaper, the opportunity
-arises to investigate new
-frameworks for CG which, although not providing the time/space
-efficiency of vector algebra, may provide a conceptually simpler
-system or one of greater analytical power. This thesis presents 
-Geometric Algebra (GA) as one such approach.
-As one might hope the original four-dimensional description of projective geometry fits
-very nicely into the Geometric Algebra framework\cite{HZ91,IJPR00}. 
+As computing power becomes cheaper, the opportunity arises to investigate new
+frameworks for CG which, although perhaps not providing the time and space
+efficiency of vector algebra, may provide a conceptually simpler system or one
+of greater analytical power. This thesis investigates the suitablility of
+Geometric Algebra (GA) as one such approach. As one might hope the original
+four-dimensional description of projective geometry fits very nicely into the
+Geometric Algebra framework\cite{Hx91,IJPR00}. 
 
 \section{A Brief Overview of Geometric Algebra}
 
-As stated above, classical vector algebra has a number of problems
-once one moves away from three-dimensional Euclidean space. Perhaps the
-clearest example is the cross-product of two vectors; the product, $\mathbf{a}
-\times \mathbf{b}$, is conventionally defined as a vector normal to the plane
-that $\mathbf{a}$ and $\mathbf{b}$ both lie in and has magnitude $ab\sin\theta$
-where $\theta$ is the angle between $\mathbf{a}$ and $\mathbf{b}$. However, the
-normal to the plane is only uniquely defined in three-dimensions and has no meaning
-in 2- or 1-dimensional space; the cross-product does not generalise to
-higher-dimension spaces. The product is an important element of vector
-algebra and one can see that performing geometric operations in higher-spaces
-without it quickly becomes complex.
+As stated above, classical vector algebra has a number of problems once one
+moves away from three-dimensional Euclidean space. Perhaps the clearest
+example is the cross-product of two vectors; the product, $\mathbf{a} \times
+\mathbf{b}$, is conventionally defined as a vector normal to the plane
+containing $\mathbf{a}$ and $\mathbf{b}$ and has magnitude $ab\sin\theta$
+where $\theta$ is the angle between $\mathbf{a}$ and $\mathbf{b}$. However the
+normal to the plane is only uniquely defined in three-dimensions and has no
+meaning in 2- or 1-dimensional space; the cross-product does not generalise to
+higher-dimension spaces. The product is an important element of vector algebra
+and one can see that performing geometric operations in higher-spaces without
+it quickly becomes complex.
 
 \subsection{The products}
 
-It was in an attempt \cite{GA:grassmann} to create an algebra of vectors which 
-did generalise
-to higher spaces that a German schoolteacher named Hermann 
-Gra{\ss}mann (1809--1877) created an \emph{exterior} 
-or \emph{outer} product of two
-vectors denoted as $a \wedge b$. 
-%Note that we have dropped the normal
-%typographic convention of denoting vectors in boldface for
-%reasons which will become clear later.
+It was in an attempt\cite{GA:grassmann} to create an algebra of vectors which
+did generalise to higher spaces that a German schoolteacher named Hermann
+Gra{\ss}mann (1809--1877) created an \emph{exterior} or \emph{outer} product
+of two vectors denoted as $a \wedge b$. For the remainder of this thesis we
+have dropped the usual convention of emboldening vectors since in GA they lie
+in the same algebra as scalers and do not need to be differentiated; the
+nature of the element is either stated explicitly or clear from context.
 
-Gra{\ss}mann's outer product can be visualised geometrically as moving
-one vector along the other to form a `directed area'. This is a new object,
-neither a vector or a scalar. We shall refer to it as a \emph{bivector}.
-Similarly one may form the outer product of this bivector with another
-vector to form a directed volume or \emph{trivector}. We say a 
-bivector has grade 2, a trivector has grade 3 and, generally, a
-$n$-vector has grade $n$.
+Gra{\ss}mann's outer product is usually visualised geometrically as the
+movement of one vector along the other to form a `directed area'. This is a
+new object, neither a vector nor a scalar. It is termed a \emph{bivector}.
+Similarly one may form the outer product of this bivector with another vector
+to form a directed volume, a \emph{trivector}, or generally a $n$-volume
+termed an $n$-vector. 
+
+To differentiate between scalers, vectors, bivectors, etc we say that a scalar
+is grade 0, a vector is grade 1, a bivector (formed from two vectors) is grade
+2, etc. A $n$-vector has grade $n$.
 
 \begin{figure}
 \centering
@@ -79,64 +76,71 @@ $n$-vector has grade $n$.
 \caption{Illustration of bi- and trivectors\label{fig:geometric}}
 \end{figure}
 
-The geometric objects are illustrated in figure \ref{fig:geometric}. A 
-key feature is that the outer-product is anti-commutative and 
-associative so that
+The usual geometric visualisation is illustrated in figure \ref{fig:geometric}.
+It is worth noting that other visualisations may be more appropriate for a specific
+application so the reader should not assume a bivector can \emph{only} represent a
+directed area. 
+
+A key feature of GA is that the outer-product is anti-commutative and
+associative giving
 \begin{displaymath}
-a \wedge b = - ( b \wedge a)\quad\mbox{and}\quad 
-a \wedge (b \wedge c) = (a \wedge b) \wedge c = a \wedge b \wedge c
+a \wedge b = - ( b \wedge a)\quad\mbox{and}\quad
+a \wedge (b \wedge c) = (a \wedge b) \wedge c = a \wedge b \wedge c.
 \end{displaymath}
 
 Most of Gra{\ss}mann's work was largely ignored by the mathematical community.
 It was not until William Clifford (1845--1879) investigated Gra{\ss}mann's
-algebra in 1878 \cite{GA:clifford} that the crucial step was made.
+algebra in 1878\cite{GA:clifford} that the crucial step which made GA a useful
+algebra was made.
 
 Clifford unified Gra{\ss}mann's outer product and the familiar dot
-or inner-product into one geometric product such that
+or inner-product into one \emph{geometric product} such that
 \begin{displaymath}
-ab = a\cdot b + a \wedge b
+ab = a\cdot b + a \wedge b.
 \end{displaymath}
+An algebra with this product is usually termed a \emph{Clifford algebra}. We
+shall use the term Geometric Algebra to mean the \emph{coupling} of Clifford
+algebras with an accompanying geometric interpretation.
 
-A second glance at this shows an interesting feature which should be noted.
-In the expression above we are adding a scalar ($a \cdot b$) to a 
-bivector ($a \wedge b$). This combination of different objects is
-analogous to complex numbers where we linearly combine
-a real and imaginary number to form a complex number. In this case we
-refer to a linear combination of objects of varying grade as a
-\emph{multivector}. Since the algebra may be extended to deal with
-multivectors we no longer need different notation for scalars, vectors,
-bivectors, etc. This project will use the convention of using lower-case
-letters to refer to single-grade objects and upper-case letters to refer
-to multivectors. The geometric product also gives us a convenient new
-definition of the outer and inner products for vectors
+A second glance at the geometric product shows an interesting feature which
+should be noted. In the expression above we are adding a scalar ($a \cdot b$)
+to a bivector ($a \wedge b$). That is we are adding a grade 0 element to a
+grade 2 element. This combination of differing grade objects is analogous to
+complex numbers where we linearly combine a real and imaginary number to form
+a complex number. In this case we refer to such a combination of objects of
+varying grade as a \emph{multivector}.  As noted earlier we shall refer to all
+single-grade elements with lower-case letters but use upper-case letters to
+refer to multivectors. The geometric product also gives us a convenient new
+definition of the outer and inner products for vectors as
 \[
-A \wedge B = \frac{1}{2}(AB - BA)
+A \wedge B = \frac{1}{2}(AB - BA)\;\mbox{and}
 \]
 \[
-A \cdot B = \frac{1}{2}(AB + BA)
+A \cdot B = \frac{1}{2}(AB + BA).
 \]
 
-The power of this approach may be illustrated through its application
-to rotation. In two dimensions this is easily performed using complex numbers. Representing
-the vector $[x\ y]$ as the complex number $z = x + iy$, rotation by
-$\theta$ radians can be performed by multiplication with $e^{i\theta}$.
-William Hamilton (1805--1865) worked for many years to extend this approach
-to three-dimensions. He eventually created \emph{quaternions} \cite{hamilton2,hamilton1},
-an algebra with 4 
-elements $\left\{1, \mathbf{i}, \mathbf{j}, \mathbf{k}\right\}$ which, although
-functional, lacked an obvious geometrical interpretation and again didn't
-generalise easily to higher-dimensions.
+The power of this approach may be illustrated through its application to
+rotation. In two dimensions this is easily performed using complex numbers;
+representing the vector $[x\ y]$ as the complex number $z = x + iy$, rotation
+by $\theta$ radians can be performed by multiplication with $e^{i\theta}$.
+William Hamilton (1805--1865) worked for many years to extend this approach to
+three-dimensions. He eventually created \emph{quaternions}
+\cite{hamilton2,hamilton1}, an algebra with 4 basis elements $\left\{1,
+\mathbf{i}, \mathbf{j}, \mathbf{k}\right\}$ from which all elements are
+generated through linear combination. This algebra, although functional,
+lacked an obvious geometrical interpretation and again didn't generalise
+easily to higher-dimensions.
 
 \subsection{Rotation via Rotors}
 
-To demonstrate Clifford's approach, consider three orthonormal basis
+To demonstrate Clifford's approach, consider any three orthonormal basis
 vectors of $\mathbb{R}^3$, $\left\{e_1, e_2, e_3\right\}$. We can form
 3 different bivectors from these vectors:
 \begin{displaymath}
-B_1 = e_2e_3,\quad B_2 = e_3e_1,\quad B_3 = e_1e_2
+B_1 = e_2e_3,\quad B_2 = e_3e_1,\quad B_3 = e_1e_2.
 \end{displaymath}
 
-Note that these are indeed bivectors since
+Note that these are indeed bivectors since the basis vectors are orthogonal and
 \[
 e_ie_j = e_i \cdot e_j + e_i \wedge e_j = e_i \wedge e_j \quad \mbox{iff} \quad i \ne j
 \]
@@ -155,52 +159,52 @@ e_1B_3 = e_1e_1e_2 = e_1^2e_2=e_2
 \caption{The rotation effect of bivector $B_3 = e_1e_2$\label{fig:rotation}}
 \end{figure}
 
-By looking at figure \ref{fig:rotation} it is clear that $B_3$ has the
-effect of rotating the vectors counter-clockwise by 90 degrees. It is, in
-fact, a general property that the bivector $e_ie_j$ will rotate a
-vector 90 degrees in the plane defined by $e_i$ and $e_j$. At first 
-glance this seems to offer little more than quaternions but at no point 
-have we assumed that we are working in three-dimensional space; this method
-also works in higher-dimension spaces.
+By looking at figure \ref{fig:rotation} it is clear that $B_3$ has the effect
+of rotating the vectors counter-clockwise by 90 degrees. It is, in fact, a
+general property that the bivector $e_ie_j$ will rotate a vector 90 degrees in
+the plane defined by $e_i$ and $e_j$. At first glance this seems to offer
+little more than quaternions but at no point have we assumed that we are
+working in three-dimensional space; this method also works in higher-dimension
+spaces.
 
-Now we extend to general rotations. Firstly it is trivial to
+We can also easily extend to general rotations; it is trivial to
 show that $B_3$ squares to $-1$:
 \begin{displaymath}
 B_3^2 = e_1e_2e_1e_2 = -e_1e_2e_2e_1 = -1
 \end{displaymath}
 
-We can represent any vector $Z$ in the plane defined by $e_1$ and
+We can represent any vector $x$ in the plane defined by $e_1$ and
 $e_2$ using
 \begin{eqnarray*}
-Z & = & r ( e_1 \cos \theta + e_2 \sin \theta) \\
+x & = & r ( e_1 \cos \theta + e_2 \sin \theta) \\
   & = & e_1 r ( \cos \theta + B_3 \sin \theta)
 \end{eqnarray*}
-where $r$ is the distance of the point $Z$ from the origin
-and $\theta$ is the angle $Z$ makes to $e_1$. Also note
+where $r$ is the distance of the point $x$ from the origin (i.e.\ $r = \sqrt{x^2}$)
+and $\theta$ is the angle $x$ makes to $e_1$. Also note
 that $e_1B_3 = e_1^2e_2 = e_2$. By taking the Taylor expansion of cosine
 and sine and re-arranging the coefficients it can be shown that
 \[
 e^{B_3\theta} = \cos \theta + B_3 \sin \theta
 \]
-which is the analogous form of de Moivre's theorem for complex
+which is the GA analogue of de Moivre's theorem for complex
 numbers.
 
-We can thus represent any vector $Z$ which lies in the plane of the
+We can thus represent any vector $x$ which lies in the plane of the
 bivector $B_3$ by
 \[
-Z=e_1re^{B_3\theta}
+x=e_1re^{B_3\theta}
 \]
 
 From this the same argument used for rotation in the complex plane 
 can be used to show that rotation by
-$\phi$ radians in the plane of $B_3$ is accomplished by $Z \mapsto Z'$
+$\phi$ radians in the plane of $B_3$ is accomplished by $x \mapsto x'$
 where
 \begin{displaymath}
-Z' = Ze^{B_3\phi} = Z (\cos \phi + B_3 \sin \phi)
+x' = xe^{B_3\phi} = x (\cos \phi + B_3 \sin \phi)
 \end{displaymath}
 
-This has all taken place in two dimensions for the moment but note that nothing
-in our development has assumed this. In fact we can define a bivector $B_3 = ab$ in
+This has all taken place in two dimensions for the moment but nothing in our
+discussion has assumed this. In fact we can specify a bivector $B_3 = ab$ in
 three dimensions and rotate vectors in the place defined by $a$ and $b$ using
 the expression above.
 
@@ -237,59 +241,57 @@ which lies in the plane without affecting the component normal
 to the plane --- we have rotated the vector around an axis normal to
 the plane.
 
-%and hence
-%\begin{eqnarray*}
-%Z (\cos \phi + B_3 \sin \phi) & = & (\cos \phi - B_3 \sin \phi)Z \\
-%& = &
-%\left(\cos \frac{\phi}{2} - B_3 \sin \frac{\phi}{2}\right)
-%Z
-%\left(\cos \frac{\phi}{2} + B_3 \sin \frac{\phi}{2}\right)
-%\end{eqnarray*}
-
 This leads to a general method of rotation in any plane; we
 form a bivector of the form $R = \exp({-B\phi/2})$ for a given rotation 
-$\phi$ in a plane specified by the bivector $B$ and the transformation
-is given by
+$\phi$ in a plane specified by the bivector $B$. The transformation
+is therefore performed by
 \begin{displaymath}
-x \mapsto RxR^{-1}
+x \mapsto RxR^{-1}.
 \end{displaymath}
 We refer to these bivectors which have a rotational effect as \emph{rotors}.
-Figure \ref{fig:rotation2} shows the various objects used.
+Figure \ref{fig:rotation2} shows the various objects used. Later we shall
+extend the term \emph{rotor} to refer to an element of the algebra which
+performs some well defined transformation.
 
-The computation of $R^{-1}$ is rather difficult analytically (and indeed can
+Computing $R^{-1}$ is rather difficult analytically and can sometimes
 require a full $2^n$-dimension matrix inversion for a space of
-dimension $n$). To combat this we define
+dimension $n$. To combat this we define
 the \emph{reversion} of a $n$-vector $X = e_ie_j...e_k$ as
 \[
 \tilde{X} = e_k...e_je_i
 \]
 i.e. the literal reversion of the components. By looking at the expression for
-$R$ it is clear that $\tilde{R} \equiv R^{-1}$ for rotors. Computing $\tilde{R}$
-is easier since it is simply a permutation.
+$R$ it is clear that $\tilde{R} \equiv R^{-1}$ for rotors. Computing
+$\tilde{R}$ is easier since it generally just involves changing the sign of
+components when an element is resolved onto a set of basis elements.
 
-Note that in spaces with dimension $n$, the maximum grade object 
-possible is an $n$-grade
-one. We denote the $n$-vector $e_1 \wedge ... \wedge e_n = I$ as the \emph{pseudoscalar}
-and the product $xI$ as the \emph{dual} of a vector or $x^*$. The dual is similarly defined
-for general multivectors.
+Note that in spaces with dimension $n$, the maximum grade object possible is
+an $n$-grade one. We denote the $n$-vector $e_1 \wedge ... \wedge e_n = I$ as
+the \emph{pseudoscalar} and the product $xI$ as the \emph{dual} of a vector or
+$x^*$. The dual is similarly defined for general multivectors. The
+pseudo-scalar is so termed because it comutes with all elements of the
+algebra.
 
 \subsection{Relation to quaternions}
 \label{sec:quaternions}
 
-It is worth comparing this method of rotation to quaternions. The three bivectors
-$B_1,B_2$ and $B_3$ act identically to the three imaginary components of quaternions,
-$\mathbf{i}, -\mathbf{j}$ and $\mathbf{k}$ respectively. The sign difference
-between $B_2$ and $\mathbf{j}$ is due to the fact that the quaternions are not derived from the usual
-right-handed orthogonal co-ordinate system.
+It is worth comparing this method of rotation to the method involving
+quaternions. The three bivectors $B_1,B_2$ and $B_3$ act identically to the
+three imaginary components of quaternions, $\mathbf{i}, -\mathbf{j}$ and
+$\mathbf{k}$ respectively. The sign difference between $B_2$ and $\mathbf{j}$
+is due to the fact that the quaternions are not derived from the usual
+right-handed orthogonal co-ordinate system. This handedness mismatch often
+leads to annoying sign errors in quaternion-based algorithms.
 
-A particular rotation is represented via the quaternion $q$ given by
+Using quaternions, a particular rotation is represented via the quaternion 
+$q$ given by
 \[
 q = q_0 + q_1 \mathbf{i} + q_2 \mathbf{j} + q_3 \mathbf{k}
 \]
-where $q_0^2 + q_1^2 + q_2^2 + q_3^2 = 1$. Interpolation between rotations is then
-performed by interpolating each of $q_i$ over the surface of a four-dimensional
-hyper-sphere. If we are interpolating between unit quaternions
-$q_0$ and $q_1$ the SLERP interpolation is
+where $q_0^2 + q_1^2 + q_2^2 + q_3^2 = 1$. Interpolation between rotations represented
+by $\{ q_1, \cdots, q_i \}$ is then performed by interpolating each of $q_i$
+over the surface of a four-dimensional hyper-sphere. If we are interpolating
+between unit quaternions $q_0$ and $q_1$ the SLERP interpolation is
 \[
 q = \left\{
 \begin{array}{ll}
@@ -310,23 +312,21 @@ the quaternionic interpolation is exactly given by
 \[
 R_\lambda = (R_2 \tilde{R}_1)^\lambda R_1 = \exp(\lambda kB) R_1
 \]
-where $\lambda$, the interpolation parameter, varies in the range $(0,1)$. A further
-moment's thought will reveal that this method is not confined to three dimensions, like
-quaternionic interpolation, but instead readily generalises to higher-dimensions.
+where $\lambda$, the interpolation parameter, varies in the range $(0,1)$. A
+further moment's thought will reveal that this method is not confined to three
+dimensions, like quaternionic interpolation, but instead readily generalises
+to higher-dimensions.
 
 \subsection{The Conformal Model}
 
-In the Conformal Model \cite{GA:NFCM} we extend the space by adding two 
-additional basis
-vectors. 
-The notation we use will follow the original notation given in
-\cite{HS84}. Let $x$ be a vector in a space denoted ${\cala}(p,q)$.
-The annotation $(p,q)$ shall be termed the \emph{signature} of the space. 
-A given signature, $(p,q)$, implies that we may construct an 
-orthogonal basis for the space,
-$\{e_i\}$, $i=1,\cdots,n=p+q$ where $e_i^2=+1$ for $i=1,\cdots,p$
-and $e_i^2=-1$ for $i=p+1,\cdots,n$; i.e.\ we take a general mixed
-signature space.  
+In the Conformal Model\cite{GA:NFCM} we extend the space by adding two
+additional basis vectors. The notation we use will follow the original
+notation given in \cite{HS84}. Let $x$ be a vector in a space denoted
+${\cala}(p,q)$.  The annotation $(p,q)$ shall be termed the \emph{signature}
+of the space.  A given signature, $(p,q)$, implies that we may construct an
+orthogonal basis for the space, $\{e_i\}$, $i=1,\cdots,n=p+q$ where $e_i^2=+1$
+for $i=1,\cdots,p$ and $e_i^2=-1$ for $i=p+1,\cdots,n$; i.e.\ we take a
+general mixed signature space.  
 
 To perform geometric operations using GA we now extend the space 
 to ${\cala}(p+1,q+1)$ via the inclusion of two additional orthogonal
@@ -342,16 +342,9 @@ Note that if $x \in {\cala}(p,q)$, then $e\cdot x =
 for $i=1,\cdots,n$. We now compose vectors $n$ and
 $\bar{n}$ as
 %
-\[ n = e + \bar{e}  \qquad  \bar{n} = e - \bar{e} 
+\[ n = e + \bar{e}  \qquad  \bar{n} = e - \bar{e}.
 \label{nequations}
 \]
-%
-%\begin{eqnarray}
-% n & = & e + \bar{e}  \qquad  \bar{n} = e - \bar{e} \\
-% \mbox{and thus }\; e & = & \frac{1}{2} (n + \bar{n})  \qquad   \bar{e}  =  \frac{1}{2} (n - \bar{n})
-% \label{nequations}
-% \end{eqnarray}
-% %
 These vectors will be useful later. It is easy to see that
 $n$ and $\bar{n}$ are \emph{null} vectors since
 %
@@ -362,14 +355,14 @@ n^2  & = & (e + \bar{e})\cdot(e + \bar{e}) = e^2 + 2e\cdot\bar{e} + \bar{e}^2 \n
 and
 \begin{eqnarray}
 \bar{n}^2  & = & (e - \bar{e})\cdot(e - \bar{e}) = e^2 - 2e\cdot\bar{e} + \bar{e}^2 \nn \\
-       & = &  1 - 0 - 1 = 0     \nn
+       & = &  1 - 0 - 1 = 0.     \nn
 \end{eqnarray}
 %
-We also note a number of useful identities for $n$, $\bar{n}$ and $x \in \cala(p,q)$
+We also note a number of useful identities for $n$, $\bar{n}$ and $x \in \cala(p,q)$:
 %
 \begin{eqnarray}
 n\cdot\bar{n} & = & (e + \bar{e})\cdot(e - \bar{e}) = e^2 - \bar{e}^2 = 2 \nn \\
-x\cdot n = x\cdot \bar{n} & = & 0 \nn 
+x\cdot n = x\cdot \bar{n} & = & 0. \nn 
 \end{eqnarray}
 %
 It is equally easy to show that if we define the bivector $E = n \wedge \bar{n}$ 
