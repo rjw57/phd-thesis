@@ -28,7 +28,7 @@ $(SVGEPSS) : %.eps : %.pdf
 	       
 SVG2PDF?=$(PROJECTROOT)/svg2pdf
 $(SVGPDFS) : %.pdf : %.svg 
-	$(SVG2PDF) $< $@
+	$(SVG2PDF) $< > $@
 		
 clean-svg-figures:
 	if [ "x$(SVGEPSS)" != "x" ]; then rm -f $(SVGEPSS); fi

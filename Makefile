@@ -23,7 +23,7 @@ documents: $(PDFS) $(PSS)
 	
 #### Variables required by build system in subdirs ####
 PROJECTROOT:=$(shell pwd)
-SVG2PDF:=$(PROJECTROOT)/svg2pdf
+SVG2PDF:=`which svg2pdf`
 
 export PROJECTROOT SVG2PDF
 
@@ -91,7 +91,6 @@ dist: dist-clean
 
 dist-clean: clean
 	rm -f $(PDFS) $(PSS)
-	rm -f svg2pdf
 	
 clean: clean-environment 
 	rm -f $(TEXFILES:.tex=.aux) $(TEXFILES:.tex=.toc)
@@ -102,7 +101,7 @@ clean: clean-environment
 
 #### General environment
 
-environment: svg2pdf  subdirs wordcount.txt
+environment: subdirs wordcount.txt
 
 clean-environment: clean-subdirs
 
