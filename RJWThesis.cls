@@ -348,17 +348,17 @@
       }%
       \AtPageLowerLeft{
         \put(0,0.05){%
-          \hspace*{0.1\paperwidth}%
-          \parbox{0.4\paperwidth}{%
+          \hspace*{0.05\paperwidth}%
+          \parbox{0.55\paperwidth}{%
             \def\baselinestretch{1.5}\selectfont
-            {\sc\large\bfseries \@group\newline\@department}
+            {\sc\small\bfseries \@group\newline\@department}
           }
         }%
         \put(0,0.05){%
           \parbox{\paperwidth}{%
             \raggedleft%
-            \includegraphics[height=0.05\paperheight]{CUnibig}%
-            \hspace*{0.1\paperwidth}%
+            \includegraphics[height=0.045\paperheight]{CUnibig}%
+            \hspace*{0.05\paperwidth}%
           }%
         }%
         \put(0,0.10){%
