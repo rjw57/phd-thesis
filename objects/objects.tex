@@ -2,12 +2,19 @@
 \quoteperson{A topologist is one who doesn't know the difference between a doughnut and a coffee cup.}%
 {John Kelley}%
 \end{savequote}
-\chapter{Blades as Objects in the Conformal Representation}
+\chapter{Objects in the Conformal Representation}
 
-In this chapter we will summarise our findings of the previous chapters, look
-at the r\^ole played by bivectors in this algebra and give some useful
-alternative representations of lines, planes, circles and spheres based upon
-those developed previously.
+In this chapter we will look
+at the r\^ole played by bivectors in the conformal model and give some useful
+alternative representations of lines, planes, circles and spheres.
+
+Throughout this chapter we shall say that a geometric primitive is
+represented by some element $M$ if all $X$ which satisfy
+\[
+X \wedge M = 0
+\]
+lie on the object and all point on the object satisfy that relation. We
+term this an \emph{incidence relation}.
 
 \section{Vectors and 2-blades}
 
@@ -24,33 +31,25 @@ from an $r$-vector which may be any linear combination of $r$-blades.
 This is important since, in 5d, not all bivectors can be written as 2-blades;
 for example $e_1e_2 + e_3e_4$ cannot be written in the form $a\wedge b$. 
 
-In previous sections we have considered the geometric meaning of 3-blades and
-4-blades. We shall now consider the geometric meaning of the 2-blade 
-$A \wedge B$ given that $A$ and $B$ are null vectors in $\cala(4,1)$. 
-We start by recalling that null vectors represent points, 3-blades represent
-generalised circles\footnote{Here we use `generalised' to indicate that
-we include the special case involving the point at infinity, i.e.\ lines and 
-planes} and 4-blades represent generalised spheres. It will be seen later,
-when discussing intersections, that the representation of the intersection
-of a line and a sphere is actually a 2-blade. We also know that the intersection
-of a sphere and a non-tangential line occurs at two points on the sphere. We 
-postulate, therefore, that $A \wedge B$ represents the pair of points 
-represented by $A$ and $B$. This is clear when considering the incidence 
+We start by
+postulating that $A \wedge B$ represents the pair of points 
+with null-vector representations $A$ and $B$. This is clear when 
+we consider the incidence 
 relation
 \[
 X \wedge A \wedge B = 0
 \]
 which is only true in general for $X=A$ or $X=B$. If we accept that
-$A\wedge B$ represents two points then, for completeness, we should develop 
-a method of extracting the points $A$ and $B$.
+$A\wedge B$ represents two points then we should develop 
+an algorithm to extract the individual null-vectors $A$ and $B$.
 
 \subsection{Extracting $A$ and $B$ from $A\wedge B$}
 \label{sec:projectors}
 
-In this section we develop a method of extracting $A$ and $B$ from
+In this section we explain how to extract $A$ and $B$ from
 $A\wedge B$ using a method of \emph{projectors}. Throughout we shall assume
 that $A$ and $B$ have been normalised so that, for example, $A\cdot n = -1$.
-We start by considering the 2-blade $T = A\wedge B$ and forming
+We start by considering the 2-blade $T = A\wedge B$ and form
 %
 \begin{equation}
   F = \frac{1}{\beta} A\wedge B
@@ -75,7 +74,7 @@ $P$. Note that $P^2 = P$, which can be easily be verified
 %
 Similarly, we can easily show that $\tilde{P}\tilde{P} =
 \tilde{P}$. These properties justify calling these
-operators \emph{projectors}, borrowing the term from Physics. 
+operators \emph{projectors}, borrowing the term from physics. 
 An equally important property is that $P\tilde{P}=\tilde{P}P = 0$
 which, again, is easy to prove
 %

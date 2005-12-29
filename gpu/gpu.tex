@@ -164,11 +164,11 @@ enough space to make such a library feasible.
 
 In this section we shall give an example of a vertex shader that uses GA to
 perform mesh deformation. The deformation scheme given is a simple application
-of Geometric Algebra to the problem but nicely shows the applicability of GA to a
-wide variety of problems.
-
-FIXME: Medium-length review of mesh deformation. Not too long as this is an example
-rather than trying to say `this is the best way to do it' --- which of course it is.
+of Geometric Algebra to the problem but nicely shows the applicability of GA
+to a wide variety of problems. The method developed has a number of nice 
+properties but should be viewed as an illustration of the power of GA
+algorithms when implemented on the GPU rather than as a deformation scheme
+in its own right.
 
 \subsection{Method}
 
@@ -479,13 +479,14 @@ which are swapped between each iteration.
           testing if the mapped point, $P'$, is inside the sphere.}
 \end{figure}
 
-We shall develop a simple example to illustrate this method. In our example we shall 
-implement an approximate simulation of a cloth falling onto a complex smooth object.
-Our approach is illustrated in figure \ref{fig:deformation_scheme}. We shall assume
-some GA-based deformation scheme $\mathcal{D}$ which will deform our object to the
-unit sphere. Ideally this deformation scheme should preserve both position and orientation
-information so that we can perform physics on the unit sphere and deform the result back to 
-our original object.
+We shall develop a simple example to illustrate this method. In our example we
+shall implement an approximate simulation of a cloth falling onto a complex
+smooth object.  Our approach is illustrated in figure
+\ref{fig:deformation_scheme}. We shall assume some GA-based deformation scheme
+$\mathcal{D}$ which will deform our object to the unit sphere. Ideally this
+deformation scheme should preserve both position and orientation information
+so that we can perform physics on the unit sphere and deform the result back
+to our original object.
 
 \begin{figure}[p]
 \centering
@@ -497,4 +498,6 @@ our original object.
 \caption{\label{fig:map}The vertex shader utility functions for mapping to and
   from a rotor-deformed space.}
 \end{figure}
+
+
 
