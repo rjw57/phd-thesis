@@ -231,7 +231,7 @@ e^{B_3\phi/2}
 & = & \left(\cos \frac{\phi}{2} - B_3 \sin \frac{\phi}{2}\right)
 (x_\parallel + x_\perp )
 \left(\cos \frac{\phi}{2} + B_3 \sin \frac{\phi}{2}\right) \\
-& = & x_\parallel (\cos \phi + B_3 \sin \phi) + x_\perp\\ 
+& = & x_\parallel (\cos \phi + B_3 \sin \phi) + x_\perp
 \end{eqnarray*}
 since bivectors anti-commute with vectors in their plane (e.g. 
 $e_1(e_2e_1) = -e_2 = -(e_2e_1)e_1$) and commute with
@@ -275,7 +275,7 @@ algebra.
 \subsection{Relation to quaternions}
 \label{sec:quaternions}
 
-It is worth comparing this method of rotation to the method involving
+It is worth comparing this method of rotation to rotation via
 quaternions. The three bivectors $B_1,B_2$ and $B_3$ act identically to the
 three imaginary components of quaternions, $\mathbf{i}, -\mathbf{j}$ and
 $\mathbf{k}$ respectively. The sign difference between $B_2$ and $\mathbf{j}$
@@ -288,10 +288,13 @@ $q$ given by
 \[
 q = q_0 + q_1 \mathbf{i} + q_2 \mathbf{j} + q_3 \mathbf{k}
 \]
-where $q_0^2 + q_1^2 + q_2^2 + q_3^2 = 1$. Interpolation between rotations represented
-by $\{ q_1, \cdots, q_i \}$ is then performed by interpolating each of $q_i$
-over the surface of a four-dimensional hyper-sphere. If we are interpolating
-between unit quaternions $q_0$ and $q_1$ the SLERP interpolation is
+where $q_0^2 + q_1^2 + q_2^2 + q_3^2 = 1$. Interpolation between rotations 
+represented
+by $\{ q_1, \cdots, q_i \}$ is then performed by interpolating between
+each quaternion, $q_i$,
+over the surface of a four-dimensional hyper-sphere. For example, if we 
+were to interpolate
+between unit quaternions $q_0$ and $q_1$ the SLERP interpolation would be
 \[
 q = \left\{
 \begin{array}{ll}
@@ -302,12 +305,12 @@ q_0(q_0^{-1}(-q_1))^\lambda & {\rm ~otherwise}
 \]
 where $\lambda$ varies in the range $(0,1)$ \cite{slerp}.
 
-Recalling that, in complex numbers, the locus of $\exp(i\theta)$ is the unit
-circle, it is somewhat simple to show that, for some normalised
+Recall that the locus of $\exp(i\theta)$ is the unit
+circle. It is straight forward to show that, for some normalised
 bivector $B$, the locus of the action of $\exp(B\theta)$ upon a point with respect to varying
-$\theta$ is also a circle in the plane of $B$. Therefore if we consider
+$\theta$ is also a circle in the plane of $B$. Hencie, if we consider
 some rotations $R_1, R_2 = \exp(kB)R_1$, where $k$ is a scalar and
-$B$ is some normalised bivector, it is easy to see after some thought that
+$B$ is some normalised bivector, it is clear that
 the quaternionic interpolation is exactly given by
 \[
 R_\lambda = (R_2 \tilde{R}_1)^\lambda R_1 = \exp(\lambda kB) R_1
@@ -376,9 +379,11 @@ then $E^2 = 4$
   %
 since $n\cdot\bar{n}=2$ and $n^2=\bar{n}^2=0$.
 
-To perform geometric operations upon vectors, points and objects
-in $\cala(p,q)$ we map a point $x \in \cala(p,q)$ to a point
-$F(x) \in \cala(p+1,q+1)$ and find that the operations may be performed
+In the conformal model we use null-vectors to represent points and 
+build up objects.
+In $\cala(p,q)$ we map a point $x \in \cala(p,q)$ to a vector
+$F(x) \in \cala(p+1,q+1)$. Using this representation we find that 
+complex geometric operations may be performed
 by simple algebraic manipulation of $F(x)$. The specific mapping
 used is the Hestenes (\cite{HS84}, page 302) representation
 %
@@ -409,13 +414,13 @@ absolute scale of $F(x)$, becomes
 
 We will see that it will often be necessary to work with
 normalised `unit' lines, planes, circles and spheres in order to
-apply the reflection etc. formul\ae\ which will be so
+apply the various formul\ae\ which will be so
 important in later sections. It is also worth noting that the
-mapping as it stands above is dimensionally inconsistent. In later
-chapters it will be shown how correcting this can allow
-one to extend the approach to non-Euclidean geometries.
+mapping as it stands above is dimensionally inconsistent. In following
+chapters it will be shown how compensating for this inconsitency 
+can allow one to extend the approach to various non-Euclidean geometries.
 
-It is somewhat trivial to show that $F(x)$ is always a null vector for
+It is possible to show that $F(x)$ is always a null vector for
 any $x$ by directly evaluating $[F(x)]^2$
 %
 \begin{eqnarray}
@@ -425,7 +430,7 @@ any $x$ by directly evaluating $[F(x)]^2$
 \end{eqnarray}
 %
 
-Thus we have mapped vectors in ${\cala}(p,q)$ into \emph{null}
+We have mapped vectors in ${\cala}(p,q)$ into \emph{null}
 vectors in ${\cala}(p+1,q+1)$ and this is precisely the horosphere 
 construction. It also shows the need to impose a normalisation
 constraint upon the resultant null vectors as they remain null 
@@ -436,7 +441,7 @@ any vector $X \in {\cala}(p+1,q+1)$ can be written as
 %
 \[ X = an + bx + c\bar{n}  \]
 %
-where $x = x^ie_i$, $i=1,\cdots,p+q$ and thus $x \in \cala(p,q)$.
+where $x = x^ie_i$, $i=1,\cdots,p+q$ and hence $x \in \cala(p,q)$.
 We can say that $X\cdot n = 2c$ and $X\cdot \bar{n}=2a$ (since $n$ is 
 null and $x\cdot n = 0$). Therefore $a$
 and $c$ are uniquely determined. However we can also write our
@@ -476,10 +481,10 @@ between ${\cala}(p,q)$ and  ${\cala}(p+1,q+1)$. Specifically that the
 family of null vectors $\lambda(x^2n + 2x - \bar{n})$,
 in ${\cala}(p+1,q+1)$ are taken to correspond to the
 single point $x\in {\cala}(p,q)$. If $x$ is the origin
-then we see that $F(x) = -\bar{n}$ and we therefore may associate
+then we see that $F(x) = -\bar{n}$ and we may therefore associate
 null vectors parallel to $\bar{n}$ with the origin. 
 We will see later that when we \emph{invert} $\bar{n}$ 
-we obtain $n$, thus suggesting
+we obtain $n$, suggesting
 that we associate null vectors parallel to $n$ with the 
 \emph{point at infinity} (the usual result of inverting the origin).
 
@@ -505,12 +510,12 @@ originally in \cite{HS84}.
 
 \subsubsection{Rotations}
 
-
-In the usual three-dimensional GA rotations are performed with elements of the algebra termed
+In usual descriptions of GA (without the use of the conformal model)
+rotations are performed with elements of the algebra termed
 \emph{rotors}. In this section we aim to show that these rotors may be used
-unchanged on the null vectors we obtain by performing our projective mapping.
+unchanged on the null vectors point-represenstations.
 Let $x \mapsto Rx\tilde{R}$ with $x\in {\cala}(p,q)$ and $R$ be a
-rotor in the Clifford algebra over ${\cala}(p,q)$. Consider
+rotor in the Geometric Algebra over ${\cala}(p,q)$. Consider
 what happens when $R$ acts upon $F(x)$; i.e.\ the nature of
 $RF(x)\tilde{R}$
 %
@@ -529,7 +534,7 @@ so
 	\end{equation}
 %
 where $\hat{x}=R x \tilde{R}$. We have therefore shown that rotors in
-${\cala}(p,q)$ remain rotors in ${\cala}(p,+1q+1)$ in that they retain
+${\cala}(p,q)$ remain rotors in ${\cala}(p+1,q+1)$ in that they retain
 their action about the point $x$ represented by $F(x)$. To summarise
 %
 \begin{equation} x \mapsto Rx\tilde{R} \qquad \Leftrightarrow \qquad F(x) \mapsto
@@ -538,12 +543,21 @@ F(Rx\tilde{R}) \end{equation}
 
 \subsubsection{Translators}
 
-Translation along a vector $a$ is defined as the
-mapping $x\mapsto x+a$ for some $x,a \in \cala(p,q)$. In this
+Translation along a vector $a$ is defined for our purposes as the
+mapping $x\mapsto x+a$ for some $x,a \in \cala(p,q)$.
+In this
 section we will show that this is performed by applying a 
 rotor $R=T_a = \exp\left({\frac{na}{2}}\right)$ to $F(x)$.
-To begin with, consider the usual power series expansion of the exponential
-which we may immediately simplify thus
+
+Before proceeding with the proof we should note that in some non-Euclidean
+geometries the addition operator, when viewed as a translation operator, is
+non-commutative; translation of geodesic $A$ along geodesic $B$ is not the
+same, in general, as translarion of $B$ along $A$. For the moment we shall
+ignore this but it will become important again in later chapters on 
+non-Euclidean geometries.
+
+Returning to the form of the translation rotor, consider the usual power series 
+expansion of the exponential which we may immediately simplify to
 %
 \begin{equation}
 R=T_a = \exp\left({\frac{na}{2}}\right) = 1 + \frac{na}{2} +
@@ -571,7 +585,8 @@ show that
 %
 Immediately we see that our interpretation of $n$ being the point at
 infinity and $\bar{n}$ being the origin is consistent with our claim that
-$R$ represents the translation $x \mapsto x+a$ since $R(-\bar{n})\tilde{R} = F(a)$
+$R$ represents the translation $x \mapsto x+a$ since 
+$R(-\bar{n})\tilde{R} = F(a)$
 and the point at infinity is unchanged by finite translation.
 
 We can now also see how the rotor acts on $F(x)$
@@ -594,17 +609,17 @@ F(x) \tilde{T}_a = F(x+a)
 
 \subsubsection{Inversion}
 
-
-In the usual three-dimensional geometric algebra we can reflect a vector $a$ in a plane with
-unit normal $n$ by `sandwiching' the vector between the normal, $-nan$
-\cite{IJCV98}. Sandwiching the object \emph{to be reflected} between the object
-\emph{in which we wish to reflect} is a very general prescription in GA and
-one which will be used heavily in later parts of the report.  In this section
-we look at how inversions are brought about by this same reflection operation.
+In the usual three-dimensional geometric algebra we can reflect a vector $a$
+in a plane with unit normal $n$ by `sandwiching' the vector between the
+normal, $-nan$ \cite{IJCV98}. Sandwiching the object \emph{to be reflected}
+between the object \emph{in which we wish to reflect} is a very general
+prescription in GA and one which will be used heavily in later parts of the
+report.  In this section we look at how inversions are brought about by this
+same reflection operation.
 
 In this report by `inversion' we mean the mapping $x \mapsto \frac{x}{x^2}$ or,
-equivalently, $x \mapsto x^{-1}$. Firstly, we look at the properties of
-the reflection in $e$ of various vectors
+equivalently for non-singular areas, $x \mapsto x^{-1}$. Firstly, we look 
+at the reflection in $e$ of various vectors
 %
 \[ -ene  = -ee\bar{n} = -\bar{n} \] 
 since $ne = (e+\bar{e})e=(e^2+\bar{e}e)= (e^2 - e\bar{e}) = e\bar{n}$. 
