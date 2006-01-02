@@ -481,12 +481,66 @@ which are swapped between each iteration.
 
 We shall develop a simple example to illustrate this method. In our example we
 shall implement an approximate simulation of a cloth falling onto a complex
-smooth object.  Our approach is illustrated in figure
+smooth object. 
+
+To begin with we need a GPU-based simulation of the cloth itself for when
+it is moving in space away from the target object. The aim of this example is
+to demonstrate complex collision rather than cloth simulation \emph{per se}
+and so we choose a very simple ball and spring model; the cloth is composed
+of a $N\times M$ grid of masses connected by simple Hookian springs. Formally, 
+if we let $P_{i,j}$
+be the position vector of the ball in row $i$, column $j$ then the force acting
+on it, $F_{i,j}$ is
+\[
+F_{i,j} = \sum_{\alpha \in \{-1,1\}} \sum_{\beta \in \{-1,1\}} 
+b_{i+\alpha, j+\beta} 
+\left| P_{i,j} - P_{i+\alpha, j+\beta} \right|
+\]
+where
+\[
+\left\{
+b_{i,j} = \begin{array}{ll}
+1 & {\rm ~if~} i \in \{1, \cdots, N\}, j \in \{1, \cdots, M\} \\
+0 & {\rm ~otherwise}
+\end{array}
+\right.
+\]
+The variation of $P_{i,j}$ over time may then be obtained by numerically
+integrating the force twice.
+
+Such simple dynamics are often employed in games where the appearance of
+correct physics is often more desireable, if it is faster, than a full
+`correct' calculation. We shall use a common game technique[FIXME:reference]
+which may be summarised as `detect and backtrack'.
+
+Suppose a cloth vertex were to be outside of the target object at time
+$t$ and we detect it is to be inside the object at time $t + \Delta t$. 
+We stop the simulation and backtrack to time $t + \Delta t - t_{\rm offset}$
+with $t_{\rm offset} < \Delta t$ such that the vertex is just touching
+the target object. We then use simple surface physics to modify the total
+force acting on the vertex to cause reflection, friction or any other 
+surface property we may wish. The simplation is then restarted from this point.
+
+We shall discuss the precise implementation of the cloth simulation later but
+for the moment we note that the key operation is detecting the interpenetration
+of the grid of cloth vertices and the target object,
+
+Our approach is illustrated in figure
 \ref{fig:deformation_scheme}. We shall assume some GA-based deformation scheme
-$\mathcal{D}$ which will deform our object to the unit sphere. Ideally this
-deformation scheme should preserve both position and orientation information
-so that we can perform physics on the unit sphere and deform the result back
-to our original object.
+$\mathcal{D}$ which will deform our target object to the unit sphere.
+%Ideally this
+%deformation scheme should preserve both position and orientation information
+%so that we can perform physics on the unit sphere and deform the result back
+%to our original object.
+If we apply the same deformation scheme to the current cloth state the
+interpenetration test for each cloth vertex is simply to test if its distance
+from the origin is less than unity. If so, we can correct by simply moving
+the point to the unit-sphere surface and revert the deformation to obtain the
+new cloth collision
+
+\subsection{Cloth dynamics}
+
+
 
 \begin{figure}[p]
 \centering
