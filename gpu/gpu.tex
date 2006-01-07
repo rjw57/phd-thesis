@@ -498,8 +498,9 @@ b_{i+\alpha, j+\beta}
 \]
 where
 \[
+b_{i,j} = 
 \left\{
-b_{i,j} = \begin{array}{ll}
+\begin{array}{ll}
 1 & {\rm ~if~} i \in \{1, \cdots, N\}, j \in \{1, \cdots, M\} \\
 0 & {\rm ~otherwise}
 \end{array}
@@ -526,23 +527,60 @@ for the moment we note that the key operation is detecting the interpenetration
 of the grid of cloth vertices and the target object and being able to move 
 penetrating vertices to the surface of the object.
 
-Our approach is illustrated in figure
-\ref{fig:deformation_scheme}. We shall assume some invertable, locally conformal,
-GA-based deformation scheme
-$\mathcal{D}$ which will deform the unit sphere to our target object.
-We now apply the inverse scheme $\mathcal{D}$ to both our target object and the
-set of cloth vertices. The target object is mapped to the unit sphere and the
-set vertices are mapped to a different set of vertices. 
-Our penetration condition to vertices is simply to test if its distance
-from the origin is less than unity. We can thereby identify all penetrating
-vertices. We can correct any penetrating vertex by simply moving
-the deformed vertex to the unit-sphere surface. If we re-apply the deformation scheme
-the unity sphere is mapped back to the target object and the set of corrected vertices
-is mapped to a set which all lie outside the target object.
+Our approach is illustrated in figure \ref{fig:deformation_scheme}. We shall
+assume some invertable, locally conformal, GA-based deformation scheme
+$\mathcal{D}$ which will deform the unit sphere to our target object.  We now
+apply the inverse scheme $\mathcal{D}$ to both our target object and the set
+of cloth vertices. The target object is mapped to the unit sphere and the set
+vertices are mapped to a different set of vertices.  Our penetration test for
+vertices is simply to see if its distance from the origin is less than unity.
+We can thereby identify all penetrating vertices. Any penetrating vertex can
+be corrected simply by moving the deformed vertex to the unit-sphere surface.
+If we re-apply the deformation scheme the unity sphere is mapped back to the
+target object and the set of corrected vertices is mapped to a set which all
+lie outside the target object.
 
 \subsection{A suitable deformation scheme}
 
+We wish our deformation scheme to be locally conformal and, preferably, for the
+normal information associated with any point on the target object to be preserved
+for lighting and dynamics. Below we preset a simple scheme based upon weighted sums
+of pure-rotation generators which fulfils this requirement.
 
+Be begin by considering a rotor, $R_i = \exp(B_i)$, representing a rotation around a 
+known point $P_i$. Clearly $R_{i,\lambda} = \exp(\lambda B_i)$ is also a pure-rotation
+for some scalar $\lambda$. To deform a particular
+point representation, $X = F(x)$, using the key-generator $B_i$ we perform the mapping
+\[
+X \mapsto R_{i,w(X,P_i)}X\tilde{R}_{i,w(X,P_i)}
+\]
+where $w(A,B)$ is a weighting function with range $[0,1]$. For a simple deformation
+scheme we might choose $w(\cdot)$ to be
+\[
+w(A,B) = \left\{
+  \begin{array}{ll}
+  1 - d(A,B) &{\rm ~if~} d(A,B) < 1\\
+          0 & {\rm ~otherwise}
+  \end{array}
+  \right.
+\]
+where $d(A,B)$ is the Euclidean distance metric defined in equation \ref{distance}.
+
+The effect of the deformation scheme is shown diagrammatically in figure
+\ref{fig:weighted_rotor}b. Here four unit lengths are deformed by rotating points
+on a set of spherical shells centred on $P_i$. On each spherical shell the deformation
+is therefore locally conformal. Normal to the shells the deformation is less so but,
+as is often the case in Computer Graphics, the errors introduced by this
+may be ignored since they are perceptually slight.
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{weighted_rotor}
+\caption{\label{fig:weighted_rotor}%
+  Diagram illustrating weighted generator deformation around a point $P$. 
+          a) Undeformed state. b) Effect of weighted rotation deformation.
+}
+\end{figure}
 
 \begin{figure}[p]
 \centering
@@ -557,9 +595,11 @@ is mapped to a set which all lie outside the target object.
 
 \subsection{Cloth dynamics}
 
+Figure \ref{fig:cloth_montage} shows a selection of scenes from...
+
 \begin{figure}[p]
 \centering
-\includegraphics[height=0.8\textheight]{cloth_montage}
+\includegraphics[width=\textwidth]{cloth_montage}
 \caption{\label{fig:cloth_montage}%
   A selection of scenes from the penetration demo showing the
   simulation of a simple cloth model on the surface of a deformed
