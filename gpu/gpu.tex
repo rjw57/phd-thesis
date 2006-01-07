@@ -513,7 +513,7 @@ correct physics is often more desireable, if it is faster, than a full
 `correct' calculation. We shall use a common game technique[FIXME:reference]
 which may be summarised as `detect and backtrack'.
 
-Suppose a cloth vertex were to be outside of the target object at time
+Suppose a cloth vertex were known to be outside of the target object at time
 $t$ and we detect it is to be inside the object at time $t + \Delta t$. 
 We stop the simulation and backtrack to time $t + \Delta t - t_{\rm offset}$
 with $t_{\rm offset} < \Delta t$ such that the vertex is just touching
@@ -523,22 +523,24 @@ surface property we may wish. The simplation is then restarted from this point.
 
 We shall discuss the precise implementation of the cloth simulation later but
 for the moment we note that the key operation is detecting the interpenetration
-of the grid of cloth vertices and the target object,
+of the grid of cloth vertices and the target object and being able to move 
+penetrating vertices to the surface of the object.
 
 Our approach is illustrated in figure
-\ref{fig:deformation_scheme}. We shall assume some GA-based deformation scheme
-$\mathcal{D}$ which will deform our target object to the unit sphere.
-%Ideally this
-%deformation scheme should preserve both position and orientation information
-%so that we can perform physics on the unit sphere and deform the result back
-%to our original object.
-If we apply the same deformation scheme to the current cloth state the
-interpenetration test for each cloth vertex is simply to test if its distance
-from the origin is less than unity. If so, we can correct by simply moving
-the point to the unit-sphere surface and revert the deformation to obtain the
-new cloth collision
+\ref{fig:deformation_scheme}. We shall assume some invertable, locally conformal,
+GA-based deformation scheme
+$\mathcal{D}$ which will deform the unit sphere to our target object.
+We now apply the inverse scheme $\mathcal{D}$ to both our target object and the
+set of cloth vertices. The target object is mapped to the unit sphere and the
+set vertices are mapped to a different set of vertices. 
+Our penetration condition to vertices is simply to test if its distance
+from the origin is less than unity. We can thereby identify all penetrating
+vertices. We can correct any penetrating vertex by simply moving
+the deformed vertex to the unit-sphere surface. If we re-apply the deformation scheme
+the unity sphere is mapped back to the target object and the set of corrected vertices
+is mapped to a set which all lie outside the target object.
 
-\subsection{Cloth dynamics}
+\subsection{A suitable deformation scheme}
 
 
 
@@ -553,5 +555,15 @@ new cloth collision
   from a rotor-deformed space.}
 \end{figure}
 
+\subsection{Cloth dynamics}
 
+\begin{figure}[p]
+\centering
+\includegraphics[height=0.8\textheight]{cloth_montage}
+\caption{\label{fig:cloth_montage}%
+  A selection of scenes from the penetration demo showing the
+  simulation of a simple cloth model on the surface of a deformed
+  sphere.
+}
+\end{figure}
 
