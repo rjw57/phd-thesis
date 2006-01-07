@@ -565,6 +565,8 @@ w(A,B) = \left\{
   \right.
 \]
 where $d(A,B)$ is the Euclidean distance metric defined in equation \ref{distance}.
+This would be a linear fall-off. Other fall-offs sich as exponential or sigmoid will
+give smoother results at the cost of greater computational complexity.
 
 The effect of the deformation scheme is shown diagrammatically in figure
 \ref{fig:weighted_rotor}b. Here four unit lengths are deformed by rotating points
@@ -582,6 +584,12 @@ may be ignored since they are perceptually slight.
 }
 \end{figure}
 
+\subsection{Cloth dynamics}
+
+\subsection{Implementation}
+
+\subsubsection{Deformation}
+
 \begin{figure}[p]
 \centering
 \scalebox{0.7}{
@@ -593,9 +601,15 @@ may be ignored since they are perceptually slight.
   from a rotor-deformed space.}
 \end{figure}
 
-\subsection{Cloth dynamics}
+\subsubsection{Cloth simulation}
 
-Figure \ref{fig:cloth_montage} shows a selection of scenes from...
+\subsubsection{Results}
+
+Figure \ref{fig:cloth_montage} shows a selection of scenes from the final demo. You can
+see the central object which is a unit-sphere which has been deformed by 4 key-generators
+with linear fall-off. The cloth simulation is then allowed to fall on the object and slides
+off. All of this is performed on the GPU in real-time (50 frames per second) for a 1024-vertex cloth
+model.
 
 \begin{figure}[p]
 \centering
