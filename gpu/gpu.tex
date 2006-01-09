@@ -36,9 +36,9 @@ On the card there exists a number of rendering pipelines, each of which
 can be run in parallel to increase throughput. The pipeline consists
 of a \emph{vertex shader} which fetches triplets of vertices from
 the vertex memory, transforms them using the current projection and 
-view matrices, performs any clipping and sends them to the rasterizer.
+view matrices, performs any clipping and sends them to the rasteriser.
 
-The rasterizer takes triplets of screen co-ordinate vertices, forms
+The rasteriser takes triplets of screen co-ordinate vertices, forms
 a triangle from them and outputs a set of pixel positions which form
 render the triangle along with depth information and interpolated texture
 co-ordinates. 
@@ -48,7 +48,7 @@ stored in texture memory along with appropriate state information calculates
 the colour of the pixel after all lighting, etc. is performed. The shaded pixel
 is then sent to the screen.
 
-In reality the rendering stage is split at the rasterizer allowing for differing
+In reality the rendering stage is split at the rasteriser allowing for differing
 numbers of vertex and fragment shaders but for the purposes of GPU programming
 one can view the shaders as being within the same pipeline.
 
@@ -464,7 +464,7 @@ reads the initial value from the texture and outputs the result of the next iter
 If this square is rendered into the original texture then the result of each iteration
 replaces the previous one. This process may be repeated as often as is desired.
 In reality there are a few implementation issues. Aside from the API calls required to
-setup the render to texture and appropriate projection matrices a significan issue is
+setup the render to texture and appropriate projection matrices a significant issue is
 that the shader is required to write back to its input which could lead to
 concurrency issues. To avoid this one generally uses two textures, an `input' and `output',
 which are swapped between each iteration.
@@ -510,7 +510,7 @@ The variation of $P_{i,j}$ over time may then be obtained by numerically
 integrating the force twice.
 
 Such simple dynamics are often employed in games where the appearance of
-correct physics is often more desireable, if it is faster, than a full
+correct physics is often more desirable, if it is faster, than a full
 `correct' calculation. We shall use a common game technique[FIXME:reference]
 which may be summarised as `detect and backtrack'.
 
@@ -520,7 +520,7 @@ We stop the simulation and backtrack to time $t + \Delta t - t_{\rm offset}$
 with $t_{\rm offset} < \Delta t$ such that the vertex is just touching
 the target object. We then use simple surface physics to modify the total
 force acting on the vertex to cause reflection, friction or any other 
-surface property we may wish. The simplation is then restarted from this point.
+surface property we may wish. The simulation is then restarted from this point.
 
 We shall discuss the precise implementation of the cloth simulation later but
 for the moment we note that the key operation is detecting the interpenetration
@@ -528,7 +528,7 @@ of the grid of cloth vertices and the target object and being able to move
 penetrating vertices to the surface of the object.
 
 Our approach is illustrated in figure \ref{fig:deformation_scheme}. We shall
-assume some invertable, locally conformal, GA-based deformation scheme
+assume some invertible, locally conformal, GA-based deformation scheme
 $\mathcal{D}$ which will deform the unit sphere to our target object.  We now
 apply the inverse scheme $\mathcal{D}$ to both our target object and the set
 of cloth vertices. The target object is mapped to the unit sphere and the set
@@ -566,7 +566,7 @@ w(A,B) = \left\{
 \]
 where $d(A,B)$ is the Euclidean distance metric defined in equation \ref{distance}.
 This is of course a linear fall-off. One could easily create non-linear exponential
-or sigmoidal fall-off which would lead to smoother deformation at the cost of greater
+or sigmoid fall-off which would lead to smoother deformation at the cost of greater
 computational complexity.
 
 The effect of the deformation scheme is shown diagrammatically in figure
@@ -581,7 +581,7 @@ may be ignored since they are perceptually slight.
 \includegraphics[width=\textwidth]{weighted_rotor}
 \caption{\label{fig:weighted_rotor}%
   Diagram illustrating weighted generator deformation around a point $P$. 
-          a) Undeformed state. b) Effect of weighted rotation deformation.
+          a) Un-deformed state. b) Effect of weighted rotation deformation.
 }
 \end{figure}
 
@@ -618,15 +618,15 @@ to the input.
 
 % \subsubsection{Cloth simulation}
 
-The first stage in the simulation is the calculation of forces, velolities
+The first stage in the simulation is the calculation of forces, velocities
 and positions for each cloth vertex. 
 
 The location of each cloth vertex was stored in a texture with each pixel in the
 texture corresponding to a vertex in the cloth. The red, green and blue
-components specified the $x$, $y$ and $z$ co-ordinates repectively.  Many GPUs
+components specified the $x$, $y$ and $z$ co-ordinates respectively.  Many GPUs
 only allow for texture components to be in the range $[0, 1]$, effectively
 restricting the cloth to the unit cube. This could have been overcome with the
-introduction of approriate scaling constants but newer nVidia GPUs allow for
+introduction of appropriate scaling constants but newer nVidia GPUs allow for
 \emph{float buffers} which remove this restriction and they were used in this
 implementation due to their increased accuracy and convenience. A simple vertex shader
 could then be used when rendering the cloth to position the vertices according to the
@@ -671,7 +671,7 @@ correct for penetration.}
 \end{figure}
 
 The first part of figure \ref{fig:calcForces} shows the shader used to sum forces. The force
-on each vertex is calculated as the sum of forces due to Hookean springs which connect it
+on each vertex is calculated as the sum of forces due to Hookian springs which connect it
 to its immediate neighbours. The integration of force over time to give velocity
 is simply Euclid's method due to its ease of implementation and compactness; space is a premium
 in shaders.
