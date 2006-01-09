@@ -565,8 +565,9 @@ w(A,B) = \left\{
   \right.
 \]
 where $d(A,B)$ is the Euclidean distance metric defined in equation \ref{distance}.
-This would be a linear fall-off. Other fall-offs sich as exponential or sigmoid will
-give smoother results at the cost of greater computational complexity.
+This is of course a linear fall-off. One could easily create non-linear exponential
+or sigmoidal fall-off which would lead to smoother deformation at the cost of greater
+computational complexity.
 
 The effect of the deformation scheme is shown diagrammatically in figure
 \ref{fig:weighted_rotor}b. Here four unit lengths are deformed by rotating points
@@ -583,6 +584,22 @@ may be ignored since they are perceptually slight.
           a) Undeformed state. b) Effect of weighted rotation deformation.
 }
 \end{figure}
+
+Since we are using position-dependent rotors we can view the deformation not as a point-wise 
+deformation scheme but a full local-frame deformation scheme. For example we can represent an
+orientation associated with $X$ as a pure-rotation rotor, $R_X$, which is applied to some known
+reference orientation. The post-deformation orientation is now
+\[
+R_X \mapsto R_{i,w(X,P_i)}R_X.
+\]
+Specifically, if the point $X$ is a mesh vertex with associated normal
+$\hat{n} = R_Xe_1\tilde{R}_X$ then we can find the deformed normal, $\hat{n}'$ as
+\[
+\hat{n}' = R_{i,w(X,P_i)}R_Xe_1\tilde{R}_X\tilde{R}_{i,w(X,P_i)}.
+\]
+
+This 'frame deformation' property is a key one when it comes to performing perceptually
+valid dynamics on deformed objects.
 
 \subsection{Cloth dynamics}
 
