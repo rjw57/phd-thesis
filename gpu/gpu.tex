@@ -601,11 +601,83 @@ $\hat{n} = R_Xe_1\tilde{R}_X$ then we can find the deformed normal, $\hat{n}'$ a
 This 'frame deformation' property is a key one when it comes to performing perceptually
 valid dynamics on deformed objects.
 
-\subsection{Cloth dynamics}
+% \subsection{Cloth dynamics}
 
 \subsection{Implementation}
 
-\subsubsection{Deformation}
+There are two stages to each step of the simulation; firstly the location of
+the cloth vertices are updated followed by the detection and correction of
+vertices which penetrate the object. For these vertices we perform some basic
+surface-physics removing force components normal to the surface and crudely
+modelling friction by multiplying the tangential velocity component by some
+fixed friction coefficient between 0 and 1.
+
+Both of these steps are performed on the GPU. Unlike the previous example this
+simulation required feedback; the output from the simulation had to be fed back
+to the input.
+
+% \subsubsection{Cloth simulation}
+
+The first stage in the simulation is the calculation of forces, velolities
+and positions for each cloth vertex. 
+
+The location of each cloth vertex was stored in a texture with each pixel in the
+texture corresponding to a vertex in the cloth. The red, green and blue
+components specified the $x$, $y$ and $z$ co-ordinates repectively.  Many GPUs
+only allow for texture components to be in the range $[0, 1]$, effectively
+restricting the cloth to the unit cube. This could have been overcome with the
+introduction of approriate scaling constants but newer nVidia GPUs allow for
+\emph{float buffers} which remove this restriction and they were used in this
+implementation due to their increased accuracy and convenience. A simple vertex shader
+could then be used when rendering the cloth to position the vertices according to the
+contents of the texture.
+In addition to the vertex texture a separate texture was created holding the 
+velocity of each cloth vertex in a similar manner. 
+
+To update these texture we made use of \emph{render to texture} support in newer GPUs
+where pixel and vertex shaders can be used to render images, not to screen, but to
+a particular texture. By rendering a single quad (or two triangles) into a texture
+we could invoke the pixel shader for each texel.
+
+GPUs cannot access the texture they are rendering into within pixel shaders for
+concurrency reasons and hence a two pairs of textures were maintained, one pair
+for the velocities and one pair for the vertex positions. At each step one
+member of the pair would reflect the `current state' and the other would be
+written into representing the `new state'. At the end of the simulation step
+their r\^oles would be reversed.
+
+% \subsubsection{Deformation}
+
+\begin{figure}[p]
+\centering
+\scalebox{0.7}{
+\begin{minipage}{\textwidth}
+\singlespacing
+\lstinputlisting[language=c]{calcForces.cg}
+\end{minipage}}
+\caption{\label{fig:calcForces}The pixel shader for summing the forces on the cloth vertices
+and removing normal components of velocity.}
+\end{figure}
+
+\begin{figure}[p]
+\centering
+\scalebox{0.7}{
+\begin{minipage}{\textwidth}
+\singlespacing
+\lstinputlisting[language=c]{calcVertices.cg}
+\end{minipage}}
+\caption{\label{fig:calcVertices}The pixel shader used to update the vertex position and
+correct for penetration.}
+\end{figure}
+
+The first part of figure \ref{fig:calcForces} shows the shader used to sum forces. The force
+on each vertex is calculated as the sum of forces due to Hookean springs which connect it
+to its immediate neighbours. The integration of force over time to give velocity
+is simply Euclid's method due to its ease of implementation and compactness; space is a premium
+in shaders.
+
+The first part of figure \ref{fig:calcVertices} shows the shader used to update vertex positions.
+Again the velocity is integrated by simple summing to make the shader small and fast.
 
 \begin{figure}[p]
 \centering
@@ -618,15 +690,25 @@ valid dynamics on deformed objects.
   from a rotor-deformed space.}
 \end{figure}
 
-\subsubsection{Cloth simulation}
+The second part of the simulation takes place after deformation such that the
+target object becomes the unit sphere. In figure \ref{fig:calcVertices} the new
+vertex position is simply moved so that it does not penetrate the object. In
+figure \ref{fig:calcForces} some basic surface physics is performed removing
+components of velocity into the object and attenuating tangential components to
+simulate friction. 
+
+Both shaders use a Cg implementation of the deformation scheme which is
+implemented in figure \ref{fig:map}. Here the components of each key-generator
+are stored in a texture which is used to deform any vertex passed to the
+function.
 
 \subsubsection{Results}
 
-Figure \ref{fig:cloth_montage} shows a selection of scenes from the final demo. You can
-see the central object which is a unit-sphere which has been deformed by 4 key-generators
-with linear fall-off. The cloth simulation is then allowed to fall on the object and slides
-off. All of this is performed on the GPU in real-time (50 frames per second) for a 1024-vertex cloth
-model.
+Figure \ref{fig:cloth_montage} shows a selection of scenes from the final demo.
+You can see the central object which is a unit-sphere which has been deformed
+by 4 key-generators with linear fall-off. The cloth simulation is then allowed
+to fall on the object and slides off. All of this is performed on the GPU in
+real-time (50 frames per second) for a 1024-vertex cloth model.
 
 \begin{figure}[p]
 \centering

@@ -6,18 +6,23 @@ float3 main(in float2 wPos : WPOS,
                 uniform samplerRECT velocitiesTex : TEXUNIT1
                 ) : COLOR
 {
+  // Get the current vertex position (v) and velocity (vel)
   float3 v = texRECT(verticesTex, wPos).rgb;
   float3 vel = texRECT(velocitiesTex, wPos).rgb;
   float3 junk = float3(1,0,0);
 
+  // 'Integrate' the velocity to update the vertex position.
   v += vel;
 
+  // Deform so our target is the unit-sphere.
   map_pos_to_sphere(v, junk, v);
 
+  // If we are inside the sphere, correct.
   if(length(v) < 1.0) {
     v = normalize(v);
   }
 
+  // Deform back.
   map_sphere_to_pos(v, junk, v);
 
   return v;

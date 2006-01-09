@@ -47,7 +47,7 @@ float3 main(int2 wPos : WPOS) : COLOR
   float3 vel = texRECT(velocitiesTex, wPos).rgb;
   float3 force = float3(0,GRAVITY,0);
     
-  /* Resolve spring forces in a cross around the vertex */
+  // Resolve spring forces in a cross around the vertex 
   DO_FORCE(  0, -1 );
   DO_FORCE(  1,  0 );
   DO_FORCE(  0,  1 );
@@ -55,9 +55,13 @@ float3 main(int2 wPos : WPOS) : COLOR
   
   vel = DAMPING*vel + STEP*force;
     
+  // Now deform so taget object becomes unit-sphere
   map_pos_to_sphere(v, vel, v);
 
-  if(length(v) < 1.0) {
+  // If we're inside the sphere or on the surface
+  // remove the component of velocity into the surface
+  // and attenuate the component tangential.
+  if(length(v) <= 1.0) {
     v = normalize(v);
     float d = dot(v, vel);
     d /= dot(v,v);
@@ -68,6 +72,7 @@ float3 main(int2 wPos : WPOS) : COLOR
     }
   }
 
+  // Deform back to real-space.
   map_sphere_to_pos(v, vel, v);
 
   return vel;
