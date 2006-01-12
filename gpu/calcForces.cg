@@ -18,8 +18,7 @@ uniform const samplerRECT velocitiesTex : TEXUNIT1;
 uniform const int2 dimensions;
 uniform const float idealSpacing;
 
-// Add the cloth vertex/cloth vertex Hooke's law forces to 
-// a particular vertex.
+// Add the cloth vertex/cloth vertex Hooke's law forces to a particular vertex.
 void update_force(const int2 dPos, const int2 wPos,
                 const float3 v, inout float3 force)
 {
@@ -27,10 +26,8 @@ void update_force(const int2 dPos, const int2 wPos,
   float d;
   int2 cPos = dPos + wPos;
 
-  if((cPos.x < dimensions.x) &&
-     (cPos.y < dimensions.y) &&
-     (cPos.x >= 0) &&
-     (cPos.y >= 0))
+  if((cPos.x < dimensions.x) && (cPos.y < dimensions.y) &&
+     (cPos.x >= 0) && (cPos.y >= 0))   
   {
     delta = texRECT(verticesTex, cPos).rgb - v; 
     d = length(delta) / length((float2)dPos);
@@ -48,25 +45,18 @@ float3 main(int2 wPos : WPOS) : COLOR
   float3 force = float3(0,GRAVITY,0);
     
   // Resolve spring forces in a cross around the vertex 
-  DO_FORCE(  0, -1 );
-  DO_FORCE(  1,  0 );
-  DO_FORCE(  0,  1 );
-  DO_FORCE( -1,  0 );
-  
+  DO_FORCE(  0, -1 ); DO_FORCE(  1,  0 ); DO_FORCE(  0,  1 ); DO_FORCE( -1,  0 );
   vel = DAMPING*vel + STEP*force;
     
   // Now deform so taget object becomes unit-sphere
   map_pos_to_sphere(v, vel, v);
 
-  // If we're inside the sphere or on the surface
-  // remove the component of velocity into the surface
-  // and attenuate the component tangential.
+  // If we're inside the sphere or on the surface remove the component of 
+  // velocity into the surface and attenuate the component tangential.
   if(length(v) <= 1.0) {
     v = normalize(v);
     float d = dot(v, vel);
-    d /= dot(v,v);
-    if(d < 0.0) 
-    {
+    if(d < 0.0) {
       vel -= d * v;
       vel *= FRICTION;
     }
