@@ -1,7 +1,6 @@
 // Shader to calculate force on each vertex
 
-// Tools to map to and from deformed space
-#include "map.cg"
+#include "map.cg" // Tools to map to and from deformed space
 
 // Various 'tunables' to change dynamics
 #define SPRING_CONST 1.5
@@ -13,57 +12,40 @@
 // Texture samplers for reading current vertex positions and velocities.
 uniform const samplerRECT verticesTex : TEXUNIT0;
 uniform const samplerRECT velocitiesTex : TEXUNIT1;
-
 // Dimensions and ideal inter vertex spacing of cloth
 uniform const int2 dimensions;
 uniform const float idealSpacing;
 
 // Add the cloth vertex/cloth vertex Hooke's law forces to a particular vertex.
-void update_force(const int2 dPos, const int2 wPos,
-                const float3 v, inout float3 force)
-{
+void update_force(const int2 dPos, const int2 wPos, const float3 v, inout float3 force) {
   float3 delta;
   float d;
   int2 cPos = dPos + wPos;
-
-  if((cPos.x < dimensions.x) && (cPos.y < dimensions.y) &&
-     (cPos.x >= 0) && (cPos.y >= 0))   
-  {
+  if((cPos.x < dimensions.x) && (cPos.y < dimensions.y) && (cPos.x >= 0) && (cPos.y >= 0)) {
     delta = texRECT(verticesTex, cPos).rgb - v; 
-    d = length(delta) / length((float2)dPos);
-    d -= idealSpacing;
+    d = length(delta) / length((float2)dPos); d -= idealSpacing;
     force += clamp(SPRING_CONST * d, -5,5) * normalize(delta);
   }
 }
 
 #define DO_FORCE(a,b) { update_force(int2(a,b), wPos, v, force); }
-
-float3 main(int2 wPos : WPOS) : COLOR
-{
+float3 main(int2 wPos : WPOS) : COLOR {
   float3 v = texRECT(verticesTex, wPos).rgb;
   float3 vel = texRECT(velocitiesTex, wPos).rgb;
   float3 force = float3(0,GRAVITY,0);
-    
   // Resolve spring forces in a cross around the vertex 
   DO_FORCE(  0, -1 ); DO_FORCE(  1,  0 ); DO_FORCE(  0,  1 ); DO_FORCE( -1,  0 );
   vel = DAMPING*vel + STEP*force;
-    
   // Now deform so taget object becomes unit-sphere
   map_pos_to_sphere(v, vel, v);
-
   // If we're inside the sphere or on the surface remove the component of 
   // velocity into the surface and attenuate the component tangential.
   if(length(v) <= 1.0) {
-    v = normalize(v);
-    float d = dot(v, vel);
-    if(d < 0.0) {
-      vel -= d * v;
-      vel *= FRICTION;
-    }
+    v = normalize(v); float d = dot(v, vel);
+    if(d < 0.0) 
+      { vel -= d * v; vel *= FRICTION; }
   }
-
   // Deform back to real-space.
   map_sphere_to_pos(v, vel, v);
-
   return vel;
 }
