@@ -1,13 +1,75 @@
 \chapter{Conclusions and Future Work}
 
+In this chapter we shall collate all of the findings from the previous chapters
+and give them a context in relation to each other. Future applications for
+the various findings will be discussed.
+
 \section{Review of Achievements}
+
+In this section we briefly review the achievements and findings from each
+chapter.
 
 \subsection{Non-Euclidean geometries}
 
+In chapter \ref{chap:noneuclid} a framework for extending the conformal
+model to deal with non-Euclidean geometries was developed with particular
+emphasis on hyperbolid geometry. It was shown that the geometry
+represented by a model is entirely determined by the choice of null-vector
+representation and rotors. The pure-rotation and pure-translation 
+rotors for hyperbolic space were derrived and it was shown that the usual
+distance metric for hyperbolic geometry could be obtained therefrom.
+
+Already some work using the conformal model to represent non-Euclidean geometry
+has found application in cosmology\cite{GA:SIGKEY}[FIXME: Reference Anthony 
+et al properly] has been done leading, potentially, to important insights on
+our Universe.
+
 \subsection{Fractals}
+
+In chapter \ref{chap:fractals} an extension to complex numbers, similar to that
+of quaternions, was developed for arbitrary dimension. It was noted that, in
+GA, quaternions are simply special cases of a wider variety of algebras. This
+extension was used to form a dimension-agnostic formulation for the classic
+complex iteration-based Julia and Mandelbrot fractal sets. In addition an
+existing distance estimation formula was shown to be valid using this extension
+allowing for the ray-tracing of arbitrary dimension sets.
+
+Applications of fractals are notoriously difficult to find. [FIXME: Find nice way of
+saying it is only useful 'cos it is pretty].
 
 \subsection{Rotor exponentiation}
 
+In chapter \ref{chap:exponential} it was hypothesised that all the rotors we
+used in the conformal model could be obtained by exponentiating a corresponding
+generator bivector the components of which would be geometrically meaningfull.
+A closed form solution for \emph{both} the exponentiation and subsequent
+inverse exponentiation (modulo the identification of rotations by $2n\pi$) was
+derrived.
+
+From this an algorithm for directly mapping the components of the generator
+to a $4 \times 4$ matrix suitable for use in existing graphical pipelines
+was developed. A matching algorithm for directly converting a matrix to
+a generator, again identifying rotations of $2n\pi$, was also developed.
+
+This particular chapter has almost limitless application. Not only is the
+linear space of the bivectors mapped to the non-linear space of rigid-body
+transformations but the appropriate inverse mapping was also defined. Using
+this method many existing linear optimisation algorithms or interpolation
+schemes could be extended to deal with rotation and translation
+\emph{simulataniously}.
+
 \subsection{GPU-based techniques}
 
+In chapter \ref{chap:gpu} the techniques developed in chapter \ref{chap:exponential}
+were implemented on the programmable portion of modern Graphics Processing
+Units. Such \emph{shaders} were used to develop sample graphics algorithms which
+made use of the mappings developed in this thesis. 
+
+Specifically simple mesh deformation and collision detection examples were show.
+The examples demonstrated that not only was GA a natural language for developing
+such algorithms allowing one to use much geometric insight but they were also
+compact enough to program so that they could be efficiently implemented in hardware.
+
 \section{Future work}
+
+
