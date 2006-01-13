@@ -855,13 +855,17 @@ it as
 \begin{quote}
 Gaigen is a program which can generate implementations of geometric algebras. It generates C++, C and assembly source code which implements a geometric algebra requested by the user. People who are new to geometric algebra may think that there is only one geometric algebra. However, there are many different geometric algebras. The properties that make these algebras different are, among others, their dimensionality and the signature of their basis vectors. Each of these different algebras may be useful for different applications.
 \end{quote}
-The user can select the signature of the space and generate C-code to implement it. The
-basic code is quite na\"ive (similar to the initial code created for
-this project, see later) insofar as it
-performs the full $O(1024)$ matrix multiplication required. It does allow the
-user to specify a number of special purpose optimised routines to
-find the geometric product of, for example, a bivector and trivector.
-Gaigen doesn't possess a visualisation engine by default.
+The user can select the signature of the space and generate C-code to implement
+it. The code it generates is efficient and compact. The Gaigen2 project has
+moved into a different direction; instead of accelerating individual products a
+different approach to making an efficient implementation is used with a
+different internal representation. Gaigen doesn't possess a visualisation
+engine by default.
+
+Gaigen, although fine for general purpose use, wasn't suitable for this
+PhD as, ultimately, it was desired that a similar API would be found for
+both software and hardware implementations and it was felt that having our
+own implementation would lead to greater flexibility in this area.
 
 \begin{table}
 \centering
@@ -877,7 +881,6 @@ Gaigen does have the useful ability to generate product tables for the algebra
 %some of these tables were used as input to the code-generating 
 %PERL\footnote{Pathologically Eclectic Rubbish Lister---see http://www.perl.org/} 
 %scripts.
-
 
 \subsection{Cambridge GA library for Maple}
 
