@@ -96,8 +96,8 @@ in many problems. The specific method is given in algorithm \ref{alg:line}.
 
 \subsection{Planes}
 
-A plane may easily be rendered via its dual representation\cite{wareham_lasenby}.
-If $p = PI \equiv P^*$ then
+A plane may easily be rendered via its dual representation outlined
+in section \ref{sec:plane}. Recall that, for a plane $P$, if $p = PI \equiv P^*$ then
 \[
 p = \hat{n} + dn
 \]
@@ -113,9 +113,8 @@ the circle, $P$ via
 P = C \wedge n
 \]
 
-To find the radius and centre of the circle we use the alternate form of the 
-circle
-\cite{wareham_lasenby}
+To find the radius and centre of the circle we use the dual form of the 
+circle in \cite{wareham_lasenby}
 \[
 C^* = B - \frac{1}{2}\rho^2n
 \]
@@ -142,7 +141,7 @@ which contain no part of $e$ or $\bar{e}$.
 \STATE $P := C \wedge n$
 \STATE $\hat{n} := {\rm spatial}(P^*)$
 \STATE Draw circle in plane with normal $\hat{n}$ centre
-$b$, radius$\rho$.
+$b$, radius $\rho$.
 \end{algorithmic}
 \caption{\label{alg:circle}Rendering the representation of a circle, $C$.}
 \end{fancyalg}
