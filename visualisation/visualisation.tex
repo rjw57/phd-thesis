@@ -94,6 +94,14 @@ in many problems. The specific method is given in algorithm \ref{alg:line}.
 %P = P_1 \wedge P_2 \wedge P_3 \wedge n.
 %\]
 
+\subsection{Planes}
+
+A plane may easily be rendered via its dual representation\cite{wareham_lasenby}.
+If $p = PI \equiv P^*$ then
+\[
+p = \hat{n} + dn
+\]
+where $\hat{n}$ is the plane normal and $d$ is its perpendicular distance from the origin.
 
 \subsection{Circles}
 
@@ -123,15 +131,31 @@ using $B^2 = n^2 = 0$ and $B \cdot n = -1$. Similarly we can find $B$ via
 B = C^* \left( 1 + \frac{1}{2}C^*n \right)
 \]
 The final algorithm (for three dimensions) is outlined in algorithm \ref{alg:circle}.
-
+In this algorithm the function spatial$()$ extracts the components of the argument
+which contain no part of $e$ or $\bar{e}$.
 
 \begin{fancyalg}
 \begin{algorithmic}[1]
 \REQUIRE{$C$, a representation of a circle.}
 \STATE $\rho := \sqrt{(C^*)^2}$
 \STATE $b := F^{-1}\left(C^* \left[ 1 + \frac{1}{2}C^*n \right]\right)$
+\STATE $P := C \wedge n$
+\STATE $\hat{n} := {\rm spatial}(P^*)$
+\STATS Draw circle in plane with normal $\hat{n}$, centre $b$, radius $\rho$
 \end{algorithmic}
-\caption{\label{alg:line}Rendering the representation of a line, $L$.}
+\caption{\label{alg:circle}Rendering the representation of a circle, $C$.}
 \end{fancyalg}
 
-% \subsection{Spheres}
+\subsection{Spheres}
+
+Finally spheres may be rendered simply by noting that circles are two-dimensional
+spheres and all the formul\ae for obtaining centres and radii hold true. Extracting
+the null-vector representation of the centre, $B = F(b)$, and the radius, $\rho$,
+of a particular sphere $\Sigma$ is therefore straightforward:
+\[
+B = \Sigma n \Sigma
+\]
+and
+\[
+\rho^2 = \left(\Sigma^*\right)^2.
+\]
