@@ -33,7 +33,7 @@ efficiency of vector algebra, may provide a conceptually simpler system or one
 of greater analytical power. This thesis investigates the suitability of
 Geometric Algebra (GA) as one such approach. As one might hope the original
 four-dimensional description of projective geometry fits very nicely into the
-Geometric Algebra framework\cite{Hx91,IJPR00}. 
+Geometric Algebra framework\cite{HZ91,IJPR00}. 
 
 \section{A Brief Overview of Geometric Algebra}
 
@@ -91,7 +91,9 @@ a \wedge (b \wedge c) = (a \wedge b) \wedge c = a \wedge b \wedge c.
 Most of Gra{\ss}mann's work was largely ignored by the mathematical community.
 It was not until William Clifford (1845--1879) investigated Gra{\ss}mann's
 algebra in 1878\cite{GA:clifford} that the crucial step which made GA a useful
-algebra was made.
+algebra was made. Unfortunately Clifford's work was, in its turn, also
+somewhat ignored in favour of the work done by Hamilton on quaterions and
+the development of linear and vector algebra.
 
 Clifford unified Gra{\ss}mann's outer product and the familiar dot
 or inner-product into one \emph{geometric product} such that
@@ -113,10 +115,10 @@ single-grade elements with lower-case letters but use upper-case letters to
 refer to multivectors. The geometric product also gives us a convenient new
 definition of the outer and inner products for vectors as
 \[
-A \wedge B = \frac{1}{2}(AB - BA)\;\mbox{and}
+a \wedge b = \frac{1}{2}(ab - ba)\;\mbox{and}
 \]
 \[
-A \cdot B = \frac{1}{2}(AB + BA).
+a \cdot b = \frac{1}{2}(ab + ba).
 \]
 
 The power of this approach may be illustrated through its application to
@@ -129,7 +131,7 @@ three-dimensions. He eventually created \emph{quaternions}
 \mathbf{i}, \mathbf{j}, \mathbf{k}\right\}$ from which all elements are
 generated through linear combination. This algebra, although functional,
 lacked an obvious geometrical interpretation and again didn't generalise
-easily to higher-dimensions.
+easily to higher-dimensions. We shall visit quaternions later and show how they relate to GA.
 
 \subsection{Rotation via Rotors}
 
@@ -147,7 +149,7 @@ e_ie_j = e_i \cdot e_j + e_i \wedge e_j = e_i \wedge e_j \quad \mbox{iff} \quad 
 
 Now consider the effect of $B_3$ on the vectors $e_1$ and $e_1 + e_2$:
 \begin{displaymath}
-e_1B_3 = e_1e_1e_2 = e_1^2e_2=e_2 
+e_1B_3 = e_1^2e_2=e_2 
 \end{displaymath}
 \begin{displaymath}
 (e_1 + e_2)B_3 = e_1B_3 + e_2B_3 = e_2 + e_2e_1e_2 = e_2 - e_1e_2^2 = e_2 - e_1
@@ -159,11 +161,11 @@ e_1B_3 = e_1e_1e_2 = e_1^2e_2=e_2
 \caption{The rotation effect of bivector $B_3 = e_1e_2$\label{fig:rotation}}
 \end{figure}
 
-By looking at figure \ref{fig:rotation} it is clear that $B_3$ has the effect
+From figure \ref{fig:rotation} it is clear that $B_3$ has the effect
 of rotating the vectors counter-clockwise by 90 degrees. It is, in fact, a
 general property that the bivector $e_ie_j$ will rotate a vector 90 degrees in
 the plane defined by $e_i$ and $e_j$. At first glance this seems to offer
-little more than quaternions but at no point have we assumed that we are
+little more than quaternions, but at no point have we assumed that we are
 working in three-dimensional space; this method also works in higher-dimension
 spaces.
 
@@ -180,8 +182,8 @@ x & = & r ( e_1 \cos \theta + e_2 \sin \theta) \\
   & = & e_1 r ( \cos \theta + B_3 \sin \theta)
 \end{eqnarray*}
 where $r$ is the distance of the point $x$ from the origin (i.e.\ $r = \sqrt{x^2}$)
-and $\theta$ is the angle $x$ makes to $e_1$. Also note
-that $e_1B_3 = e_1^2e_2 = e_2$. By taking the Taylor expansion of cosine
+and $\theta$ is the angle $x$ makes with $e_1$. 
+By taking the Taylor expansion of cosine
 and sine and re-arranging the coefficients it can be shown that
 \[
 e^{B_3\theta} = \cos \theta + B_3 \sin \theta
@@ -204,7 +206,7 @@ x' = xe^{B_3\phi} = x (\cos \phi + B_3 \sin \phi)
 \end{displaymath}
 
 This has all taken place in two dimensions for the moment but nothing in our
-discussion has assumed this. In fact we can specify a bivector $B_3 = ab$ in
+discussion has assumed this. In fact we can specify a unit bivector $B_3 = ab$ in
 three dimensions and rotate vectors in the place defined by $a$ and $b$ using
 the expression above.
 
@@ -243,7 +245,7 @@ the plane.
 
 This leads to a general method of rotation in any plane; we
 form a bivector of the form $R = \exp({-B\phi/2})$ for a given rotation 
-$\phi$ in a plane specified by the bivector $B$. The transformation
+$\phi$ in a plane specified by the unit bivector $B$. The transformation
 is therefore performed by
 \begin{displaymath}
 x \mapsto RxR^{-1}.
@@ -269,7 +271,7 @@ Note that in spaces with dimension $n$, the maximum grade object possible is
 an $n$-grade one. We denote the $n$-vector $e_1 \wedge ... \wedge e_n = I$ as
 the \emph{pseudoscalar} and the product $xI$ as the \emph{dual} of a vector or
 $x^*$. The dual is similarly defined for general multivectors. The
-pseudo-scalar is so termed because it commutes with all elements of the
+pseudoscalar is so termed because it commutes with all elements of the
 algebra.
 
 \subsection{Relation to quaternions}
