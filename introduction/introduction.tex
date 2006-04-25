@@ -279,24 +279,26 @@ algebra.
 
 It is worth comparing this method of rotation to rotation via
 quaternions. The three bivectors $B_1,B_2$ and $B_3$ act identically to the
-three imaginary components of quaternions, $\mathbf{i}, -\mathbf{j}$ and
+three `imaginary' components of quaternions, $\mathbf{i}, -\mathbf{j}$ and
 $\mathbf{k}$ respectively. The sign difference between $B_2$ and $\mathbf{j}$
 is due to the fact that the quaternions are not derived from the usual
 right-handed orthogonal co-ordinate system. This handedness mismatch often
 leads to annoying sign errors in quaternion-based algorithms.
 
-Using quaternions, a particular rotation is represented via the quaternion 
+Using quaternions, a particular rotation is represented via the unit quaternion 
 $q$ given by
 \[
 q = q_0 + q_1 \mathbf{i} + q_2 \mathbf{j} + q_3 \mathbf{k}
 \]
-where $q_0^2 + q_1^2 + q_2^2 + q_3^2 = 1$. Interpolation between rotations 
-represented
-by $\{ q_1, \cdots, q_i \}$ is then performed by interpolating between
-each quaternion, $q_i$,
-over the surface of a four-dimensional hyper-sphere. For example, if we 
-were to interpolate
-between unit quaternions $q_0$ and $q_1$ the SLERP interpolation would be
+where $q_0^2 + q_1^2 + q_2^2 + q_3^2 = 1$. 
+It is known\cite{ACM:325242} that quaternions are particularly useful
+not only for representing rotations but also for interpolating them.
+This interpolation is performed by considering the unit quaternion to
+be a point on a four-dimensional hyper-sphere and interpolating over 
+the surface of this sphere. For example, given a pair of rotations specified
+by the
+unit quaternions $q_0$ and $q_1$, the \emph{spherical linear interpolation} (SLERP)
+would be
 \[
 q = \left\{
 \begin{array}{ll}
@@ -308,23 +310,26 @@ q_0(q_0^{-1}(-q_1))^\lambda & {\rm ~otherwise}
 where $\lambda$ varies in the range $(0,1)$ \cite{slerp}.
 
 Recall that the locus of $\exp(i\theta)$ is the unit
-circle. It is straight forward to show that, for some normalised
+circle. It is straightforward to show that, for some normalised
 bivector $B$, the locus of the action of $\exp(B\theta)$ upon a point with respect to varying
 $\theta$ is also a circle in the plane of $B$. Hence, if we consider
-some rotations $R_1, R_2 = \exp(kB)R_1$, where $k$ is a scalar and
+some rotations $R_1, R_2 = \exp(B)R_1$, where 
 $B$ is some normalised bivector, it is clear that
 the quaternionic interpolation is exactly given by
 \[
-R_\lambda = (R_2 \tilde{R}_1)^\lambda R_1 = \exp(\lambda kB) R_1
+R_\lambda = (R_2 \tilde{R}_1)^\lambda R_1 = \exp(\lambda B) R_1
 \]
 where $\lambda$, the interpolation parameter, varies in the range $(0,1)$. A
 further moment's thought will reveal that this method is not confined to three
 dimensions, like quaternionic interpolation, but instead readily generalises
-to higher-dimensions.
+to higher-dimensions. It is also worth noting the extreme similarity between the
+rotor interpolation and the quaternionic interpolation. In fact pure-rotation
+rotors behave identically to quaternions and we shall see later how this SLERP
+interpolation scheme may be extended to include translation as well as rotation.
 
-\subsection{The Conformal Model}
+\subsection{The Conformal Model of Geometric Algebra}
 
-In the Conformal Model\cite{GA:NFCM} we extend the space by adding two
+In the Conformal Model\cite{hestenes} we extend the space by adding two
 additional basis vectors. The notation we use will follow the original
 notation given in \cite{HS84}. Let $x$ be a vector in a space denoted
 ${\cala}(p,q)$.  The annotation $(p,q)$ shall be termed the \emph{signature}
@@ -344,7 +349,7 @@ $\bar{e}$, such that
 
 Note that if $x \in {\cala}(p,q)$, then $e\cdot x =
 \bar{e}\cdot x = 0$ since $e_i\cdot e=e_i \cdot \bar{e} = 0$
-for $i=1,\cdots,n$. We now compose vectors $n$ and
+for $i=1,\cdots,n$. We now define vectors $n$ and
 $\bar{n}$ as
 %
 \[ n = e + \bar{e}  \qquad  \bar{n} = e - \bar{e}.
@@ -381,7 +386,7 @@ then $E^2 = 4$
   %
 since $n\cdot\bar{n}=2$ and $n^2=\bar{n}^2=0$.
 
-In the conformal model we use null-vectors to represent points and 
+In the conformal model we use general null-vectors to represent points and 
 build up objects.
 In $\cala(p,q)$ we map a point $x \in \cala(p,q)$ to a vector
 $F(x) \in \cala(p+1,q+1)$. Using this representation we find that 
@@ -394,8 +399,8 @@ F(x)=-\frac{1}{2}(x-e)n(x-e)
 \end{equation}
 %
 where, substituting for $n=e+\bar{e}$ and using the fact that
-$\bar{e}\cdot x = 0 = \bar{e}\cdot e = n\cdot x$, it is not
-hard to rewrite this equation in terms of the null
+$\bar{e}\cdot x = 0 = \bar{e}\cdot e = n\cdot x$, it is possible
+to rewrite this equation in terms of the null
 vectors as follows
 %
 \begin{equation}
@@ -483,7 +488,7 @@ between ${\cala}(p,q)$ and  ${\cala}(p+1,q+1)$. Specifically that the
 family of null vectors $\lambda(x^2n + 2x - \bar{n})$,
 in ${\cala}(p+1,q+1)$ are taken to correspond to the
 single point $x\in {\cala}(p,q)$. If $x$ is the origin
-then we see that $F(x) = -\bar{n}$ and we may therefore associate
+then we see that $F(x) = -\frac{1}{2}\bar{n}$ and we may therefore associate
 null vectors parallel to $\bar{n}$ with the origin. 
 We will see later that when we \emph{invert} $\bar{n}$ 
 we obtain $n$, suggesting
@@ -521,16 +526,16 @@ originally in \cite{HS84}.
 In usual descriptions of GA (without the use of the conformal model)
 rotations are performed with elements of the algebra termed
 \emph{rotors}. In this section we aim to show that these rotors may be used
-unchanged on the null vectors point-representations.
+unchanged on the null vectors representing points.
 Let $x \mapsto Rx\tilde{R}$ with $x\in {\cala}(p,q)$ and $R$ be a
 rotor in the Geometric Algebra over ${\cala}(p,q)$. Consider
 what happens when $R$ acts upon $F(x)$; i.e.\ the nature of
 $RF(x)\tilde{R}$
 %
 \[ RF(x)\tilde{R} =\frac{1}{2} R(x^2n + 2x - \bar{n})\tilde{R} =\frac{1}{2}[ x^2Rn\tilde{R}
-+ 2Rx\tilde{R} - R\bar{n}\tilde{R}] \]
++ 2Rx\tilde{R} - R\bar{n}\tilde{R}] \].
 %
-and since $R$ is a rotor it contains only even blades and therefore 
+Since $R$ is a rotor it contains only even blades and therefore 
 commutes with
 $n$ and $\bar{n}$  
 %($e_in=-ne_i$, so if we have an even number of $e_i$s we
@@ -552,7 +557,7 @@ F(Rx\tilde{R}) \end{equation}
 \subsubsection{Translators}
 
 Translation along a vector $a$ is defined for our purposes as the
-mapping $x\mapsto x+a$ for some $x,a \in \cala(p,q)$.
+mapping $x\mapsto x+a$ for some $x,\,a \in \cala(p,q)$.
 In this
 section we will show that this is performed by applying a 
 rotor $R=T_a = \exp\left({\frac{na}{2}}\right)$ to $F(x)$.
@@ -622,11 +627,11 @@ in a plane with unit normal $n$ by `sandwiching' the vector between the
 normal, $-nan$ \cite{IJCV98}. Sandwiching the object \emph{to be reflected}
 between the object \emph{in which we wish to reflect} is a very general
 prescription in GA and one which will be used heavily in later parts of the
-report.  In this section we look at how inversions are brought about by this
+thesis.  In this section we look at how inversions are brought about by this
 same reflection operation.
 
-In this report by `inversion' we mean the mapping $x \mapsto \frac{x}{x^2}$ or,
-equivalently for non-singular areas, $x \mapsto x^{-1}$. Firstly, we look 
+By `inversion' we mean the mapping $x \mapsto \frac{x}{x^2}$ or,
+equivalently, for non-singular areas, $x \mapsto x^{-1}$. Firstly, we look 
 at the reflection in $e$ of various vectors
 %
 \[ -ene  = -ee\bar{n} = -\bar{n} \] 
@@ -645,7 +650,7 @@ F\left(\frac{x}{x^2}\right) \end{eqnarray}
 %
 
 We have, therefore, shown that the inversion operation in ${\cala}(p,q)$ can be
-performed via the reflection in $e$ of the projection into ${\cala}(p,+1q+1)$.
+performed via the reflection in $e$ of the representation in ${\cala}(p,+1q+1)$.
  %
  \begin{equation} x \mapsto \frac{x}{x^2} \qquad \Leftrightarrow \qquad F(x) \mapsto
  -\frac{eF(x)e}{x^2} = F\left(\frac{x}{x^2}\right) \end{equation}
@@ -656,7 +661,7 @@ impose our normalisation constraint, we can omit the scaling by $x^{-2}$.  It
 is also irrelevant, by the same logic, whether we take $-e(\cdot)e$ or
 $e(\cdot)e$ as the reflection and henceforth we will use $e(\cdot)e$ for
 convenience. This `sandwiching' operation will be a common one in the algorithms
-we will describe below.
+we will describe in subsequent chapters.
 %We reiterate here that later the concept of
 %reflection of a quantity in an object being brought about by this method
 %of `sandwiching' will be a very common operation in 
@@ -702,9 +707,9 @@ have therefore shown that dilations  in ${\cala}(p,q)$ can be performed by
 the rotor    $R=D_\alpha$
  %
  \begin{equation}
-x \mapsto \exp{-\alpha}x \qquad \Leftrightarrow \qquad F(x)
+x \mapsto \exp({-\alpha})x \qquad \Leftrightarrow \qquad F(x)
 \mapsto  D_{\alpha} F(x) \tilde{D}_{\alpha} =
-\exp{\alpha}F(\exp{-\alpha}x)
+\exp({\alpha})F(\exp({-\alpha})x)
 \end{equation}
 %
 Note that the signs are incorrect in the equivalent
@@ -728,7 +733,7 @@ x \mapsto  x \frac{1}{1 + ax}
 \end{equation}
 %
 
-A moment's investigation reveals this transform to be 
+Some thought reveals this transform to be 
 a combination of inversion, translation and inversion again
 %
 \begin{eqnarray}
