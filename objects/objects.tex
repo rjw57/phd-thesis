@@ -7,27 +7,6 @@
 In this chapter we will look
 at the r\^ole played by bivectors in the conformal model and give some useful
 alternative representations of lines, planes, circles and spheres.
-We shall
-also consider using only the $\lambda(2x - \bar{n})$ part of the conformal
-representation, $F(x)$, of a  point $x$  and show how it enables us to deal
-with the incidence of planes, lines and so forth as we can in projective
-geometry \cite{HZ91}. We will observe that it is very similar to the
-classical method of homogeneous co-ordinates whereby we form $\lambda(x+ e_o)$
-with $x$ being our original point in Euclidean 3-space and $e_o$ being the
-extra vector we add on.  Further, we shall find find that, in the conformal
-representation, the signature of the vector we add on is irrelevant for
-projective geometry and indeed that it is generally better, if dealing only
-with projective geometry, that we do not have null structures present. This
-implies we only need add a 4th basis vector which gives a ${\cala}(p+1,q)$
-space. We therefore ask ourselves if there is any advantage in going to a full
-$\lambda(x^2n + 2x-\bar{n})$ representation.
-
-In this chapter we shall also enlarge the representation and, by employing the
-reflection formula to do inversions, we shall study the incidence relations of
-spheres and circles in addition to just lines and planes.  A second, linked,
-advantage that will be shown is that in the conformal representation we
-can represent incidence relations via wedge products just as we can in the GA
-version of projective geometry and in the Cayley-Grassmann algebra.
 % \cite{CGalg}.
 
 Throughout this chapter we shall say that a geometric primitive is
@@ -42,13 +21,15 @@ relation}.
 
 \section{A note on methodology}
  
-In this section we develop a useful tool used by a number of proofs later
-in the chapter. Recall that, in projective geometry, if a line, $L$, 
+In this section we develop a useful tool used by a number of proofs below.
+Firstly recall that, in projective geometry, if a line, $L$, 
 passes through two points $a,b$, whose (4d) homogeneous representations are 
-$A,B$, we can represent the line by the bivector $L=A\wedge B$. The 
+$A$,$B$\footnote{I.e.\ we add a further orthogonal basis vector $e_0$ so that
+$A = a + e_0$.}, we can represent the line by the bivector $L=A\wedge B$. The 
 representation, $X$, of any point lying on the line will satisfy
 %
-\[ X\wedge L = 0  \]
+\[ X\wedge L = 0  \].
+This is easily verified
 
 In the conformal representation rotations, translations, dilations, inversions
 are all represented by rotors or reflections, which allows us to infer that any
@@ -84,13 +65,13 @@ again using $(RX\tilde{R})\wedge (RY\tilde{R}) =
 $R\tilde{R}=1$. Once more we can say that if $X\wedge Y\wedge \cdots \wedge Z=0$ then 
 it is also true that  $(RX\tilde{R})\wedge (RY\tilde{R})\wedge \cdots \wedge (RZ\tilde{R})=0$.
 
-It is therefore clear that translations, rotations, dilations and inversions
+Translations, rotations, dilations and inversions
 can now be brought into the context of projective geometry, giving a
 significant increase in the usefulness of the representation. It is now
 possible to build up a set of useful results in this conformal system and to
 see how lines, planes, circles and spheres are represented. The working above
 will be
-the basis for most proofs of constructions in this report; we prove the
+the basis for most proofs of constructions in this chapter; we prove the
 construction holds for some simple case at the origin and then we can say it
 must  hold for all cases since we can rotate, translate and dilate our setup at
 the origin to any configuration in space, with no change in the incidence
@@ -312,7 +293,17 @@ in general circles ($C$), ie.
 %
 The huge advantage that we have in our conformal
 framework is that precisely the same equations can be
-used in 3d. Conventionally, much of inversive geometry
+used in 3d. So much so that, considering that 3d spheres
+are merely circles in 4d space, we can state that a sphere
+is represented as 
+%
+\begin{equation}
+    S =  X_1 \wedge X_2 \wedge X_3 \wedge X_4
+    \end{equation}
+%
+where $X_1, X_2, X_3, X_4$ are the null-vector representations
+of points on its surface.
+Conventionally, much of inversive geometry
 is described by complex numbers and so the jump from the
 plane to higher-dimension spaces is rarely made.
 
@@ -1451,8 +1442,10 @@ the line $L_1''$
 %
 \[ X' = L_1''XL_1'' \;\;\;\; X'' = \half (X + X')   \]
 %
-(recall that $X''$ will be our real midpoint plus some
-multiple of $n$). Now we reflect $X''$ in $L_2$ to give $X'''$ and again
+It is straightforward to verify explicity that $X''$ is the
+representation of the true mid-point of the points represented
+by $X$ and $X'$ plus some multiple of $n$.
+Now we reflect $X''$ in $L_2$ to give $X'''$ and again
 take the midpoint --- the midpoint must now give us the
 intersection point $P$ plus some multiple of $n$;
 %
@@ -1463,6 +1456,7 @@ intersection point $P$ via
 %
 \[ P = \frac{-(P'nP')}{2(P'\cdot n)^2}   \]
 %
+which has the effect of removing the multiple of $n$.
 This construction is independent of $X$ and is a
 beautiful illustration of the ability to manipulate
 objects using geometric algebra. Although it appears

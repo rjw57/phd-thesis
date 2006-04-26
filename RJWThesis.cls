@@ -93,7 +93,7 @@
 \def\author@font{\Large}
 \def\quote@font{\small\sf\em}
 \def\dedication@font{\Large\em}
-\def\chaphead@font{\sf\bfseries\fontsize{24}{30}\selectfont}
+\def\chaphead@font{\itshape\bfseries\fontsize{24}{30}\selectfont}
 \def\pagenumber@font{\sf\small}
 \def\pagefooter@font{\itshape}
 
