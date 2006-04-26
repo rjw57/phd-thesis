@@ -7,6 +7,28 @@
 In this chapter we will look
 at the r\^ole played by bivectors in the conformal model and give some useful
 alternative representations of lines, planes, circles and spheres.
+We shall
+also consider using only the $\lambda(2x - \bar{n})$ part of the conformal
+representation, $F(x)$, of a  point $x$  and show how it enables us to deal
+with the incidence of planes, lines and so forth as we can in projective
+geometry \cite{HZ91}. We will observe that it is very similar to the
+classical method of homogeneous co-ordinates whereby we form $\lambda(x+ e_o)$
+with $x$ being our original point in Euclidean 3-space and $e_o$ being the
+extra vector we add on.  Further, we shall find find that, in the conformal
+representation, the signature of the vector we add on is irrelevant for
+projective geometry and indeed that it is generally better, if dealing only
+with projective geometry, that we do not have null structures present. This
+implies we only need add a 4th basis vector which gives a ${\cala}(p+1,q)$
+space. We therefore ask ourselves if there is any advantage in going to a full
+$\lambda(x^2n + 2x-\bar{n})$ representation.
+
+In this chapter we shall also enlarge the representation and, by employing the
+reflection formula to do inversions, we shall study the incidence relations of
+spheres and circles in addition to just lines and planes.  A second, linked,
+advantage that will be shown is that in the conformal representation we
+can represent incidence relations via wedge products just as we can in the GA
+version of projective geometry and in the Cayley-Grassmann algebra.
+% \cite{CGalg}.
 
 Throughout this chapter we shall say that a geometric primitive is
 represented by some element $M$ of the algebra if, for all
@@ -14,9 +36,286 @@ null-vector representations $X$ which satisfy
 \[
 X \wedge M = 0,
 \]
-the point represented by $X$ lies on the object and the representaion of all
+the point represented by $X$ lies on the object or primitive and the representaion of all
 points on the object satisfy that relation. We term this an \emph{incidence
 relation}.
+
+\section{A note on methodology}
+ 
+In this section we develop a useful tool used by a number of proofs later
+in the chapter. Recall that, in projective geometry, if a line, $L$, 
+passes through two points $a,b$, whose (4d) homogeneous representations are 
+$A,B$, we can represent the line by the bivector $L=A\wedge B$. The 
+representation, $X$, of any point lying on the line will satisfy
+%
+\[ X\wedge L = 0  \]
+
+In the conformal representation rotations, translations, dilations, inversions
+are all represented by rotors or reflections, which allows us to infer that any
+incidence relations remain invariant in form under such operations. This may
+also be seen explicitly; suppose we have the incidence relation
+%
+\[ X \wedge Y \wedge \cdots  \wedge Z = 0 \]
+%
+where $X,Y,\cdots,Z \in {\cala}(p+1,q+1)$. Under
+reflections in $e$ we have
+%
+\begin{eqnarray}
+   X \wedge Y \wedge \cdots  \wedge Z & \mapsto & (eXe) \wedge (eYe) \wedge \cdots
+\wedge (eZe) \nn \\
+   & = & e( X \wedge Y \wedge \cdots  \wedge Z)e \nn
+\end{eqnarray}
+%
+since $(eXe)\wedge (eYe) = \frac{1}{2}(eXeeYe - eYeeXe) = \frac{1}{2}e(XY-YX)e 
+= e(X\wedge Y)e$, as $e^2=1$. Therefore it is true that if $X\wedge Y\wedge \cdots
+\wedge Z=0$ then it is also true that $(eXe)\wedge (eYe)\wedge \cdots \wedge (eZe)=0$.
+
+Similarly, if we consider the relation under some rotor $R$ we have
+%
+\begin{eqnarray}
+   X \wedge Y \wedge \cdots  \wedge Z & \mapsto & (RX\tilde{R}) \wedge (RY\tilde{R}) \wedge \cdots
+\wedge (RZ\tilde{R}) \nn \\
+   & = & R( X \wedge Y \wedge \cdots  \wedge Z)\tilde{R} \nn
+\end{eqnarray}
+%
+again using $(RX\tilde{R})\wedge (RY\tilde{R}) =
+\frac{1}{2}(RX\tilde{R} RY\tilde{R} - RY\tilde{R} RX\tilde{R}) =
+\frac{1}{2}R(XY-YX)\tilde{R} = R(X\wedge Y)\tilde{R}$, as
+$R\tilde{R}=1$. Once more we can say that if $X\wedge Y\wedge \cdots \wedge Z=0$ then 
+it is also true that  $(RX\tilde{R})\wedge (RY\tilde{R})\wedge \cdots \wedge (RZ\tilde{R})=0$.
+
+It is therefore clear that translations, rotations, dilations and inversions
+can now be brought into the context of projective geometry, giving a
+significant increase in the usefulness of the representation. It is now
+possible to build up a set of useful results in this conformal system and to
+see how lines, planes, circles and spheres are represented. The working above
+will be
+the basis for most proofs of constructions in this report; we prove the
+construction holds for some simple case at the origin and then we can say it
+must  hold for all cases since we can rotate, translate and dilate our setup at
+the origin to any configuration in space, with no change in the incidence
+relations.
+
+\section{The equation of a line}
+
+As was discussed above, the incidence relations are invariant under rotations
+and translations in the ${\cala}(p,q)$ space and hence without loss of
+generality we can consider the incidence relation for a line in the direction
+$e_1$ passing through the origin.
+
+Let three points on this line be $x_1,x_2,x_3$ with corresponding
+${\cala}(p+1,q+1)$ representations $X_1,X_2,X_3$. It is clear that $\{X_i\}$
+contain only the vectors $n,\bar{n}$ and $e_1$ as any point $x$ on the line
+must have the form $x = \lambda e_1$.  We therefore claim that, if $X$ is the
+representation of any other point on the line, we can write the incidence 
+relation
+%
+\[ X\wedge X_1 \wedge X_2 \wedge X_3 = 0  \]
+%
+
+We prove this as follows. Let $L=X_1\wedge X_2\wedge X_3$,
+if we expand this out in terms of the conformal
+representation we have
+%
+\begin{eqnarray}
+ L & = & \frac{1}{8}(x_1^2n + 2x_1-\bar{n})\wedge (x_2^2n + 2x_2-\bar{n})\wedge (x_3^2n
++ 2x_3-\bar{n})\nn \\
+   & = & \alpha (n\wedge e_1 \wedge \bar{n})
+\end{eqnarray}
+%
+where $\alpha$ is a scalar which depends upon $x_1,x_2,x_3$.
+If $X = \half(x^2n + 2\lambda e_1 - \bar{n})$, then it is easy to see by
+direct substitution that $X\wedge L = 0$. Since we can rotate and
+translate our simple line through the origin to any other
+line in space and still preserve the incidence relations,
+we know that we may represent all lines in this manner. It is
+interesting to note that this parallels the projective case
+and also to note that we would appear to require 3 points in this
+conformal representation to describe a line instead of the usual
+2. We shall return to this later.
+
+\section{The equation of a plane}
+
+This section uses a similar method to develop the representation
+of a plane. Again by translational and rotational invariance we can, 
+without loss of generality, consider initially only the plane spanned
+by $e_1$ and $e_2$ and passing through the origin. If the point $x$ 
+lies in this plane then we can write
+%
+\[  x = \lambda e_1 + \mu e_2  \]
+%
+and its conformal representation, $X$, will only
+contains the vectors  $n,\bar{n},e_1,e_2$
+%
+\[ X =  \half(x^2n + 2(\lambda e_1 + \mu e_2) - \bar{n})  \]
+
+Let $\Phi = X_1 \wedge X_2 \wedge X_3 \wedge X_4$, where the points represented
+by $\{X_i\}$ all lie in the plane. By expanding we can show that 
+$\Phi$ must take the form
+%
+\[  \Phi = \beta (n\wedge \bar{n} \wedge e_1 \wedge e_2)  \]
+%
+and so, for any representation, $X$, of a point on the plane we have 
+$X\wedge \Phi = 0$ and therefore
+%
+\begin{equation}
+     X\wedge X_1 \wedge X_2 \wedge X_3 \wedge X_4 = 0
+     \end{equation}
+%
+is the incidence relation for a plane passing through points represented by
+$X_i$, $i=1,...,4$. Once again we note the apparent requirement for
+4 points to specify the plane as opposed to the usual 3.
+
+We may easily extend this to higher dimensions and specify an $r$-d 
+hyperplane (where a line is $r=1$, a plane is $r=2$ and so forth) via
+the relation
+%
+\begin{equation}
+  X\wedge X_1 \wedge X_2 \wedge \ldots  X_{r+1} \wedge X_{r+2} = 0
+     \end{equation}
+%
+where $\{X_i\}$ are conformal representations
+of the $r+2$ points $\{x_i\}$ lying on the hyperplane.
+
+\section{The role of inversion: lines and circles}
+
+It may initially appear incongruous to specify $r+2$ points in order to
+determine an $r$-d hyperplane. For example, 2 points clearly suffice to
+determine a line, 3 points for a plane and so on. This section discusses the
+r\^ole of these extra points.
+
+To understand the requirement for these extra points and the part inversion
+plays we shall use a simple example. We shall consider the space
+${\cala}(2,0)$, that is, the ordinary Euclidean plane with basis $\{e_1,e_2\}$,
+$e_1^2=1,\;\; e_2^2=1$.
+
+Let the line $L$ be $x=1$, or equivalently, $(1,y) : -\infty \le y \le
++\infty$ and let $a$ be the point $(x,y)$. Suppose we wish to invert
+points on this line. Doing so gives us the set of points
+%
+\begin{equation}
+a \mapsto \frac{a}{a^2} \qquad \implies \qquad L \mapsto
+\left( \frac{1}{1+y^2}, \frac{y}{1+y^2}\right)
+\end{equation}
+
+Parameterising the original line as $x=1, y=t;
+\;\;-\infty \le t \le +\infty$, the inversion produces
+$(x',y') = \left(\frac{1}{1+ t^2},\frac{t}{1+t^2}\right)$
+and it is then easy to show that
+%
+\[ \left[x'-\frac{1}{2}\right]^2 + y'^2 = \left(\frac{1}{2}\right)^2  \]
+%
+The inversion, therefore, produces a circle through the origin,
+centre $(\frac{1}{2},0)$ radius $\frac{1}{2}$, see
+figure~\ref{figlinecircle}. We may therefore make the connexion
+%
+\begin{figure}
+\centerline{
+\includegraphics[height=0.25\textheight]{inversion_rjw}
+} \caption{An illustration of the inversion of points on the
+line $x=1$ ($L$) in the unit circle centred on the origin. It produces
+a circle centred on $(\half,0)$ and with radius $\half$. The points at 
+infinity on the line $L$ map to the origin.} \label{figlinecircle}
+\end{figure}
+%
+\[  \mbox{straight line}\qquad \stackrel{\longmapsto}{_{\mbox{inversion}}} \qquad \mbox{circle}  \]
+%
+We can now state that three points, $x_{1\cdots3}$ on this line
+with the representations $X_{1\cdots3}$ must invert to give three
+points, $X'_{1\cdots3}$ on this circle. Let the general
+point on the line be represented by $X$; we know, from the above
+incidence relations, that
+%
+\[  X\wedge X_1 \wedge X_2 \wedge X_3  = 0  \]
+%
+and thus, if $X'$ is a general point on the circle, we know
+that
+%
+ \[  X'\wedge X'_1 \wedge X'_2 \wedge X'_3  = 0  \]
+%
+We can see this by performing an inversion upon the line via a reflection 
+in $e$
+%
+ \[e(X\wedge X_1 \wedge X_2 \wedge X_3)e = eXe\wedge eX_1e \wedge eX_2e \wedge eX_3e\]
+%
+This gives a very useful form for the equation of a circle.  We derived
+it for a special case but since we know that we can dilate and translate as we
+wish, it must in fact be true for a completely general  circle.  Thus if
+$X_{1\cdots3}$  are \emph{any} three points, the equation of the circle
+passing through these points is
+%
+\begin{equation}
+    X \wedge C = X \wedge X_1 \wedge X_2 \wedge X_3 = 0
+    \end{equation}
+%
+Where we identify the trivector $C$ as the representation of the circle itself.
+$C$ is formed by wedging any three points on the circle together. We will see
+later that all such trivectors are equivalent up to scale.
+
+Treating this as a general incidence relation for a circle and by sandwiching
+it between $e$ it is clear that we will, in general, obtain
+another circle under inversion since each $X'_i = eX_i e$ will be another
+general point in the plane.  This only fails if $X'_1,X'_2,X'_3$ happen to be
+collinear and, further, co-linearity will only occur if the original circle
+passes through the origin (as in the case we started with here).
+
+We can see this if we consider what happens to the representation of the
+origin, $\bar{n}$ under inversion. If we sandwich $\bar{n}$ in between $e$
+we obtain $e\bar{n}e = n$ and hence we justify our association of $n$
+with the point at infinity (the usual result of inverting the origin).
+Therefore the incidence relation for a line may always be written in the
+form
+%
+\begin{equation}
+    X \wedge n \wedge X_1 \wedge X_2 = 0
+    \end{equation}
+%
+where $X_1$ and $X_2$ are the representations of any two finite points 
+on the line. This explains the extra point we appeared to need in
+describing a line earlier; we can now see that
+%
+\[     X \wedge X_1 \wedge X_2 \wedge X_3 = 0 \]
+%
+actually describes a \emph{circle} and, therefore, genuinely requires 3 points
+whilst a line is just a special case of a circle which passes through the point
+at infinity.  To summarise, any line, $L$, is represented by a trivector of the
+form
+%
+\begin{equation}
+    L =  X_1 \wedge X_2 \wedge n
+    \end{equation}
+%
+and similarly a circle, $C$, is represented by a trivector
+of the form:
+%
+\begin{equation}
+    C =  X_1 \wedge X_2 \wedge X_3
+    \end{equation}
+%
+where no $X_i$ is a multiple of $n$. This close
+relationship between circles and lines and the
+interpretation of a line as a circle passing through the
+point at infinity is not new. The whole field of
+\emph{inversive geometry} \cite{Brannan} in the plane has
+this as its basis. In the above example when we took a
+line to a circle through the origin we were effectively
+inverting in the unit circle centred on the origin, as
+illustrated in figure~\ref{figlinecircle}. The whole of
+inversive geometry in the plane can be encapsulated by
+the operation of reflecting points ($X$) and lines ($L$)
+in general circles ($C$), ie.
+%
+\begin{eqnarray}
+   X' & = & CXC  \nn \\
+   L' & = & CLC \nn
+   \end{eqnarray}
+%
+The huge advantage that we have in our conformal
+framework is that precisely the same equations can be
+used in 3d. Conventionally, much of inversive geometry
+is described by complex numbers and so the jump from the
+plane to higher-dimension spaces is rarely made.
+
 
 \section{Vectors and 2-blades}
 
@@ -31,7 +330,8 @@ product of vectors. For example a $r$-blade can always be written as
 $A_1\wedge A_2 \wedge \cdots \wedge A_r$. It is important to distinguish this
 from an $r$-vector which may be any linear combination of $r$-blades. 
 This is important since, in 5d, not all bivectors can be written as 2-blades;
-for example $e_1e_2 + e_3e_4$ cannot be written in the form $a\wedge b$. 
+for example $e_1e_2 + e_3e_4$ cannot be written in the form $A\wedge B$
+with $A$ and $B$ being vectors. 
 
 We start by
 postulating that $A \wedge B$ represents the pair of points 
@@ -50,7 +350,7 @@ an algorithm to extract the individual null-vectors $A$ and $B$.
 
 In this section we explain how to extract $A$ and $B$ from
 $A\wedge B$ using a method of \emph{projectors}. Throughout we shall assume
-that $A$ and $B$ have been normalised so that, for example, $A\cdot n = -1$.
+that $A$ and $B$ have been normalised so that $A\cdot n = -1$.
 We start by considering the 2-blade $T = A\wedge B$ and form
 %
 \begin{equation}
@@ -99,8 +399,8 @@ these projectors have on $A$ and $B$
 \end{eqnarray}
 %
 since $(A\wedge B)A=(A\wedge B)\dt A = -A^2B+(A\dt B)A=(A\dt
-B)A$ ($A^2=0$) and  $A\dt B = -\beta$. This is easily
-seen from $\beta^2 = (A\wedge B)\dt (A\wedge B) = -A^2B^2 +
+B)A$ ($A^2=0$) and  $A\dt B = -\beta$. This follows
+from $\beta^2 = (A\wedge B)\dt (A\wedge B) = -A^2B^2 +
 (A\dt B)^2$ and the facts that $A^2 = B^2 = 0$ and $A\dt
 B$ must be negative as seen in equation~\ref{distance}.
 
@@ -156,12 +456,12 @@ A & = & -\tilde{P}\left[(A\wedge B)\dt n\right] \equiv
 -\tilde{P}\left[(A\wedge B)\dt n\right]P  \nn
 \\
 B & = & {P}\left[(A\wedge B)\dt n\right] \equiv
-{P}\left[(A\wedge B)\dt n\right]\tilde{P} \label{extractAB}
+{P}\left[(A\wedge B)\dt n\right]\tilde{P} \label{eqn:extractAB}
 \end{eqnarray}
 %
 We will see later that when we perform intersection operations
-that yield two points the two points in question can then be found 
-using the formul\ae\ in equation~\ref{extractAB}. Usefully we do not 
+that yield two points, the two points in question can then be found 
+using the formul\ae\ in equation~\ref{eqn:extractAB}. Usefully we do not 
 have to solve a quadratic equation as we would do using
 conventional approaches.
 
@@ -181,7 +481,7 @@ represent lines, specifically that line passing through the
 points represented by $P$ and $Q$.
 
 In GA it is often found that the operation of taking the dual, that
-is multiplication by the pseudoscalar $I$, is usually useful and
+is multiplication by the pseudoscalar $I$, is useful and
 often has physical or geometric significance. The dual of an element
 is always just another element of the algebra and does not live
 in a separate `dual' or `tangent' space. Below we shall consider
@@ -218,7 +518,7 @@ In particular we have
 and hence the trivector $C = 2e_1e_2\bar{e}$ represents the unit circle.
 In the plane the pseudoscalar, which we shall write as $I_4$,
 is given by $I_4 = e_1e_2e\bar{e}$ and so the dual of
-$C$, which we write as $C^{*}$, can easily be shown to be
+$C$, which we write as $C^{*}$, can be shown to be
 given by
 %
 \begin{equation}
@@ -413,7 +713,7 @@ Equation~\ref{eqCnC} thus tells us that the rotated origin,
 $R(CnC)\tilde{R}$, is indeed given by $C'nC'$. This type of simple
 proof, ie proving a result for some simple case at the origin and
 generalising via rotations, translations and dilations, is a nice
-feature of the conformal framework. There will many other examples
+feature of the conformal framework. There will be many other examples
 of the $XaX$ formulation producing something interesting in
 subsequent sections.
 
@@ -432,7 +732,7 @@ is an example of this principle at work in the conformal setting.
 the point at infinity which we have already seen are
 lines. Again we begin by asking ourselves what the dual
 of a line, $L$, actually encodes. We suspect the answer to
-this questions will provide relevant information.  
+this question will provide relevant information.  
 As with circles, let us begin by considering lines in the plane.
 As a starting point we take the line $L$ parallel to the $x$-axis and
 distance $d$ from the $x$-axis.
@@ -452,7 +752,7 @@ the line, say $A = F(de_2)$, $B = F(e_1 + de_2)$, and $n$;
 \begin{eqnarray}
 L & = & F(de_2)\wedge F(e_1 + de_2)\wedge n \nn \\
   & = & \frac{1}{4}(d^2n+2de_2-\bar{n})\wedge
-  \left(\sqrt{(1+d^2)}n+2(e_1+de_2-\bar{n}\right)\wedge n \nn \\
+  \left(\sqrt{(1+d^2)}n+2(e_1+de_2)-\bar{n}\right)\wedge n \nn \\
   & = & -\half e_1\wedge n\wedge \bar{n} - d e_1\wedge e_2\wedge
   n
 \end{eqnarray}
@@ -614,7 +914,7 @@ on the origin, $\Sigma_o = F(e_1)\wedge F(e_2)\wedge
 F(e_3)\wedge F(-e_1)$ which we can expand to give
 $2e_1e_2e_3\bar{e}$, so that the dual, $S$, is given by
 the particularly concise expression $2e$; we therefore
-take the 'unit' sphere to be $e$. We therefore see that
+take the 'unit' sphere to be $e$. We then see that
 %
 \begin{equation}
   SnS = ene = \bar{n}
@@ -708,14 +1008,14 @@ problem we are solving.
 
 \section{Intersections}
 
-In this section we outline the various ways of intersecting to
+In this section we outline the various ways of intersecting
 objects within the conformal model,
 
 \subsection{Spheres with spheres or planes}
 
 Let us consider the intersection of two spheres, $\Sigma_1$ and
 $\Sigma_2$ where they may intersect in a circle, at a point or not
-at all. Suppose we take the formula for the meet (where now we use
+at all. Suppose we take the formula for the meet\cite{GA:llw} (where now we use
 $*$ to indicate multiplication by the pseudoscalar $I_n$):
 %
 \begin{equation}
@@ -751,10 +1051,10 @@ trivector for our intersection object via the meet and the sign of the square
 of this trivector tells us whether the two objects are tangent, intersect in a
 circle or do not intersect at all.
 
-Although we will not go into this here, it is interesting
-to note that in the case of the non-intersecting objects,
-we can also extract information such as the perpendicular
-vector between the surfaces from the product $W_rW_s$.
+%Although we will not go into this here, it is interesting
+%to note that in the case of the non-intersecting objects,
+%we can also extract information such as the perpendicular
+%vector between the surfaces from the product $W_rW_s$.
 
 %
 %\subsection{The method of projectors}
@@ -887,9 +1187,9 @@ can be obtained easily. We will return to the
 intersections of lines with spheres when we later
 consider reflections of lines in spheres.
 
-Again, in the non-intersecting case the product $W_rW_s$
-can provide us with information about the vectors between
-the surfaces.
+%Again, in the non-intersecting case the product $W_rW_s$
+%can provide us with information about the vectors between
+%the surfaces.
 
 
 
@@ -1088,7 +1388,7 @@ other line and the origin, but then if the other line
 passes through the origin, this will not work, and we are
 left with a non-co-variant procedure and one which entails
 us forming conditionals for a number of cases. We would
-instead like to look for a method which works co-variant
+instead like to look for a method which works co-variantly
 -- such a method exists, and in the process of describing
 it, we see a number of other useful constructions.
 
@@ -1104,6 +1404,7 @@ reflected line, $L_1'$ is given by
 %
 \[  L_1' = L_2L_1L_2  \]
 %
+as shown in figure \ref{intersect_lines}.
 The operation of reflection is grade preserving if we are
 dealing with blades, and therefore we know that we get
 another line. This construction will work for any two
@@ -1146,7 +1447,7 @@ relatively easily. Take any arbitrary point representation $X$ and
 reflect it in $L_1''$ (assuming again that we have
 normalised $L_1''$) via $X' = L_1''XL_1''$, then take the
 midpoint of $X$ and $X'$, we know that this must lie on
-the line $L1'$
+the line $L_1''$
 %
 \[ X' = L_1''XL_1'' \;\;\;\; X'' = \half (X + X')   \]
 %
@@ -1193,7 +1494,7 @@ the two lines must be given by
 Again, $\bar{n}$ can be used for our point $X$ in real
 computations. The derivations given here are entirely
 co-variant and the same constructions will intersect `lines' in different
-geometries, we will illustrate this towards the end of the report by
+geometries, we will illustrate this towards the end of the thesis by
 considering three-dimensional hyperbolic geometry.
 
 Recall that
@@ -1228,7 +1529,7 @@ possible to write the product $L_2L_1$ as
 L_2L_1 = (\cos{\theta} + \hat{B}\sin{\theta})(1 + dn)
 \end{equation}
 %
-where $d$ is the three-dimensions vector representing the length and
+where $d$ is the three-dimensional vector representing the length and
 direction of the common perpendicular, $\hat{B} =
 \hat{d}I_3$ (with $\hat{d}=d/\sqrt(d^2)$) and  $\theta$
 is the angle between the lines as measured when
