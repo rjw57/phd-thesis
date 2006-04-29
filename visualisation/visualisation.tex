@@ -18,13 +18,13 @@ Many CGA visualisation solutions exist\cite{CLU}. The {\tt libcgadraw}
 companion library to {\tt libcga} was created as a convenience library
 for visualising the output of algorithms implemented with
 {\tt libcga}. The library
-uses an approach similar to that of the CLUDraw library were by the results of 
+uses an approach similar to that of the CLUDraw library whereby the results of 
 a GA-based algorithm may be displayed directly on the screen.
 The output of GA-based algorithms may be categorised into a number of
-geometric primitives they represent. Below is an a selection of the
+geometric primitives they represent. Below is a selection of the
 visualisation algorithms used. In section \ref{sec:noneuclid-vis} we will
 develop some further algorithms for visualising the output of algorithms
-working in non Euclidean geometries.
+working in non-Euclidean geometries.
 
 \subsection{Point Pairs}
 
@@ -36,7 +36,7 @@ of $a$ and $b$ can be extracted and plotted as shown in algorithm \ref{alg:point
 \begin{fancyalg}
 \begin{algorithmic}[1]
 \REQUIRE{$T$, a representation of a point-pair.}
-\STATE $T' := \frac{1}{(T \cdot n)^2} T$
+\STATE $T' := \frac{1}{\sqrt{T^2}}T$ %\frac{1}{(T \cdot n)^2} T$
 \STATE $P := \frac{1}{2}(1+T')$
 \STATE $B := P \left[ T\cdot n \right]$
 \STATE $A := - \tilde{P} \left[ T \cdot n \right]$
@@ -57,9 +57,9 @@ sphere used effectively provides a upper limit to the distance a line may be
 from the origin while still being rendered. If the line is further from the 
 origin than the radius of the sphere it will not intersect the sphere.
 
-This is in actual fact a desirable property since it allows for a 'horizon' to
+This is in actual fact a desirable property since it allows for a `horizon' to
 be set. Lines, being infinite in extent, have end points at infinity which
-cannot easily be expressed within OpenGL. Instead by setting the radius of the sphere
+cannot easily be expressed within OpenGL. Instead, by setting the radius of the sphere
 to be sufficiently large we may approximate such lines sufficiently for rendering
 in many problems. The specific method is given in algorithm \ref{alg:line}.
 
@@ -97,7 +97,7 @@ in many problems. The specific method is given in algorithm \ref{alg:line}.
 \subsection{Planes}
 
 A plane may easily be rendered via its dual representation outlined
-in section \ref{sec:plane}. Recall that, for a plane $P$, if $p = PI \equiv P^*$ then
+in section \ref{sec:planes}. Recall that, for a plane $P$, if $p = PI \equiv P^*$ then
 \[
 p = \hat{n} + dn
 \]
@@ -114,21 +114,23 @@ P = C \wedge n
 \]
 
 To find the radius and centre of the circle we use the dual form of the 
-circle in \cite{wareham_lasenby}
+circle given in \ref{sec:circles} and \cite{wareham_lasenby}
 \[
 C^* = B - \frac{1}{2}\rho^2n
 \]
 where $C^* \equiv CI_4$ here (the dual of $C$ with respect to the pseudoscalar 
 for the plane), $B$ is the centre of the circle and $\rho$ is the radius. The
-radius can be found simply using
-\begin{eqnarray*}
-(C^*)^2 & = & \left(B - \frac{1}{2}\rho^2n\right)\left(B - \frac{1}{2}\rho^2n\right) \\
-        & = & -\rho^2 B\cdot n = \rho^2
-\end{eqnarray*}
-using $B^2 = n^2 = 0$ and $B \cdot n = -1$. Similarly we can find $B$ via
-\[
-B = C^* \left( 1 + \frac{1}{2}C^*n \right)
-\]
+radius can be found as in section \ref{sec:circles}.
+ 
+%simply using
+%\begin{eqnarray*}
+%(C^*)^2 & = & \left(B - \frac{1}{2}\rho^2n\right)\left(B - \frac{1}{2}\rho^2n\right) \\
+%        & = & -\rho^2 B\cdot n = \rho^2
+%\end{eqnarray*}
+%using $B^2 = n^2 = 0$ and $B \cdot n = -1$. Similarly we can find $B$ via
+%\[
+%B = C^* \left( 1 + \frac{1}{2}C^*n \right)
+%\]
 The final algorithm (for three dimensions) is outlined in algorithm \ref{alg:circle}.
 In this algorithm the function spatial$()$ extracts the components of the argument
 which contain no part of $e$ or $\bar{e}$.
@@ -149,7 +151,7 @@ $b$, radius $\rho$.
 \subsection{Spheres}
 
 Finally spheres may be rendered simply by noting that circles are two-dimensional
-spheres and all the formul\ae for obtaining centres and radii hold true. Extracting
+spheres and all the formul\ae\ for obtaining centres and radii hold true. Extracting
 the null-vector representation of the centre, $B = F(b)$, and the radius, $\rho$,
 of a particular sphere $\Sigma$ is therefore straightforward:
 \[
