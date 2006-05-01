@@ -97,7 +97,7 @@ $\alpha _{0}^{(1)}=\alpha _{0}^{(2)}=
 \alpha _{0}^{(3)}=\alpha _{0}^{(4)}=0$.
 \end{lemma}
 \begin{proof}
-Firstly note that the theorem is trivially provable by direct 
+Firstly note that the theorem is provable by direct 
 substitution for the cases $k=0$ and $k=1$. We thereafter seek a 
 proof by induction.
 
@@ -140,7 +140,7 @@ B^{2k+1}=(-1)^k\phi^{2k+1}P + k \phi^{2k} (-1)^k [ tn - PtnP ] + (-1)^k\phi^{2k}
 \begin{proof}
 Starting from $\alpha _{0}^{(.)}=0$ it is clear that the recurrence
 relations above imply that $\alpha _{k}^{(1)}=\alpha _{k}^{(2)}=0\; \forall \: k \ge 0$.
-Substituting $\alpha _{k}^{(3)}=\alpha _{k-1}^{(4)}$ it is trivial to show
+Substituting $\alpha _{k}^{(3)}=\alpha _{k-1}^{(4)}$,
 that the relation for $\alpha _{k}^{(4)}$ is satisfied by \[
 \alpha _{k}^{(4)}=\begin{cases}
  \frac{k}{2}(\phi P)^{k-1} & k\textrm{ even,}\\
@@ -394,7 +394,7 @@ nR & = & n\tau(\phi, P, - t_\perp) +
 &=& R_{(P,\phi)} n 
 \end{eqnarray*}
 We now have that $Rn = nR$ and hence, using
-$R\tilde{R} = 1$ from the previous thm, 
+$R\tilde{R} = 1$ from the previous theorem, 
 $Rn\tilde{R} = nR\tilde{R} = n$.
 \end{proof}
 
@@ -417,7 +417,7 @@ the grade of each component of the exponential:
 \left< R \right>_4 & = & \sin\left(\frac{\phi}{2}\right) Pt_\perp n
 \end{eqnarray*}
 
-It straight forward to reconstruct $\phi, t_\perp$ and
+It straightforward to reconstruct $\phi, t_\perp$ and
 $t_\parallel$ from these components by partitioning a rotor as above. Once we
 have a method which gives the generator $B$ for any displacement rotor $R$ we
 have validated our assumption.
@@ -516,7 +516,7 @@ The generator bivector, $B$, may itself be
 parametrised in terms of a spatial bivector $P$ normalised such that
 $P^2 = -1$, a scalar $\phi$ and a spacial vector $t$
 as in lemma \ref{lem:bk}.
-Letting $P = p_1 e_{12} + p_2 e_{23} + p_3 e{31}$ and
+Letting $P = p_1 e_{12} + p_2 e_{23} + p_3 e_{31}$ and
 $t = t_1 e_1 + t_2 e_2 + t_3 e_3$ we may represent $B$ via the
 vector $\mathbf{b}$:
 \[
@@ -532,7 +532,7 @@ hence a valid rotor.
 %one to another with the proviso that 
 
 It is also worth noting that this method of converting from a matrix
-representation to a generator is lossy in so much as the matrix representation
+representation to a generator is ambiguous in so much as the matrix representation
 cannot uniquely represent rotations by more the $2\pi$.
 
 \subsection{Method}
@@ -558,7 +558,7 @@ h(\phi, P, t, p, \lambda) &=c^2p - s^2PpP - sc\left[pP - Pp\right] \nonumber \\
 &\quad+ \lambda\left[ 
  \frac{kc+1}{2} t + \frac{kc-1}{2} PtP
 - \frac{sk}{2} (tP - Pt)
-\right] \label{eqn:defnh}
+\right] \label{eqn:defn}
 \end{align}
 where $s = \sin(\phi/2)$, $c = \cos(\phi/2)$ and $k = \textrm{sinc}(\phi/2)$.
 
@@ -719,7 +719,7 @@ a_{31} & - a_{23} & 0
 \end{definition}
 
 \begin{cor}
-Equation \ref{eqn:defnh} is equivalent to
+Equation \ref{eqn:defn} is equivalent to
 \begin{align*}
 h(\phi, P, t, p, \lambda) &= c^2\;\mathbf{e}^T\mathbf{v}(p) - s^2PpP + 2sc\;\mathbf{e}^T\mathbf{M}_1(P)\mathbf{v}(p) \\
 &\quad+ \lambda\left[ 
@@ -788,7 +788,7 @@ and rearrange.
 Define $\mathbf{M}_3(A)$ to be a function of a three-dimensional bivector $A$,
 \[
 \mathbf{M}_3(A) = \frac{kc+1}{2} \mathbf{I}_3 
-+ \frac{kc-1}{2} \;\mathbf{M}_2(A) + sk\;\mathbf{M}_1(P)
++ \frac{kc-1}{2} \;\mathbf{M}_2(A) + sk\;\mathbf{M}_1(A)
 \]
 where  $\mathbf{I}_3$ is the $3\times3$ identity matrix.
 \end{definition}
@@ -887,7 +887,7 @@ $s = 0$ or $c = 0$. If $s = 0$ it implies $\phi = 2n\pi$, $c = 1$ and
 therefore
 $\mathbf{R} + \mathbf{R}^{T} = 2\mathbf{I}_3$ and
 we are free to choose $P$ as we wish. If $c = 0$ then $s = \pm 1$
-and $\mathbf{R} + \mathbf{R}^{T} = 2 \mathbf{M}_2(P)$. We can then
+and $\mathbf{R} + \mathbf{R}^{T} = -2 \mathbf{M}_2(P)$. We can then
 extract $P$ from $\mathbf{M}_2(P)$. The sign of $s$, in this case, is arbitrary.
 
 Assuming we have estimates for $s$, $k$ and $c$ from above, we may
@@ -896,7 +896,7 @@ reconstruct $\mathbf{M}_3(P)$ directly from $\mathbf{t}$ and hence recover
 \mathbf{v}(t) = \mathbf{M}^{-1}_3(P) \mathbf{t}.
 \]
 Finally, given $s$, $c$ and $k$, an estimate for 
-$\phi$ can be made. This algorithm is outlines explicitly in algorithm 
+$\phi$ can be made. This algorithm is outlined explicitly in algorithm 
 \ref{alg:reconstructGenerator}.
 
 In practise we might wish to use LU decomposition or similar rather

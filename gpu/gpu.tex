@@ -70,7 +70,7 @@ Microsoft's DirectX\cite{GPU:DirectX} is a graphics programming API for
 Windows and, to some extent, the Microsoft XBox gaming platform. As part of
 the API it specifies a generic shading language\cite{GPU:DirectXShadingLanguage}
 which abstracts the vertex and fragment shaders. Each version of DirectX
-specifies a minimum set shader capabilities which \emph{must} be supported by a 
+specifies a minimum set of shader capabilities which \emph{must} be supported by a 
 card claiming compatibility with that level of the API. Consequently a shader written in
 DirectX's shading language is portable across all cards which support that level
 of the API. A disadvantage of DirectX is that it doesn't expose any functionality
@@ -81,7 +81,7 @@ beyond the specified minimum and it is not portable across operating systems.
 OpenGL\cite{GPU:OpenGLSpec} is a cross-platform C-based graphics API. 
 It is the \emph{de facto} standard API for non-Windows platforms and
 is well supported on Windows platforms by both ATI and nVidia, the dominant
-vendor at the time of writing. 
+vendors at the time of writing. 
 
 The OpenGL 2.0 specification\cite{GPU:OpenGL2Overview} proposed by 3DLabs
 includes a hardware agnostic shading language\cite{GPU:OpenGLShadingLanguage}
@@ -93,7 +93,7 @@ nVidia was the only mainstream vendor to provide support in their
 consumer-level hardware\cite{nvidia:7664relnotes}.
 
 OpenGL 1.4 and below provide support for programmable shaders via a set of per-vendor
-extensions. Unfortunately these requires programming the GPU in a variety of
+extensions. Unfortunately these require programming the GPU in a variety of
 assembly languages and vary between different GPUs.
 
 \subsection{The Cg toolkit from nVidia}
@@ -165,7 +165,7 @@ enough space to make such a library feasible.
 
 In this section we shall give an example of a vertex shader that uses GA to
 perform mesh deformation. The deformation scheme given is a simple application
-of Geometric Algebra to the problem but nicely shows the applicability of GA
+of Geometric Algebra but nicely shows the applicability of GA
 to a wide variety of problems. The method developed has a number of nice 
 properties but should be viewed as an illustration of the power of GA
 algorithms when implemented on the GPU rather than as a deformation scheme
@@ -367,7 +367,7 @@ The movement is smooth, natural and intuitive.
 \end{figure}
 
 Figure \ref{fig:cubeexample} shows the natural `plasticine-like' effect the deformation
-scheme has on a unit cube with key-rotors initially placed on it's corners. In addition to
+scheme has on a unit cube with key-rotors initially placed on its corners. In addition to
 this figure \ref{fig:twistcubeexample} shows the effect of placing the key rotors along
 a central axis and applying opposite rotations at either end. Notice how the cube behaves as
 expected and does not collapse in the middle.
@@ -433,7 +433,7 @@ deformed vertices had to be uploaded to the graphics card once-per frame since t
 deformation step was done in software.
 
 Table \ref{tab:performance} shows the number of frames per second that could be
-displayed with a simple cube model at various different polygon count. A simple model
+displayed with a simple cube model at various different polygon counts. A simple model
 was chosen so that the generation, per frame, of un-deformed model vertices in the
 software implementation would take as little time as possible being 
 algorithmically generated rather than fetched from main memory providing a fairer
@@ -512,7 +512,7 @@ integrating the force twice.
 
 Such simple dynamics are often employed in games where the appearance of
 correct physics is often more desirable, if it is faster, than a full
-`correct' calculation. We shall use a common game technique[FIXME:reference]
+`correct' calculation. We shall use a common game technique %[FIXME:reference]
 which may be summarised as `detect and backtrack'.
 
 Suppose a cloth vertex were known to be outside of the target object at time
@@ -548,7 +548,7 @@ normal information associated with any point on the target object to be preserve
 for lighting and dynamics. Below we preset a simple scheme based upon weighted sums
 of pure-rotation generators which fulfils this requirement.
 
-Be begin by considering a rotor, $R_i = \exp(B_i)$, representing a rotation around a 
+We begin by considering a rotor, $R_i = \exp(B_i)$, representing a rotation around a 
 known point $P_i$. Clearly $R_{i,\lambda} = \exp(\lambda B_i)$ is also a pure-rotation
 for some scalar $\lambda$. To deform a particular
 point representation, $X = F(x)$, using the key-generator $B_i$ we perform the mapping
@@ -599,7 +599,7 @@ $\hat{n} = R_Xe_1\tilde{R}_X$ then we can find the deformed normal, $\hat{n}'$ a
 \hat{n}' = R_{i,w(X,P_i)}R_Xe_1\tilde{R}_X\tilde{R}_{i,w(X,P_i)}.
 \]
 
-This 'frame deformation' property is a key one when it comes to performing perceptually
+This `frame deformation' property is a key one when it comes to performing perceptually
 valid dynamics on deformed objects.
 
 % \subsection{Cloth dynamics}
@@ -635,13 +635,13 @@ contents of the texture.
 In addition to the vertex texture a separate texture was created holding the 
 velocity of each cloth vertex in a similar manner. 
 
-To update these texture we made use of \emph{render to texture} support in newer GPUs
+To update these textures we made use of \emph{render to texture} support in newer GPUs
 where pixel and vertex shaders can be used to render images, not to screen, but to
 a particular texture. By rendering a single quad (or two triangles) into a texture
 we could invoke the pixel shader for each texel.
 
 GPUs cannot access the texture they are rendering into within pixel shaders for
-concurrency reasons and hence a two pairs of textures were maintained, one pair
+concurrency reasons and hence two pairs of textures were maintained, one pair
 for the velocities and one pair for the vertex positions. At each step one
 member of the pair would reflect the `current state' and the other would be
 written into representing the `new state'. At the end of the simulation step
