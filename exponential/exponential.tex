@@ -899,8 +899,20 @@ Finally, given $s$, $c$ and $k$, an estimate for
 $\phi$ can be made. This algorithm is outlined explicitly in algorithm 
 \ref{alg:reconstructGenerator}.
 
-In practise we might wish to use LU decomposition or similar rather
+In practice we might wish to use LU decomposition or similar rather
 than computing the matrix inverse if we deal with spaces with higher
 dimensionality. Similarly one would calculate the inverse tangent in terms
 of $s$ and $c$ directly so as to ensure the result for the correct quadrant is
 returned.
+
+\section{Chapter summary}
+
+In this chapter we investigated a key feature of the conformal model; all
+rotors representing conformal transformations are formed by exponentiating
+bivectors. We found a closed form for the exponentiation of bivectors
+which result in rotors representing regid body transforms and found
+that such bivectors lie in, for 3d transformations, a linear 6d subspace
+of the 5d bivectors. We also, importantly, found a method of converting back
+from a rotor into the corresponding bivector. Finally we used these relations
+to find algorithms for converting directly between $4 \times 4$
+rotations/translation matrices and the 6d generators.
