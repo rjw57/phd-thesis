@@ -721,3 +721,25 @@ real-time (50 frames per second) for a 1024-vertex cloth model.
 }
 \end{figure}
 
+\section{Chapter summary}
+
+In this chapter we investigated various techniques, based on GA, which might
+find applications on a Graphics Processing Unit common on many desktop PCs. We
+briefly discussed the architecture of these units and outlined how they
+might be `tricked' into performing general purpose computation. It was mentioned
+that GA algorithms might well be very `GPU-friendly' in that they consist of
+a number of steps which have few, or in many cases no, special cases so that the
+operations may be carried out in parallel using identical processing units.
+
+We then presented a set of samples using these techniques accelerated via
+a GPU. A mesh deformation scheme was discussed, based on rotor interpolation, and
+an example of how rotor interpolation may be performed on the GPU was shown. This
+solution was benchmarked and shown to be significantly faster than a pure-software approach.
+
+A simplistic physics simulation was also presented running on the GPU. Here the
+fact that rotor interpolation may be viewed in some way as a `frame distortion' scheme
+allowed us to perform surface physics on a deformed sphere rapidly and in a simple manner.
+
+The techniques outlined in this chapter would certainly be a useful starting point for
+future focussed research into the hardware acceleration of GA-based algorithms.
+
