@@ -21,20 +21,19 @@ relation}.
 
 \section{A note on methodology}
  
-In this section we develop a useful tool used by a number of proofs below.
+In this section we will develop a useful tool used by a number of proofs below.
 Firstly recall that, in projective geometry, if a line, $L$, 
 passes through two points $a,b$, whose (4d) homogeneous representations are 
-$A$,$B$\footnote{I.e.\ we add a further orthogonal basis vector $e_0$ so that
+$A$,$B$\footnote{i.e.\ we add a further orthogonal basis vector $e_0$ so that
 $A = a + e_0$.}, we can represent the line by the bivector $L=A\wedge B$. The 
 representation, $X$, of any point lying on the line will satisfy
 %
-\[ X\wedge L = 0  \].
-This is easily verified
+\[ X\wedge L = 0.  \]
 
-In the conformal representation rotations, translations, dilations, inversions
+In the conformal representation rotations, translations, dilations and inversions
 are all represented by rotors or reflections, which allows us to infer that any
 incidence relations remain invariant in form under such operations. This may
-also be seen explicitly; suppose we have the incidence relation
+also be seen explicitly -- suppose we have the incidence relation
 %
 \[ X \wedge Y \wedge \cdots  \wedge Z = 0 \]
 %
@@ -49,7 +48,7 @@ reflections in $e$ we have
 %
 since $(eXe)\wedge (eYe) = \frac{1}{2}(eXeeYe - eYeeXe) = \frac{1}{2}e(XY-YX)e 
 = e(X\wedge Y)e$, as $e^2=1$. Therefore it is true that if $X\wedge Y\wedge \cdots
-\wedge Z=0$ then it is also true that $(eXe)\wedge (eYe)\wedge \cdots \wedge (eZe)=0$.
+\wedge Z=0$ then $(eXe)\wedge (eYe)\wedge \cdots \wedge (eZe)=0$.
 
 Similarly, if we consider the relation under some rotor $R$ we have
 %
@@ -71,7 +70,7 @@ significant increase in the usefulness of the representation. It is now
 possible to build up a set of useful results in this conformal system and to
 see how lines, planes, circles and spheres are represented. The working above
 will be
-the basis for most proofs of constructions in this chapter; we prove the
+the basis for most proofs of constructions in this chapter. We prove the
 construction holds for some simple case at the origin and then we can say it
 must  hold for all cases since we can rotate, translate and dilate our setup at
 the origin to any configuration in space, with no change in the incidence
@@ -80,13 +79,13 @@ relations.
 \section{The equation of a line}
 
 As was discussed above, the incidence relations are invariant under rotations
-and translations in the ${\cala}(p,q)$ space and hence without loss of
+and translations in the ${\cala}(p,q)$ space. Hence without loss of
 generality we can consider the incidence relation for a line in the direction
 $e_1$ passing through the origin.
 
 Let three points on this line be $x_1,x_2,x_3$ with corresponding
 ${\cala}(p+1,q+1)$ representations $X_1,X_2,X_3$. It is clear that $\{X_i\}$
-contain only the vectors $n,\bar{n}$ and $e_1$ as any point $x$ on the line
+contains only the vectors $n,\bar{n}$ and $e_1$ as any point $x$ on the line
 must have the form $x = \lambda e_1$.  We therefore claim that, if $X$ is the
 representation of any other point on the line, we can write the incidence 
 relation
@@ -111,7 +110,7 @@ translate our simple line through the origin to any other
 line in space and still preserve the incidence relations,
 we know that we may represent all lines in this manner. It is
 interesting to note that this parallels the projective case
-and also to note that we would appear to require 3 points in this
+and also that we would appear to require 3 points in this
 conformal representation to describe a line instead of the usual
 2. We shall return to this later.
 
@@ -125,7 +124,7 @@ lies in this plane then we can write
 %
 \[  x = \lambda e_1 + \mu e_2  \]
 %
-and its conformal representation, $X$, will only
+and its conformal representation $X$ will only
 contains the vectors  $n,\bar{n},e_1,e_2$
 %
 \[ X =  \half(x^2n + 2(\lambda e_1 + \mu e_2) - \bar{n})  \]
@@ -136,8 +135,8 @@ $\Phi$ must take the form
 %
 \[  \Phi = \beta (n\wedge \bar{n} \wedge e_1 \wedge e_2)  \]
 %
-and so, for any representation, $X$, of a point on the plane we have 
-$X\wedge \Phi = 0$ and therefore
+and so, for any representation $X$ of a point on the plane we have 
+$X\wedge \Phi = 0$. Therefore
 %
 \begin{equation}
      X\wedge X_1 \wedge X_2 \wedge X_3 \wedge X_4 = 0
@@ -165,8 +164,8 @@ determine an $r$-d hyperplane. For example, 2 points clearly suffice to
 determine a line, 3 points for a plane and so on. This section discusses the
 r\^ole of these extra points.
 
-To understand the requirement for these extra points and the part inversion
-plays we shall use a simple example. We shall consider the space
+To understand the requirement for these extra points, and the part inversion
+plays, we shall use a simple example. We shall consider the space
 ${\cala}(2,0)$, that is, the ordinary Euclidean plane with basis $\{e_1,e_2\}$,
 $e_1^2=1,\;\; e_2^2=1$.
 
@@ -188,7 +187,7 @@ and it is then easy to show that
 %
 The inversion, therefore, produces a circle through the origin,
 centre $(\frac{1}{2},0)$ radius $\frac{1}{2}$, see
-figure~\ref{figlinecircle}. We may therefore make the connexion
+figure~\ref{figlinecircle}. We may therefore make the connection
 %
 \begin{figure}
 \centerline{
@@ -253,7 +252,7 @@ form
 %
 where $X_1$ and $X_2$ are the representations of any two finite points 
 on the line. This explains the extra point we appeared to need in
-describing a line earlier; we can now see that
+describing a line earlier. We can now see that
 %
 \[     X \wedge X_1 \wedge X_2 \wedge X_3 = 0 \]
 %
@@ -281,10 +280,10 @@ point at infinity is not new. The whole field of
 this as its basis. In the above example when we took a
 line to a circle through the origin we were effectively
 inverting in the unit circle centred on the origin, as
-illustrated in figure~\ref{figlinecircle}. The whole of
+illustrated in figure~\ref{figlinecircle}. The entire of
 inversive geometry in the plane can be encapsulated by
 the operation of reflecting points ($X$) and lines ($L$)
-in general circles ($C$), ie.
+in general circles ($C$), i.e.
 %
 \begin{eqnarray}
    X' & = & CXC  \nn \\
@@ -310,7 +309,7 @@ plane to higher-dimension spaces is rarely made.
 
 \section{Vectors and 2-blades}
 
-We have seen that we may use null vectors, $X$, in our 5d space to represent 
+We have seen that we may use null vectors in our 5d space to represent 
 points in Euclidean 3-space. In particular we identify $n$ and $\bar{n}$ with 
 the point at infinity and the origin respectively. In our 5d space there
 clearly exist vectors which do not square to zero. The interpretation of such 
@@ -358,14 +357,14 @@ if $\beta^2 \ne 0$. We now use $F$ to define two
 \end{eqnarray}
 %
 where $\tilde{P}$ denotes the normal reversion operation applied to
-$P$. Note that $P^2 = P$, which can be easily be verified
+$P$. Note that $P^2 = P$, which can be be verified
 %
 \begin{eqnarray}
   PP & = & \frac{1}{4}(1+F)(1+F) \nn \\
      & = & \frac{1}{4}(1+2F + 1) = \frac{1}{2}(1+F)
 \end{eqnarray}
 %
-Similarly, we can easily show that $\tilde{P}\tilde{P} =
+Similarly, we can show that $\tilde{P}\tilde{P} =
 \tilde{P}$. These properties justify calling these
 operators \emph{projectors}, borrowing the term from physics. 
 An equally important property is that $P\tilde{P}=\tilde{P}P = 0$
@@ -440,7 +439,7 @@ which means that we can also write the projections as
 two-sided operations.
 %
 Thus from a 2-blade $A\wedge B$ we can extract the two
-points, $A$ and $B$ that it represents via
+points $A$ and $B$ that it represents via
 %
 \begin{eqnarray}
 A & = & -\tilde{P}\left[(A\wedge B)\dt n\right] \equiv
@@ -451,7 +450,7 @@ B & = & {P}\left[(A\wedge B)\dt n\right] \equiv
 \end{eqnarray}
 %
 We will see later that when we perform intersection operations
-that yield two points, the two points in question can then be found 
+that yield two points the two points in question can then be found 
 using the formul\ae\ in equation~\ref{eqn:extractAB}. Usefully we do not 
 have to solve a quadratic equation as we would do using
 conventional approaches.
@@ -472,7 +471,7 @@ represent lines, specifically that line passing through the
 points represented by $P$ and $Q$.
 
 In GA it is often found that the operation of taking the dual, that
-is multiplication by the pseudoscalar $I$, is useful and
+is multiplication by the pseudoscalar, is useful and
 often has physical or geometric significance. The dual of an element
 is always just another element of the algebra and does not live
 in a separate `dual' or `tangent' space. Below we shall consider
@@ -487,9 +486,7 @@ a circle gives rise to a useful alternative representation which
 naturally encodes both the centre and radius.
 Let us first of all work in the plane so that our conformal space is
 4-dimensional, and is
-${\cala}(3,1)$, having basis vectors $e_1,e_2$ and $e,\bar{e}$. We may
-easily extend the method to 3d space or higher dimensions as we have done
-in previous chapters. 
+${\cala}(3,1)$, having basis vectors $e_1,e_2,e$ and $\bar{e}$. 
 
 We start with the unit circle in the plane and take as three points
 on it those shown in figure~\ref{figcircle}.
@@ -524,8 +521,7 @@ $X \wedge C = 0 $ can be rewritten as
 %
 Note that $C^{*}$ is the dual of a trivector in a 4d space and is, therefore,
 a vector. This suggests a very useful alternative representation
-for a circle (or a sphere when generalised to higher dimensions) which we now
-discuss.
+for a circle, or a sphere when generalised to higher dimensions.
 
 We know from equation~\ref{distance} that for any two normalised
 point representations $A$ and $B$
@@ -631,12 +627,12 @@ and then normalise such that $C^*\dt n= -1$. That is
 where $B$ is again the centre of the circle, $\rho$ is the radius.
 Note that the `dual' in this case is with respect the `unit' plane
 in which the circle lies. The proof of this is in most respects
-identical to the previous proof for the plane but, where before we
+identical to the previous proof for the plane but where before we
 used $I_4$, we now use the unit plane. This plane is proportional to
 $e_1\wedge e_2\wedge \bar{n}\wedge n$, and is indeed identical to $I_4$.
 We can then rotate, dilate and translate as before and note that
-$R(C_o I_c)\tilde{R}=RC_o\tilde{R}RI_c\tilde{R}$ and hence our new
-dual has the form given in equation~\ref{circle2}. The dual is formed by
+$R(C_o I_c)\tilde{R}=RC_o\tilde{R}RI_c\tilde{R}$ -- and hence our new
+dual -- has the form given in equation~\ref{circle2}. The dual is formed by
 taking the product of the transformed circle with the transformed
 plane it lies in.  We also note that we can find the radius of
 this general circle very simply by squaring $C^*$
@@ -671,7 +667,7 @@ CnC
 \end{equation}
 
 To prove that $CnC$ gives the centre we can return to our circle
-centre the origin, radius one. We saw earlier in this section that we can
+with its centre at the origin and a unit radius. We saw earlier in this section that we can
 write this circle as  $C= 2e_1e_2\bar{e}$ and, again, we can
 define a \emph{unit circle}, $\hat{C}$, as $\hat{C}= e_1e_2\bar{e}$. 
 Thus we see that
@@ -703,15 +699,15 @@ since we have seen previously that $Rn\tilde{R} \propto n$ for $R$
 composed of rotations, translations and dilations.
 Equation~\ref{eqCnC} thus tells us that the rotated origin,
 $R(CnC)\tilde{R}$, is indeed given by $C'nC'$. This type of simple
-proof, ie proving a result for some simple case at the origin and
+proof, i.e.\ proving a result for some simple case at the origin and
 generalising via rotations, translations and dilations, is a nice
 feature of the conformal framework. There will be many other examples
 of the $XaX$ formulation producing something interesting in
 subsequent sections.
 
 In many physical systems we find that GA is very useful in that
-it exposes how {\em observables} usually arise by sandwiching a
-`fiducial' object between a multivector and its inverse or reverse.
+it exposes how {\em observables} usually arise by sandwiching some
+value between a multivector and its inverse or reverse.
 For example, in quantum mechanics, we get the spin current in 3d
 from a Pauli spinor, $\phi$, via $s = \phi e_3 \tilde{\phi}$. We see then
 that this example of sandwiching $n$ between a circle and its
@@ -721,10 +717,10 @@ is an example of this principle at work in the conformal setting.
 \subsection{Lines as trivectors}
 
  Next we consider the circles passing through
-the point at infinity which we have already seen are
+the point at infinity, which we have already seen are
 lines. Again we begin by asking ourselves what the dual
 of a line, $L$, actually encodes. We suspect the answer to
-this question will provide relevant information.  
+this question will provide relevant information about the line.  
 As with circles, let us begin by considering lines in the plane.
 As a starting point we take the line $L$ parallel to the $x$-axis and
 distance $d$ from the $x$-axis.
@@ -834,7 +830,7 @@ about the origin.
 
 We have already seen that 4-vectors in the conformal
 setting can represent both spheres and planes. Having
-seen how we interpret the duals for circles and lines it
+seen how we interpret the duals for circles and lines, it
 will now be easy to extend these arguments to spheres and
 planes.
 
@@ -877,8 +873,8 @@ $\Sigma^*\dt n = -1$), then we will find
    \end{equation}
 %
 As before, the dual  vector $\Sigma^*$ encodes the
-centre and radius of the sphere. Whether one wishes to
-use $\Sigma$ or $\Sigma^*$ depends on whether it is most
+centre and radius of the sphere. One may
+use $\Sigma$ or $\Sigma^*$ depending on whether it is most
 useful to specify the sphere by 4 points lying on it or
 by its centre and radius. Given a $\Sigma^*$ (via taking
 the normalised form of the dual of $\Sigma = P\wedge Q\wedge
@@ -894,7 +890,7 @@ in the manner outlined earlier for the circle
 As we saw with the case of circles, there is also a more
 elegant means of extracting the centre of a sphere given
 $\Sigma$ or $S = \Sigma^*$. The method is to reflect the
-point at infinity, $n$, in the sphere, so that the
+point at infinity, $n$, in the sphere so that the
 centre, $C$, is given by
 %
 \begin{equation}
@@ -903,29 +899,29 @@ centre, $C$, is given by
 %
 To show this we consider the sphere of radius 1 centred
 on the origin, $\Sigma_o = F(e_1)\wedge F(e_2)\wedge
-F(e_3)\wedge F(-e_1)$ which we can expand to give
+F(e_3)\wedge F(-e_1)$. We can expand this to give
 $2e_1e_2e_3\bar{e}$, so that the dual, $S$, is given by
 the particularly concise expression $2e$; we therefore
-take the 'unit' sphere to be $e$. We then see that
+take the `unit' sphere to be $e$. We then see that
 %
 \begin{equation}
   SnS = ene = \bar{n}
 \end{equation}
 %
-which is indeed the origin, which is the centre of the
+which is indeed the origin, the centre of the
 sphere in this case. Now if we rotate, dilate, and
 translate our sphere at the origin to any other sphere in
-space, $S'$ say, then, reflecting $n$ in our new sphere
+space, say $S'$, then, reflecting $n$ in our new sphere
 gives
 %
 \begin{eqnarray}
   S'nS'&  = &
   (RS\tilde{R})n(RS\tilde{R})=(RS\tilde{R})Rn\tilde{R}(RS\tilde{R})\nn
   \\
-  & = & R[SnS]\tilde{R}
+  & = & R[SnS]\tilde{R}.
 \end{eqnarray}
 %
-since $R[SnS]\tilde{R}$ is the transformed origin, i.e.
+Since $R[SnS]\tilde{R}$ is the transformed origin, i.e.
 the new centre of the sphere, we see that the formula
 $S'nS'$ does indeed give the centre.
 
@@ -971,8 +967,8 @@ given by
 \end{equation}
 %
 This holds for any $d$. If we rotate this plane via a
-rotor we know that the proof must hold and see therefore
-that since $Rn\tilde{R}=n$ and $Re_3\tilde{R}=\hat{n}$,
+rotor we know that the proof must hold, therefore
+since $Rn\tilde{R}=n$ and $Re_3\tilde{R}=\hat{n}$,
 where $\hat{n}$ is the new rotated normal to the plane,
 the general equation for the dual of the plane is given
 by
@@ -1001,11 +997,14 @@ problem we are solving.
 \section{Intersections}
 
 In this section we outline the various ways of intersecting
-objects within the conformal model,
+objects within the conformal model. In general we shall
+use an operator termed the \emph{meet}, represended
+by the symbol $\vee$, which given two objects $A$ and $B$
+gives their intersection.
 
 \subsection{Spheres with spheres or planes}
 
-Let us consider the intersection of two spheres, $\Sigma_1$ and
+Let us consider the intersection of two spheres $\Sigma_1$ and
 $\Sigma_2$ where they may intersect in a circle, at a point or not
 at all. Suppose we take the formula for the meet\cite{GA:llw} (where now we use
 $*$ to indicate multiplication by the pseudoscalar $I_n$):
@@ -1051,8 +1050,9 @@ circle or do not intersect at all.
 \subsection{Spheres with circles or lines}
 
 Let us now intersect a sphere $\Sigma_1$ (4-blade) with a
-circle $C_2$ (3-blade). According to our meet formul\ae
-our intersection is a 2-blade, $B$, given by
+circle $C_2$ (3-blade). According to our meet formul\ae\ our
+
+intersection is a 2-blade, $B$, given by
 %
 \begin{equation}
 B = \Sigma_1 \vee C_2 = \left[\left< \Sigma_1 C_2
@@ -1063,13 +1063,14 @@ where $2n-r-s=10-4-3=3$, so that the dual object has
 grade 2. We have already seen that these 2-blades
 represent 2 points --- precisely as we would expect, since
 an intersecting sphere and circle will do so at 2 points.
-Now, again, we look at the sign of the resulting 2-blade,
-$B$, and we will find that there are two, zero or one
-point of intersection according to
+Now we again look at the sign of the resulting 2-blade,
+$B$, and we will find that there are zero, one or two
+points of intersection when
 %
-\[  B^2>0 \;\;\;\; B^2=0 \;\;\;\mbox{or}\;\;\;\; B^2<0.
+\[  B^2=0 \;\;\;\; B^2<0 \;\;\;\mbox{or}\;\;\;\; B^2>0.
 \]
 %
+respectively.
 We have seen earlier that given a bivector $B$, such that
 $B^2>0$, of the above form, we can extract the two points
 of intersection via the projectors given in
@@ -1129,13 +1130,13 @@ B = \Phi_1 \vee C_2 = \left[\left< \Phi_1 C_2
 \end{equation}
 %
 where $2n-r-s=10-4-3=3$, so that the dual object has
-grade 2 --- the plane and the circle intersect in a
-maximum of two points, and the 2-blade, $B$ encodes these
+grade 2 --- the plane and the circle intersect at a
+maximum of two points, and the 2-blade, $B$, encodes these
 two points as with the sphere-circle intersection. Once
-again we can assert that there are 2,1 or 0 intersections
-according to whether $B^2>0,B^2=0,B^2<0$. In the case of
+again we can assert that there are 2, 1 or 0 intersections
+according to whether $B^2>0, B^2=0, B^2<0$. In the case of
 two intersections, the points are extracted from $B$ by
-projectors as before, and in the case of tangency, the
+projectors as before; in the case of tangency, the
 one point of contact is obtained by taking $BnB$.
 
 It is worth thinking about what happens when the circle
@@ -1161,9 +1162,9 @@ We can also note that, in this case, the dual of $\Phi_1C_2$ with respect to
 $e_1e_2e\bar{e}$ is indeed $C_2$.
 
 If we now replace our circle by a line, $L_2$, it is
-clear that the meet will still give us a 2-blade, $B$;
-but we know that the line and the plane intersect in at
-most one position, so should we not be looking for a
+clear that the meet will still give us a 2-blade, $B$
+however we know that the line and the plane intersect in at
+most one location, so should we not be looking for a
 vector rather than a 2-blade? The answer is that if the
 plane and the line intersect, and the meet gives us $B$,
 then $B$ is always of the form
@@ -1190,7 +1191,7 @@ where $E=n\wedge \bar{n}$ as given earlier.
 
 \subsection{Circles with circles and lines }
 
-Consider two circles, $C_1$ and $C_2$, taking their meet
+Consider two circles, $C_1$ and $C_2$; taking their meet
 gives
 %
 \begin{equation}
@@ -1200,9 +1201,9 @@ X = C_1 \vee C_2 = \left[\left< C_1 C_2
 %
 where $2n-r-s=10-3-3=4$, so that the dual object has
 grade 1. We know, however, that the intersection of two
-circles has at most 2 intersections (only possible if
+circles is at most 2 points (only possible if
 they lie in the same plane), so how do we get two
-intersections from our grade 1 object? In fact we find
+points from our grade 1 object? In fact we find
 that the following is true
 %
 \begin{eqnarray}
@@ -1225,7 +1226,7 @@ B = C_1 \vee (C_2\wedge n) =  \left[\left< C_1 (C_2\wedge n)
 \end{equation}
 %
 where $2n-r-s=10-3-4=3$, so that the dual object has
-grade 2, and the two points of intersection can be
+grade 2. The two points of intersection can be
 extracted from the 2-blade $B$ using
 equation~\ref{eqn:extractAB}.
 
@@ -1258,7 +1259,7 @@ Given that we have had a little difficulty with circles
 intersecting circles, we might expect some slight
 difficulties with lines and lines. It turns out that many
 interesting constructions emerge when we start to
-consider the intersections between two lines, these will
+consider the intersections between two lines; these will
 be discussed in the following section.
 
 
@@ -1287,41 +1288,41 @@ not intersect}
 %
 We therefore have a simple of way for checking for
 intersecting lines, but if the meet gives us zero so that
-we know there is an intersection point, we can no longer
+we know there is one intersection point, we can no longer
 find this point in a fully covariant way by intersecting
 one line with the a plane defined by the other line,
 since such a plane is not uniquely defined. We could, in
 practise, intersect one line with the plane formed by the
 other line and the origin, but then if the other line
-passes through the origin, this will not work, and we are
-left with a non-covariant procedure and one which entails
+passes through the origin, this will not work, leaving us
+a non-covariant procedure and one which entails
 us forming conditionals for a number of cases. We would
 instead like to look for a method which works covariantly
 -- such a method exists, and in the process of describing
 it, we see a number of other useful constructions.
 
-Again take our arbitrary lines, $L_1$ and $L_2$ (assume
+Take our arbitrary lines, $L_1$ and $L_2$ (assume
 they are normalised, such that $L_1^2=L_2^2=1$). Suppose
 we reflect line $L_1$ in line $L_2$ --- this statement is
 not well-defined in a conventional sense, but in
-GA, we have seen that reflection of an
+GA we have seen that reflection of an
 object in another object is indeed well defined and is
 brought about by sandwiching the object to be reflected
-between the object that it is being reflected in. So, our
-reflected line, $L_1'$ is given by
+between the object that it is being reflected in. So our
+reflected line $L_1'$ is given by
 %
 \[  L_1' = L_2L_1L_2  \]
 %
 as shown in figure \ref{intersect_lines}.
 The operation of reflection is grade preserving if we are
-dealing with blades, and therefore we know that we get
+dealing with blades, and therefore we know that that results in
 another line. This construction will work for any two
 lines, but let us now suppose that our lines intersect at
-a point, we can then expect that the reflected line
+a point; we can then expect that the reflected line
 $L_1'$ will be the line formed by the intersection point,
 represented by $P$, and any point on $L_1$ reflected in $L_2$. This is
 indeed what $L_1'$ is. Now, however, it becomes possible
-very easily to form the line which is perpendicular to
+to form the line which is perpendicular to
 $L_2$, passing through the intersection point, $P$, and
 in the plane defined by $L_1$ and $L_2$ via the following
 %
@@ -1347,19 +1348,19 @@ produce two lines intersecting at right angles, via the
 construction $L_1-L_2L_1L_2$.} \label{intersect_lines}
 \end{figure}
 Clearly what we are doing here is rotating one line in
-the plane defined by the two lines,  to be perpendicular
+the plane defined by the two lines to become perpendicular
 to the other line. We will return to this rotor
-description later.  Now we have two perpendicular lines
+description later.  Once we have two perpendicular lines
 which intersect, we can find the point of intersection
 relatively easily. Take any arbitrary point representation $X$ and
 reflect it in $L_1''$ (assuming again that we have
 normalised $L_1''$) via $X' = L_1''XL_1''$, then take the
-midpoint of $X$ and $X'$, we know that this must lie on
+midpoint of $X$ and $X'$. We know that this must lie on
 the line $L_1''$
 %
 \[ X' = L_1''XL_1'' \;\;\;\; X'' = \half (X + X')   \]
 %
-It is straightforward to verify explicity that $X''$ is the
+It is straightforward to verify explicitly that $X''$ is the
 representation of the true mid-point of the points represented
 by $X$ and $X'$ plus some multiple of $n$.
 Now we reflect $X''$ in $L_2$ to give $X'''$ and again
@@ -1377,20 +1378,20 @@ which has the effect of removing the multiple of $n$.
 This construction is independent of $X$ and is a
 beautiful illustration of the ability to manipulate
 objects using geometric algebra. Although it appears
-involved, it can be programmed up very easily ($\bar{n}$
+involved, it can be implemented very easily ($\bar{n}$
 can be used as the point $X$) and is an entirely
 covariant way of intersecting two lines. Of course, in
-practise, one can also check to see if there is at least
+practice, one can also check to see if there is at least
 one line that does not pass through the origin
-($\bar{n}\wedge L=0$ if $L$ passes through the origin), if
-there is, say this is $L_1$, we can then form the plane
-$\bar{n}\wedge L_1$ and intersect this with $L_2$, if both
+($\bar{n}\wedge L=0$ if $L$ passes through the origin); if
+there is one, for example $L_1$, we can then form the plane
+$\bar{n}\wedge L_1$ and intersect this with $L_2$. If both
 lines pass through the origin then the intersection point
 is the origin. Note that we can use precisely the same
 type of argument to extract the plane formed by two
 intersecting lines. For example, take any arbitrary point
-$X$, reflect it in the line $L_1$ via $L_1 X L_1$, so
-that the midpoint of this line is given by $P$ where $P$
+$X$, reflect it in the line $L_1$ via $L_1 X L_1$ so
+that the midpoint of this line is given by $P$, where $P$
 is given (up to some additional multiple of $n$) by
 %
 \[  P = \half (X + L_1 X L_1)   \]
@@ -1405,12 +1406,12 @@ the two lines must be given by
 Again, $\bar{n}$ can be used for our point $X$ in real
 computations. The derivations given here are entirely
 covariant and the same constructions will intersect `lines' in different
-geometries, we will illustrate this towards the end of the thesis by
+geometries; we will illustrate this towards the end of the thesis by
 considering three-dimensional hyperbolic geometry.
 
 Recall that
 previously we found the reflection of $L_1$ in $L_2$ via
-$L_2L_1L_2$, now note that we can rewrite this as
+$L_2L_1L_2$. Now note that we can rewrite this as
 %
 \begin{equation}
  L_2L_1L_2 = (L_2L_1)L_1\widetilde{(L_2L_1)} = RL_1\tilde{R}
@@ -1425,14 +1426,14 @@ containing the lines. In fact, when we write this
 reflection as a rotation, there is nothing to insist that
 our lines must intersect. If $L_1$ and $L_2$ do not
 intersect, then $L_2L_1L_2$ will still perform a {\em
-reflection of $L_1$ in $L_2$}, but we are now able to
+reflection} of $L_1$ in $L_2$, but we are now able to
 interpret exactly what this reflection means for
 non-intersecting lines if we regard the operator as a
 rotor. It turns out that the rotor $L_2L_1$ is the
 product of a rotation rotor and a translation rotor --
 the rotation is in the plane normal to the common
 perpendicular of the lines and the translation is along
-the common perpendicular so that one line is taken onto
+the common perpendicular, so that one line is taken onto
 and then through the other. We can show that it is
 possible to write the product $L_2L_1$ as
 %
@@ -1446,7 +1447,7 @@ direction of the common perpendicular, $\hat{B} =
 is the angle between the lines as measured when
 translated to lie in the same plane along $d$. We see
 that the above is a combination of a rotation rotor and a
-translation rotor, we will see later that rotors which
+translation rotor; we will see later that rotors which
 take one object (of the same grade) into another object
 are often formed in the way we have outlined here for
 lines.
@@ -1455,8 +1456,8 @@ lines.
 
 In this chapter we have examined how the Conformal Model can be used to
 represent geometric primitives such as lines, planes, spheres, circles and point
-pairs. We have also shown how, withing the Conformal Model, rotors can
+pairs. We have also shown how, within the Conformal Model, rotors can
 be applied to these objects just as they would be applied to points. 
-The Conformal Model outlined in this chapter will form a base upon which much
+The Conformal Model outlined in this chapter will form a foundation upon which much
 of the results of this thesis will be based.
 
