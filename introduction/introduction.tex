@@ -13,40 +13,41 @@ descriptions are used extensively in computer vision and graphics where
 rotations and translations are usually described by a single $4\times 4$
 matrix. Since its inception in the mid-1970s, computer graphics (CG) has
 almost universally used linear vector algebra as its mathematical framework.
-This is due primarily to two factors; most early practitioners of computer
-graphics were mathematicians familiar with it and linear algebra provided a
+This is due primarily to two factors: most early practitioners of computer
+graphics were mathematicians familiar with it; and linear algebra provided a
 compact, efficient way of representing points, transformations, lines, etc.
 
-In the early-1980s CG moved out of the realm of Computer Science research and
+In the early 1980s CG moved out of the realm of Computer Science research and
 started to be used in the broader scientific community as an important
 research tool both for simulation and visualisation.  Computer Graphics was
 then, and to an extent still is, tied to classical vector algebra which has
-started to show a number of problems when applied to the problems being
-investigated. Amongst these problems were poor generalisation to spaces other
-than $\mathbb{R}^3$, great conceptual difficulty in extending problems to
-non-Euclidean geometries and manipulating geometric objects other than simple
+started to show a number of flaws when applied to the problems being
+investigated. Amongst these problems were: poor generalisation to spaces other
+than $\mathbb{R}^3$; great conceptual difficulty in extending problems to
+non-Euclidean geometries; and manipulating geometric objects other than simple
 lines, planes and points.
 
 As computing power becomes cheaper, the opportunity arises to investigate new
 frameworks for CG which, although perhaps not providing the time and space
 efficiency of vector algebra, may provide a conceptually simpler system or one
 of greater analytical power. This thesis investigates the suitability of
-Geometric Algebra (GA) as one such approach. As one might hope the original
+Geometric Algebra (GA) as one such approach. As one might hope, the original
 four-dimensional description of projective geometry fits very nicely into the
 Geometric Algebra framework\cite{HZ91,IJPR00}. 
 
 \section{A Brief Overview of Geometric Algebra}
 
 As stated above, classical vector algebra has a number of problems once one
-moves away from three-dimensional Euclidean space. Perhaps the clearest
-example is the cross-product of two vectors; the product, $\mathbf{a} \times
+moves away from three dimensional Euclidean space. Perhaps the clearest
+example is the cross-product of two vectors: for two
+vectors $\mathbf{a}, \mathbf{b}$ with lengths $a, b$, the product, $\mathbf{a} \times
 \mathbf{b}$, is conventionally defined as a vector normal to the plane
 containing $\mathbf{a}$ and $\mathbf{b}$ and has magnitude $ab\sin\theta$
 where $\theta$ is the angle between $\mathbf{a}$ and $\mathbf{b}$. However the
-normal to the plane is only uniquely defined in three-dimensions and has no
+normal to the plane is only uniquely defined in three dimensions and has no
 meaning in 2- or 1-dimensional space; the cross-product does not generalise to
 higher-dimension spaces. The product is an important element of vector algebra
-and one can see that performing geometric operations in higher-spaces without
+and one can see that performing geometric operations in higher spaces without
 it quickly becomes complex.
 
 \subsection{The products}
@@ -92,8 +93,11 @@ Most of Gra{\ss}mann's work was largely ignored by the mathematical community.
 It was not until William Clifford (1845--1879) investigated Gra{\ss}mann's
 algebra in 1878\cite{GA:clifford} that the crucial step which made GA a useful
 algebra was made. Unfortunately Clifford's work was, in its turn, also
-somewhat ignored in favour of the work done by Hamilton on quaterions and
-the development of linear and vector algebra.
+somewhat ignored in favour of the contempory work done by William Hamilton (1805--1865) 
+on quaternions and
+the development of linear and vector algebra. In fact, as we shall see later,
+quaternions are simply a natural subset of the full Geometric Algebra over 
+$\mathbb{R}^3$.
 
 Clifford unified Gra{\ss}mann's outer product and the familiar dot
 or inner-product into one \emph{geometric product} such that
@@ -110,7 +114,7 @@ to a bivector ($a \wedge b$). That is we are adding a grade 0 element to a
 grade 2 element. This combination of differing grade objects is analogous to
 complex numbers where we linearly combine a real and imaginary number to form
 a complex number. In this case we refer to such a combination of objects of
-varying grade as a \emph{multivector}.  As noted earlier we shall refer to all
+varying grade as a \emph{multivector}.  We shall refer to all
 single-grade elements with lower-case letters but use upper-case letters to
 refer to multivectors. The geometric product also gives us a convenient new
 definition of the outer and inner products for vectors as
@@ -125,7 +129,7 @@ The power of this approach may be illustrated through its application to
 rotation. In two dimensions this is easily performed using complex numbers;
 representing the vector $[x\ y]$ as the complex number $z = x + iy$, rotation
 by $\theta$ radians can be performed by multiplication with $e^{i\theta}$.
-William Hamilton (1805--1865) worked for many years to extend this approach to
+Hamilton worked for many years to extend this approach to
 three-dimensions. He eventually created \emph{quaternions}
 \cite{hamilton2,hamilton1}, an algebra with 4 basis elements $\left\{1,
 \mathbf{i}, \mathbf{j}, \mathbf{k}\right\}$ from which all elements are
@@ -164,9 +168,9 @@ e_1B_3 = e_1^2e_2=e_2
 From figure \ref{fig:rotation} it is clear that $B_3$ has the effect
 of rotating the vectors counter-clockwise by 90 degrees. It is, in fact, a
 general property that the bivector $e_ie_j$ will rotate a vector 90 degrees in
-the plane defined by $e_i$ and $e_j$. At first glance this seems to offer
-little more than quaternions, but at no point have we assumed that we are
-working in three-dimensional space; this method also works in higher-dimension
+the plane defined by $e_i$ and $e_j$. At first glance this seems to 
+no more use than quaternions, but at no point have we assumed that we are
+working in three dimensional space -- in fact this method also works in higher-dimension
 spaces.
 
 We can also easily extend to general rotations; it is trivial to
@@ -269,7 +273,8 @@ components when an element is resolved onto a set of basis elements.
 
 Note that in spaces with dimension $n$, the maximum grade object possible is
 an $n$-grade one. We denote the $n$-vector $e_1 \wedge ... \wedge e_n = I$ as
-the \emph{pseudoscalar} and the product $xI$ as the \emph{dual} of a vector or
+the \emph{pseudoscalar} and, for any element of the algebra, $x$,
+we term the product $xI$ the \emph{dual} of $x$ represented as
 $x^*$. The dual is similarly defined for general multivectors. The
 pseudoscalar is so termed because it commutes with all elements of the
 algebra.
@@ -319,8 +324,8 @@ the quaternionic interpolation is exactly given by
 \[
 R_\lambda = (R_2 \tilde{R}_1)^\lambda R_1 = \exp(\lambda B) R_1
 \]
-where $\lambda$, the interpolation parameter, varies in the range $(0,1)$. A
-further moment's thought will reveal that this method is not confined to three
+where $\lambda$, the interpolation parameter, varies in the range $(0,1)$. 
+In fact this method is not confined to three
 dimensions, like quaternionic interpolation, but instead readily generalises
 to higher-dimensions. It is also worth noting the extreme similarity between the
 rotor interpolation and the quaternionic interpolation. In fact pure-rotation
@@ -333,7 +338,7 @@ In the Conformal Model\cite{hestenes} we extend the space by adding two
 additional basis vectors. The notation we use will follow the original
 notation given in \cite{HS84}. Let $x$ be a vector in a space denoted
 ${\cala}(p,q)$.  The annotation $(p,q)$ shall be termed the \emph{signature}
-of the space.  A given signature, $(p,q)$, implies that we may construct an
+of the space.  A given signature $(p,q)$ implies that we may construct an
 orthogonal basis for the space, $\{e_i\}$, $i=1,\cdots,n=p+q$ where $e_i^2=+1$
 for $i=1,\cdots,p$ and $e_i^2=-1$ for $i=p+1,\cdots,n$; i.e.\ we take a
 general mixed signature space.  
@@ -368,7 +373,7 @@ and
        & = &  1 - 0 - 1 = 0.     \nn
 \end{eqnarray}
 %
-We also note a number of useful identities for $n$, $\bar{n}$ and $x \in \cala(p,q)$:
+We also note two useful identities for $n$, $\bar{n}$ and $x \in \cala(p,q)$:
 %
 \begin{eqnarray}
 n\cdot\bar{n} & = & (e + \bar{e})\cdot(e - \bar{e}) = e^2 - \bar{e}^2 = 2 \nn \\
@@ -376,7 +381,7 @@ x\cdot n = x\cdot \bar{n} & = & 0. \nn
 \end{eqnarray}
 %
 It is equally easy to show that if we define the bivector $E = n \wedge \bar{n}$ 
-then $E^2 = 4$
+then
 %
 \begin{eqnarray}
   E^2 & = &  (n\wedge \bar{n})\cdot(n\wedge \bar{n}) \nn \\
@@ -420,11 +425,12 @@ absolute scale of $F(x)$, becomes
 %
 
 We will see that it will often be necessary to work with
-normalised `unit' lines, planes, circles and spheres in order to
+normalised lines, planes, circles and spheres specified by
+such `unit' representations in order to
 apply the various formul\ae\ which will be so
 important in later sections. It is also worth noting that the
 mapping as it stands above is dimensionally inconsistent. In following
-chapters it will be shown how compensating for this inconsistency 
+chapters we will show how compensating for this inconsistency 
 can allow one to extend the approach to various non-Euclidean geometries.
 
 It is possible to show that $F(x)$ is always a null vector for
@@ -443,8 +449,8 @@ construction. It also shows the need to impose a normalisation
 constraint upon the resultant null vectors as they remain null 
 irrespective of absolute scale.
 More generally we can show that all null vectors in $\cala(p+1,q+1)$
-must be the result of mapping some vector $x \in \cala(p,q)$ as above;
-any vector $X \in {\cala}(p+1,q+1)$ can be written as
+must be the result of mapping some vector $x \in \cala(p,q)$ as above.
+Any vector $X \in {\cala}(p+1,q+1)$ can be written as
 %
 \[ X = an + bx + c\bar{n}  \]
 %
@@ -525,7 +531,7 @@ originally in \cite{HS84}.
 
 In usual descriptions of GA (without the use of the conformal model)
 rotations are performed with elements of the algebra termed
-\emph{rotors}. In this section we aim to show that these rotors may be used
+rotors. In this section we aim to show that these rotors may be used
 unchanged on the null vectors representing points.
 Let $x \mapsto Rx\tilde{R}$ with $x\in {\cala}(p,q)$ and $R$ be a
 rotor in the Geometric Algebra over ${\cala}(p,q)$. Consider
@@ -533,9 +539,10 @@ what happens when $R$ acts upon $F(x)$; i.e.\ the nature of
 $RF(x)\tilde{R}$
 %
 \[ RF(x)\tilde{R} =\frac{1}{2} R(x^2n + 2x - \bar{n})\tilde{R} =\frac{1}{2}[ x^2Rn\tilde{R}
-+ 2Rx\tilde{R} - R\bar{n}\tilde{R}] \].
++ 2Rx\tilde{R} - R\bar{n}\tilde{R}]. \]
 %
-Since $R$ is a rotor it contains only even blades and therefore 
+%Since $R$ is a rotor it contains only even blades and therefore 
+It is straightforward to show that this
 commutes with
 $n$ and $\bar{n}$  
 %($e_in=-ne_i$, so if we have an even number of $e_i$s we
@@ -624,14 +631,14 @@ F(x) \tilde{T}_a = F(x+a)
 
 In the usual three-dimensional geometric algebra we can reflect a vector $a$
 in a plane with unit normal $n$ by `sandwiching' the vector between the
-normal, $-nan$ \cite{IJCV98}. Sandwiching the object \emph{to be reflected}
+normal $-nan$ \cite{IJCV98}. Sandwiching the object \emph{to be reflected}
 between the object \emph{in which we wish to reflect} is a very general
-prescription in GA and one which will be used heavily in later parts of the
+prescription in GA and one which will be used heavily in later parts of this
 thesis.  In this section we look at how inversions are brought about by this
 same reflection operation.
 
 By `inversion' we mean the mapping $x \mapsto \frac{x}{x^2}$ or,
-equivalently, for non-singular areas, $x \mapsto x^{-1}$. Firstly, we look 
+equivalently, for non-singular vectors, $x \mapsto x^{-1}$. Firstly, we look 
 at the reflection in $e$ of various vectors
 %
 \[ -ene  = -ee\bar{n} = -\bar{n} \] 
@@ -650,7 +657,7 @@ F\left(\frac{x}{x^2}\right) \end{eqnarray}
 %
 
 We have, therefore, shown that the inversion operation in ${\cala}(p,q)$ can be
-performed via the reflection in $e$ of the representation in ${\cala}(p,+1q+1)$.
+performed via the reflection in $e$ of the representation in ${\cala}(p+1,q+1)$.
  %
  \begin{equation} x \mapsto \frac{x}{x^2} \qquad \Leftrightarrow \qquad F(x) \mapsto
  -\frac{eF(x)e}{x^2} = F\left(\frac{x}{x^2}\right) \end{equation}
@@ -660,7 +667,7 @@ Since the absolute scale of $F(x)$ is irrelevant, as we always rescale to
 impose our normalisation constraint, we can omit the scaling by $x^{-2}$.  It
 is also irrelevant, by the same logic, whether we take $-e(\cdot)e$ or
 $e(\cdot)e$ as the reflection and henceforth we will use $e(\cdot)e$ for
-convenience. This `sandwiching' operation will be a common one in the algorithms
+convenience. This sandwiching operation will be a common one in the algorithms
 we will describe in subsequent chapters.
 %We reiterate here that later the concept of
 %reflection of a quantity in an object being brought about by this method
@@ -673,7 +680,7 @@ we will describe in subsequent chapters.
 \subsubsection{Dilators}
 
 
-A dilation by a factor of $\alpha$ is the mapping
+A dilation by a factor of $\alpha$ is represented by the mapping
 $x \mapsto \alpha x$. In this section we investigate how
 to form a rotor which has the action of dilating about the
 origin. We start by considering the rotor $R = D_{\alpha} =
@@ -702,9 +709,10 @@ the expansion $1 - \frac{\alpha}{2}e\bar{e} +
 \frac{1}{2!}\left(\frac{\alpha}{2}e\bar{e}\right)^2 +
 \cdots$ and using the relations given in
 equation~\ref{eneqn}.
-Again noting that the absolute scale of $F(x)$ doesn't matter we
-have therefore shown that dilations  in ${\cala}(p,q)$ can be performed by
-the rotor    $R=D_\alpha$
+Again noting that the absolute scale of $F(x)$ is unimportant we
+have therefore shown that dilations by a factor of $\exp\left({-\alpha}\right)$ 
+%in ${\cala}(p,q)$ 
+can be performed by the rotor $R=D_\alpha$
  %
  \begin{equation}
 x \mapsto \exp({-\alpha})x \qquad \Leftrightarrow \qquad F(x)
@@ -840,13 +848,13 @@ language.
 CLU is a library designed for numerical computations and is not limited
 to the signature used for the conformal model but also has support for
 other signatures. CLUDraw is a library designed to take multivectors calculated
-by CLU and provide a convenient way to visualise them as spheres, lines, planes,
+by CLU and to provide a convenient way to visualise them as spheres, lines, planes,
 etc. 
 
 Although it provides a convenient interface, the heavy use of C++ object-orientation
 and operator overloading within the library results in a rather high
 computational overhead. The decoupling of the calculation engine and
-visualisation engine however provides the useful ability to remove the
+visualisation engine, however, provides the useful ability to isolate the
 graphics code in a clean manner.
 
 
@@ -858,20 +866,20 @@ graphics code in a clean manner.
 
 The Gaigen 
 homepage\cite{Gaigen} describes 
-it as
+it thus
 \begin{quote}
 Gaigen is a program which can generate implementations of geometric algebras. It generates C++, C and assembly source code which implements a geometric algebra requested by the user. People who are new to geometric algebra may think that there is only one geometric algebra. However, there are many different geometric algebras. The properties that make these algebras different are, among others, their dimensionality and the signature of their basis vectors. Each of these different algebras may be useful for different applications.
 \end{quote}
 The user can select the signature of the space and generate C-code to implement
 it. The code it generates is efficient and compact. The Gaigen2 project has
-moved into a different direction; instead of accelerating individual products a
+moved into a different direction -- instead of accelerating individual products, a
 different approach to making an efficient implementation is used with a
-different internal representation. Gaigen doesn't possess a visualisation
+different internal representation. Gaigen does not possess a visualisation
 engine by default.
 
-Gaigen, although fine for general purpose use, wasn't suitable for this
-PhD as, ultimately, it was desired that a similar API would be found for
-both software and hardware implementations and it was felt that having our
+Gaigen, although fine for general purpose use, was not suitable for this
+PhD as, ultimately, it was desired that a similar API would be useful for
+both software and hardware implementations. It was felt that having our
 own implementation would lead to greater flexibility in this area.
 
 \begin{table}
@@ -892,7 +900,7 @@ Gaigen does have the useful ability to generate product tables for the algebra
 \subsection{Cambridge GA library for Maple}
 
 This library\cite{GA:CambridgeGALibrary} provides Geometric Algebra
-capabilities for the Maple V and VI symbolic mathematics package. It provides
+capabilities for the Maple V and VI symbolic mathematics packages. It provides
 no visualisation capabilities above those provided by Maple. This is a very
 useful tool for research but is aimed more at symbolic manipulation than
 numerical computation.
@@ -902,9 +910,9 @@ numerical computation.
 A number of existing applications of GA have been developed in the
 field of graphics and vision\cite{DBLP:conf/giae/WarehamCL04,SahanLasenby} and
 indeed much of contemporary physics has been recast using GA 
-methods\cite{DoranLasenby} providing a conceptually simpler
+methods\cite{DoranLasenby}, providing a conceptually simpler
 framework for further research.
 
-This thesis will build on such work and aim to advance, using Geometric
+This thesis will build on such work and aims to advance, using Geometric
 Algebra, a number of fields in Computer Graphics.
 
