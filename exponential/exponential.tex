@@ -542,9 +542,9 @@ with a generator to a point by defining an appropriate linear function
 $h(\cdot)$.
 
 \begin{definition}
-The function $h(\phi, P, t, p, \lambda)$ is defined, for $\lambda = 1$ as
+The function $h(\phi, P, t, p)$ is defined as
 \[
-h(\phi, P, t, p, 1) = F^{-1} \left( R F(p) \tilde{R} \right)
+h(\phi, P, t, p) = F^{-1} \left( R F(p) \tilde{R} \right)
 \]
 where $R = \exp(B)$, $B = \phi P+tn$ and $P, \phi$ and $t$ are
 as defined in lemma \ref{lem:bk}. $F(\cdot)$ is the usual vector 
@@ -554,8 +554,8 @@ to null-vector mapping.
 It is easy, if somewhat tedious, to show by direct expansion and comparison of terms that
 an expression for $h(\cdot)$ which matches the definition above is
 \begin{align}
-h(\phi, P, t, p, \lambda) &=c^2p - s^2PpP - sc\left[pP - Pp\right] \nonumber \\
-&\quad+ \lambda\left[ 
+h(\phi, P, t, p) &=c^2p - s^2PpP - sc\left[pP - Pp\right] \nonumber \\
+&\quad+ \left[ 
  \frac{kc+1}{2} t + \frac{kc-1}{2} PtP
 - \frac{sk}{2} (tP - Pt)
 \right] \label{eqn:defn}
@@ -574,7 +574,8 @@ x \cdot e_1 \\ x \cdot e_2 \\ \vdots \\ x \cdot e_m
 \]
 \end{definition}
 
-It is clear by inspection that the function $h(\cdot)$ is linear in $(p,\lambda)$ 
+It is clear by inspection that the function $h(\cdot)$ is 
+constant with respect to $p$ added to a functions linear in $p$  
 therefore we can find some $3\times4$ matrix $\mathcal{H}(\phi, P, t)$, such that
 \begin{equation}
 \mathbf{e}^T 
@@ -582,7 +583,7 @@ therefore we can find some $3\times4$ matrix $\mathcal{H}(\phi, P, t)$, such tha
 \begin{array}{c}
 \mathbf{v}(p) \\ 1
 \end{array} 
-\right] = h(\phi, P, t, p, 1) \label{eqn:hi}
+\right] = h(\phi, P, t, p) \label{eqn:hi}
 \end{equation}
 where $\mathbf{e}^T = \left[ e_1 \; e_2 \; e_3 \right]$.
 
@@ -678,7 +679,7 @@ bA - Ab = -
 2\mathbf{f}_1(A,b).
 \]
 \begin{proof}
-With the definitions for resolving $A$ and $b$ above it is trivial to show by direct expansion
+With the definitions for resolving $A$ and $b$ above one can show by direct expansion
 over an orthonormal basis that
 \[
 Ab =
