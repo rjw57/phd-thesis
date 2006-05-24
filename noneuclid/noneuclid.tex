@@ -23,7 +23,7 @@ Euclidean geometry, the geometry of the plane, was first defined\cite{Heath56} b
 \end{enumerate} 
 
 This last postulate is equivalent to what is known as the \emph{parallel postulate},
-which, loosely, states that two parallel lines will never meet, even at infinity.
+which states loosely that two parallel lines will never meet, even at infinity.
 In this chapter we shall explore hyperbolic geometry, one of the simplest
 geometries that satisfy all but this last postulate.
 
@@ -41,13 +41,13 @@ geometries that satisfy all but this last postulate.
 Hyperbolic geometry is usually represented in two dimensions on the
 \emph{Poincar\'e disc}. This is a unit disc centred on the origin
 onto which all space is mapped. A metric is defined within the
-disc\cite{GEOM:Brannan} along with a set of congruence transformations.
+disc\cite{GEOM:Brannan}, along with a set of congruence transformations.
 The boundary circle of the disc represents the points at infinity. Everywhere
 outside the disc is inaccessible to the hyperbolic geometry. Straight lines,
 called $d$-lines\cite{GEOM:Brannan}, are represented by circular arcs which
 erupt normal to the boundary circle. Perhaps one of the most famous examples of this
 geometry is given in Escher's \emph{Circle Limit} series of wood prints, an example of
-which is re-created in figure \ref{fig:circlelimit}. In these prints infinite
+which is recreated in figure \ref{fig:circlelimit}. In these prints infinite
 tessellations of hyperbolic space are represented mapped to the Poincar\'e
 disc and they show the circular nature of $d$-lines, although Escher was
 unaware of the Poincar\'e disc model at the time the prints were made.
@@ -86,8 +86,8 @@ E_1 = e_1 \quad E_2 = e_2 \quad E_3 = e \quad E_4 = \bar{e}
 and thus form the rotors $R_{k\ell } = \exp\left(\frac{\alpha}{2}E_k \wedge E_\ell\right)$ with $k,\ell \in \{1,2,3,4\}$.
 Applying them to $e$ via $R_{k\ell }e\tilde{R}_{k\ell } \equiv R_{k\ell }eR_{\ell k}$, we find
 the bivector generators of the rotors which preserve $e$ are $\bar{e}e_1$, 
-$\bar{e}e_2$ and $e_1e_2$. The latter just correspond to rotations in the
-$e_1e_2$ plane and hence, the former two must be the generators of
+$\bar{e}e_2$ and $e_1e_2$. The latter just corresponds to rotations in the
+$e_1e_2$ plane, and hence the former two must be the generators of
 translations. We propose, therefore, that a rotor which translates the origin to the vector
 $x$ must be given by a multivector of the form
 \begin{equation}
@@ -106,7 +106,7 @@ We now consider how to represent the origin. Our choice is restricted in
 that the origin must differ from the 
 point at infinity and, to retain isotropy, must not contain components
 parallel to $e_1$ or $e_2$.  Either $n$ or $\bar{n}$ would be a suitable
-choice to investigate but we choose a multiple of $\bar{n}$ to retain
+choice to investigate; we choose a multiple of $\bar{n}$ to retain
 compatibility with the Euclidean case.
 
 As with the Euclidean case we wish to impose a normalisation condition 
@@ -130,7 +130,7 @@ F_e(x) & = & T_x\,(-\bar{n})\,\tilde{T}_x \\
 & = & \left[c + \bar{e}\hat{r}s\right] (-\bar{n}) \left[c - \bar{e}\hat{r}s\right] \\
 &=& -c^2\bar{n} + 2sc\hat{r} + s^2n.
 \end{eqnarray}
-Letting $C = \cosh(f(r))$ and $S = \sinh(f(r))$ giving $c^2 = (C+1) / 2$,
+Letting $C = \cosh(f(r))$ and $S = \sinh(f(r))$ gives $c^2 = (C+1) / 2$,
 $s^2 = (C-1)/2$, $sc = S/2$ and hence
 \begin{eqnarray}
 F_e(x) & = & \frac{1}{2}n (C-1) - \frac{1}{2}\bar{n}(C+1) + S\hat{r} \nonumber \\
@@ -138,17 +138,19 @@ F_e(x) & = & \frac{1}{2}n (C-1) - \frac{1}{2}\bar{n}(C+1) + S\hat{r} \nonumber \
 % & = & \frac{1}{2} \left[ \, (\cosh(f(r))-1)n + 2\sinh(f(r))\hat{r} - (\cosh(f(r))+1)\bar{n} \, \right] 
 \label{eqn:almost-X-rep} 
 \end{eqnarray}
-As required $(F_e(x))^2 = 0$ and $F_e(x) \cdot e = -1$.
+As required, $(F_e(x))^2 = 0$ and $F_e(x) \cdot e = -1$.
 
 It remains to choose a sensible form for $f(r)$. We seek to choose $f(r)$ such that
 the representation $F_e(x)$ is similar to our Euclidean representation $F(x)$
 since this will allow us to use many of the same techniques we developed for the
-Euclidean case. We can re-write our Euclidean representation 
+Euclidean case. We can rewrite our Euclidean representation 
 in terms of $r$ and $\hat{r}$ as
 \begin{equation}
 F(x) = \frac{1}{2\lambda^2}(r^2n + 2 \lambda r\hat{r} - \lambda^2\bar{n})
 \label{eqn:nonEuclidMap1}
 \end{equation}
+where $\lambda$ has been introduced as a fundamental unit of length to make the
+equation dimensionally consistent. We shall discuss this later.
 
 If we wish that $F_e(x)$ be similar to $F(x)$ then we have the conditions
 \begin{equation}
@@ -175,7 +177,7 @@ $\sinh(f(r))$ to give
 \begin{equation}
 \frac{\cosh(f(r)) -1}{\cosh(f(r)) + 1} = \frac{r^2}{\lambda^2}
 \end{equation}
-and hence $\cosh(f(r)) = (\lambda^2 + r^2)/(\lambda^2 - r^2)$. Substituting
+and therefore $\cosh(f(r)) = (\lambda^2 + r^2)/(\lambda^2 - r^2)$. Substituting
 into either \ref{eqn:rlambda} or \ref{eqn:rlambda2} gives
 \begin{equation}
 f(r) = \sinh^{-1}\left( \frac{2\lambda r}{\lambda^2 - r^2} \right)
@@ -217,13 +219,13 @@ $\lambda$ centred upon it. The value of $\lambda$ gives the distance to
 the boundary of a region of inaccessible space from the origin. It is
 in effect a circular boundary to the geometry. This circle corresponds
 directly to the unit-circle boundary in the Poincar\'e disc representation if
-$\lambda = 1$ and simple dilations of the Poincar\'e representation if
+$\lambda = 1$ and to simple dilations of the Poincar\'e representation if
 $\lambda \ne 1$. To maintain compatibility with the Poincar\'e representation,
 we usually set $\lambda$ to be unity.
 
 The rotor in equation \ref{eqn:transrotor} is, by construction, the rotor 
 which takes us from the origin to position $x$. Interestingly translations in
-hyperbolic geometries do not commute; that is moving a position
+hyperbolic geometries do not commute; that is, moving a position
 vector $a$ along another vector $b$ does not, in general, give the same result
 as moving $b$ along $a$. This can be seen by tracing the grid
 in figure \ref{fig:circlelimit} as shown in figure \ref{fig:limitgrid}.
@@ -239,13 +241,13 @@ It is alo clear algebraically since
 T_xT_y = \alpha(\lambda + \lambda\bar{e}(x+y) - \bar{e}xy\bar{e})
 \]
 \[
-T_yT_x = \alpha(\lambda + \lambda\bar{e}(x+y) - \bar{e}yx\bar{e})
+T_yT_x = \alpha(\lambda + \lambda\bar{e}(x+y) - \bar{e}yx\bar{e}).
 \]
-which are only identical if $xy = yx$, i.e.\ if $x$ and $y$ are parallel.
+These are only identical if $xy = yx$, i.e.\ if $x$ and $y$ are parallel.
 This means that
 $T_{y-x}$ is {\em not} the rotor taking us from
 position $x$ to position $y$. However, this is not a
-problem, since we can always achieve this motion via
+problem since we can always achieve this motion via
 going back through the origin, and forming
 %
 \begin{equation}
@@ -283,7 +285,7 @@ of the disc $r<\lambda$. By reflection in $e$, as we
 shall see below, we are able to jump into a `dual world'
 outside the disc.
 
-Having achieved a representation function, and discussed
+Having achieved a representation function and discussed
 the set of motions, we should examine this new space in
 relation to the Poincar\'e disc, which we have claimed it is
 equivalent to with a view to justifying this claim.
@@ -306,10 +308,10 @@ equation \ref{eqn:nonEuclidTrans1}, $T_x = \exp\left(\frac{f(r)}{2}\bar{e}\hat{r
 %
 %where $f(r) = \sinh^{-1}\left(\frac{2\lambda
 %r}{\lambda^2-r^2}\right)$,
-we would expect the correct distance
+we would expect that the correct distance
 measure to associate with it would be $f(r)$. This would be a
 viable option, except that for points close to the origin of the
-disc ($r\ll\lambda$) we would like ordinary Euclidean notions of
+disc ($r\ll\lambda$) it is desirable that ordinary Euclidean notions of
 distance to apply, at least approximately. It is clear that $\ebar =
 (1/2)(n-\nb)$ and the $\nb$ part of this, when exponentiated and
 applied as in equation \ref{eqn:almost-X-rep}, has no effect to
@@ -370,7 +372,7 @@ d(r) = \sinh^{-1}\left(\sqrt{-\frac{1}{2} X \dt (-\nb) }
 \right)
 \end{equation}
 %
-Note, $X \dt (-\nb)$ is the inner product of $X$ with the
+Note that $X \dt (-\nb)$ is the inner product of $X$ with the
 null vector representing the origin. Two points in any
 general positions can be wound back using a common
 translation rotor so that one of them ends up at the
@@ -387,7 +389,7 @@ X'\dt (-\nb)$ gives the distance between the two points from
 equation~(\ref{eqn:dist-to-origin}), we can now write this
 distance in terms of $X\dt Y$. Note that at no stage in the
 process has the inner product between the null vectors changed (the
-inner product is rotor invariant), and thus we have succeeded in
+inner product is rotor invariant); thus we have succeeded in
 defining a distance between general points in terms of inner
 products. If the general points are $x$ and $y$ with
 representatives $X$ and $Y$, the expression for the distance
@@ -410,7 +412,7 @@ X\dt Y  & = &
   \frac{-2\lambda^2}{(\lambda^2-x^2)(\lambda^2-y^2)}(x-y)^2
   \end{eqnarray}
 %
-Written in terms of the points themselves the distance
+Written in terms of the points themselves, the distance
 between the points is therefore
 %
 \begin{equation}\label{eqn:general-dist-formula-points}
@@ -422,8 +424,8 @@ d(x,y) = \sinh^{-1}\left(\lambda
 
 Armed with this distance function, we can now investigate
 geodesics in the disc. These are the lines that are `straightest'
-in the geometry defined by the distance function (more precisely,
-the arc length along them is extremal.) We will not give the
+in the geometry defined by the distance function -- more precisely,
+the arc length along them is extremal. We will not give the
 details, but show some numerically computed examples in
 figure~\ref{fig:hyper-geos}.
 %
@@ -435,8 +437,8 @@ fact the arc of a circle. ($\lambda=1$ has been taken here.) }
 \end{figure}
 %
 In calculating these we have taken $\lambda=1$, so the disc is now
-the unit disc ordinarily considered in the Poicar\'e model. One
-finds that each geodesic is an arc of a circle, and that each of
+the unit disc ordinarily considered in the Poicar\'e model. We
+find that each geodesic is an arc of a circle, and that each of
 them asymptotically approaches the bounding unit circle at right
 angles. At this point we can start making contact with the
 description of the classical approach to the Poincar\'e
@@ -451,7 +453,7 @@ d(x,0) = \tanh^{-1}(|x|)
 \end{equation}
 %
 and therefore agrees with our identification of $d(r)=
-f(r)/2$, using equation \ref{eqn:sinhcosh}, and
+f(r)/2$, using equation \ref{eqn:sinhcosh} and
 taking $\lambda=1$.
 
 This distance function allows us to define a geometrically analogous
@@ -472,14 +474,14 @@ what is already known. We now start to show the power of
 the conformal GA approach to this geometry, by showing
 how the operations and objects defined previously in
 conformal Euclidean geometry have immediate analogues
-here, representing a considerable unification, and saving
+here, representing a considerable unification and saving
 of effort. It may also be worth noting here that the
 power of this approach extends immediately to three or more
 dimensions where the Poincar\'e
 disc becomes a sphere. On the other hand, to provide a
 computational scheme which is somewhat akin to our rotor
 formulation, Brannan \emph{et al} \cite{GEOM:Brannan} introduce complex coordinates
-to work in the Poincar\'e disc, and use Mobius
+to work in the Poincar\'e disc and use Mobius
 transformations in place of the rotors. These are
 effective computationally in two dimensions, but of course the
 complex variable apparatus does not extend at all to three dimensions.
@@ -524,7 +526,7 @@ covariance of the definition of a line, for the same
 reasons as in the Euclidean case (namely here that $R e
 \tilde{R} = e$ for any allowable rotor $R$).
 
-The immediate, very important question, of course, is
+We are faced with the immediate, very important question of
 what precisely {\em is\/} the object we have constructed.
 Ideally it should correspond to the $d$-line geodesics we
 have just discussed. To determine whether a position $X$
@@ -564,18 +566,18 @@ each. Brannan \emph{et al}\cite{GEOM:Brannan} deal with this on page 288, but
 consider only the easiest case where the two points lie along a diameter of
 the unit disc.
 
-We know in the Euclidean case, that forming $A+B$ will give a
+We know, in the Euclidean case that forming $A+B$ will give a
 non-null point consisting of a multiple of the null vector
 representing the desired midpoint, plus a multiple of the point at
 infinity $n$. We hypothesise that we will get the same behaviour
 here, but with $e$ playing the role of $n$. We can use two
 different methods to obtain these results. The second is faster
 than the first, but we outline both, since they both typify the
-techniques available for use, and serve as good illustrations of
+techniques available for use and serve as good illustrations of
 the power of the covariant method for hyperbolic geometry.
 
 Firstly, since we can move objects around at will, let us
-establish the result in the simplest case, where the two
+establish the result in the simplest case -- where the two
 points are symmetrically disposed about the origin, e.g.
 let $a=\alpha e_1$ and $b=-\alpha e_1$. Clearly, by
 symmetry the hyperbolic midpoint must be the origin
@@ -622,14 +624,14 @@ B}-1\right) \right\}
 \end{equation}
 %
 Everything on the right hand side is covariant, and the separation between
-$A$ and $B$ was controlled by a variable which was kept general
+$A$ and $B$ is controlled by a variable which has been kept general
 ($\alpha$), so by employing translation and rotation rotors on the
 right hand side we can make $A$ and $B$ line up with any two desired
 points. Meanwhile the left hand side will keep track, and must still
 remain the midpoint. To see this, note that its `dot' with the
-new points that $A$ and $B$ transform into, will remain constant
+new points that $A$ and $B$ transform into will remain constant
 during this process. The $e$ term just remains invariant. For two
-completely general points $A$ and $B$ therefore, their
+completely general points $A$ and $B$, therefore, their
 hyperbolic midpoint is given by
 %
 \begin{equation} \label{eqn:mid-point-expr}
@@ -656,7 +658,7 @@ X_{\rm mid} = \frac{1}{\beta} (A+B-\delta e)
 \end{equation}
 %
 which shows that our assumption about the form of the
-midpoint is in fact valid. This is because dotting the
+midpoint is in fact valid. This is because, by dotting the
 right hand side with $A$ and $B$ in turn, we obtain
 %
 \begin{equation}
@@ -673,7 +675,7 @@ X_{\rm mid} \wedge (e \wedge A \wedge B) = 0
 %
 so it correctly lies on the $d$-line joining them.
 
-It just remains to fix $\delta$ and $\beta$ via requiring
+It just remains to fix $\delta$ and $\beta$ by requiring
 that $X_{\rm mid}$ is null and is correctly normalised.
 The null requirement gives
 %
@@ -705,15 +707,15 @@ C = A \wedge B \wedge D
 %
 The set of points $X$ which satisfy $X\wedge C=0$ can be found
 in a similar manner to the Euclidean case since the null-vector
-representation is the same up to a scale factor; 
+representation is the same up to a scale factor -- 
 i.e.\ in the Euclidean case we know that $X =
 \frac{1}{2\lambda^2}[x^2n + 2\lambda x - \lambda^2\nb]$ and in the
 hyperbolic case $X = \frac{1}{\lambda^2 - x^2}[x^2n + 2\lambda
 x - \lambda^2\nb]$.
 If the above hypothesis is true, we can
-immediately deduce the somewhat surprising, though in fact true,
+immediately deduce the somewhat surprising -- though in fact true --
 conclusion that hyperbolic circles are also Euclidean circles.
-It turns out that it is just their centres that are in general
+It turns out that it is just their centres that are, in general,
 different.
 
 To establish that $C$ is a hyperbolic circle, as well as
@@ -740,7 +742,7 @@ giving $C^*=B-\frac{1}{2\lambda^2}(\rho)^2n$, where $C$ is the
 trivector describing the circle. Thus if $B$ is the origin, so
 that $B = -\frac{1}{2}\nb$, the dual of $C$ is given by $C^* =
 -\frac{1}{2\lambda^2}\{\rho^2 n + \lambda^2\nb\}$. Now, since
-$n+\nb = 2e$ we can write $\rho^2 n + \lambda^2\nb$ as
+$n+\nb = 2e$, we can write $\rho^2 n + \lambda^2\nb$ as
 %
 \begin{equation} \label{eqn:dual-to-C}
 \rho^2 n + \lambda^2 \nb = 2 \rho^2 e + (\lambda^2 -
@@ -791,7 +793,7 @@ radius and centre from the dual object. Again we see that the
 r\^ole of the $n$ appearing in the Euclidean expressions is
 replaced by $e$ here. Specifically we find the following: the
 (normalised dual to the) hyperbolic circle with hyperbolic
-centre $P$, Euclidean radius $\rho$ and hyperbolic radius $d$,
+centre $P$, Euclidean radius $\rho$ and hyperbolic radius $d$
 is given by
 %
 \begin{equation}\label{eqn:non-e-circle}
@@ -811,12 +813,12 @@ reflection of a point $X$ in the $d$-line $L$ in the GA approach.
 Assuming $L$ is normalised to satisfy $L^2=1$, we just form $LXL$,
 the standard form of reflecting one object in another. Since $L e
 L = e$ for any normalised line, we see that $X'=LXL$ is both
-null and satisfies $X' \dt e=-1$ thus qualifying it to represent a
+null and satisfies $X' \dt e=-1$, thus qualifying it to represent a
 point. Moreover it is covariantly constructed;
 under a rotor transformation it just rotates to $R X'
 \tilde{R}$ and thus must represent something physical. It is not
 hard to show that the point it represents is that found by moving
-along a $d$-line intersecting $L$ at right angles and passing
+along a $d$-line, intersecting $L$ at right angles and passing
 through $X$, by an equal hyperbolic distance on the other side
 of the line as $X$ is on the original side. This is indeed the
 definition of reflection in this case.
@@ -825,7 +827,7 @@ definition of reflection in this case.
 
 All the above transfers seamlessly to three and higher dimensions, in
 most cases with no changes at all to the formul\ae. This is in
-contrast to e.g. the methods introduced in \cite{GEOM:Brannan}, which
+contrast to, for instance, the methods introduced in \cite{GEOM:Brannan}, which
 rely on standard complex analysis and so only work in the 2d
 plane. Furthermore, we can extend all the above analysis to the
 case of \textit{spherical geometry} as well. This involves
@@ -858,13 +860,13 @@ of curves called Non-uniform Rational B-Splines (NURBS)\cite{mecg}.
 %curves by a set of \emph{control points} and associated \emph{weights}.
 
 NURBS curves are specified using a set of control points, $P_i$,
-weights, $w_i$ and a set of normalised basis functions $N_{i,k}$.
+weights, $w_i$ and a set of normalised basis functions, $N_{i,k}$.
 The curve is given by
 \[
 C(u) = \frac{\sum_{i=0}^n w_i P_i N_{i,k}(u)}{\sum_{i=0}^n w_i N_{i,k}(u)}
 \]
 
-The basis functions are defined recursively:
+The basis functions are defined recursively.
 \[
 N_{i,k}(u) = \frac{u - t_i}{t_{i+k} - t_i} N_{i,k-1}(u) +
   \frac{t_{i+k+1} - u}{t_{i+k+1} - t_{i+1}} N_{i+1,k-1}(u)
@@ -888,7 +890,7 @@ is given by $m = n + k + 1$ \cite{peigl, rogers}.
 
 Clearly a large family of curves can be expressed with suitable choices
 of knot vectors, weights and control points leading to great flexibility.
-All NURBS curves share some common properties however which make them
+All NURBS curves share some common properties, however, which make them
 useful in Computer Graphics. A NURBS curve \emph{always} stays inside the
 convex hull of its control points \cite{rogers} and thus it is straightforward
 to compute whether the curve will be displayed at all. Further they
@@ -913,11 +915,11 @@ A large number of different curves can be created with different control
 point numbers, positions and weights. Fortunately there are a number of
 standard techniques to generate common curves. One such method of
 drawing circular arcs\cite{NURBS:arc} is useful to us. We use three control
-points; one at the start of the circular arc, one at the origin of the
-boundary circle and one
-at its end, see figure \ref{fig:nurbs}. 
+points: one at the start of the circular arc; one at the origin of the
+boundary circle; and one
+at its end (see figure \ref{fig:nurbs}). 
 The end-point weights are unity whereas the weight of the control
-point at the origin is $\cos \gamma$ where $\gamma$ is the angle
+point at the origin is $\cos \gamma$, where $\gamma$ is the angle
 $OA$ makes with $AB$.
 
 \begin{figure} \centering
@@ -962,7 +964,7 @@ Here we have three $d$-lines created by rotating and translating the
 diameter to form a hyperbolic triangle (central dark-shaded
 region). Each of these lines was then reflected in the other two to form 
 a set of three reflected triangles (outer light-shaded regions). This
-operation could be repeated to tile the space.
+operation can be repeated to tile the space.
 
 \begin{figure} \centering
 \scalebox{0.5}{\includegraphics{hyperbolic1}}
@@ -974,14 +976,14 @@ operation could be repeated to tile the space.
 
 
 Drawing $d$-lines is interesting in itself but is an already solved 
-problem many-times over. What is interesting is the generality the GA
+problem many times over. What is interesting is the generality the GA
 approach provides. Recalling our discussion of the development of
 hyperbolic geometry in GA, at no point did we ever assume only 
-two-dimensions. We now have the intriguing opportunity to investigate
-visualisation algorithms in three-dimensions.
+two dimensions. We now have the intriguing opportunity to investigate
+visualisation algorithms in three dimensions.
 
 We'll first assume that there is some analogous form to the Poincar\'e
-disc representation for three-dimensions. In this case, $d$-lines can
+disc representation for three dimensions. In this case, $d$-lines can
 be drawn using a similar method, this time intersecting them with a 
 boundary sphere to find the two points of eruption. What would be 
 more interesting is attempting to find the form for `$d$-planes'.
@@ -999,7 +1001,7 @@ the definition. Any point, $p$, which lies on the plane $\Phi$ satisfies
 F_e(p) \wedge \Phi = 0
 \]
 
-The drawing of $d$-planes is, however, less straight-forward. Firstly we
+The drawing of $d$-planes is, however, less straight forward. Firstly we
 need to find what shape they are when represented in the Poincar\'e sphere.
 Recall that
 \[
@@ -1061,7 +1063,7 @@ If we note that the circle is equivalent to the wedge-product of three
 points on the circumference we can form the plane of the circle
 by simply wedging the circle with $n$. In summary,
 the plane of intersection, $P$ can be found from the $d$-plane $\Phi$ in
-the following manner:
+the following manner.
 \[
 P = k (\Phi \vee B) \wedge n
 \]
@@ -1088,14 +1090,14 @@ This method was used to draw the spherical caps in the implementation.
 \section{Chapter summary}
 
 In this chapter we explored a method of extending the Conformal Model
-of GA to non-Euclidean geometires, specifically hyperbolic geometry. We
+of Geometric Algebra to non-Euclidean geometires, specifically hyperbolic geometry. We
 outline a method for drawing $d$-lines and $d$-planes within a piece of
 visualisation software. In addition the power of the GA approach was demonstrated
 in that the basic building blocks of the Conformal Model, a mapping of vectors
 to nul-vector representations and a set of rotors which act upon these
 null-vectors, are used in an identical manner to the Euclidean Conformal Model.
 This allows problems to be specified and solved in Euclidean geometry 
-once and by `turning a knob' (replacing the null-vector mapping and rotors) the
+once, and by `turning a knob' (replacing the null-vector mapping and rotors) the
 problem is solved for hyperbolic geometry. This is demonstrated in the next
-chapter where we extend well known methods of generating complex-iteration
+chapter, where we extend well known methods of generating complex-iteration
 based fractals to arbitrary dimension and in non-Euclidean geometries.
