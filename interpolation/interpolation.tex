@@ -19,13 +19,13 @@ We have shown that any displacement of Euclidean geometry
 %considered with appropriate modification of the rotors \cite{cgwcga}.} 
 may be mapped smoothly
 onto a linear subspace of the bivectors. This immediately suggests applications to smooth interpolation
-of displacements. Consider a set of poses we wish to interpolate, $\{P_1, P_2, ..., P_n\}$ and a set
+of displacements. Consider a set of poses we wish to interpolate, $\{P_1, P_2, ..., P_n\}$, and a set
 of rotors which transform some origin pose to these target poses, $\{R_1, R_2, ..., R_n\}$. We
 may map these rotors onto the set of bivectors $\{\ell(R_1), \ell(R_2), ..., \ell(R_n)\}$ which
 are simply points in some linear subspace of the bivectors. We may now choose any interpolation of these bivectors
 which lies in this space and for any bivector on the interpolant, $B'_\lambda$, we can compute
 a pose, $\exp(B'_\lambda)$. We believe this method is more elegant and conceptually simpler
-than many other approaches based on Lie-algebras \cite{LIE:Consistentmotion, LIE:Moak,
+than many other approaches based on Lie algebras \cite{LIE:Consistentmotion, LIE:Moak,
   LIE:ROT, LIE:Sphericalfun}.
 
 Another interpolation scheme is to have the poses defined by a set of chained rotors so that
@@ -59,7 +59,7 @@ R_{n+1} & = & (\Delta R_n) R_n\\
 \end{eqnarray*}
 
 We then find the bivector, $\Delta B_n$ which generates $\Delta R_n = \exp(\Delta B_n)$. Finally we
-form a rotor interpolating between $R_n$  and $R_{n+1}$:
+form a rotor interpolating between $R_n$  and $R_{n+1}$
 \[
 R_{n,\lambda} = \exp(\lambda \Delta B_n)R_n
 \]
@@ -77,7 +77,7 @@ three representative poses.}
 
 Another simple form for interpolation is the quadratic interpolation where a quadratic 
 is fitted through three interpolation points, $\{B_1, B_2, B_3\}$ with an interpolation
-parameter varying in the range $(-1,+1)$:
+parameter varying in the range $(-1,+1)$
 \[
 B'_\lambda = \left(\frac{B_3 + B_1}{2} - B_2\right)\lambda^2 + \frac{B_3 - B_1}{2}\lambda + B_2
 \]
@@ -88,7 +88,7 @@ B'_{-1} = B_1,\quad B'_{0}=B_2\ \mbox{ and }\ B'_{+1} = B_3
 This interpolation varies smoothly through $B_2$ and is reflected in the final
 interpolation, as shown in figure \ref{fig:interp}b. Extensions to the quadratic
 interpolation for more than three interpolation points, such as smoothed
-quadratic interpolation \cite{cendes} are readily available.
+quadratic interpolation \cite{cendes}, are readily available.
 
 \subsection{Alternate methods}
 
@@ -96,17 +96,17 @@ It is worth noting that the methods described above
 used either a direct interpolation of the bivector $\ell(R)$ corresponding
 to a rotor $R$, as in the quadratic interpolation example, or by interpolating 
 the relative rotors which take one frame
-to another, as in the piece-wise linear example. Either method could have used either
+to another, as in the piecewise linear example. Either method could have used either
 convention when choosing the bivectors to interpolate. Generally it is not clear
 which is the best approach and choosing that which fits a particular application
-best may be the best course of action.
+may be the wisest course of action.
 
 \subsection{Interpolation of dilations}
 
 In certain circumstances it is desirable to add in the ability to interpolate
-dilations. This was investigated in \cite{jic23fyr} and is included here
+dilations. This is investigated in \cite{jic23fyr} and is included here
 for completeness. In \cite{jic23fyr} it is shown that this can be done by extending
-the form of the bivector, $B$, which we exponentiate, as follows
+the form of the bivector, $B$, which we exponentiate as follows
 \[
 B = \phi P + tn + \omega N
 \]
@@ -141,7 +141,7 @@ presented
 below. Here we use $\left<R|e_i\right>$ to represent the component of $R$
 parallel to $e_i$, i.e.\ $\left<R|N\right> = \left<R|e_{45}\right>$ in 
 3-dimensions. We also use $\left<R\right>_i$ to represent the 
-$i$-th grade-part of $R$ and $S(X)$ to represent the 
+$i$-th grade part of $R$ and $S(X)$ to represent the 
 `spatial' portion of $X$ (i.e.\ those components not parallel to $e$ and 
 $\bar{e}$).
 
@@ -175,10 +175,10 @@ the method used above whereby the rotor being interpolated takes one pose to ano
 
 Since we have shown that $\exp(B)$ is indeed a rotor, it follows that any
 Euclidean pure-translation rotor will commute with it. Thus we only need consider the
-interpolant path when interpolating from the origin to some other point since
+interpolant path when interpolating from the origin to some other point, since
 any other interpolation can be obtained by simply translating the origin to
-the start point. This location independence of the interpolation is a 
-desirable property in itself but also provides a powerful analysis mechanism.
+the start point. This location-independence of the interpolation is a 
+desirable property in itself, but also provides a powerful analysis mechanism.
 
 \begin{figure}\centering
 \includegraphics[height=1in]{plane_basis}
@@ -204,7 +204,7 @@ t'_\parallel =- \sinc\left(\frac{\lambda\phi}{2}\right)
 \right).
 \]
 
-We firstly resolve a three dimensional, orthonormal, basis relative to $P$ as shown in figure 
+We firstly resolve a three dimensional orthonormal basis relative to $P$ as shown in figure 
 \ref{fig:plane_basis}. Here $a$ and $b$ are orthonormal vectors in the plane of $P$ and hence
 $P = ab$. We may now express $t_\parallel$ as $t_\parallel = t^a a + t^b b$ where $t^{\{a,b\}}$ are suitably
 valued scalars.
