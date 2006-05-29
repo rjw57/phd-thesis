@@ -8,7 +8,7 @@
 \label{chap:exponential}
 
 In this chapter we shall consider common representations for pure-rotation
-rotors, translators and combinations of the both. We shall term rotors which
+rotors, translators and combinations of both. We shall term rotors which
 represent rotations and translations \emph{general displacement} rotors. We
 will not explicitly deal with other rotors, such as dilation rotors, but
 similar techniques may be useful for their investigation.  If we examine the
@@ -24,7 +24,7 @@ R = \exp(B)
 \]
 where $B$ is the sum of two bivectors, one spatial and
 the other formed from the outer product of
-$n$ with a spatial vector. Our justification being that those closely match
+$n$ with a spatial vector. Our justification is that those closely match
 the form of the bivectors which generate rotation and translation rotors 
 respectively. The effect of this is to separate the basis bivectors of $B$
 into one with components of the form $e_i \wedge e_j$ and one with components
@@ -48,14 +48,14 @@ R \equiv \exp(\ell(R))
 \end{equation}
 and so $\ell(R)$ may be considered as to act as a logarithm-like function in
 this context.  It is worth noting that $\ell(R)$ does not possess all the
-properties usually associated with logarithms, notably that, since
+properties usually associated with logarithms, notably, since
 $\exp(A)\exp(B)$ is not generally equal to $\exp(B)\exp(A)$ in non-commuting
 algebras, $\ell(\exp(A)\exp(B))$ cannot be equal to $A + B$ except in special
 cases.
 
 To avoid the the risk of assigning more properties to $\ell(R)$ than we have
 shown, we shall resist the temptation to denote the function $\log(R)$. The
-most obvious property of $\log(\cdot)$ that $\ell(\cdot)$ doesn't possess is
+most obvious property of $\log(\cdot)$ that $\ell(\cdot)$ does not possess is
 $\log(AB) = \log(A) + \log(B)$. This is clear since the geometric product is
 not commutative in general whereas addition is.
 
@@ -113,7 +113,7 @@ B^k & = & \phi^k P^k + \alpha_{k-1}^{(1)}\phi^2 PtnP +
 \end{eqnarray*}
 
 Substituting $P^2 = -1$, $(tn)^2 = - tn^2t = 0$ and noting that
-$nPt = - Ptn$ leading to $tnPtn = - tPtn^2 = 0$
+$nPt = - Ptn$ leads to $tnPtn = - tPtn^2 = 0$
 
 \begin{eqnarray*}
 B^k & = & \phi^k P^k + \alpha_{k-1}^{(1)}\phi^2 PtnP -
@@ -255,10 +255,10 @@ The exponentiation function may be re-expressed using a twist
 We firstly substitute our definition of a twist into our form for the exponential
 \begin{equation}
 \exp\left(\frac{\phi}{2}P + \frac{tn}{2}\right) =
-\tau(\phi, P, - t_\perp) + \sinc\left(\frac{\phi}{2}\right)\frac{t_\parallel n}{2}
+\tau(\phi, P, - t_\perp) + \sinc\left(\frac{\phi}{2}\right)\frac{t_\parallel n}{2}.
 \label{eqn:twistform}
 \end{equation}
-noting that, since twists are rotors, $\tau( \cdot ) \tilde{\tau}(\cdot) = 1$, it is
+Noting that, since twists are rotors, $\tau( \cdot ) \tilde{\tau}(\cdot) = 1$, it is
 then clear that the required expression is equivalent to this form of the exponential.
 \end{proof}
 
@@ -290,7 +290,7 @@ R = \exp\left(
 \frac{\phi}{2} P + \frac{tn}{2}
 \right)
 \]
-It translates along a vector $t_\perp$ which is the component of $t$ which does not lie in the
+It translates along a vector $t_\perp$ being the component of $t$ which does not lie in the
 plane of $P$, rotates by $\phi$ in the plane of $P$ and finally translates along 
 $t'_\parallel$ which is given by
 \[
@@ -337,7 +337,7 @@ R\tilde{R} & = & \tau(\phi, P, - t_\perp)\tilde{\tau}(\phi, P, - t_\perp)
 where $T = \tau(\phi, P, - t_\perp)nt_\parallel$.
 
 Looking at the definition of $\tau(\phi, P, - t_\perp)$, it is clear
-that it has only scalar, bivector and 4-vector components with
+that it has only scalar, bivector and 4-vector components, with
 the bivector components being parallel to $P$ or $t_\perp n$ and
 the 4-vector components being parallel to $Pt_\perp n$. When
 post-multiplied by $nt_\parallel$ to form $T$, the 4-vector component
@@ -402,14 +402,14 @@ $Rn\tilde{R} = nR\tilde{R} = n$.
 
 We have found a form for $\exp(B)$ given that $B$ is in a particular form.
 Now we seek a method to take an arbitrary displacement
-rotor, $R = \exp(B)$ and re-construct the original $B$. Should there exist
+rotor $R = \exp(B)$ and re-construct the original $B$. Should there exist
 a $B$ for all possible $R$, we will show that our initial assumption
 that all displacement rotors can be formed from a single exponentiated bivector
 of special form is valid. We shall term this initial bivector
 the \emph{generator} rotor (to draw a parallel with Lie algebras).
 
 We can obtain the following identities for $B=(\phi / 2) P + tn / 2$ by simply considering
-the grade of each component of the exponential:
+the grade of each component of the exponential
 \begin{eqnarray*}
 \left< R \right>_0 & = & \cos\left(\frac{\phi}{2}\right) \\
 \left< R \right>_2 & = & \sin\left(\frac{\phi}{2}\right) P + 
@@ -417,9 +417,9 @@ the grade of each component of the exponential:
 \left< R \right>_4 & = & \sin\left(\frac{\phi}{2}\right) Pt_\perp n
 \end{eqnarray*}
 
-It straightforward to reconstruct $\phi, t_\perp$ and
+It straightforward to reconstruct $\phi,\ t_\perp$ and
 $t_\parallel$ from these components by partitioning a rotor as above. Once we
-have a method which gives the generator $B$ for any displacement rotor $R$ we
+have a method which gives the generator $B$ for any displacement rotor $R$, we
 have validated our assumption.
 
 \begin{thm}
@@ -448,7 +448,7 @@ equations to be true
 \left<R\right>_2 n & = & \sinc(\magof{ab}) \, abn\\
 \left(\left<R\right>_2 n\right) \cdot e & = & \sinc(\magof{ab}) \, ab
 \end{eqnarray*}
-and hence the relation for $ab$ is correct.
+therefore the relation for $ab$ is correct.
 \begin{eqnarray*}
 \left<R\right>_4 & = & \sinc(\magof{ab}) \, ab\cperp n \\
 ab \left<R\right>_4 & = & -\magof{ab}^2 \sinc(\magof{ab}) \, \cperp n 
@@ -462,7 +462,7 @@ ab \left<R\right>_2 & = & \cos(\magof{ab}) \, ab\cperp n +
 \left<ab \left<R\right>_2\right>_2 & = & 
 \sinc(\magof{ab}) \, ab \cpar n
 \end{eqnarray*}
-and hence the relation for $\cpar n$ is correct.
+and so the relation for $\cpar n$ is correct.
 \end{proof}
 
 % \section{Limitations of Current Form}
@@ -475,7 +475,7 @@ is convenient mathematically and useful for smooth pose interpolation
 and mesh deformation, as will be presented later, it is somewhat cumbersome
 to integrate into an existing graphical pipeline. Most graphics hardware and
 nearly all graphics APIs represent rigid-body transformations as $4 \times 4$ matrices.
-Specifically given the projective mapping from a three-dimensional vector $\mathbf{x}$ to
+Specifically, given the projective mapping from a three-dimensional vector $\mathbf{x}$ to
 its homogeneous representation,
 \[
 \mathbf{x} \mapsto \left[ \begin{array}{c}
@@ -504,21 +504,21 @@ and
 Here $\mathbf{R}$ is an orthonormal $3 \times 3$ rotation matrix and $\mathbf{t}$ is some
 translation vector.
 
-Due to the common nature of such a representation it would be advantageous to
+Due to the common nature of such a representation, it would be advantageous to
 have some method of mapping between the conveniently linear space of
-generators to the decidedly non-linear space of these $4 \times 4$ matrices.
+generators to the non-linear space of these $4 \times 4$ matrices.
 In this section we shall develop such a method. Note that we shall only be
-working in three-dimensions due to the limitations of the matrix
+working in three dimensions due to the limitations of the matrix
 representation rather than the exponentiated generator representation.
 
-Recall that we represent a rotor, $R$, as $R = \exp(B)$ where $B$ is a bivector
+Recall that we represent a rotor, $R$, as $R = \exp(B)$ where $B$ is a bivector.
 The generator bivector, $B$, may itself be
-parametrised in terms of a spatial bivector $P$ normalised such that
+parametrised in terms of a spatial bivector $P$ which is normalised such that
 $P^2 = -1$, a scalar $\phi$ and a spacial vector $t$
 as in lemma \ref{lem:bk}.
 Letting $P = p_1 e_{12} + p_2 e_{23} + p_3 e_{31}$ and
 $t = t_1 e_1 + t_2 e_2 + t_3 e_3$ we may represent $B$ via the
-vector $\mathbf{b}$:
+vector $\mathbf{b}$
 \[
 \mathbf{b} = [ p_1 \; p_2 \; p_3 \; t_1 \; t_2 \; t_3 ]^T.
 \]
@@ -532,12 +532,12 @@ hence a valid rotor.
 %one to another with the proviso that 
 
 It is also worth noting that this method of converting from a matrix
-representation to a generator is ambiguous in so much as the matrix representation
-cannot uniquely represent rotations by more the $2\pi$.
+representation to a generator is ambiguous inasmuch as the matrix representation
+cannot uniquely represent rotations by more than $2\pi$.
 
 \subsection{Method}
 
-We shall attempt to linearise the application of a rotor associated
+We shall attempt to represent the application of a rotor associated
 with a generator to a point by defining an appropriate linear function
 $h(\cdot)$.
 
@@ -547,8 +547,8 @@ The function $h(\phi, P, t, p)$ is defined as
 h(\phi, P, t, p) = F^{-1} \left( R F(p) \tilde{R} \right)
 \]
 where $R = \exp(B)$, $B = \phi P+tn$ and $P, \phi$ and $t$ are
-as defined in lemma \ref{lem:bk}. $F(\cdot)$ is the usual vector 
-to null-vector mapping.
+as defined in lemma \ref{lem:bk}. $F(\cdot)$ is the 
+mapping of vectors to their null-vector representation.
 \end{definition}
 
 It is easy, if somewhat tedious, to show by direct expansion and comparison of terms that
@@ -564,7 +564,7 @@ where $s = \sin(\phi/2)$, $c = \cos(\phi/2)$ and $k = \textrm{sinc}(\phi/2)$.
 
 \begin{definition}
 The function $\mathbf{v}(x)$ maps the $m$-dimensional vector $x$ to its column-vector
-representation,
+representation
 \[
 \mathbf{v}(x) = \left[
 \begin{array}{c}
@@ -575,7 +575,7 @@ x \cdot e_1 \\ x \cdot e_2 \\ \vdots \\ x \cdot e_m
 \end{definition}
 
 It is clear by inspection that the function $h(\cdot)$ is 
-constant with respect to $p$ added to a functions linear in $p$  
+constant with respect to $p$ added to a function linear in $p$  
 therefore we can find some $3\times4$ matrix $\mathcal{H}(\phi, P, t)$, such that
 \begin{equation}
 \mathbf{e}^T 
@@ -588,7 +588,7 @@ therefore we can find some $3\times4$ matrix $\mathcal{H}(\phi, P, t)$, such tha
 where $\mathbf{e}^T = \left[ e_1 \; e_2 \; e_3 \right]$.
 
 Comparing the action of $\mathcal{H}$ and the form of $\left[ \mathbf{v}(p) \; 1 \right]^T$
-to the discussion of $4\times4$ transformation matrices above it is easy to
+to the discussion of $4\times4$ transformation matrices above, it is easy to
 see that the mapping $p \mapsto h(\phi, P, t, p, 1)$ is equivalent to
 \[
 \left[
@@ -614,7 +614,7 @@ with
 \right].
 \]
 
-Mapping a given generator, parametrised in terms of $\phi, P$ and $t$ therefore
+Mapping a given generator parametrised in terms of $\phi, P$ and $t$ therefore
 requires finding a closed form of $\mathcal{H}$ given $h(\cdot)$.
 
 \subsection{Finding $\mathcal{H}$ from a generator}
@@ -622,7 +622,7 @@ requires finding a closed form of $\mathcal{H}$ given $h(\cdot)$.
 In this section we shall seek a method of directly obtaining an appropriate
 form for $\mathcal{H}$ which represents the same action as a particular
 generator. Ideally this mapping should be simple enough to fit inside the
-programmable portions of a Graphics Processing Unit allowing for hardware
+programmable portions of a Graphics Processing Unit, allowing for hardware
 accelerated generator-based algorithms to be implemented on consumer-level
 graphics hardware.
 
@@ -818,7 +818,7 @@ transformation matrix. Note that this method can only reconstruct a generator
 up to a rotation of $2\pi$ due to deficiencies in the matrix representation.
 
 \begin{definition}
-Define the two sub matrices of $\mathcal{H}$,
+Define the two sub-matrices of $\mathcal{H}$,
 $\mathbf{R}$ and $\mathbf{t}$
 \[
 \mathcal{H} = [ \mathbf{R}\; ; \; \mathbf{t} ]
@@ -853,8 +853,7 @@ and
 \[
 c^2 + s^2 = 1.
 \]
-There are four constraints in two unknowns and hence the system is over-constrained and
-so in practise one would use a linear-least-squares estimator.
+There are four constraints in two unknowns and hence the system is over-constrained -- in practice one would use a linear-least-squares estimator.
 \end{definition}
 
 \begin{fancyalg}
@@ -897,7 +896,7 @@ reconstruct $\mathbf{M}_3(P)$ directly from $\mathbf{t}$ and hence recover
 \mathbf{v}(t) = \mathbf{M}^{-1}_3(P) \mathbf{t}.
 \]
 Finally, given $s$, $c$ and $k$, an estimate for 
-$\phi$ can be made. This algorithm is outlined explicitly in algorithm 
+$\phi$ can be made. This algorithm is outlined explicitly in figure 
 \ref{alg:reconstructGenerator}.
 
 In practice we might wish to use LU decomposition or similar rather
@@ -908,11 +907,11 @@ returned.
 
 \section{Chapter summary}
 
-In this chapter we investigated a key feature of the conformal model; all
+In this chapter we investigated a key feature of the conformal model -- all
 rotors representing conformal transformations are formed by exponentiating
 bivectors. We found a closed form for the exponentiation of bivectors
-which result in rotors representing regid body transforms and found
-that such bivectors lie in, for 3d transformations, a linear 6d subspace
+which results in rotors representing rigid body transforms and found
+that such bivectors lie, for 3d transformations, in a linear 6d subspace
 of the 5d bivectors. We also, importantly, found a method of converting back
 from a rotor into the corresponding bivector. Finally we used these relations
 to find algorithms for converting directly between $4 \times 4$
