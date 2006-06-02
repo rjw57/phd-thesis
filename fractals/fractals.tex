@@ -441,10 +441,46 @@ sharper images.
 
 \subsection{Ray Tracing}
 
-In this section we extend the method in \cite{FRAC:HypercomplexIterations} of 
+In this section we briefly extend the method in \cite{FRAC:HypercomplexIterations} of 
 ray-tracing quaternionic escape-time fractals to the generalised GA fractals developed 
-above.
+above. Ray-tracing of fractals is acheived by finding some distance function
+$d(x;\Omega)$ which gives the minimum distance to the fractal parameterised by
+$\Omega$ along the from the point $x$. For a Julia fractal the
+parameter $\Omega$ is the constant $c$. For a Mandelbrot fractal there is no
+paramter as the fractal is unique. 
 
+In \cite{FRAC:HypercomplexIterations} it was shown, for the complex number
+form of the escape time fractals above, that such a distance function
+at a point $z$ in the complex plane $d_z$ was bounded by
+\[
+d_z > \lim_{n \arrow \infty}\,\frac{|z_n|}a{2|z'_n|}\log|z_n|
+\]
+where $z_n = z_{n-1}^2 + c$, $|z'_n| = 2|z_{n+1}||z'_{n+1}|$, $z'_0 = 0$.
+The values of $z_0$ and $c$ were dictated by the type of fractal as described above.
+
+It was found that extending the formula to vectors using our analogue of
+complex multiplication yielded a suitable distance function although this has not
+yet been formally proved. Specifically
+\[
+d(x; \Omega) = \lim_{n \arrow \infty}\,\frac{|x_n|}a{2|x'_n|}\log|x_n|
+\]
+where $x_n = f_v(x_{n-1})$, $|x'_n| = 2|x_{n+1}||x'_{n+1}|$, $x'_0 = 0$ and
+the initial value of $x_n$ is fractal dependant. 
+
+Once a distance function (or a lowerebound thereof) is available ray tracing
+becomes possible. Rays of light are traced back from point in the image
+plane of an imaginary camera to the scene. For a particular ray the algorithm
+to trace the fractal is as follows.
+
+\begin{enumarate}
+\item Set $\hat{r}$ to be a unit vector pointing along the ray direction.
+\item Set the current position, $x$, to be the camera origin.
+\item Calculate a lower bound, $d_-$ for the distance from $x$. 
+\item If $d_-$ is smaller than some tolerance $\tau$ exit reporting
+$x$ as the intersection point with the fractal.
+\item Set $x \leftarrow x + d_-\hat{r}$.
+\item Go to step 3.
+\end{enumerate}
 
 \begin{figure}
 \centering
@@ -454,7 +490,11 @@ above.
 }
 \end{figure}
 
-FIXME: chat Ray tracing.
+Once the intersection point is found the fractal may be lit by examining
+intersection points of neighbouring rays and taking the surface orientation
+to be that of a plane passing through the neighbouring intersection points.
+Figure \ref{fig:5djulia} shows a slice through a 5d Julia set rendered with
+this technique.
 
 \section{Moving to Hyperbolic Geometry}
 
