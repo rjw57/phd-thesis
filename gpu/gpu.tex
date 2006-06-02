@@ -436,7 +436,7 @@ deformation step was done in software.
 Table \ref{tab:performance} shows the number of frames per second that could be
 displayed with a simple cube model at various different polygon counts. A simple model
 was chosen so that the generation, per frame, of un-deformed model vertices in the
-software implementation would take as little time as possible being 
+software implementation would take as little time as possible, being 
 algorithmically generated rather than fetched from main memory providing a fairer
 test of the speeds of the deformation algorithm. Figure \ref{fig:performance} shows
 the ratio of improvement between software and hardware implementations with polygon
@@ -448,7 +448,7 @@ In this section we will develop a simple method for doing dynamics with a sphere
 which has been deformed with a set of rotors. We shall show how a simple dynamics example
 using such a method may be implemented on the GPU.
 
-Recall that a GPU has two classes of shaders; it has vertex shaders which are applied
+Recall that a GPU has two classes of shaders. It has vertex shaders which are applied
 per-vertex and fragment shaders which are applied per-pixel. Since, in a typical scene,
 one would expect the number of pixels on screen to be very much greater than the number
 of vertices, GPUs generally have more parallel fragment shaders than vertex shaders.
@@ -457,7 +457,7 @@ greater performance than simply using the vertex shader.
 
 Algorithms implemented on the fragment shaders have one further 
 advantage when compared to those implemented on the vertex shader when one makes use
-of the \emph{render to texture} feature on modern graphics cards. Using this feature
+of the \emph{render to texture} feature on modern graphics cards. Using this feature,
 rendering can be directed to a texture stored in the graphics card memory rather than the
 screen. This feature allows iterative algorithms to be developed.
 The concept is simple. A texture is created which stores a set of initial values. 
@@ -466,9 +466,9 @@ reads the initial value from the texture and outputs the result of the next iter
 If this square is rendered into the original texture then the result of each iteration
 replaces the previous one. This process may be repeated as often as is desired.
 In reality there are a few implementation issues. Aside from the API calls required to
-setup the render to texture and appropriate projection matrices a significant issue is
+set up the render to texture and appropriate projection matrices, a significant issue is
 that the shader is required to write back to its input which could lead to
-concurrency issues. To avoid this one generally uses two textures, an `input' and `output',
+concurrency issues. To avoid this one generally uses two textures, an `input' and an `output',
 which are swapped between each iteration.
 
 \subsection{Collision detection via deformation}
@@ -485,7 +485,7 @@ We shall develop a simple example to illustrate this method. In our example we
 shall implement an approximate simulation of a cloth falling onto a complex
 smooth object. 
 
-To begin with we need a GPU-based simulation of the cloth itself for when
+To begin with we need a GPU-based simulation of the cloth itself, for when
 it is moving in space away from the target object. The aim of this example is
 to demonstrate complex collision rather than cloth simulation \emph{per se}
 and so we choose a very simple ball and spring model; the cloth is composed
@@ -538,7 +538,7 @@ vertices are mapped to a different set of vertices.  Our penetration test for
 vertices is simply to see if its distance from the origin is less than unity.
 We can thereby identify all penetrating vertices. Any penetrating vertex can
 be corrected simply by moving the deformed vertex to the unit-sphere surface.
-If we re-apply the deformation scheme the unity sphere is mapped back to the
+If we re-apply the deformation scheme the unit sphere is mapped back to the
 target object and the set of corrected vertices is mapped to a set which all
 lie outside the target object.
 
@@ -546,8 +546,8 @@ lie outside the target object.
 
 We wish our deformation scheme to be locally conformal and, preferably, for the
 normal information associated with any point on the target object to be preserved
-for lighting and dynamics. Below we preset a simple scheme based upon weighted sums
-of pure-rotation generators which fulfils this requirement.
+for lighting and dynamics. Below we present a simple scheme based upon weighted sums
+of pure rotation generators which fulfils this requirement.
 
 We begin by considering a rotor, $R_i = \exp(B_i)$, representing a rotation around a 
 known point $P_i$. Clearly $R_{i,\lambda} = \exp(\lambda B_i)$ is also a pure-rotation
@@ -595,7 +595,7 @@ reference orientation. The post-deformation orientation is now
 R_X \mapsto R_{i,w(X,P_i)}R_X.
 \]
 Specifically, if the point $X$ is a mesh vertex with associated normal
-$\hat{n} = R_Xe_1\tilde{R}_X$ then we can find the deformed normal, $\hat{n}'$ as
+$\hat{n} = R_Xe_1\tilde{R}_X$ then we can find the deformed normal, $\hat{n}'$, as
 \[
 \hat{n}' = R_{i,w(X,P_i)}R_Xe_1\tilde{R}_X\tilde{R}_{i,w(X,P_i)}.
 \]
@@ -607,15 +607,15 @@ valid dynamics on deformed objects.
 
 \subsection{Implementation}
 
-There are two stages to each step of the simulation; firstly the location of
+There are two stages to each step of the simulation, firstly the location of
 the cloth vertices are updated followed by the detection and correction of
 vertices which penetrate the object. For these vertices we perform some basic
-surface-physics removing force components normal to the surface and crudely
+surface physics removing force components normal to the surface and crudely
 modelling friction by multiplying the tangential velocity component by some
 fixed friction coefficient between 0 and 1.
 
 Both of these steps are performed on the GPU. Unlike the previous example this
-simulation required feedback; the output from the simulation had to be fed back
+simulation required feedback. The output from the simulation had to be fed back
 to the input.
 
 % \subsubsection{Cloth simulation}
@@ -625,10 +625,10 @@ and positions for each cloth vertex.
 
 The location of each cloth vertex was stored in a texture with each pixel in the
 texture corresponding to a vertex in the cloth. The red, green and blue
-components specified the $x$, $y$ and $z$ co-ordinates respectively.  Many GPUs
+components specifies the $x$, $y$ and $z$ co-ordinates respectively.  Many GPUs
 only allow for texture components to be in the range $[0, 1]$, effectively
 restricting the cloth to the unit cube. This could have been overcome with the
-introduction of appropriate scaling constants but newer nVidia GPUs allow for
+introduction of appropriate scaling constants, but newer nVidia GPUs allow for
 \emph{float buffers} which remove this restriction and they were used in this
 implementation due to their increased accuracy and convenience. A simple vertex shader
 could then be used when rendering the cloth to position the vertices according to the
@@ -641,9 +641,9 @@ where pixel and vertex shaders can be used to render images, not to screen, but 
 a particular texture. By rendering a single quad (or two triangles) into a texture
 we could invoke the pixel shader for each texel.
 
-GPUs cannot access the texture they are rendering into within pixel shaders for
-concurrency reasons and hence two pairs of textures were maintained, one pair
-for the velocities and one pair for the vertex positions. At each step one
+GPUs cannot access the texture being rendered into within pixel shaders for
+reasons of concurrency and hence two pairs of textures were maintained, one pair
+for the velocities and one pair for the vertex positions. At each step, one
 member of the pair would reflect the `current state' and the other would be
 written into representing the `new state'. At the end of the simulation step
 their r\^oles would be reversed.
@@ -679,7 +679,7 @@ is simply Euclid's method due to its ease of implementation and compactness; spa
 in shaders.
 
 The first part of figure \ref{fig:calcVertices} shows the shader used to update vertex positions.
-Again the velocity is integrated by simple summing to make the shader small and fast.
+Again, the velocity is integrated by simple summing to make the shader small and fast.
 
 \begin{figure}[p]
 \centering
@@ -700,13 +700,13 @@ components of velocity into the object and attenuating tangential components to
 simulate friction. 
 
 Both shaders use a Cg implementation of the deformation scheme which is
-implemented in figure \ref{fig:map}. Here the components of each key-generator
+implemented in figure \ref{fig:map}. Here the components of each key generator
 are stored in a texture which is used to deform any vertex passed to the
 function.
 
 \subsubsection{Results}
 
-Figure \ref{fig:cloth_montage} shows a selection of scenes from the final demo.
+Figure \ref{fig:cloth_montage} shows a selection of scenes from the final proof of concept application.
 You can see the central object which is a unit-sphere which has been deformed
 by 4 key-generators with linear fall-off. The cloth simulation is then allowed
 to fall on the object and slides off. All of this is performed on the GPU in
@@ -729,10 +729,10 @@ find applications on a Graphics Processing Unit common on many desktop PCs. We
 briefly discussed the architecture of these units and outlined how they
 might be `tricked' into performing general purpose computation. It was mentioned
 that GA algorithms might well be very `GPU-friendly' in that they consist of
-a number of steps which have few, or in many cases no, special cases so that the
+a number of steps which have few or in many cases no special cases so that the
 operations may be carried out in parallel using identical processing units.
 
-We then presented a set of samples using these techniques accelerated via
+We then presented a set of samples using these techniques, accelerated via
 a GPU. A mesh deformation scheme was discussed, based on rotor interpolation, and
 an example of how rotor interpolation may be performed on the GPU was shown. This
 solution was benchmarked and shown to be significantly faster than a pure-software approach.
@@ -741,6 +741,6 @@ A simplistic physics simulation was also presented running on the GPU. Here the
 fact that rotor interpolation may be viewed in some way as a `frame distortion' scheme
 allowed us to perform surface physics on a deformed sphere rapidly and in a simple manner.
 
-The techniques outlined in this chapter would certainly be a useful starting point for
+The techniques outlined in this chapter are a useful starting point for
 future focused research into the hardware acceleration of GA-based algorithms.
 
