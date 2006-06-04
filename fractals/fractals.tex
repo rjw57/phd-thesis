@@ -464,7 +464,7 @@ In \cite{FRAC:HypercomplexIterations} it was shown, for the complex number
 form of the escape time fractals above, that such a distance function
 at a point $z$ in the complex plane $d_z$ was bounded by
 \[
-d_z > \lim_{n \arrow \infty}\,\frac{|z_n|}a{2|z'_n|}\log|z_n|
+d_z > \lim_{n \rightarrow \infty}\,\frac{|z_n|}a{2|z'_n|}\log|z_n|
 \]
 where $z_n = z_{n-1}^2 + c$, $|z'_n| = 2|z_{n+1}||z'_{n+1}|$, $z'_0 = 0$.
 The values of $z_0$ and $c$ were dictated by the type of fractal as described above.
@@ -473,7 +473,7 @@ It was found that extending the formula to vectors using our analogue of
 complex multiplication yielded a suitable distance function although this has not
 yet been formally proved. Specifically
 \[
-d(x; \Omega) = \lim_{n \arrow \infty}\,\frac{|x_n|}a{2|x'_n|}\log|x_n|
+d(x; \Omega) = \lim_{n \rightarrow \infty}\,\frac{|x_n|}a{2|x'_n|}\log|x_n|
 \]
 where $x_n = f_v(x_{n-1})$, $|x'_n| = 2|x_{n+1}||x'_{n+1}|$, $x'_0 = 0$ and
 the initial value of $x_n$ is fractal dependant. 
@@ -483,7 +483,7 @@ becomes possible. Rays of light are traced back from point in the image
 plane of an imaginary camera to the scene. For a particular ray the algorithm
 to trace the fractal is as follows.
 
-\begin{enumarate}
+\begin{enumerate}
 \item Set $\hat{r}$ to be a unit vector pointing along the ray direction.
 \item Set the current position, $x$, to be the camera origin.
 \item Calculate a lower bound, $d_-$ for the distance from $x$. 
