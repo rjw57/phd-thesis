@@ -374,8 +374,6 @@ The generalised Mandelbrot set, $\mathbb{M}_k$, in $\mathbb{R}^k$
           the 3 dimensional Mandelbrot set.}
 \end{figure}
 
-FIXME: ... voxel stuff
-
 %Since we are no longer restricted to the complex plane we may choose many ways
 %to associate an image plane point $(x,y)$ with a corresponding constant
 %vector $c$. 
@@ -385,6 +383,11 @@ planes were used to generate three images of the three-dimensional
 Mandelbrot set which are then displayed mapped onto the original planes. This
 gives a crude visualisation method. A better method used to generate pictures
 of the generalised Julia set is given below.
+
+The method used was to render a number of slices through the set leaving transparent the points in
+each slice which were not a part of the fractal. These slices were then stacked
+atop each other to give the impression of a three dimensional surface as illustrated
+in figure \ref{fig:voxel}.
 
 \subsection{The Generalised Julia Set}
 
