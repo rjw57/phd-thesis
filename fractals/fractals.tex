@@ -457,10 +457,10 @@ sharper images.
 
 In this section we briefly extend the method in \cite{FRAC:HypercomplexIterations} of 
 ray-tracing quaternionic escape-time fractals to the generalised GA fractals developed 
-above. Ray-tracing of fractals is acheived by finding some distance function
+above. Ray-tracing of fractals is achieved by finding some distance function
 $d(x;\Omega)$ which gives the minimum distance to the fractal parameterised by
 $\Omega$ along the from the point $x$. For a Julia fractal the
-parameter $\Omega$ is the constant $c$. For a Mandelbrot fractal there is no
+parameter $\Omega$ is the constant we have previously termed $c$. For a Mandelbrot fractal there is no
 paramter as the fractal is unique. 
 
 In \cite{FRAC:HypercomplexIterations} it was shown, for the complex number
@@ -623,9 +623,15 @@ step 7 for one performing the iteration outlined above.
 
 \subsection{The Hyperbolic Julia Set}
 
-A particular hyperbolic Julia set is shown in figures \ref{fig:noneuclidean_sets}b
-and \ref{fig:julia_montage}.  Once again, it is generated using algorithm
-\ref{alg:generalised_julia} substituting step 6.
+A particular hyperbolic Julia set is shown in figures \ref{fig:noneuclidean_sets}b,
+\ref{fig:julia_montage} and \ref{fig:julia_montage2}.  Once again, it is generated using algorithm
+\ref{alg:generalised_julia} substituting step 6. The two related montage figures show the same path
+across the undelying Mandelbrot set but with two differing methods of representing
+$x \mapsto x+c$. It is interesting to note that not only are the fractals different but they have different
+overall shape and behaviour. It is also worth remarking that, geometrically, there is no preferred form
+of the translation representation and so both these montages are equally valid images of hyperbolic Julia sets.
+This leads to the interesting conclusion that, whilst there is only one family of Euclidean Julia sets, for
+translationally non-commuting geometries there are two.
 
 \begin{figure}[p]
 \centering
@@ -641,7 +647,7 @@ and \ref{fig:julia_montage}.  Once again, it is generated using algorithm
 \begin{figure}[p]
 \centering
 \includegraphics[width=0.9\textwidth]{direct_julia_noneuclid}
-\caption{\label{fig:direct_julia_noneuclid} 
+\caption{\label{fig:julia_montage2}
   A montage of hyperbolic Julia sets where the constant $c$ moves from $-0.7e_1 - 0.7e_2$
   to $0.7e_1 + 0.7e_2$. 
   In this figure translation $x \mapsto x + c$ is performed by applying a
