@@ -67,7 +67,7 @@ algorithms to fit this model.
 \subsection{DirectX shader language}
 
 Microsoft's DirectX\cite{GPU:DirectX} is a graphics programming API for
-Windows and, to some extent, the Microsoft XBox gaming platform. As part of
+Windows and, in a modified form, the Microsoft XBox and XBox 360 gaming platforms. As part of
 the API it specifies a generic shading language\cite{GPU:DirectXShadingLanguage}
 which abstracts the vertex and fragment shaders. Each version of DirectX
 specifies a minimum set of shader capabilities which \emph{must} be supported by a 
@@ -176,7 +176,7 @@ this discussion.
 
 We shall now present a GA-based mesh deformation scheme suitable for
 implementation on a GPU. In this scheme we start with
-an existing mesh and set of key rotors, $\left\{ R_1, R_2, \cdots, R_k \right\}$,
+an existing mesh and set of key rotors, $\left\{ R_1, R_2, \cdots, R_{N_k} \right\}$,
 which we wish to use to deform the mesh. Our scheme seeks to find some automatic
 method of representing each point on the mesh as some function of the key
 rotors; changing the key rotors will then lead to a deformation of the mesh. Desirable
@@ -193,11 +193,11 @@ a rotor, $R_i$, and displacement, $p_i$, given a set of key rotors,
 \end{figure}
 
 Our assignment scheme is illustrated in figure \ref{fig:assignment_scheme}.
-Firstly we form a set of generators, $\left\{B_1, B_2, \cdots, B_k\right\}$,
+Firstly we form a set of generators, $\left\{B_1, B_2, \cdots, B_{N_k}\right\}$,
 such that
 \[
-\left\{ R_1, R_2, \cdots, R_k \right\} \equiv \left\{\exp(B_1), \exp(B_2),
-        \cdots, \exp(B_k)\right\}.
+\left\{ R_1, R_2, \cdots, R_{N_k} \right\} \equiv \left\{\exp(B_1), \exp(B_2),
+        \cdots, \exp(B_{N_k})\right\}.
 \]
 We also find the image of the origin, $O_k = R_k\bar{n}\tilde{R}_k$, for 
 each key rotor. For each point-representation on the mesh, $P_i$, we find the Euclidean
@@ -209,7 +209,7 @@ d_{k,i} = \sqrt{-2O_k \cdot P_i}.
 We then form a rotor, $R_i$, for each point on the mesh as a weighted sum of the
 key rotors,
 \[
-R_i = \exp\left(\frac{\sum^{k}_1 w_i(d_{k,i}) B_i}{\sum^{k}_1 w_i(d_{k,i})}\right)
+R_i = \exp\left(\frac{\sum^{N_k}_{k=1} w_i(d_{k,i}) B_i}{\sum^{N_k}_{k=1} w_i(d_{k,i})}\right)
 \]
 where $w_i(d)$ is a function which defines the relative weights of each rotor depending
 on its proximity to the mesh point. One might choose a relatively simple weight function
@@ -237,12 +237,12 @@ The point $P_i$ is now stored in memory as a set of $d_{k,i}$ for each
 key rotor and the point $p_i$.
 
 Our deformation procedure is now simple. Given a new set of key rotors,
-$\left\{ R'_1, R'_2, \cdots, R'_k \right\}$, and a corresponding set of
-generators, $\left\{B'_1, B'_2, \cdots, B'_k\right\}$, we can form the deformed
+$\left\{ R'_1, R'_2, \cdots, R'_{N_k} \right\}$, and a corresponding set of
+generators, $\left\{B'_1, B'_2, \cdots, B'_{N_k}\right\}$, we can form the deformed
 mesh point $P'_i$ given the previously calculated $d_{k,i}$ and $p_i$ as
 \begin{align}
 R'_i &= 
-\exp\left(\frac{\sum^{k}_1 w_i(d_{k,i}) B'_i}{\sum^{k}_1 w_i(d_{k,i})}\right) \label{eqn:summation} \\
+\exp\left(\frac{\sum^{N_k}_{k=1} w_i(d_{k,i}) B'_i}{\sum^{N_k}_{k=1} w_i(d_{k,i})}\right) \label{eqn:summation} \\
 P'_i &= R'_i p_i \tilde{R}'_i.
 \end{align}
 It is easy to show by direct substitution that for $R'_k = R_k$ this 
@@ -358,18 +358,18 @@ The movement is smooth, natural and intuitive.
 
 \begin{figure}[p]
 \centering
-\includegraphics[height=0.37\textheight]{twist_cube_before} \\
+\includegraphics[height=0.37\textheight]{screw_cube_before} \\
 \noindent (a) \\ \rule{0pt}{\parskip} \\
-\includegraphics[height=0.37\textheight]{twist_cube_after} \\
+\includegraphics[height=0.37\textheight]{screw_cube_after} \\
 \noindent (b) 
-\caption{\label{fig:twistcubeexample}An example of twist deformation acting on a unit cube.
+\caption{\label{fig:screwcubeexample}An example of screw deformation acting on a unit cube.
   (a) Initial key rotors and automatically assigned mesh. 
   (b) Twisted mesh after movement of key rotors.} 
 \end{figure}
 
 Figure \ref{fig:cubeexample} shows the natural `plasticine-like' effect the deformation
 scheme has on a unit cube with key rotors initially placed on its corners. In addition to
-this figure \ref{fig:twistcubeexample} shows the effect of placing the key rotors along
+this figure \ref{fig:screwcubeexample} shows the effect of placing the key rotors along
 a central axis and applying opposite rotations at either end. Notice how the cube behaves as
 expected and does not collapse in the middle.
 
@@ -442,6 +442,20 @@ test of the speeds of the deformation algorithm. Figure \ref{fig:performance} sh
 the ratio of improvement between software and hardware implementations with polygon
 count.
 
+It is interesting to note the sudden dip in performance around 100,000 polygons. 
+Sicne the internals of GPUs are not publically available it is only possible to speculate
+as to the reason of this but it might be related to vertex cache size. If all of the 
+model vertices fiti within the on-GPU vertex cache they may be processed efficiently without
+aacessing graphics memory. If the number of vertices exceed the vertex cache size then
+they must be copied into the cache in batches which slows performance.
+
+It is interesting to note the sudden dip in performance around 100,000 polygons. 
+Sicne the internals of GPUs are not publically available it is only possible to speculate
+as to the reason of this but it might be related to vertex cache size. If all of the 
+model vertices fiti within the on-GPU vertex cache they may be processed efficiently without
+aacessing graphics memory. If the number of vertices exceed the vertex cache size then
+they must be copied into the cache in batches which slows performance.
+
 \section{Dynamics}
 
 In this section we will develop a simple method for doing dynamics with a sphere
@@ -496,7 +510,7 @@ on it, $F_{i,j}$ is
 \[
 F_{i,j} = \sum_{\alpha \in \{-1,1\}} \sum_{\beta \in \{-1,1\}} 
 b_{i+\alpha, j+\beta} 
-\left| P_{i,j} - P_{i+\alpha, j+\beta} \right|
+(P_{i,j} - P_{i+\alpha, j+\beta})
 \]
 where
 \[

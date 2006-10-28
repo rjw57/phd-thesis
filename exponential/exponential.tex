@@ -226,7 +226,7 @@ as required.
 \end{proof}
 
 \begin{definition}
-A \emph{twist} is a rotor whose action is to rotate by $\phi$ in the 
+A \emph{screw} is a rotor whose action is to rotate by $\phi$ in the 
 plane of $P$ whilst translating along a vector $a$ perpendicular to
 the plane of $P$. It may therefore be 
 defined by the rotor 
@@ -244,7 +244,7 @@ $P^2 = -1$ and $a$ is some vector satisfying $a \cdot n = a \cdot P = 0$.
 \end{definition}
 
 \begin{lemma}
-The exponentiation function may be re-expressed using a twist
+The exponentiation function may be re-expressed using a screw
 \[
 \exp\left(\frac{\phi}{2}P + \frac{tn}{2}\right) =
 \left[ 1 + \sinc\left(\frac{\phi}{2}\right)\frac{t_\parallel n}{2} \tilde{\tau}(\phi, P, - t_\perp) \right]
@@ -252,13 +252,13 @@ The exponentiation function may be re-expressed using a twist
 \]
 \end{lemma}
 \begin{proof}
-We firstly substitute our definition of a twist into our form for the exponential
+We firstly substitute our definition of a screw into our form for the exponential
 \begin{equation}
 \exp\left(\frac{\phi}{2}P + \frac{tn}{2}\right) =
 \tau(\phi, P, - t_\perp) + \sinc\left(\frac{\phi}{2}\right)\frac{t_\parallel n}{2}.
-\label{eqn:twistform}
+\label{eqn:screwform}
 \end{equation}
-Noting that, since twists are rotors, $\tau( \cdot ) \tilde{\tau}(\cdot) = 1$, it is
+Noting that, since screws are rotors, $\tau( \cdot ) \tilde{\tau}(\cdot) = 1$, it is
 then clear that the required expression is equivalent to this form of the exponential.
 \end{proof}
 
@@ -278,7 +278,7 @@ t_\parallel
 \]
 \end{lemma}
 \begin{proof}
-The expression above may be obtained by substituting for the twist in the initial expression and simplifying. 
+The expression above may be obtained by substituting for the screw in the initial expression and simplifying. 
 It is clearly a vector since multiplying $t_\parallel$ on the left by $P$ is just a rotation by $\pi / 2$ in the plane
 of $P$.
 \end{proof}
@@ -317,7 +317,7 @@ given in lemma
 \ref{lem:bk} then $R\tilde{R} = 1$.
 \end{thm}
 \begin{proof}
-Consider the twist form of $\exp(B)$ from equation \ref{eqn:twistform}
+Consider the screw form of $\exp(B)$ from equation \ref{eqn:screwform}
 \[
 R = \exp(B) =
 \tau(\phi, P, - t_\perp) + \sinc\left(\frac{\phi}{2}\right)\frac{t_\parallel n}{2}
@@ -367,7 +367,7 @@ given in lemma
 \ref{lem:bk} then $Rn\tilde{R} = n$.
 \end{thm}
 \begin{proof}
-Again using the twist form of $R$ from equation \ref{eqn:twistform} we have
+Again using the screw form of $R$ from equation \ref{eqn:screwform} we have
 \begin{eqnarray*}
 Rn & = & \tau(\phi, P, - t_\perp)n + 
 \sinc\left(\frac{\phi}{2}\right)\frac{t_\parallel n^2}{2} \\
@@ -378,11 +378,11 @@ Defining the rotation rotor $R_{(P,\phi)}$ as
 R_{(P,\phi)} = \cos\left(\frac{\phi}{2}\right) +
    \sin\left(\frac{\phi}{2}\right)P
 \]
-and substituting for the definition of the twist above gives
+and substituting for the definition of the screw above gives
 \[
 Rn = R_{(P,\phi)} n
 \]
-Similarly, again using the twist form of $R$ we have
+Similarly, again using the screw form of $R$ we have
 \begin{eqnarray*}
 nR & = & n\tau(\phi, P, - t_\perp) + 
 \sinc\left(\frac{\phi}{2}\right)\frac{nt_\parallel n}{2} \\
