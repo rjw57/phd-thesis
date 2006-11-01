@@ -915,13 +915,20 @@ with end-points on the boundary circle and erupting normal to it.
 A large number of different curves can be created with different control 
 point numbers, positions and weights. Fortunately there are a number of
 standard techniques to generate common curves. One such method of
-drawing circular arcs\cite{NURBS:arc} is useful to us. We use three control
+drawing accurate circular arcs\cite{NURBS:arc,nurbs-arc} is useful to us. 
+We use three control
 points: one at the start of the circular arc; one at the origin of the
 boundary circle; and one
 at its end (see figure \ref{fig:nurbs}). 
 The end-point weights are unity whereas the weight of the control
 point at the origin is $\cos \gamma$, where $\gamma$ is the angle
 $OA$ makes with $AB$.
+
+Although this procedure does generate a NURBS representation of a true
+circular arc the rendering of NURBS on a computer screen invariably involves
+a piecewise linear approximation and rasterization therefrom. This approximation
+can be made arbitrarily accurate to within machine precision and can certainly
+be made accurate to sub-pixel levels on any commonly used display.
 
 \begin{figure} \centering
 \scalebox{0.7}{\includegraphics{nurbs}}
