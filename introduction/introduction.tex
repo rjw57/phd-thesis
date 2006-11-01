@@ -35,6 +35,63 @@ Geometric Algebra (GA) as one such approach. As one might hope, the original
 four-dimensional description of projective geometry fits very nicely into the
 Geometric Algebra framework\cite{HZ91,IJPR00}. 
 
+This thesis investigates the emerging field of \emph{Conformal Geometric Algebra} (CGA)
+as a new basis for a CG framework. Computer Graphics is, fundamentally, a particular
+application of geometry. From a practical standpoint many of the low-level problems
+to do with rasterizing triangles and projecting a three-dimensional world onto
+a computer screen have been solved and hardware especially designed for this task
+is available.
+
+In the following chapters we start by assuming that good solutions to these problems are
+available and we investigate the use of CGA as a geometric building block sitting above
+the hardware. It is convenient that we may draw several million triangles in 3d space onto
+the screen but what if we wish to visualise a geometry other than Euclidean? Similarly
+we can draw several hundred characters onto the screen but this does not help us detect
+intersections.
+
+Consequently this work aims to investigate how CGA may help in these tangential CG problems
+and how problems that are not necessarily of traditional interest, e.g. the depiction of
+non-Euclidean geometries, may be tackled.
+
+Within the thesis we tackle the following problems.
+
+\subsection{Non-Euclidean geometries}
+
+In chapter \ref{chap:noneuclid}, we shall discuss and present a framework for
+visualising non-Euclidean geometries. We shall particularly emphasise hyperbolic
+geometry due to its novelty in the CG field and show how the treatment of the
+geometry in CG can relate to existing work\cite{bodo-sommer} in representing
+spherical geometries.
+
+\subsection{Fractals}
+
+In chapter \ref{chap:fractals} we shall discuss an extension of complex number and
+their geometric analogue in hyperbolic space. As a simple application the generalisation
+of escape-time fractals to hyperbolic geometry will be shown.
+
+\subsection{Rotor exponentiation}
+
+In chapter \ref{chap:exponential} we shall extend some work\cite{bodo-thesis} on
+the representation of rigid-body transforms via a 6 degree of freedom linear
+parameter space. Importantly, for application to existing systems, we show how
+we may map to and from this reprentation and the $4 \times 4$ transformation matrices
+used in a number of existing systems.
+
+The ability to map a description of rigid-body transformations into a linear space
+is immensely useful when attempting to smoothly interpolate pose and position. Similarly
+being able to extend many algorithms which work in a linear parameter space to position and
+pose allows a great many optimisation algorithms to be extended to cover rotation and
+translation naturally.
+
+\subsection{GPU-based techniques}
+
+In chapter \ref{chap:gpu} the techniques developed in chapter \ref{chap:exponential}
+are implemented on a commercial graphics processing unit (GPU).  Simple mesh
+deformation and collision detection examples are show.  The examples aim to
+show that not only is GA a natural language for developing such algorithms that
+they are also compact enough to satisfy the space constraints of real
+consumer-grade hardware.
+
 \begin{savequote}
 \quoteperson{You know we all became mathematicians for the same reason: 
   we were lazy.}{Max Rosenlicht}
