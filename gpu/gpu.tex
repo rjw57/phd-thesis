@@ -12,6 +12,19 @@ Units} (GPUs) in modern consumer-level graphics cards can be
 used to perform Geometric Algebra computations faster than a 
 typical single-core CPU.
 
+Within the chapter a GPU implementation of certain GA algorithms is
+shown. It is important to note that these implementations are not
+designed to be a general-purpose implementation of GA such as Gaigen or
+CLUCalc. Instead these are special purpose routines to implement 
+individual algorithms. This is because of the space constraints on 
+GPU programs, a half-page GPU program is considered large, and so
+all solutions have to be domain specific to a degree.
+
+In the future as general purpose computing on GPUs becomes more commonplace
+the space requirements may relax sufficiently to allow a general library to
+be written but until then we must work within the metaphorical 
+tiny box given to us.
+
 \section{An Overview of GPU Architecture}
 
 \begin{figure}
