@@ -118,3 +118,12 @@ clean-subdirs: $(CLEANSUBDIRS)
 $(CLEANSUBDIRS): 
 	$(MAKE) -C $(subst clean-,,$@) clean
 
+.PHONY: gh-pages
+gh-pages: thesis.pdf thesis.ps index.html
+	if [ -d gh-pages-build ]; then rm -r gh-pages-build; fi
+	mkdir gh-pages-build
+	cp index.html gh-pages-build/index.html
+	cp thesis.pdf gh-pages-build/rjw-thesis.pdf
+	cp thesis.ps gh-pages-build/rjw-thesis.ps
+	ghp-import -n gh-pages-build
+	rm -r gh-pages-build
