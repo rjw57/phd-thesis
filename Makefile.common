@@ -26,9 +26,9 @@ svg-figures: $(SVGPDFS) $(SVGEPSS)
 $(SVGEPSS) : %.eps : %.pdf
 	pdftops $< $@
 	       
-SVG2PDF?=$(PROJECTROOT)/svg2pdf
-$(SVGPDFS) : %.pdf : %.svg 
-	$(SVG2PDF) $< $@
+RSVGCONVERT?=`which rsvg-convert`
+$(SVGPDFS) : %.pdf : %.svg
+	$(RSVGCONVERT) -f pdf -o "$@" "$<"
 		
 clean-svg-figures:
 	if [ "x$(SVGEPSS)" != "x" ]; then rm -f $(SVGEPSS); fi

@@ -23,9 +23,9 @@ documents: $(PDFS) $(PSS)
 	
 #### Variables required by build system in subdirs ####
 PROJECTROOT:=$(shell pwd)
-SVG2PDF:=`which svg2pdf`
+RSVGCONVERT?=`which rsvg-convert`
 
-export PROJECTROOT SVG2PDF
+export PROJECTROOT RSVGCONVERT
 
 #### Main targets ####
 	
@@ -104,10 +104,6 @@ clean: clean-environment
 environment: subdirs wordcount.txt
 
 clean-environment: clean-subdirs
-
-#### svg2pdf
-svg2pdf: svg2pdf.c
-	$(CC) -o svg2pdf svg2pdf.c args.c `pkg-config cairo --libs --cflags` -lsvg-cairo
 
 #### subdirectories
 CLEANSUBDIRS:=$(foreach dir,$(SUBDIRS),clean-$(dir))
