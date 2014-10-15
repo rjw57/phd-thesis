@@ -1,6 +1,6 @@
 language: c
 install:
-  - sudo apt-get install texlive-latex-full texlive-math-extra
+  - sudo apt-get install texlive-latex-extra texlive-math-extra
   - sudo apt-get install fig2ps librsvg2-bin
 script:
   - make
