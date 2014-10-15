@@ -1,0 +1,7 @@
+language: c
+install:
+  - sudo apt-get install texlive-latex-full fig2ps librsvg2-bin
+script:
+  - make
+
+# vim:sw=2:sts=2:et
